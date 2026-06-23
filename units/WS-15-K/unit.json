@@ -1,0 +1,36 @@
+{
+  "id": "WS-15-K",
+  "week": "WS-15",
+  "title": "WS-15 知識の総完成",
+  "category": "knowledge",
+  "questionPages": [
+    {
+      "full": "units/WS-15-K/q_1.jpg",
+      "small": "units/WS-15-K/q_1_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/_shared/expl_1.jpg",
+      "small": "units/_shared/expl_1_small.jpg"
+    },
+    {
+      "full": "units/_shared/expl_2.jpg",
+      "small": "units/_shared/expl_2_small.jpg"
+    }
+  ],
+  "hasSolved": false,
+  "questions": [
+    "Ⅰ",
+    "Ⅱ",
+    "Ⅲ",
+    "Ⅳ",
+    "Ⅴ",
+    "Ⅵ",
+    "Ⅶ",
+    "Ⅷ",
+    "Ⅸ",
+    "Ⅹ",
+    "Ⅺ"
+  ]
+}

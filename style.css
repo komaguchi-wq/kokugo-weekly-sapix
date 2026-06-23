@@ -1,0 +1,165 @@
+/* ===== Weekly SapiX 国語 ビューア ===== */
+:root {
+  --accent: #2f6fbf;        /* 国語=青系（理科緑・社会橙と区別） */
+  --accent-dark: #21508c;
+  --bg: #f4f6fa;
+  --card-bg: #ffffff;
+  --text: #233044;
+  --muted: #7686a0;
+  --line: #dde3ec;
+  --knowledge: #b8742f;     /* 知識の総完成カテゴリ色 */
+}
+
+* { box-sizing: border-box; }
+/* hidden属性は display 指定より優先させる（.lightbox等のdisplay:flex対策） */
+[hidden] { display: none !important; }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Segoe UI", sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ---- ヘッダー ---- */
+#app-header {
+  position: sticky; top: 0; z-index: 20;
+  display: flex; align-items: center; gap: 12px;
+  background: var(--accent);
+  color: #fff;
+  padding: 12px 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.12);
+}
+#app-title {
+  font-size: 19px; margin: 0; font-weight: 700; flex: 1;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.back-btn {
+  background: rgba(255,255,255,.18); color: #fff; border: none;
+  font-size: 15px; padding: 7px 12px; border-radius: 8px; cursor: pointer;
+}
+.back-btn:active { background: rgba(255,255,255,.32); }
+.portal-link { color: #fff; font-size: 13px; text-decoration: none; opacity: .92; }
+
+/* ---- 画面共通 ---- */
+.screen { padding: 16px; max-width: 1100px; margin: 0 auto; }
+.loading { color: var(--muted); text-align: center; padding: 40px 0; }
+
+/* ---- 単元一覧 ---- */
+.week-group { margin-bottom: 22px; }
+.week-head {
+  font-size: 16px; font-weight: 700; color: var(--accent-dark);
+  border-left: 5px solid var(--accent); padding-left: 10px; margin: 6px 0 12px;
+}
+.unit-grid {
+  display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+}
+.unit-card {
+  background: var(--card-bg); border: 1px solid var(--line); border-radius: 12px;
+  padding: 16px; cursor: pointer; transition: transform .08s, box-shadow .12s;
+  display: flex; align-items: center; gap: 12px;
+}
+.unit-card:active { transform: scale(.98); }
+.unit-card:hover { box-shadow: 0 3px 10px rgba(0,0,0,.08); }
+.unit-icon { font-size: 26px; }
+.unit-card.knowledge { border-left: 5px solid var(--knowledge); }
+.unit-card.reading { border-left: 5px solid var(--accent); }
+.unit-name { font-size: 15px; font-weight: 600; line-height: 1.4; }
+.unit-tag { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+/* ---- 詳細：ツールバー ---- */
+.detail-bar {
+  position: sticky; top: 56px; z-index: 15; background: var(--bg);
+  padding: 6px 0 10px; border-bottom: 1px solid var(--line); margin-bottom: 12px;
+}
+#detail-title { font-size: 17px; margin: 2px 0 10px; }
+.tabs { display: flex; gap: 8px; align-items: center; }
+.tab {
+  background: #fff; border: 1px solid var(--line); color: var(--text);
+  font-size: 15px; padding: 9px 22px; border-radius: 9px; cursor: pointer; font-weight: 600;
+}
+.tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.print-btn {
+  margin-left: auto; background: #fff; border: 1px solid var(--line);
+  font-size: 14px; padding: 9px 14px; border-radius: 9px; cursor: pointer;
+}
+.print-btn:active { background: #eef2f8; }
+.view-note { color: var(--muted); font-size: 13px; margin: 0 0 10px; }
+
+/* ---- 詳細：ページ画像 ---- */
+.page-stack { display: flex; flex-direction: column; gap: 18px; align-items: center; }
+.page-item {
+  width: 100%; max-width: 880px; background: #fff;
+  border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.page-item img { display: block; width: 100%; height: auto; cursor: zoom-in; }
+.page-label {
+  font-size: 12px; color: var(--muted); padding: 6px 10px;
+  border-top: 1px solid var(--line); background: #fafbfd;
+}
+
+/* ---- 小問ごと○×採点 ---- */
+.grading {
+  width: 100%; max-width: 880px; background: #fff;
+  border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.grading-head { font-size: 15px; font-weight: 700; color: var(--accent-dark); margin-bottom: 10px; }
+.grade-grid {
+  display: grid; gap: 8px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+.grade-row { display: flex; align-items: center; gap: 8px; }
+.grade-label { font-size: 15px; font-weight: 600; min-width: 42px; }
+.grade-btn {
+  flex: 1; font-size: 18px; padding: 8px 0; border-radius: 8px; cursor: pointer;
+  border: 1.5px solid var(--line); background: #fff; color: #b3bccb; font-weight: 700;
+}
+.grade-btn.maru.on { background: #e8f3ff; border-color: var(--accent); color: var(--accent); }
+.grade-btn.batsu.on { background: #ffecec; border-color: #e05656; color: #e05656; }
+.grade-btn:active { transform: scale(.96); }
+
+/* ---- ライトボックス（拡大） ---- */
+.lightbox {
+  position: fixed; inset: 0; z-index: 100; background: rgba(20,28,40,.94);
+  display: flex; flex-direction: column;
+}
+.lightbox-close {
+  align-self: flex-end; margin: 12px; background: rgba(255,255,255,.16);
+  color: #fff; border: none; font-size: 16px; padding: 10px 16px; border-radius: 9px; cursor: pointer;
+}
+.lightbox-scroll { flex: 1; overflow: auto; -webkit-overflow-scrolling: touch; text-align: center; }
+.lightbox-scroll img { max-width: none; }
+
+/* ---- 印刷 ---- */
+#print-container { display: none; }
+@media screen { #print-container { display: none !important; } }
+
+@media (max-width: 480px) {
+  #app-title { font-size: 16px; }
+  .portal-link { font-size: 11px; }
+  .detail-bar { top: 50px; }
+  .tab { padding: 9px 16px; }
+}
+
+@media print {
+  #app-header, #home, #detail, #lightbox { display: none !important; }
+  /* ★物理mm + block（vh/flex禁止）: iOS Safariで1画像=1枚を安定させる */
+  #print-container { display: block !important; }
+  .print-page {
+    display: block;
+    width: 100%;
+    text-align: center;
+    page-break-after: always;
+    break-after: page;
+  }
+  .print-page:last-child { page-break-after: auto; break-after: auto; }
+  .print-page img {
+    max-width: 348mm;   /* B4横の印刷可能幅（364-余白16） */
+    max-height: 241mm;  /* B4横の印刷可能高（257-余白16） */
+    width: auto; height: auto;
+  }
+  @page { size: B4 landscape; margin: 8mm; }
+}
