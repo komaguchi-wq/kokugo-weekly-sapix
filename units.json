@@ -72,6 +72,54 @@
     "category": "knowledge"
   },
   {
+    "id": "WS-04-1",
+    "week": "WS-04",
+    "title": "WS-04-1 大問一（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-04-2",
+    "week": "WS-04",
+    "title": "WS-04-2 大問二（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-04-3",
+    "week": "WS-04",
+    "title": "WS-04-3 大問三（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-04-K",
+    "week": "WS-04",
+    "title": "WS-04 知識の総完成",
+    "category": "knowledge"
+  },
+  {
+    "id": "WS-05-1",
+    "week": "WS-05",
+    "title": "WS-05-1 大問一（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-05-2",
+    "week": "WS-05",
+    "title": "WS-05-2 大問二（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-05-3",
+    "week": "WS-05",
+    "title": "WS-05-3 大問三（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-05-K",
+    "week": "WS-05",
+    "title": "WS-05 知識の総完成",
+    "category": "knowledge"
+  },
+  {
     "id": "WS-15-1",
     "week": "WS-15",
     "title": "WS-15-1 大問一（読解）",
