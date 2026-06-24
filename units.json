@@ -24,6 +24,30 @@
     "category": "knowledge"
   },
   {
+    "id": "WS-02-1",
+    "week": "WS-02",
+    "title": "WS-02-1 大問一（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-02-2",
+    "week": "WS-02",
+    "title": "WS-02-2 大問二（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-02-3",
+    "week": "WS-02",
+    "title": "WS-02-3 大問三（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-02-K",
+    "week": "WS-02",
+    "title": "WS-02 知識の総完成",
+    "category": "knowledge"
+  },
+  {
     "id": "WS-15-1",
     "week": "WS-15",
     "title": "WS-15-1 大問一（読解）",
