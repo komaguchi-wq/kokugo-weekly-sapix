@@ -1,0 +1,45 @@
+{
+  "id": "WS-01-1",
+  "week": "WS-01",
+  "title": "WS-01-1 大問一（読解）",
+  "category": "reading",
+  "questionPages": [
+    {
+      "full": "units/WS-01-1/q_1.jpg",
+      "small": "units/WS-01-1/q_1_small.jpg"
+    },
+    {
+      "full": "units/WS-01-1/q_2.jpg",
+      "small": "units/WS-01-1/q_2_small.jpg"
+    },
+    {
+      "full": "units/WS-01-1/q_3.jpg",
+      "small": "units/WS-01-1/q_3_small.jpg"
+    },
+    {
+      "full": "units/WS-01-1/qsheet.jpg",
+      "small": "units/WS-01-1/qsheet_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/_shared/WS-01/expl_1.jpg",
+      "small": "units/_shared/WS-01/expl_1_small.jpg"
+    },
+    {
+      "full": "units/_shared/WS-01/expl_2.jpg",
+      "small": "units/_shared/WS-01/expl_2_small.jpg"
+    }
+  ],
+  "hasSolved": false,
+  "questions": [
+    "問一",
+    "問二",
+    "問三",
+    "問四",
+    "問五",
+    "問六",
+    "問七",
+    "問八"
+  ]
+}

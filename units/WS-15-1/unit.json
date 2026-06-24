@@ -19,12 +19,12 @@
   ],
   "answerPages": [
     {
-      "full": "units/_shared/expl_1.jpg",
-      "small": "units/_shared/expl_1_small.jpg"
+      "full": "units/_shared/WS-15/expl_1.jpg",
+      "small": "units/_shared/WS-15/expl_1_small.jpg"
     },
     {
-      "full": "units/_shared/expl_2.jpg",
-      "small": "units/_shared/expl_2_small.jpg"
+      "full": "units/_shared/WS-15/expl_2.jpg",
+      "small": "units/_shared/WS-15/expl_2_small.jpg"
     }
   ],
   "hasSolved": false,

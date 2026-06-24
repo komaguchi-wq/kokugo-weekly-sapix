@@ -1,5 +1,29 @@
 [
   {
+    "id": "WS-01-1",
+    "week": "WS-01",
+    "title": "WS-01-1 大問一（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-01-2",
+    "week": "WS-01",
+    "title": "WS-01-2 大問二（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-01-3",
+    "week": "WS-01",
+    "title": "WS-01-3 大問三（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-01-K",
+    "week": "WS-01",
+    "title": "WS-01 知識の総完成",
+    "category": "knowledge"
+  },
+  {
     "id": "WS-15-1",
     "week": "WS-15",
     "title": "WS-15-1 大問一（読解）",
