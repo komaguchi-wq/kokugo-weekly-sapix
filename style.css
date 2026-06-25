@@ -39,7 +39,12 @@ html, body {
   font-size: 15px; padding: 7px 12px; border-radius: 8px; cursor: pointer;
 }
 .back-btn:active { background: rgba(255,255,255,.32); }
-.portal-link { color: #fff; font-size: 13px; text-decoration: none; opacity: .92; }
+.portal-nav { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.portal-link {
+  color: #fff; font-size: 12px; font-weight: 600; text-decoration: none; white-space: nowrap;
+  background: rgba(255,255,255,.18); border-radius: 999px; padding: 6px 12px;
+}
+.portal-link:active { background: rgba(255,255,255,.32); }
 
 /* ---- 画面共通 ---- */
 .screen { padding: 16px; max-width: 1100px; margin: 0 auto; }
