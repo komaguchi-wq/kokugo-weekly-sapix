@@ -1,0 +1,34 @@
+{
+  "id": "WS-09-3",
+  "week": "WS-09",
+  "title": "WS-09-3 大問三（読解）",
+  "category": "reading",
+  "questionPages": [
+    {
+      "full": "units/WS-09-3/q_1.jpg",
+      "small": "units/WS-09-3/q_1_small.jpg"
+    },
+    {
+      "full": "units/WS-09-3/q_2.jpg",
+      "small": "units/WS-09-3/q_2_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/_shared/WS-09/expl_1.jpg",
+      "small": "units/_shared/WS-09/expl_1_small.jpg"
+    },
+    {
+      "full": "units/_shared/WS-09/expl_2.jpg",
+      "small": "units/_shared/WS-09/expl_2_small.jpg"
+    }
+  ],
+  "hasSolved": false,
+  "questions": [
+    "問一",
+    "問二",
+    "問三",
+    "問四",
+    "問五"
+  ]
+}

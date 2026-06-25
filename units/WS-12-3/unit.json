@@ -1,0 +1,40 @@
+{
+  "id": "WS-12-3",
+  "week": "WS-12",
+  "title": "WS-12-3 大問三（読解）",
+  "category": "reading",
+  "questionPages": [
+    {
+      "full": "units/WS-12-3/q_1.jpg",
+      "small": "units/WS-12-3/q_1_small.jpg"
+    },
+    {
+      "full": "units/WS-12-3/q_2.jpg",
+      "small": "units/WS-12-3/q_2_small.jpg"
+    },
+    {
+      "full": "units/WS-12-3/qsheet.jpg",
+      "small": "units/WS-12-3/qsheet_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/_shared/WS-12/expl_1.jpg",
+      "small": "units/_shared/WS-12/expl_1_small.jpg"
+    },
+    {
+      "full": "units/_shared/WS-12/expl_2.jpg",
+      "small": "units/_shared/WS-12/expl_2_small.jpg"
+    }
+  ],
+  "hasSolved": false,
+  "questions": [
+    "問一",
+    "問二",
+    "問三",
+    "問四",
+    "問五",
+    "問六",
+    "問七"
+  ]
+}

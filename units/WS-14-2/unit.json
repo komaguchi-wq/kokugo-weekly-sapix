@@ -1,0 +1,46 @@
+{
+  "id": "WS-14-2",
+  "week": "WS-14",
+  "title": "WS-14-2 大問二（読解）",
+  "category": "reading",
+  "questionPages": [
+    {
+      "full": "units/WS-14-2/q_1.jpg",
+      "small": "units/WS-14-2/q_1_small.jpg"
+    },
+    {
+      "full": "units/WS-14-2/q_2.jpg",
+      "small": "units/WS-14-2/q_2_small.jpg"
+    },
+    {
+      "full": "units/WS-14-2/qsheet.jpg",
+      "small": "units/WS-14-2/qsheet_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/_shared/WS-14/expl_1.jpg",
+      "small": "units/_shared/WS-14/expl_1_small.jpg"
+    },
+    {
+      "full": "units/_shared/WS-14/expl_2.jpg",
+      "small": "units/_shared/WS-14/expl_2_small.jpg"
+    },
+    {
+      "full": "units/WS-14-2/asheet.jpg",
+      "small": "units/WS-14-2/asheet_small.jpg"
+    }
+  ],
+  "hasSolved": true,
+  "questions": [
+    "問一",
+    "問二",
+    "問三",
+    "問四",
+    "問五",
+    "問六",
+    "問七",
+    "問八",
+    "問九"
+  ]
+}
