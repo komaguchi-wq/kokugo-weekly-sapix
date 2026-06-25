@@ -1,0 +1,43 @@
+{
+  "id": "WS-07-1",
+  "week": "WS-07",
+  "title": "WS-07-1 大問一（読解）",
+  "category": "reading",
+  "questionPages": [
+    {
+      "full": "units/WS-07-1/q_1.jpg",
+      "small": "units/WS-07-1/q_1_small.jpg"
+    },
+    {
+      "full": "units/WS-07-1/q_2.jpg",
+      "small": "units/WS-07-1/q_2_small.jpg"
+    },
+    {
+      "full": "units/WS-07-1/qsheet.jpg",
+      "small": "units/WS-07-1/qsheet_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/_shared/WS-07/expl_1.jpg",
+      "small": "units/_shared/WS-07/expl_1_small.jpg"
+    },
+    {
+      "full": "units/_shared/WS-07/expl_2.jpg",
+      "small": "units/_shared/WS-07/expl_2_small.jpg"
+    }
+  ],
+  "hasSolved": false,
+  "questions": [
+    "問一",
+    "問二",
+    "問三",
+    "問四",
+    "問五",
+    "問六",
+    "問七",
+    "問八",
+    "問九",
+    "問十"
+  ]
+}
