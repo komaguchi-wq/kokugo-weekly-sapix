@@ -168,6 +168,30 @@
     "category": "knowledge"
   },
   {
+    "id": "WS-08-1",
+    "week": "WS-08",
+    "title": "WS-08-1 大問一（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-08-2",
+    "week": "WS-08",
+    "title": "WS-08-2 大問二（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-08-3",
+    "week": "WS-08",
+    "title": "WS-08-3 大問三（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-08-K",
+    "week": "WS-08",
+    "title": "WS-08 知識の総完成",
+    "category": "knowledge"
+  },
+  {
     "id": "WS-09-1",
     "week": "WS-09",
     "title": "WS-09-1 大問一（読解）",
