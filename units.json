@@ -360,6 +360,30 @@
     "category": "knowledge"
   },
   {
+    "id": "WS-16-1",
+    "week": "WS-16",
+    "title": "WS-16-1 大問一（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-16-2",
+    "week": "WS-16",
+    "title": "WS-16-2 大問二（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-16-3",
+    "week": "WS-16",
+    "title": "WS-16-3 大問三（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-16-K",
+    "week": "WS-16",
+    "title": "WS-16 知識の総完成",
+    "category": "knowledge"
+  },
+  {
     "id": "WS-17-1",
     "week": "WS-17",
     "title": "WS-17-1 大問一（読解）",

@@ -1,0 +1,32 @@
+{
+  "id": "WS-16-K",
+  "week": "WS-16",
+  "title": "WS-16 知識の総完成",
+  "category": "knowledge",
+  "questionPages": [
+    {
+      "full": "units/WS-16-K/q_1.jpg",
+      "small": "units/WS-16-K/q_1_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/_shared/WS-16/expl_1.jpg",
+      "small": "units/_shared/WS-16/expl_1_small.jpg"
+    },
+    {
+      "full": "units/_shared/WS-16/expl_2.jpg",
+      "small": "units/_shared/WS-16/expl_2_small.jpg"
+    }
+  ],
+  "hasSolved": false,
+  "questions": [
+    "一",
+    "二",
+    "三",
+    "四",
+    "五",
+    "六",
+    "七"
+  ]
+}
