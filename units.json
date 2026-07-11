@@ -430,5 +430,29 @@
     "week": "WS-18",
     "title": "WS-18 知識の総完成",
     "category": "knowledge"
+  },
+  {
+    "id": "WS-19-1",
+    "week": "WS-19",
+    "title": "WS-19-1 大問一（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-19-2",
+    "week": "WS-19",
+    "title": "WS-19-2 大問二（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-19-3",
+    "week": "WS-19",
+    "title": "WS-19-3 大問三（読解）",
+    "category": "reading"
+  },
+  {
+    "id": "WS-19-K",
+    "week": "WS-19",
+    "title": "WS-19 知識の総完成",
+    "category": "knowledge"
   }
 ]

@@ -1,0 +1,27 @@
+{
+  "id": "WS-19-K",
+  "week": "WS-19",
+  "title": "WS-19 知識の総完成",
+  "category": "knowledge",
+  "questionPages": [
+    {
+      "full": "units/WS-19-K/q_1.jpg",
+      "small": "units/WS-19-K/q_1_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/_shared/WS-19/expl_1.jpg",
+      "small": "units/_shared/WS-19/expl_1_small.jpg"
+    },
+    {
+      "full": "units/_shared/WS-19/expl_2.jpg",
+      "small": "units/_shared/WS-19/expl_2_small.jpg"
+    }
+  ],
+  "hasSolved": false,
+  "questions": [
+    "一",
+    "二"
+  ]
+}
