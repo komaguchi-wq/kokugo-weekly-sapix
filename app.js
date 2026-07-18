@@ -25,6 +25,8 @@ async function init() {
   document.querySelectorAll('.tab').forEach((t) =>
     t.addEventListener('click', () => switchView(t.dataset.view)));
   $('#lightbox-close').addEventListener('click', closeLightbox);
+  // ○×採点のクラウド同期（単元表示中なら取り込み後に再描画）
+  gradeSyncInit(() => { if (state.current) renderPages(); });
 }
 
 // ---- ホーム（週ごとにグループ表示） ----
@@ -130,6 +132,86 @@ function renderPages() {
   bindGrading();
 }
 
+// ---- 家族共有クラウド同期（○×採点を端末非依存にする） ----
+// GAS（kakomon リポジトリの grade-sync.gs と共通）を「アクセス: 全員」でデプロイし、
+// /exec URL を下の "" に入れると有効になる。未設定の間は従来通り端末内保存のみ。
+const GRADE_SYNC_URL = localStorage.getItem('grade-sync-url') || '';
+const GRADE_SYNC_APP = 'kokugo-ws';
+const GRADE_SYNC_PREFIXES = ['kokugo-ws-grade:'];
+const GRADE_SYNC_META = 'kokugo-ws-sync-t';   // キーごとの最終更新時刻(ms)
+
+let _gsTimer = null, _gsBusy = false;
+function _gsMeta() { try { return JSON.parse(localStorage.getItem(GRADE_SYNC_META)) || {}; } catch (e) { return {}; } }
+function _gsSetMeta(m) { try { localStorage.setItem(GRADE_SYNC_META, JSON.stringify(m)); } catch (e) {} }
+function _gsKeys() {
+  const out = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (GRADE_SYNC_PREFIXES.some((p) => k === p || k.startsWith(p))) out.push(k);
+  }
+  return out;
+}
+// 採点の保存時に呼ぶ: 更新時刻を記録し、0.8秒後にまとめて送信
+function gradeSyncTouch(key) {
+  if (!GRADE_SYNC_URL) return;
+  const m = _gsMeta(); m[key] = Date.now(); _gsSetMeta(m);
+  clearTimeout(_gsTimer);
+  _gsTimer = setTimeout(gradeSyncPush, 800);
+}
+async function gradeSyncPush() {
+  if (!GRADE_SYNC_URL) return;
+  const m = _gsMeta();
+  let metaChanged = false;
+  const entries = {};
+  for (const k of _gsKeys()) {
+    const v = localStorage.getItem(k);
+    if (v == null) continue;
+    if (!m[k]) { m[k] = Date.now(); metaChanged = true; }  // 同期導入前からのデータに時刻を付与
+    entries[k] = { v, t: m[k] };
+  }
+  if (metaChanged) _gsSetMeta(m);
+  if (!Object.keys(entries).length) return;
+  try {
+    await fetch(GRADE_SYNC_URL, {
+      method: 'POST', mode: 'cors',
+      headers: { 'Content-Type': 'text/plain' },  // GASのpreflight回避
+      body: JSON.stringify({ app: GRADE_SYNC_APP, entries }),
+    });
+  } catch (e) { console.warn('gradeSyncPush failed:', e); }
+}
+// クラウドの新しいキーだけ取り込み → 変化があれば画面更新
+async function gradeSyncPull(onUpdate) {
+  if (!GRADE_SYNC_URL || _gsBusy) return;
+  _gsBusy = true;
+  try {
+    const res = await fetch(GRADE_SYNC_URL + '?app=' + encodeURIComponent(GRADE_SYNC_APP), { mode: 'cors' });
+    const json = await res.json();
+    if (json.status !== 'ok' || !json.entries) return;
+    const m = _gsMeta();
+    let changed = false;
+    for (const k in json.entries) {
+      if (!GRADE_SYNC_PREFIXES.some((p) => k === p || k.startsWith(p))) continue;
+      const e = json.entries[k];
+      if (!e || typeof e.v !== 'string') continue;
+      if (localStorage.getItem(k) == null || (e.t || 0) > (m[k] || 0)) {
+        localStorage.setItem(k, e.v);
+        m[k] = e.t || 0;
+        changed = true;
+      }
+    }
+    if (changed) { _gsSetMeta(m); if (onUpdate) onUpdate(); }
+  } catch (e) { console.warn('gradeSyncPull failed:', e); }
+  finally { _gsBusy = false; }
+}
+function gradeSyncInit(onUpdate) {
+  if (!GRADE_SYNC_URL) return;
+  gradeSyncPull(onUpdate);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') { gradeSyncPush(); gradeSyncPull(onUpdate); }
+  });
+  window.addEventListener('online', () => gradeSyncPush());
+}
+
 // ---- 小問ごと○×採点（点数表示なし・localStorage保存） ----
 function gradeKey(id) { return `kokugo-ws-grade:${id}`; }
 
@@ -139,6 +221,7 @@ function loadGrades(id) {
 }
 function saveGrades(id, grades) {
   try { localStorage.setItem(gradeKey(id), JSON.stringify(grades)); } catch (e) {}
+  gradeSyncTouch(gradeKey(id));
 }
 
 function renderGrading() {
