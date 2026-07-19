@@ -135,7 +135,7 @@ function renderPages() {
 // ---- 家族共有クラウド同期（○×採点を端末非依存にする） ----
 // GAS（kakomon リポジトリの grade-sync.gs と共通）を「アクセス: 全員」でデプロイし、
 // /exec URL を下の "" に入れると有効になる。未設定の間は従来通り端末内保存のみ。
-const GRADE_SYNC_URL = localStorage.getItem('grade-sync-url') || '';
+const GRADE_SYNC_URL = localStorage.getItem('grade-sync-url') || 'https://script.google.com/macros/s/AKfycbwvfaMQjYIL56_EodEPWsTU27IRHz4FIkkU9GKt2wwSI1bRNEcK5M1tia3VGGwEQVmy/exec';
 const GRADE_SYNC_APP = 'kokugo-ws';
 const GRADE_SYNC_PREFIXES = ['kokugo-ws-grade:'];
 const GRADE_SYNC_META = 'kokugo-ws-sync-t';   // キーごとの最終更新時刻(ms)
