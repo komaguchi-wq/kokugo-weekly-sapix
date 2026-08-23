@@ -168,3 +168,17 @@ html, body {
   }
   @page { size: B4 landscape; margin: 8mm; }
 }
+
+/* 単元カード: 正誤棒グラフ（緑=○ / 黄=× / 灰=未）＋完了%（他アプリと同デザイン） */
+.unit-card-body { flex: 1 1 auto; min-width: 0; }
+.unit-card-row { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.unit-card-row .unit-card-info { flex: 1 1 auto; min-width: 0; }
+.unit-card-row .unit-card-stats { flex: 0 0 auto; text-align: right; }
+.unit-card-accuracy { font-size: 18px; font-weight: 700; color: #007aff; line-height: 1.1; }
+.unit-card-detail { font-size: 11px; color: var(--muted); margin-top: 2px; white-space: nowrap; }
+.unit-card-bar { display: flex; height: 8px; background: #e8e8ed; border-radius: 4px; overflow: hidden; }
+.unit-card-bar-good { background: #34c759; height: 100%; transition: width 0.3s; }
+.unit-card-bar-low  { background: #ff9f0a; height: 100%; transition: width 0.3s; }
+.unit-card-legend { display: flex; gap: 10px; margin-top: 4px; font-size: 11px; color: var(--muted); }
+.unit-card-legend .lg-good { color: #34c759; font-weight: 600; }
+.unit-card-legend .lg-low  { color: #ff9f0a; font-weight: 600; }

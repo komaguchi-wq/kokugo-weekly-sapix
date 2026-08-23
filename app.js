@@ -16,6 +16,15 @@ async function init() {
     const res = await fetch('units.json', { cache: 'no-store' });
     state.units = await res.json();
     renderHome();
+    // 単元カードの正誤棒グラフ用に unit.json（小問ラベル）を先読み → 読めたら描き直し
+    await Promise.all(state.units.map(async (u) => {
+      if (state.unitCache[u.id]) return;
+      try {
+        const r = await fetch(`units/${u.id}/unit.json`, { cache: 'no-store' });
+        state.unitCache[u.id] = await r.json();
+      } catch (e) {}
+    }));
+    renderHome();
   } catch (e) {
     $('#unit-list').innerHTML = '<p class="loading">単元の読み込みに失敗しました。</p>';
     console.error(e);
@@ -26,7 +35,44 @@ async function init() {
     t.addEventListener('click', () => switchView(t.dataset.view)));
   $('#lightbox-close').addEventListener('click', closeLightbox);
   // ○×採点のクラウド同期（単元表示中なら取り込み後に再描画）
-  gradeSyncInit(() => { if (state.current) renderPages(); });
+  gradeSyncInit(() => { if (state.current) renderPages(); else renderHome(); });
+}
+
+// ---- 単元カードの正誤棒グラフ（緑=○ / 黄=× / 灰=未。他アプリと同デザイン。○×は1回記録なので緑=○） ----
+function unitBarStats(u) {
+  const unit = state.unitCache[u.id];
+  const qs = (unit && unit.questions) || [];
+  const grades = loadGrades(u.id);
+  let attempted = 0, good = 0;
+  for (const label of qs) {
+    const g = grades[label];
+    if (g === 'o') { attempted++; good++; }
+    else if (g === 'x') { attempted++; }
+  }
+  return { total: qs.length, attempted, good, low: attempted - good, unanswered: qs.length - attempted };
+}
+function unitBarBlock(st) {
+  if (!(st.total > 0)) return '';
+  const pct = (n) => (n / st.total * 100);
+  const donePct = Math.round(st.attempted / st.total * 100);
+  return `
+      <div class="unit-card-row">
+        <div class="unit-card-info">
+          <div class="unit-card-bar" title="緑=正解 / 黄=不正解 / 灰=未回答">
+            <div class="unit-card-bar-good" style="width:${pct(st.good)}%"></div>
+            <div class="unit-card-bar-low" style="width:${pct(st.low)}%"></div>
+          </div>
+          <div class="unit-card-legend">
+            <span class="lg-good">○ ${st.good}</span>
+            <span class="lg-low">△ ${st.low}</span>
+            <span class="lg-none">未 ${st.unanswered}</span>
+          </div>
+        </div>
+        <div class="unit-card-stats">
+          <div class="unit-card-accuracy">${donePct}%</div>
+          <div class="unit-card-detail">完了 ${st.attempted}/${st.total}</div>
+        </div>
+      </div>`;
 }
 
 // ---- ホーム（週ごとにグループ表示） ----
@@ -50,9 +96,9 @@ function renderHome() {
       html += `
         <div class="unit-card ${u.category}" data-id="${u.id}">
           <span class="unit-icon">${icon}</span>
-          <div>
+          <div class="unit-card-body">
             <div class="unit-name">${u.title}</div>
-            <div class="unit-tag">${tag}</div>
+            <div class="unit-tag">${tag}</div>${unitBarBlock(unitBarStats(u))}
           </div>
         </div>`;
     }
@@ -89,6 +135,7 @@ function showHome() {
   $('#home').hidden = false;
   $('#back-btn').hidden = true;
   state.current = null;
+  renderHome();   // 採点後の棒グラフを反映
 }
 
 // ---- ビュー切替（問題/解答） ----
