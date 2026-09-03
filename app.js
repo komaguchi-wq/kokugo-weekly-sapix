@@ -91,8 +91,9 @@ function renderHome() {
     html += `<section class="week-group"><h3 class="week-head">${w}</h3><div class="unit-grid">`;
     for (const u of groups[w]) {
       const isK = u.category === 'knowledge';
-      const icon = isK ? '✍️' : '📖';
-      const tag = isK ? '知識の総完成' : '読解';
+      const isD = u.category === 'daily-knowledge';
+      const icon = isD ? '📚' : isK ? '✍️' : '📖';
+      const tag = isD ? '知識の学習（デイリーサピックス）' : isK ? '知識の総完成' : '読解';
       html += `
         <div class="unit-card ${u.category}" data-id="${u.id}">
           <span class="unit-icon">${icon}</span>
@@ -157,8 +158,15 @@ function currentPages() {
 function renderPages() {
   const pages = currentPages();
   const note = $('#view-note');
+  const isD = state.current.category === 'daily-knowledge';
   if (state.view === 'question') {
-    note.textContent = '問題文と解答用紙（空欄）です。画像をタップで拡大できます。';
+    note.textContent = isD
+      ? '問題ページです。画像をタップで拡大できます。'
+      : '問題文と解答用紙（空欄）です。画像をタップで拡大できます。';
+  } else if (isD) {
+    note.textContent = state.current.hasSolved
+      ? '解答です。末尾に解いた原本（採点あり）があります。'
+      : '解答です。';
   } else {
     note.textContent = state.current.hasSolved
       ? '解答解説と、記入済みの解答用紙です。'

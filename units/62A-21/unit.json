@@ -1,0 +1,115 @@
+{
+  "id": "62A-21",
+  "week": "知識の学習",
+  "title": "62A-21 いろいろな言葉①",
+  "category": "daily-knowledge",
+  "questionPages": [
+    {
+      "full": "units/62A-21/q_1.jpg",
+      "small": "units/62A-21/q_1_small.jpg"
+    },
+    {
+      "full": "units/62A-21/q_2.jpg",
+      "small": "units/62A-21/q_2_small.jpg"
+    },
+    {
+      "full": "units/62A-21/q_3.jpg",
+      "small": "units/62A-21/q_3_small.jpg"
+    },
+    {
+      "full": "units/62A-21/q_4.jpg",
+      "small": "units/62A-21/q_4_small.jpg"
+    },
+    {
+      "full": "units/62A-21/q_5.jpg",
+      "small": "units/62A-21/q_5_small.jpg"
+    },
+    {
+      "full": "units/62A-21/q_6.jpg",
+      "small": "units/62A-21/q_6_small.jpg"
+    },
+    {
+      "full": "units/62A-21/q_7.jpg",
+      "small": "units/62A-21/q_7_small.jpg"
+    },
+    {
+      "full": "units/62A-21/q_8.jpg",
+      "small": "units/62A-21/q_8_small.jpg"
+    },
+    {
+      "full": "units/62A-21/q_9.jpg",
+      "small": "units/62A-21/q_9_small.jpg"
+    },
+    {
+      "full": "units/62A-21/q_10.jpg",
+      "small": "units/62A-21/q_10_small.jpg"
+    },
+    {
+      "full": "units/62A-21/q_11.jpg",
+      "small": "units/62A-21/q_11_small.jpg"
+    },
+    {
+      "full": "units/62A-21/q_12.jpg",
+      "small": "units/62A-21/q_12_small.jpg"
+    },
+    {
+      "full": "units/62A-21/q_13.jpg",
+      "small": "units/62A-21/q_13_small.jpg"
+    },
+    {
+      "full": "units/62A-21/q_14.jpg",
+      "small": "units/62A-21/q_14_small.jpg"
+    },
+    {
+      "full": "units/62A-21/q_15.jpg",
+      "small": "units/62A-21/q_15_small.jpg"
+    },
+    {
+      "full": "units/62A-21/q_16.jpg",
+      "small": "units/62A-21/q_16_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/62A-21/a_1.jpg",
+      "small": "units/62A-21/a_1_small.jpg"
+    },
+    {
+      "full": "units/62A-21/a_2.jpg",
+      "small": "units/62A-21/a_2_small.jpg"
+    },
+    {
+      "full": "units/62A-21/a_3.jpg",
+      "small": "units/62A-21/a_3_small.jpg"
+    },
+    {
+      "full": "units/62A-21/a_4.jpg",
+      "small": "units/62A-21/a_4_small.jpg"
+    },
+    {
+      "full": "units/62A-21/sv_1.jpg",
+      "small": "units/62A-21/sv_1_small.jpg"
+    }
+  ],
+  "hasSolved": true,
+  "questions": [
+    "漢字の要",
+    "一",
+    "二",
+    "三",
+    "四",
+    "五",
+    "六",
+    "七",
+    "八",
+    "九",
+    "十",
+    "十一",
+    "十二",
+    "十三",
+    "十四",
+    "十五",
+    "十六",
+    "コトノハ"
+  ]
+}

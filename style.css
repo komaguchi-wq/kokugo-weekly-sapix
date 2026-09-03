@@ -8,6 +8,7 @@
   --muted: #7686a0;
   --line: #dde3ec;
   --knowledge: #b8742f;     /* 知識の総完成カテゴリ色 */
+  --daily-knowledge: #2f8f5b; /* 知識の学習（デイリーサピックス）カテゴリ色 */
 }
 
 * { box-sizing: border-box; }
@@ -70,6 +71,7 @@ html, body {
 .unit-icon { font-size: 26px; }
 .unit-card.knowledge { border-left: 5px solid var(--knowledge); }
 .unit-card.reading { border-left: 5px solid var(--accent); }
+.unit-card.daily-knowledge { border-left: 5px solid var(--daily-knowledge); }
 .unit-name { font-size: 15px; font-weight: 600; line-height: 1.4; }
 .unit-tag { font-size: 12px; color: var(--muted); margin-top: 3px; }
 
