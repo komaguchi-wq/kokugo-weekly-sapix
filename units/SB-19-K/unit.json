@@ -1,0 +1,27 @@
+{
+ "id": "SB-19-K",
+ "week": "志望校別特訓 WS-19",
+ "title": "志望校別特訓 WS-19 知識の総完成",
+ "category": "knowledge",
+ "questionPages": [
+  {
+   "full": "units/SB-19-K/q_1.jpg",
+   "small": "units/SB-19-K/q_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/SB-19-K/a_1.jpg",
+   "small": "units/SB-19-K/a_1_small.jpg"
+  },
+  {
+   "full": "units/SB-19-K/a_2.jpg",
+   "small": "units/SB-19-K/a_2_small.jpg"
+  }
+ ],
+ "hasSolved": false,
+ "questions": [
+  "一",
+  "二"
+ ]
+}

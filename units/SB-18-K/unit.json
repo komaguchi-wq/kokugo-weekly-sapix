@@ -1,0 +1,32 @@
+{
+ "id": "SB-18-K",
+ "week": "志望校別特訓 WS-18",
+ "title": "志望校別特訓 WS-18 知識の総完成",
+ "category": "knowledge",
+ "questionPages": [
+  {
+   "full": "units/SB-18-K/q_1.jpg",
+   "small": "units/SB-18-K/q_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/SB-18-K/a_1.jpg",
+   "small": "units/SB-18-K/a_1_small.jpg"
+  },
+  {
+   "full": "units/SB-18-K/a_2.jpg",
+   "small": "units/SB-18-K/a_2_small.jpg"
+  }
+ ],
+ "hasSolved": false,
+ "questions": [
+  "一",
+  "二",
+  "三",
+  "四",
+  "五",
+  "六",
+  "七"
+ ]
+}
