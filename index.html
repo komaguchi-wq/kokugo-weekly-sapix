@@ -3,47 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>Weekly SapiX 国語</title>
-  <link rel="stylesheet" href="style.css?v=5">
+  <title>SapiX 国語</title>
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
-  <!-- ホーム（単元一覧） -->
-  <header id="app-header">
-    <button id="back-btn" class="back-btn" hidden>‹ もどる</button>
-    <h1 id="app-title">📘 Weekly SapiX 国語</h1>
-    <span class="portal-nav">
-      <a class="portal-link" href="https://komaguchi-wq.github.io/study-portal/">🏠 学習ポータルTOPへ</a>
-      <a class="portal-link" href="https://komaguchi-wq.github.io/kokugo/">📖 国語トップ</a>
-    </span>
-  </header>
-
-  <main id="home" class="screen">
-    <div id="unit-list"><p class="loading">読み込み中…</p></div>
-  </main>
-
-  <!-- 単元詳細 -->
-  <main id="detail" class="screen" hidden>
-    <div class="detail-bar">
-      <h2 id="detail-title"></h2>
-      <div class="tabs">
-        <button class="tab active" data-view="question">問題</button>
-        <button class="tab" data-view="answer">解答</button>
-        <button id="print-btn" class="print-btn">🖨 印刷</button>
-      </div>
-    </div>
-    <p id="view-note" class="view-note"></p>
-    <div id="page-stack" class="page-stack"></div>
-  </main>
-
-  <!-- 拡大ライトボックス -->
-  <div id="lightbox" class="lightbox" hidden>
-    <button id="lightbox-close" class="lightbox-close">✕ とじる</button>
-    <div class="lightbox-scroll"><img id="lightbox-img" alt="拡大"></div>
+  <!-- カテゴリ一覧画面 -->
+  <div id="screen-categories" class="screen active">
+    <header class="header">
+      <a class="btn-portal-top" href="https://komaguchi-wq.github.io/study-portal/">🏠 学習ポータルTOPへ</a>
+      <h1 class="header-title">📘 SapiX 国語</h1>
+      <a class="btn-portal-top" href="https://komaguchi-wq.github.io/kokugo/">📖 国語トップ</a>
+    </header>
+    <div class="unit-list" id="category-list"><p class="loading">読み込み中…</p></div>
   </div>
 
-  <!-- 印刷専用コンテナ -->
-  <div id="print-container"></div>
+  <!-- 単元一覧画面 -->
+  <div id="screen-units" class="screen">
+    <header class="header">
+      <button class="btn-icon" id="btn-back-categories">←</button>
+      <h1 class="header-title" id="units-header-title">単元一覧</h1>
+    </header>
+    <div class="unit-list" id="unit-list"></div>
+  </div>
 
-  <script src="app.js?v=5"></script>
+  <!-- 単元画面（問題/解答タブ + 正誤表 + ページ） -->
+  <div id="screen-unit" class="screen">
+    <header class="header">
+      <button class="btn-icon" id="btn-back-units">←</button>
+      <h1 class="header-title" id="unit-title"></h1>
+      <button id="wsm-print-btn" title="表示中のタブを印刷">🖨 印刷</button>
+    </header>
+    <div class="wsm-fixed-top">
+      <div class="wsm-tabbar">
+        <button class="wsm-tab active" id="wsm-tab-q">問題</button>
+        <button class="wsm-tab" id="wsm-tab-a">解答</button>
+      </div>
+      <div class="wsm-table-title" id="wsm-table-toggle" role="button"><span>正誤表（小問ごとに ○ / ✕）</span><span class="wsm-table-chev">▽ 広げる</span></div>
+      <div class="wsm-table" id="wsm-table"></div>
+      <div class="wsm-divider" id="wsm-divider" title="ドラッグで正誤表の高さを変える"><span></span></div>
+    </div>
+    <div class="wsm-pages" id="wsm-pages"><div id="wsm-pages-inner"></div></div>
+  </div>
+
+  <!-- プリントオーバーレイ（画面上は不可視・@media print で印刷対象） -->
+  <div id="print-overlay">
+    <div id="print-overlay-body"></div>
+  </div>
+
+  <script src="app.js?v=6"></script>
 </body>
 </html>
