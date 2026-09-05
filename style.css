@@ -169,6 +169,15 @@ body {
   border-bottom: 1px solid #e0e0e0;
   padding: 10px 12px 0 12px;
 }
+.wsm-modebar { display: flex; gap: 6px; margin-bottom: 10px; }
+.wsm-mode-btn {
+  flex: 1; min-width: 0; border: none; background: #e8e8ed; color: #1d1d1f;
+  font-size: 13px; font-weight: 600; padding: 8px 4px; border-radius: 8px; cursor: pointer;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.wsm-mode-btn.active { background: #007aff; color: #fff; }
+.wsm-mode-btn:disabled { opacity: .45; cursor: default; }
+
 .wsm-tabbar {
   display: flex;
   background: #e8e8ed;
@@ -228,6 +237,8 @@ body {
   border: 1px solid #e0e0e0; border-radius: 8px;
   padding: 2px 5px 2px 6px; background: #fff;
 }
+.wsm-sub.ws-dim { opacity: 0.3; }
+.wsm-sub-count { font-size: 10px; color: #86868b; font-weight: 600; min-width: 22px; text-align: center; }
 .wsm-sub.sub-perfect { background: #eafaef; border-color: #b6e7c4; }
 .wsm-sub.sub-mid { background: #fff6e6; border-color: #f3d9a6; }
 .wsm-sub.sub-low { background: #fdeceb; border-color: #f3bdb8; }

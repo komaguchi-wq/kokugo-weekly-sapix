@@ -1,7 +1,11 @@
-/* ===== SapiX 国語（デイリーサピックス / Weekly SapiX / 志望校別特訓）=====
+/* ===== SapiX 国語（デイリーサピックス / Weekly SapiX / 夏の漢字特訓 / 志望校別特訓）=====
  * UIは理科v2/社会v2のwsm方式（デイリーサポート方式）に統一:
  *   単元カード → 即・問題ページ（問題/解答タブ + 常時表示の正誤表 + 印刷）
- * ○×は1回記録のトグル（従来どおり localStorage kokugo-ws-grade:<id> + GAS同期） */
+ * ○×は複数回記録（2026-09-06〜・理科v2と同仕様）:
+ *   localStorage kokugo-ws-grade:<id> = {小問キー: {a:回答回数, c:正解回数}} + GAS同期。
+ *   旧1回記録の 'o'/'x' は {a:1,c:1}/{a:1,c:0} として読み替え（後方互換）。
+ *   タップ=仮選択（再タップで取消・10秒放置か画面遷移で1回分として確定）。
+ *   モードバーで正答率50/66/80%未満・未解答に絞り込み（対象外の小問は薄く表示）。 */
 'use strict';
 
 const state = {
@@ -12,6 +16,9 @@ const state = {
   showingAnswer: false,
   deepLinked: false, // ?cat= で国語トップから直接カテゴリを開いた（←は国語トップへ戻す）
 };
+
+const GOOD_RATE = 0.6;      // 単元カードの緑=正答率60%以上（全アプリ共通）
+const IDLE_TIMEOUT = 10000; // 仮選択を確定するまでの放置時間(ms)
 
 const KOKUGO_TOP_URL = 'https://komaguchi-wq.github.io/kokugo/';
 
@@ -69,7 +76,17 @@ async function init() {
     renderCategories();
     showScreen('screen-categories');
   });
-  $('#btn-back-units').addEventListener('click', () => { state.current = null; renderUnits(); showScreen('screen-units'); });
+  $('#btn-back-units').addEventListener('click', () => {
+    commitGrades();   // 仮選択を確定してから戻る
+    state.current = null;
+    renderUnits();
+    showScreen('screen-units');
+  });
+  document.querySelectorAll('#wsm-modebar [data-wsm-mode]').forEach((btn) =>
+    btn.addEventListener('click', () => setWsFilter(btn.dataset.wsmMode)));
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') commitGrades();
+  });
   $('#wsm-print-btn').addEventListener('click', printCurrentTab);
   $('#wsm-tab-q').addEventListener('click', () => setTab(false));
   $('#wsm-tab-a').addEventListener('click', () => setTab(true));
@@ -78,9 +95,80 @@ async function init() {
   attachPinchZoom('wsm-pages', '#wsm-pages-inner', 'container', 0.5, 2);   // ページは50%〜200%
   // ○×採点のクラウド同期（表示中の画面に応じて再描画）
   gradeSyncInit(() => {
-    if (state.current) renderGradeTable();
+    if (state.current) { renderGradeTable(); updateModeBar(); }
     else if (state.category) renderUnits();
     else renderCategories();
+  });
+}
+
+// ---- 正誤の複数回記録 ----
+// 保存値は {a:回答回数, c:正解回数}。旧1回記録 'o'/'x' は読み替えで後方互換。
+function gradeStat(grades, key) {
+  const v = grades[key];
+  if (!v) return { a: 0, c: 0 };
+  if (v === 'o') return { a: 1, c: 1 };
+  if (v === 'x') return { a: 1, c: 0 };
+  return { a: v.a || 0, c: v.c || 0 };
+}
+
+let pendingGrades = {};   // key -> 'o'|'x'（仮選択。確定前）
+let gradeIdleTimer = null;
+
+function markGrade(key, v) {
+  if (pendingGrades[key] === v) delete pendingGrades[key];  // 同じボタン再タップで仮選択取消
+  else pendingGrades[key] = v;
+  renderGradeTable();
+  if (gradeIdleTimer) clearTimeout(gradeIdleTimer);
+  if (Object.keys(pendingGrades).length) gradeIdleTimer = setTimeout(commitGrades, IDLE_TIMEOUT);
+}
+
+function commitGrades() {
+  if (gradeIdleTimer) { clearTimeout(gradeIdleTimer); gradeIdleTimer = null; }
+  const keys = Object.keys(pendingGrades);
+  if (!keys.length || !state.current) { pendingGrades = {}; return; }
+  const u = state.current;
+  const g = loadGrades(u.id);
+  for (const k of keys) {
+    const st = gradeStat(g, k);
+    g[k] = { a: st.a + 1, c: st.c + (pendingGrades[k] === 'o' ? 1 : 0) };
+  }
+  pendingGrades = {};
+  saveGrades(u.id, g);
+  if (document.querySelector('#screen-unit.active')) { renderGradeTable(); updateModeBar(); }
+}
+
+// ---- 正答率フィルタ（モードバー。理科v2と同仕様: モードキーは below50/67/99 据え置き）----
+let wsmFilter = 'all';
+const WSM_MODE_SHORT = {
+  all: '全ての問題', below50: '正答率50%未満', below67: '正答率66%未満',
+  below99: '正答率80%未満', unanswered: '未解答問題',
+};
+function keyMatchesMode(grades, key, mode) {
+  const st = gradeStat(grades, key);
+  const pct = st.a ? st.c / st.a * 100 : null;
+  if (mode === 'unanswered') return st.a === 0;
+  if (mode === 'below50') return pct === null || pct < 50;
+  if (mode === 'below67') return pct === null || pct < 66;
+  if (mode === 'below99') return pct === null || pct < 80;
+  return true; // all
+}
+function setWsFilter(mode) {
+  commitGrades();
+  wsmFilter = mode;
+  renderGradeTable();
+  updateModeBar();
+}
+function updateModeBar() {
+  const u = state.current;
+  if (!u) return;
+  const grades = loadGrades(u.id);
+  const keys = questionKeys(u);
+  document.querySelectorAll('#wsm-modebar [data-wsm-mode]').forEach((btn) => {
+    const m = btn.dataset.wsmMode;
+    const n = keys.filter((k) => keyMatchesMode(grades, k, m)).length;
+    btn.textContent = `${WSM_MODE_SHORT[m]} (${n})`;
+    btn.classList.toggle('active', m === wsmFilter);
+    btn.disabled = n === 0 && m !== 'all';
   });
 }
 
@@ -95,16 +183,15 @@ function questionKeys(unit) {
   return out;
 }
 
-// ---- 単元カードの正誤棒グラフ（全アプリ共通デザイン。○×は1回記録なので緑=○） ----
+// ---- 単元カードの正誤棒グラフ（全アプリ共通デザイン。緑=正答率60%以上/黄=未満/灰=未） ----
 function unitBarStats(u) {
   const unit = state.unitCache[u.id];
   const keys = unit ? questionKeys(unit) : [];
   const grades = loadGrades(u.id);
   let attempted = 0, good = 0;
   for (const k of keys) {
-    const g = grades[k];
-    if (g === 'o') { attempted++; good++; }
-    else if (g === 'x') { attempted++; }
+    const st = gradeStat(grades, k);
+    if (st.a > 0) { attempted++; if (st.c / st.a >= GOOD_RATE) good++; }
   }
   return { total: keys.length, attempted, good, low: attempted - good, unanswered: keys.length - attempted };
 }
@@ -113,7 +200,7 @@ function unitBarBlock(st) {
   const pct = (n) => (n / st.total * 100);
   const donePct = Math.round(st.attempted / st.total * 100);
   return `
-      <div class="unit-card-bar" title="緑=正解 / 黄=不正解 / 灰=未回答">
+      <div class="unit-card-bar" title="緑=正答率60%以上 / 黄=60%未満 / 灰=未回答">
         <div class="unit-card-bar-good" style="width:${pct(st.good)}%"></div>
         <div class="unit-card-bar-low" style="width:${pct(st.low)}%"></div>
       </div>
@@ -207,6 +294,8 @@ function renderUnits() {
 
 // ---- 単元を開く（即・問題ページ） ----
 async function openUnit(id) {
+  commitGrades();          // 前の単元の仮選択を確定
+  wsmFilter = 'all';
   let unit = state.unitCache[id];
   if (!unit) {
     const res = await fetch(`units/${id}/unit.json`, { cache: 'no-store' });
@@ -217,6 +306,7 @@ async function openUnit(id) {
   state.showingAnswer = false;
   $('#unit-title').textContent = unit.title;
   renderGradeTable();
+  updateModeBar();
   restoreWsmTableHeight();
   renderPages();
   updateTabUI();
@@ -259,7 +349,7 @@ function renderPages() {
   applyTabVisibility();
 }
 
-// ---- 正誤表（両タブ共通・常時表示。○×は1回記録のトグル） ----
+// ---- 正誤表（両タブ共通・常時表示。○×は複数回記録: タップ=仮選択→放置/遷移で確定） ----
 function renderGradeTable() {
   const u = state.current;
   const el = $('#wsm-table');
@@ -269,13 +359,21 @@ function renderGradeTable() {
   el.innerHTML = questionGroups(u).map((g) => {
     const subs = g.labels.map((label) => {
       const key = g.head ? g.head + label : label;
-      const v = grades[key] || '';
-      const tint = v === 'o' ? 'sub-perfect' : v === 'x' ? 'sub-low' : '';
+      const st = gradeStat(grades, key);
+      let tint = '';
+      if (st.a > 0) {
+        const acc = st.c / st.a;
+        tint = acc >= 0.999 ? 'sub-perfect' : acc >= 0.5 ? 'sub-mid' : 'sub-low';
+      }
+      const dim = wsmFilter !== 'all' && !keyMatchesMode(grades, key, wsmFilter) ? 'ws-dim' : '';
+      const pend = pendingGrades[key] || '';
+      const cnt = st.a > 0 ? `${st.c}/${st.a}` : '';
       const keyEsc = key.replace(/"/g, '&quot;');
-      return `<span class="wsm-sub ${tint}" data-key="${keyEsc}">
+      return `<span class="wsm-sub ${tint} ${dim}" data-key="${keyEsc}">
         <span class="wsm-sub-label">${label}</span>
-        <button class="wsm-qc-btn ok ${v === 'o' ? 'selected' : ''}" data-v="o">○</button>
-        <button class="wsm-qc-btn ng ${v === 'x' ? 'selected' : ''}" data-v="x">✕</button>
+        <button class="wsm-qc-btn ok ${pend === 'o' ? 'selected' : ''}" data-v="o">○</button>
+        <button class="wsm-qc-btn ng ${pend === 'x' ? 'selected' : ''}" data-v="x">✕</button>
+        <span class="wsm-sub-count">${cnt}</span>
       </span>`;
     }).join('');
     return `<div class="wsm-daimon">
@@ -286,12 +384,7 @@ function renderGradeTable() {
   el.scrollTop = prevScroll;
   el.querySelectorAll('.wsm-qc-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const key = btn.closest('.wsm-sub').dataset.key;
-      const v = btn.dataset.v;
-      const g = loadGrades(u.id);
-      g[key] = (g[key] === v) ? '' : v;  // 同じボタン再タップで解除
-      saveGrades(u.id, g);
-      renderGradeTable();
+      markGrade(btn.closest('.wsm-sub').dataset.key, btn.dataset.v);
     });
   });
 }
