@@ -1,0 +1,50 @@
+{
+  "id": "KJ-18",
+  "week": "夏の漢字特訓",
+  "title": "第十八回",
+  "category": "kanji-tokkun",
+  "questionPages": [
+    {
+      "full": "units/KJ-18/q_1.jpg",
+      "small": "units/KJ-18/q_1_small.jpg"
+    },
+    {
+      "full": "units/KJ-18/qsheet.jpg",
+      "small": "units/KJ-18/qsheet_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/KJ-18/a_1.jpg",
+      "small": "units/KJ-18/a_1_small.jpg"
+    },
+    {
+      "full": "units/KJ-18/sv_1.jpg",
+      "small": "units/KJ-18/sv_1_small.jpg"
+    }
+  ],
+  "hasSolved": true,
+  "questions": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤",
+    "⑥",
+    "⑦",
+    "⑧",
+    "⑨",
+    "⑩",
+    "⑪",
+    "⑫",
+    "⑬",
+    "⑭",
+    "⑮",
+    "⑯",
+    "⑰",
+    "⑱",
+    "⑲",
+    "⑳"
+  ],
+  "print2up": true
+}

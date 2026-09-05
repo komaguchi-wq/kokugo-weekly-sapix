@@ -1,0 +1,50 @@
+{
+  "id": "KJ-09",
+  "week": "夏の漢字特訓",
+  "title": "第九回",
+  "category": "kanji-tokkun",
+  "questionPages": [
+    {
+      "full": "units/KJ-09/q_1.jpg",
+      "small": "units/KJ-09/q_1_small.jpg"
+    },
+    {
+      "full": "units/KJ-09/qsheet.jpg",
+      "small": "units/KJ-09/qsheet_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/KJ-09/a_1.jpg",
+      "small": "units/KJ-09/a_1_small.jpg"
+    },
+    {
+      "full": "units/KJ-09/sv_1.jpg",
+      "small": "units/KJ-09/sv_1_small.jpg"
+    }
+  ],
+  "hasSolved": true,
+  "questions": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤",
+    "⑥",
+    "⑦",
+    "⑧",
+    "⑨",
+    "⑩",
+    "⑪",
+    "⑫",
+    "⑬",
+    "⑭",
+    "⑮",
+    "⑯",
+    "⑰",
+    "⑱",
+    "⑲",
+    "⑳"
+  ],
+  "print2up": true
+}

@@ -19,7 +19,10 @@ const CATEGORIES = [
   { id: 'daily',  name: 'デイリーサピックス', icon: '📚',
     match: (u) => u.category === 'daily-knowledge' },
   { id: 'weekly', name: 'Weekly SapiX', icon: '📖',
-    match: (u) => u.category !== 'daily-knowledge' && !String(u.week).startsWith('志望校別特訓') },
+    match: (u) => u.category !== 'daily-knowledge' && u.category !== 'kanji-tokkun' &&
+                  !String(u.week).startsWith('志望校別特訓') },
+  { id: 'kanji',  name: '夏の漢字特訓', icon: '🌻',
+    match: (u) => u.category === 'kanji-tokkun' },
   { id: 'shibo',  name: '志望校別特訓', icon: '🔥',
     match: (u) => String(u.week).startsWith('志望校別特訓') },
 ];
@@ -145,10 +148,12 @@ function openCategory(cat) {
 // ---- 単元一覧（週ごとにグループ。デイリーサピックスはフラット） ----
 function unitIcon(u) {
   if (u.category === 'daily-knowledge') return '📚';
+  if (u.category === 'kanji-tokkun') return '🌻';
   return u.category === 'knowledge' ? '✍️' : '📖';
 }
 function unitTag(u) {
   if (u.category === 'daily-knowledge') return '知識の学習・コトノハ・漢字の要';
+  if (u.category === 'kanji-tokkun') return '漢字20問';
   return u.category === 'knowledge' ? '知識の総完成' : '読解';
 }
 
@@ -169,7 +174,7 @@ function renderUnits() {
       </div>`;
   };
   let html = '';
-  if (cat.id === 'daily') {
+  if (cat.id === 'daily' || cat.id === 'kanji') {
     html = units.map(cardHTML).join('');
   } else {
     const groups = {};

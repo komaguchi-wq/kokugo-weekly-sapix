@@ -132,6 +132,7 @@ body {
 .unit-card-color.reading { border-left: 6px solid #007aff; }
 .unit-card-color.knowledge { border-left: 6px solid #b8742f; }
 .unit-card-color.daily-knowledge { border-left: 6px solid #2f8f5b; }
+.unit-card-color.kanji-tokkun { border-left: 6px solid #e0862a; }
 
 /* 単元カードの正誤棒グラフ（全アプリ共通デザイン） */
 .unit-card-bar {
