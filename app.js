@@ -174,7 +174,7 @@ function renderUnits() {
   } else {
     const groups = {};
     for (const u of units) (groups[u.week] || (groups[u.week] = [])).push(u);
-    const weeks = Object.keys(groups).sort().reverse(); // 新しい週を上に
+    const weeks = Object.keys(groups).sort(); // 若い週を上に（他アプリと同じ昇順）
     for (const w of weeks) {
       const head = w.replace(/^志望校別特訓\s*/, '');  // カテゴリ名の重複を省く
       html += `<section class="week-group"><h3 class="week-head">${head}</h3>` +
