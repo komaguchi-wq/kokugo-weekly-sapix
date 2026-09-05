@@ -10,7 +10,10 @@ const state = {
   category: null,   // 現在のカテゴリ
   current: null,    // 現在表示中の unit.json
   showingAnswer: false,
+  deepLinked: false, // ?cat= で国語トップから直接カテゴリを開いた（←は国語トップへ戻す）
 };
+
+const KOKUGO_TOP_URL = 'https://komaguchi-wq.github.io/kokugo/';
 
 const $ = (sel) => document.querySelector(sel);
 
@@ -39,6 +42,13 @@ async function init() {
   try {
     const res = await fetch('units.json', { cache: 'no-store' });
     state.units = await res.json();
+    // 国語トップからのカテゴリ直リンク（?cat=daily|weekly|kanji|shibo）
+    const deepCat = new URLSearchParams(location.search).get('cat');
+    const cat = deepCat && CATEGORIES.find((c) => c.id === deepCat);
+    if (cat && unitsOf(cat).length) {
+      state.deepLinked = true;
+      openCategory(cat);
+    }
     renderCategories();
     // 単元カードの正誤棒グラフ用に unit.json（小問ラベル）を先読み → 読めたら描き直し
     await Promise.all(state.units.map(async (u) => {
@@ -54,7 +64,11 @@ async function init() {
     $('#category-list').innerHTML = '<p class="loading">単元の読み込みに失敗しました。</p>';
     console.error(e);
   }
-  $('#btn-back-categories').addEventListener('click', () => { renderCategories(); showScreen('screen-categories'); });
+  $('#btn-back-categories').addEventListener('click', () => {
+    if (state.deepLinked) { location.href = KOKUGO_TOP_URL; return; }  // 直リンク時は国語トップへ
+    renderCategories();
+    showScreen('screen-categories');
+  });
   $('#btn-back-units').addEventListener('click', () => { state.current = null; renderUnits(); showScreen('screen-units'); });
   $('#wsm-print-btn').addEventListener('click', printCurrentTab);
   $('#wsm-tab-q').addEventListener('click', () => setTab(false));
