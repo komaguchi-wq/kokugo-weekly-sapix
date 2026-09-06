@@ -5,7 +5,7 @@
  *   localStorage kokugo-ws-grade:<id> = {小問キー: {a:回答回数, c:正解回数}} + GAS同期。
  *   旧1回記録の 'o'/'x' は {a:1,c:1}/{a:1,c:0} として読み替え（後方互換）。
  *   タップ=仮選択（再タップで取消・10秒放置か画面遷移で1回分として確定）。
- *   モードバーで正答率50/66/80%未満・未解答に絞り込み（対象外の小問は薄く表示）。 */
+ *   モードバーで正答率50%未満（解答済みのみ）/50%未満＆未解答/66%未満/未解答に絞り込み（対象外の小問は薄く表示）。 */
 'use strict';
 
 const state = {
@@ -141,19 +141,21 @@ function commitGrades() {
   if (document.querySelector('#screen-unit.active')) { renderGradeTable(); updateModeBar(); }
 }
 
-// ---- 正答率フィルタ（モードバー。理科v2と同仕様: モードキーは below50/67/99 据え置き）----
+// ---- 正答率フィルタ（モードバー。理科v2と同仕様）----
+// ★2026-09-06 モード再編: below50/below67=解答済みのみ（未解答を除外）、
+//   below50u=50%未満＋未解答（従来の below50 相当）。below99(80%未満)は廃止
 let wsmFilter = 'all';
 const WSM_MODE_SHORT = {
-  all: '全ての問題', below50: '正答率50%未満', below67: '正答率66%未満',
-  below99: '正答率80%未満', unanswered: '未解答問題',
+  all: '全ての問題', below50: '正答率50%未満', below50u: '50%未満＆未解答',
+  below67: '正答率66%未満', unanswered: '未解答問題',
 };
 function keyMatchesMode(grades, key, mode) {
   const st = gradeStat(grades, key);
   const pct = st.a ? st.c / st.a * 100 : null;
   if (mode === 'unanswered') return st.a === 0;
-  if (mode === 'below50') return pct === null || pct < 50;
-  if (mode === 'below67') return pct === null || pct < 66;
-  if (mode === 'below99') return pct === null || pct < 80;
+  if (mode === 'below50') return pct !== null && pct < 50;
+  if (mode === 'below50u') return pct === null || pct < 50;
+  if (mode === 'below67') return pct !== null && pct < 66;
   return true; // all
 }
 function setWsFilter(mode) {
@@ -331,7 +333,7 @@ function renderUnits() {
       return m === 'all' || targetKeys(unit, m).length > 0;
     }).length;
     html = `<div class="wsm-modebar kanji-bulkbar">` +
-      ['all', 'below50', 'below67', 'below99', 'unanswered'].map((m) =>
+      ['all', 'below50', 'below50u', 'below67', 'unanswered'].map((m) =>
         `<button class="wsm-mode-btn ${m === bf ? 'active' : ''}" data-kb-mode="${m}">` +
         `${WSM_MODE_SHORT[m]} (${bulkCount(m)}${noun})</button>`).join('') +
       `</div>
