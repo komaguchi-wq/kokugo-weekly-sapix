@@ -35,6 +35,8 @@ const CATEGORIES = [
     match: (u) => u.category === 'knowledge' && !String(u.week).startsWith('志望校別特訓') },
   { id: 'kanji',  name: '夏の漢字特訓', icon: '🌻', bulk: true,
     match: (u) => u.category === 'kanji-tokkun' },
+  { id: 'ss', name: 'SS特訓', icon: '🎯',
+    match: (u) => u.category === 'ss-tokkun' },
   { id: 'shibo',  name: '志望校別特訓', icon: '🔥',
     match: (u) => String(u.week).startsWith('志望校別特訓') },
 ];
@@ -288,11 +290,13 @@ function openCategory(cat) {
 function unitIcon(u) {
   if (u.category === 'daily-knowledge') return '📚';
   if (u.category === 'kanji-tokkun') return '🌻';
+  if (u.category === 'ss-tokkun') return '🎯';
   return u.category === 'knowledge' ? '✍️' : '📖';
 }
 function unitTag(u) {
   if (u.category === 'daily-knowledge') return '知識の学習・コトノハ・漢字の要';
   if (u.category === 'kanji-tokkun') return '漢字20問';
+  if (u.category === 'ss-tokkun') return u.tag || 'SS特訓';
   return u.category === 'knowledge' ? '知識の総完成' : '読解';
 }
 

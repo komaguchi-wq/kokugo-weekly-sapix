@@ -1,0 +1,50 @@
+{
+ "id": "文学史-01",
+ "week": "第1回",
+ "title": "テーマ別文学史特訓① 有名作家 その一",
+ "category": "ss-tokkun",
+ "tag": "文学史8問",
+ "questionPages": [
+  {
+   "full": "units/文学史-01/q_1.jpg",
+   "small": "units/文学史-01/q_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/文学史-01/a_1.jpg",
+   "small": "units/文学史-01/a_1_small.jpg"
+  }
+ ],
+ "hasSolved": false,
+ "questions": [
+  "一問1",
+  "一問2",
+  "一問3",
+  "一問4",
+  "二問1",
+  "二問2",
+  "二問3",
+  "二問4"
+ ],
+ "questionGroups": [
+  {
+   "head": "一",
+   "labels": [
+    "問1",
+    "問2",
+    "問3",
+    "問4"
+   ]
+  },
+  {
+   "head": "二",
+   "labels": [
+    "問1",
+    "問2",
+    "問3",
+    "問4"
+   ]
+  }
+ ]
+}

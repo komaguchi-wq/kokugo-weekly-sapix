@@ -1,0 +1,260 @@
+{
+ "id": "渋幕-01",
+ "week": "第1回",
+ "title": "渋幕対策01（読解二題）",
+ "category": "ss-tokkun",
+ "tag": "読解",
+ "questionPages": [
+  {
+   "full": "units/渋幕-01/q_cover.jpg",
+   "small": "units/渋幕-01/q_cover_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_01.jpg",
+   "small": "units/渋幕-01/q_01_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_02.jpg",
+   "small": "units/渋幕-01/q_02_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_03.jpg",
+   "small": "units/渋幕-01/q_03_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_04.jpg",
+   "small": "units/渋幕-01/q_04_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_05.jpg",
+   "small": "units/渋幕-01/q_05_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_06.jpg",
+   "small": "units/渋幕-01/q_06_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_07.jpg",
+   "small": "units/渋幕-01/q_07_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_08.jpg",
+   "small": "units/渋幕-01/q_08_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_09.jpg",
+   "small": "units/渋幕-01/q_09_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_10.jpg",
+   "small": "units/渋幕-01/q_10_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_11.jpg",
+   "small": "units/渋幕-01/q_11_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_12.jpg",
+   "small": "units/渋幕-01/q_12_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_13.jpg",
+   "small": "units/渋幕-01/q_13_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_14.jpg",
+   "small": "units/渋幕-01/q_14_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_15.jpg",
+   "small": "units/渋幕-01/q_15_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_16.jpg",
+   "small": "units/渋幕-01/q_16_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_17.jpg",
+   "small": "units/渋幕-01/q_17_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_18.jpg",
+   "small": "units/渋幕-01/q_18_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_19.jpg",
+   "small": "units/渋幕-01/q_19_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/q_20.jpg",
+   "small": "units/渋幕-01/q_20_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/渋幕-01/a_expl.jpg",
+   "small": "units/渋幕-01/a_expl_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_sheet.jpg",
+   "small": "units/渋幕-01/sv_sheet_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_memo.jpg",
+   "small": "units/渋幕-01/sv_memo_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_cover.jpg",
+   "small": "units/渋幕-01/sv_cover_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_01.jpg",
+   "small": "units/渋幕-01/sv_01_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_02.jpg",
+   "small": "units/渋幕-01/sv_02_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_03.jpg",
+   "small": "units/渋幕-01/sv_03_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_04.jpg",
+   "small": "units/渋幕-01/sv_04_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_05.jpg",
+   "small": "units/渋幕-01/sv_05_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_06.jpg",
+   "small": "units/渋幕-01/sv_06_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_07.jpg",
+   "small": "units/渋幕-01/sv_07_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_08.jpg",
+   "small": "units/渋幕-01/sv_08_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_09.jpg",
+   "small": "units/渋幕-01/sv_09_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_10.jpg",
+   "small": "units/渋幕-01/sv_10_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_11.jpg",
+   "small": "units/渋幕-01/sv_11_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_12.jpg",
+   "small": "units/渋幕-01/sv_12_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_13.jpg",
+   "small": "units/渋幕-01/sv_13_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_14.jpg",
+   "small": "units/渋幕-01/sv_14_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_15.jpg",
+   "small": "units/渋幕-01/sv_15_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_16.jpg",
+   "small": "units/渋幕-01/sv_16_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_17.jpg",
+   "small": "units/渋幕-01/sv_17_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_18.jpg",
+   "small": "units/渋幕-01/sv_18_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_19.jpg",
+   "small": "units/渋幕-01/sv_19_small.jpg"
+  },
+  {
+   "full": "units/渋幕-01/sv_20.jpg",
+   "small": "units/渋幕-01/sv_20_small.jpg"
+  }
+ ],
+ "hasSolved": true,
+ "questions": [
+  "一問一a",
+  "一問一b",
+  "一問一c",
+  "一問二",
+  "一問三",
+  "一問四1",
+  "一問四2",
+  "一問四3",
+  "一問四4",
+  "一問五",
+  "一問六",
+  "一問七",
+  "一問八",
+  "一問九",
+  "二問一a",
+  "二問一b",
+  "二問一c",
+  "二問二",
+  "二問三",
+  "二問四",
+  "二問五",
+  "二問六",
+  "二問七",
+  "二問八",
+  "二問九1",
+  "二問九2",
+  "二問九3"
+ ],
+ "questionGroups": [
+  {
+   "head": "一",
+   "labels": [
+    "問一a",
+    "問一b",
+    "問一c",
+    "問二",
+    "問三",
+    "問四1",
+    "問四2",
+    "問四3",
+    "問四4",
+    "問五",
+    "問六",
+    "問七",
+    "問八",
+    "問九"
+   ]
+  },
+  {
+   "head": "二",
+   "labels": [
+    "問一a",
+    "問一b",
+    "問一c",
+    "問二",
+    "問三",
+    "問四",
+    "問五",
+    "問六",
+    "問七",
+    "問八",
+    "問九1",
+    "問九2",
+    "問九3"
+   ]
+  }
+ ]
+}
