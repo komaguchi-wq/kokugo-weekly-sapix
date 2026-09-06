@@ -1,4 +1,4 @@
-/* ===== SapiX 国語（デイリーサピックス / Weekly SapiX / 夏の漢字特訓 / 志望校別特訓）=====
+/* ===== SapiX 国語（デイリーサピックス / Weekly SapiX 読解 / 知識の総完成 / 夏の漢字特訓 / 志望校別特訓）=====
  * UIは理科v2/社会v2のwsm方式（デイリーサポート方式）に統一:
  *   単元カード → 即・問題ページ（問題/解答タブ + 常時表示の正誤表 + 印刷）
  * ○×は複数回記録（2026-09-06〜・理科v2と同仕様）:
@@ -25,13 +25,15 @@ const KOKUGO_TOP_URL = 'https://komaguchi-wq.github.io/kokugo/';
 const $ = (sel) => document.querySelector(sel);
 
 // ---- カテゴリ定義（units.json のフィールドから振り分け）----
+// bulk: 単元一覧に一括モードバー（全単元の正答率フィルタ＋対象のある単元だけ一括印刷）を出す
 const CATEGORIES = [
   { id: 'daily',  name: 'デイリーサピックス', icon: '📚',
     match: (u) => u.category === 'daily-knowledge' },
-  { id: 'weekly', name: 'Weekly SapiX', icon: '📖',
-    match: (u) => u.category !== 'daily-knowledge' && u.category !== 'kanji-tokkun' &&
-                  !String(u.week).startsWith('志望校別特訓') },
-  { id: 'kanji',  name: '夏の漢字特訓', icon: '🌻',
+  { id: 'weekly', name: 'Weekly SapiX 読解', icon: '📖',
+    match: (u) => u.category === 'reading' && !String(u.week).startsWith('志望校別特訓') },
+  { id: 'weekly-k', name: 'Weekly SapiX 知識の総完成', icon: '✍️', bulk: true,
+    match: (u) => u.category === 'knowledge' && !String(u.week).startsWith('志望校別特訓') },
+  { id: 'kanji',  name: '夏の漢字特訓', icon: '🌻', bulk: true,
     match: (u) => u.category === 'kanji-tokkun' },
   { id: 'shibo',  name: '志望校別特訓', icon: '🔥',
     match: (u) => String(u.week).startsWith('志望校別特訓') },
@@ -173,7 +175,7 @@ function updateModeBar() {
   });
 }
 
-// ---- 漢字特訓: 対象マス（正答率フィルタの対象）----
+// ---- 一括カテゴリ（漢字特訓/知識の総完成）: 正答率フィルタの対象小問 ----
 function targetKeys(unit, mode) {
   if (mode === 'all') return [];
   const grades = loadGrades(unit.id);
@@ -311,11 +313,13 @@ function renderUnits() {
       </div>`;
   };
   let html = '';
-  if (cat.id === 'kanji') {
-    // 一括モードバー（対象問題の確認と、対象のある回だけの一括印刷）
+  if (cat.bulk) {
+    // 一括モードバー（全単元の対象問題の確認と、対象のある単元だけの一括印刷）
+    const bf = bulkFilterOf(cat);
+    const noun = cat.id === 'kanji' ? '回' : '単元';
     const bulkTargets = (u) => {
       const unit = state.unitCache[u.id];
-      return unit ? targetKeys(unit, kanjiBulkFilter) : [];
+      return unit ? targetKeys(unit, bf) : [];
     };
     const bulkCount = (m) => units.filter((u) => {
       const unit = state.unitCache[u.id];
@@ -324,18 +328,18 @@ function renderUnits() {
     }).length;
     html = `<div class="wsm-modebar kanji-bulkbar">` +
       ['all', 'below50', 'below67', 'below99', 'unanswered'].map((m) =>
-        `<button class="wsm-mode-btn ${m === kanjiBulkFilter ? 'active' : ''}" data-kb-mode="${m}">` +
-        `${WSM_MODE_SHORT[m]} (${bulkCount(m)}回)</button>`).join('') +
+        `<button class="wsm-mode-btn ${m === bf ? 'active' : ''}" data-kb-mode="${m}">` +
+        `${WSM_MODE_SHORT[m]} (${bulkCount(m)}${noun})</button>`).join('') +
       `</div>
       <div class="kanji-bulk-actions">
-        <span class="kanji-bulk-hint">${kanjiBulkFilter === 'all'
-          ? '回を選ぶか、モードを選んで対象問題をしぼりこめます'
-          : '各回の「対象」が印刷対象（赤枠つき）。対象0問の回は印刷されません'}</span>
-        <button class="btn-bulk-print" id="kanji-bulk-print">🖨 ${kanjiBulkFilter === 'all'
-          ? `全${units.length}回を印刷` : `対象のある${bulkCount(kanjiBulkFilter)}回を印刷`}</button>
+        <span class="kanji-bulk-hint">${bf === 'all'
+          ? `${noun}を選ぶか、モードを選んで対象問題をしぼりこめます`
+          : `各${noun}の「対象」が印刷対象${cat.id === 'kanji' ? '（赤枠つき）' : ''}。対象0問の${noun}は印刷されません`}</span>
+        <button class="btn-bulk-print" id="kanji-bulk-print">🖨 ${bf === 'all'
+          ? `全${units.length}${noun}を印刷` : `対象のある${bulkCount(bf)}${noun}を印刷`}</button>
       </div>`;
     html += units.map((u) => {
-      if (kanjiBulkFilter === 'all') return cardHTML(u);
+      if (bf === 'all') return cardHTML(u);
       const t = bulkTargets(u);
       const info = t.length
         ? `<div class="kanji-targets">対象: ${t.join(' ')}（${t.length}問）</div>`
@@ -358,28 +362,41 @@ function renderUnits() {
   list.querySelectorAll('.unit-card[data-id]').forEach((c) =>
     c.addEventListener('click', () => openUnit(c.dataset.id)));
   list.querySelectorAll('[data-kb-mode]').forEach((btn) =>
-    btn.addEventListener('click', () => { kanjiBulkFilter = btn.dataset.kbMode; renderUnits(); }));
+    btn.addEventListener('click', () => { bulkFilters[cat.id] = btn.dataset.kbMode; renderUnits(); }));
   const bp = list.querySelector('#kanji-bulk-print');
-  if (bp) bp.addEventListener('click', kanjiBulkPrint);
+  if (bp) bp.addEventListener('click', bulkPrint);
 }
 
-// ---- 漢字特訓: 一括印刷（対象0問の回はスキップ・赤枠つき）----
-let kanjiBulkFilter = 'all';
-async function kanjiBulkPrint() {
+// ---- 一括印刷（漢字特訓/知識の総完成。対象0問の単元はスキップ）----
+// cellRects のある単元（漢字特訓）は対象マスに赤枠を焼き込み、無い単元は問題ページをそのまま印刷。
+const bulkFilters = {};   // cat.id -> モードキー
+function bulkFilterOf(cat) { return bulkFilters[cat.id] || 'all'; }
+async function bulkPrint() {
   const cat = state.category;
-  if (!cat || cat.id !== 'kanji') return;
+  if (!cat || !cat.bulk) return;
+  const bf = bulkFilterOf(cat);
   const sheets = [];
   for (const u of unitsOf(cat)) {
     const unit = state.unitCache[u.id];
-    if (!unit || !unit.cellRects) continue;
-    const keys = targetKeys(unit, kanjiBulkFilter);
-    if (kanjiBulkFilter !== 'all' && keys.length === 0) continue;   // 対象なしの回は印刷しない
+    if (!unit || !(unit.questionPages || []).length) continue;
+    const keys = targetKeys(unit, bf);
+    if (bf !== 'all' && keys.length === 0) continue;   // 対象なしの単元は印刷しない
     try {
-      const img = await loadImage(unit.questionPages[0].full);
-      sheets.push(drawKanjiSheet(img, unit, keys));
+      if (unit.cellRects) {
+        const img = await loadImage(unit.questionPages[0].full);
+        sheets.push(drawKanjiSheet(img, unit, keys));
+      } else {
+        for (const p of unit.questionPages) {
+          const img = await loadImage(p.full);
+          const cc = document.createElement('canvas');
+          cc.width = img.width; cc.height = img.height;
+          cc.getContext('2d').drawImage(img, 0, 0);
+          sheets.push(cc.toDataURL('image/jpeg', 0.92));
+        }
+      }
     } catch (e) { console.warn('bulk print load fail', u.id, e); }
   }
-  if (!sheets.length) { alert('対象問題のある回がありません'); return; }
+  if (!sheets.length) { alert('対象問題のある単元がありません'); return; }
   _openPrintOverlay(sheets);
 }
 
