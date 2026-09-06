@@ -251,10 +251,12 @@ body {
   margin-bottom: 12px;
 }
 .kanji-bulk-hint { font-size: 12px; color: #86868b; min-width: 0; }
+.kanji-bulk-btns { display: flex; gap: 8px; flex-shrink: 0; }
 .btn-bulk-print {
   flex-shrink: 0; border: none; background: #007aff; color: #fff;
   font-size: 14px; font-weight: 700; padding: 9px 16px; border-radius: 10px; cursor: pointer;
 }
+.btn-bulk-print-a { background: #ff9500; }
 .btn-bulk-print:active { opacity: 0.8; }
 .kanji-targets { margin-top: 4px; font-size: 13px; font-weight: 600; color: #ff3b30; }
 .kanji-targets-none { color: #b0b0b5; font-weight: 500; }

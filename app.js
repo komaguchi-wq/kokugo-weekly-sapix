@@ -335,8 +335,12 @@ function renderUnits() {
         <span class="kanji-bulk-hint">${bf === 'all'
           ? `${noun}を選ぶか、モードを選んで対象問題をしぼりこめます`
           : `各${noun}の「対象」が印刷対象${cat.id === 'kanji' ? '（赤枠つき）' : ''}。対象0問の${noun}は印刷されません`}</span>
-        <button class="btn-bulk-print" id="kanji-bulk-print">🖨 ${bf === 'all'
-          ? `全${units.length}${noun}を印刷` : `対象のある${bulkCount(bf)}${noun}を印刷`}</button>
+        <span class="kanji-bulk-btns">
+          <button class="btn-bulk-print" data-bulk-print="q">🖨 問題を印刷（${bf === 'all'
+            ? `全${units.length}${noun}` : `${bulkCount(bf)}${noun}`}）</button>
+          <button class="btn-bulk-print btn-bulk-print-a" data-bulk-print="a">🖨 解答を印刷（${bf === 'all'
+            ? `全${units.length}${noun}` : `${bulkCount(bf)}${noun}`}）</button>
+        </span>
       </div>`;
     html += units.map((u) => {
       if (bf === 'all') return cardHTML(u);
@@ -363,36 +367,43 @@ function renderUnits() {
     c.addEventListener('click', () => openUnit(c.dataset.id)));
   list.querySelectorAll('[data-kb-mode]').forEach((btn) =>
     btn.addEventListener('click', () => { bulkFilters[cat.id] = btn.dataset.kbMode; renderUnits(); }));
-  const bp = list.querySelector('#kanji-bulk-print');
-  if (bp) bp.addEventListener('click', bulkPrint);
+  list.querySelectorAll('[data-bulk-print]').forEach((btn) =>
+    btn.addEventListener('click', () => bulkPrint(btn.dataset.bulkPrint)));
 }
 
 // ---- 一括印刷（漢字特訓/知識の総完成。対象0問の単元はスキップ）----
-// cellRects のある単元（漢字特訓）は対象マスに赤枠を焼き込み、無い単元は問題ページをそのまま印刷。
+// kind='q': cellRects のある単元（漢字特訓）は対象マスに赤枠を焼き込み、無い単元は問題ページをそのまま印刷。
+// kind='a': 解答ページを印刷（print2up の単元＝漢字特訓は 解答+解いた原本 をB4横2upに合成、単元内の解答印刷と同じ）。
 const bulkFilters = {};   // cat.id -> モードキー
 function bulkFilterOf(cat) { return bulkFilters[cat.id] || 'all'; }
-async function bulkPrint() {
+function plainSheet(img) {
+  const cc = document.createElement('canvas');
+  cc.width = img.width; cc.height = img.height;
+  cc.getContext('2d').drawImage(img, 0, 0);
+  return cc.toDataURL('image/jpeg', 0.92);
+}
+async function bulkPrint(kind) {
   const cat = state.category;
   if (!cat || !cat.bulk) return;
   const bf = bulkFilterOf(cat);
   const sheets = [];
   for (const u of unitsOf(cat)) {
     const unit = state.unitCache[u.id];
-    if (!unit || !(unit.questionPages || []).length) continue;
+    if (!unit) continue;
     const keys = targetKeys(unit, bf);
     if (bf !== 'all' && keys.length === 0) continue;   // 対象なしの単元は印刷しない
     try {
-      if (unit.cellRects) {
+      if (kind === 'a') {
+        const imgs = [];
+        for (const p of unit.answerPages || []) imgs.push(await loadImage(p.full));
+        if (!imgs.length) continue;
+        if (unit.print2up) sheets.push(...build2upSheets(imgs));
+        else imgs.forEach((img) => sheets.push(plainSheet(img)));
+      } else if (unit.cellRects) {
         const img = await loadImage(unit.questionPages[0].full);
         sheets.push(drawKanjiSheet(img, unit, keys));
       } else {
-        for (const p of unit.questionPages) {
-          const img = await loadImage(p.full);
-          const cc = document.createElement('canvas');
-          cc.width = img.width; cc.height = img.height;
-          cc.getContext('2d').drawImage(img, 0, 0);
-          sheets.push(cc.toDataURL('image/jpeg', 0.92));
-        }
+        for (const p of unit.questionPages || []) sheets.push(plainSheet(await loadImage(p.full)));
       }
     } catch (e) { console.warn('bulk print load fail', u.id, e); }
   }
