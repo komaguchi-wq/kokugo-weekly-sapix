@@ -157,6 +157,7 @@ function setWsFilter(mode) {
   wsmFilter = mode;
   renderGradeTable();
   updateModeBar();
+  if (state.current && state.current.cellRects) renderPages();   // 対象マスの赤枠を更新
 }
 function updateModeBar() {
   const u = state.current;
@@ -170,6 +171,41 @@ function updateModeBar() {
     btn.classList.toggle('active', m === wsmFilter);
     btn.disabled = n === 0 && m !== 'all';
   });
+}
+
+// ---- 漢字特訓: 対象マス（正答率フィルタの対象）----
+function targetKeys(unit, mode) {
+  if (mode === 'all') return [];
+  const grades = loadGrades(unit.id);
+  return questionKeys(unit).filter((k) => keyMatchesMode(grades, k, mode));
+}
+
+// 合成ページ(qp_1)の解答らんセルに赤枠オーバーレイ（unit.cellRects = 0〜1割合座標）
+function kanjiMarksHTML(unit, mode) {
+  if (!unit.cellRects || mode === 'all') return '';
+  return targetKeys(unit, mode).map((k) => {
+    const r = unit.cellRects[k];
+    if (!r) return '';
+    return `<div class="kanji-mark" style="left:${(r[0] * 100).toFixed(2)}%;top:${(r[1] * 100).toFixed(2)}%;` +
+           `width:${((r[2] - r[0]) * 100).toFixed(2)}%;height:${((r[3] - r[1]) * 100).toFixed(2)}%"></div>`;
+  }).join('');
+}
+
+// 印刷用: 合成ページに赤枠を焼き込む（枠線は画像幅比例・最低8px = 全アプリ共通ルール）
+function drawKanjiSheet(img, unit, keys) {
+  const cc = document.createElement('canvas');
+  cc.width = img.width; cc.height = img.height;
+  const ctx = cc.getContext('2d');
+  ctx.drawImage(img, 0, 0);
+  ctx.strokeStyle = '#ff3b30';
+  ctx.lineWidth = Math.max(8, img.width * 0.004);
+  for (const k of keys) {
+    const r = unit.cellRects[k];
+    if (!r) continue;
+    ctx.strokeRect(r[0] * img.width, r[1] * img.height,
+                   (r[2] - r[0]) * img.width, (r[3] - r[1]) * img.height);
+  }
+  return cc.toDataURL('image/jpeg', 0.92);
 }
 
 // ---- 小問キー（グループあり: head+label / なし: label）----
@@ -275,7 +311,38 @@ function renderUnits() {
       </div>`;
   };
   let html = '';
-  if (cat.id === 'daily' || cat.id === 'kanji') {
+  if (cat.id === 'kanji') {
+    // 一括モードバー（対象問題の確認と、対象のある回だけの一括印刷）
+    const bulkTargets = (u) => {
+      const unit = state.unitCache[u.id];
+      return unit ? targetKeys(unit, kanjiBulkFilter) : [];
+    };
+    const bulkCount = (m) => units.filter((u) => {
+      const unit = state.unitCache[u.id];
+      if (!unit) return false;
+      return m === 'all' || targetKeys(unit, m).length > 0;
+    }).length;
+    html = `<div class="wsm-modebar kanji-bulkbar">` +
+      ['all', 'below50', 'below67', 'below99', 'unanswered'].map((m) =>
+        `<button class="wsm-mode-btn ${m === kanjiBulkFilter ? 'active' : ''}" data-kb-mode="${m}">` +
+        `${WSM_MODE_SHORT[m]} (${bulkCount(m)}回)</button>`).join('') +
+      `</div>
+      <div class="kanji-bulk-actions">
+        <span class="kanji-bulk-hint">${kanjiBulkFilter === 'all'
+          ? '回を選ぶか、モードを選んで対象問題をしぼりこめます'
+          : '各回の「対象」が印刷対象（赤枠つき）。対象0問の回は印刷されません'}</span>
+        <button class="btn-bulk-print" id="kanji-bulk-print">🖨 ${kanjiBulkFilter === 'all'
+          ? `全${units.length}回を印刷` : `対象のある${bulkCount(kanjiBulkFilter)}回を印刷`}</button>
+      </div>`;
+    html += units.map((u) => {
+      if (kanjiBulkFilter === 'all') return cardHTML(u);
+      const t = bulkTargets(u);
+      const info = t.length
+        ? `<div class="kanji-targets">対象: ${t.join(' ')}（${t.length}問）</div>`
+        : `<div class="kanji-targets kanji-targets-none">対象なし（印刷されません）</div>`;
+      return cardHTML(u).replace(/(<div class="unit-card-subtitle">[^<]*<\/div>)/, `$1${info}`);
+    }).join('');
+  } else if (cat.id === 'daily') {
     html = units.map(cardHTML).join('');
   } else {
     const groups = {};
@@ -290,6 +357,30 @@ function renderUnits() {
   list.innerHTML = html || '<p class="loading">まだ単元がありません。</p>';
   list.querySelectorAll('.unit-card[data-id]').forEach((c) =>
     c.addEventListener('click', () => openUnit(c.dataset.id)));
+  list.querySelectorAll('[data-kb-mode]').forEach((btn) =>
+    btn.addEventListener('click', () => { kanjiBulkFilter = btn.dataset.kbMode; renderUnits(); }));
+  const bp = list.querySelector('#kanji-bulk-print');
+  if (bp) bp.addEventListener('click', kanjiBulkPrint);
+}
+
+// ---- 漢字特訓: 一括印刷（対象0問の回はスキップ・赤枠つき）----
+let kanjiBulkFilter = 'all';
+async function kanjiBulkPrint() {
+  const cat = state.category;
+  if (!cat || cat.id !== 'kanji') return;
+  const sheets = [];
+  for (const u of unitsOf(cat)) {
+    const unit = state.unitCache[u.id];
+    if (!unit || !unit.cellRects) continue;
+    const keys = targetKeys(unit, kanjiBulkFilter);
+    if (kanjiBulkFilter !== 'all' && keys.length === 0) continue;   // 対象なしの回は印刷しない
+    try {
+      const img = await loadImage(unit.questionPages[0].full);
+      sheets.push(drawKanjiSheet(img, unit, keys));
+    } catch (e) { console.warn('bulk print load fail', u.id, e); }
+  }
+  if (!sheets.length) { alert('対象問題のある回がありません'); return; }
+  _openPrintOverlay(sheets);
 }
 
 // ---- 単元を開く（即・問題ページ） ----
@@ -335,10 +426,11 @@ function applyTabVisibility() {
 function renderPages() {
   const u = state.current;
   const el = $('#wsm-pages-inner');
+  const marks = kanjiMarksHTML(u, wsmFilter);
   const q = (u.questionPages || []).map((p, i) => `
       <div class="wsm-page" data-pt="q">
-        <div class="wsm-page-label">問題 ${i + 1} / ${u.questionPages.length}</div>
-        <img src="${p.full}" loading="lazy" alt="問題${i + 1}">
+        <div class="wsm-page-label">問題 ${i + 1} / ${u.questionPages.length}${marks ? '（赤枠=対象問題）' : ''}</div>
+        <div class="kanji-wrap"><img src="${p.full}" loading="lazy" alt="問題${i + 1}">${i === 0 ? marks : ''}</div>
       </div>`).join('');
   const a = (u.answerPages || []).map((p, i) => `
       <div class="wsm-page" data-pt="a" style="display:none">
@@ -470,6 +562,13 @@ function loadImage(src) {
 async function printCurrentTab() {
   const u = state.current;
   if (!u) return;
+  if (!state.showingAnswer && u.cellRects) {   // 漢字特訓: 合成1枚＋対象マスの赤枠
+    try {
+      const img = await loadImage(u.questionPages[0].full);
+      _openPrintOverlay([drawKanjiSheet(img, u, targetKeys(u, wsmFilter))]);
+    } catch (e) { alert('画像の読み込みに失敗しました'); }
+    return;
+  }
   const pages = state.showingAnswer ? u.answerPages : u.questionPages;
   if (!pages || !pages.length) return;
   const imgs = [];

@@ -238,6 +238,26 @@ body {
   padding: 2px 5px 2px 6px; background: #fff;
 }
 .wsm-sub.ws-dim { opacity: 0.3; }
+
+/* 漢字特訓: 対象マスの赤枠オーバーレイ＋一括印刷バー */
+.kanji-wrap { position: relative; display: block; }
+.kanji-mark {
+  position: absolute; box-sizing: border-box; pointer-events: none;
+  border: 3px solid rgba(255, 59, 48, 0.85); border-radius: 6px;
+}
+.kanji-bulkbar { margin-bottom: 8px; }
+.kanji-bulk-actions {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  margin-bottom: 12px;
+}
+.kanji-bulk-hint { font-size: 12px; color: #86868b; min-width: 0; }
+.btn-bulk-print {
+  flex-shrink: 0; border: none; background: #007aff; color: #fff;
+  font-size: 14px; font-weight: 700; padding: 9px 16px; border-radius: 10px; cursor: pointer;
+}
+.btn-bulk-print:active { opacity: 0.8; }
+.kanji-targets { margin-top: 4px; font-size: 13px; font-weight: 600; color: #ff3b30; }
+.kanji-targets-none { color: #b0b0b5; font-weight: 500; }
 .wsm-sub-count { font-size: 10px; color: #86868b; font-weight: 600; min-width: 22px; text-align: center; }
 .wsm-sub.sub-perfect { background: #eafaef; border-color: #b6e7c4; }
 .wsm-sub.sub-mid { background: #fff6e6; border-color: #f3d9a6; }
