@@ -1,4 +1,4 @@
-/* ===== SapiX 国語（デイリーサピックス / Weekly SapiX 読解 / 知識の総完成 / 夏の漢字特訓 / 志望校別特訓）=====
+/* ===== SapiX 国語（デイリーサピックス / Weekly SapiX 読解 / 知識の総完成 / 漢字特訓 / 志望校別特訓）=====
  * UIは理科v2/社会v2のwsm方式（デイリーサポート方式）に統一:
  *   単元カード → 即・問題ページ（問題/解答タブ + 常時表示の正誤表 + 印刷）
  * ○×は複数回記録（2026-09-06〜・理科v2と同仕様）:
@@ -33,7 +33,7 @@ const CATEGORIES = [
     match: (u) => u.category === 'reading' && !String(u.week).startsWith('志望校別特訓') },
   { id: 'weekly-k', name: 'Weekly SapiX 知識の総完成', icon: '✍️', bulk: true,
     match: (u) => u.category === 'knowledge' && !String(u.week).startsWith('志望校別特訓') },
-  { id: 'kanji',  name: '夏の漢字特訓', icon: '🌻', bulk: true,
+  { id: 'kanji',  name: '漢字特訓', icon: '🌻', bulk: true,
     match: (u) => u.category === 'kanji-tokkun' },
   { id: 'ss', name: 'SS特訓', icon: '🎯',
     match: (u) => u.category === 'ss-tokkun' },

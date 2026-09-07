@@ -511,110 +511,116 @@
  },
  {
   "id": "KJ-01",
-  "week": "夏の漢字特訓",
-  "title": "第一回",
+  "week": "漢字特訓",
+  "title": "夏第一回",
   "category": "kanji-tokkun"
  },
  {
   "id": "KJ-02",
-  "week": "夏の漢字特訓",
-  "title": "第二回",
+  "week": "漢字特訓",
+  "title": "夏第二回",
   "category": "kanji-tokkun"
  },
  {
   "id": "KJ-03",
-  "week": "夏の漢字特訓",
-  "title": "第三回",
+  "week": "漢字特訓",
+  "title": "夏第三回",
   "category": "kanji-tokkun"
  },
  {
   "id": "KJ-04",
-  "week": "夏の漢字特訓",
-  "title": "第四回",
+  "week": "漢字特訓",
+  "title": "夏第四回",
   "category": "kanji-tokkun"
  },
  {
   "id": "KJ-05",
-  "week": "夏の漢字特訓",
-  "title": "第五回",
+  "week": "漢字特訓",
+  "title": "夏第五回",
   "category": "kanji-tokkun"
  },
  {
   "id": "KJ-06",
-  "week": "夏の漢字特訓",
-  "title": "第六回",
+  "week": "漢字特訓",
+  "title": "夏第六回",
   "category": "kanji-tokkun"
  },
  {
   "id": "KJ-07",
-  "week": "夏の漢字特訓",
-  "title": "第七回",
+  "week": "漢字特訓",
+  "title": "夏第七回",
   "category": "kanji-tokkun"
  },
  {
   "id": "KJ-08",
-  "week": "夏の漢字特訓",
-  "title": "第八回",
+  "week": "漢字特訓",
+  "title": "夏第八回",
   "category": "kanji-tokkun"
  },
  {
   "id": "KJ-09",
-  "week": "夏の漢字特訓",
-  "title": "第九回",
+  "week": "漢字特訓",
+  "title": "夏第九回",
   "category": "kanji-tokkun"
  },
  {
   "id": "KJ-10",
-  "week": "夏の漢字特訓",
-  "title": "第十回",
+  "week": "漢字特訓",
+  "title": "夏第十回",
   "category": "kanji-tokkun"
  },
  {
   "id": "KJ-11",
-  "week": "夏の漢字特訓",
-  "title": "第十一回",
+  "week": "漢字特訓",
+  "title": "夏第十一回",
   "category": "kanji-tokkun"
  },
  {
   "id": "KJ-12",
-  "week": "夏の漢字特訓",
-  "title": "第十二回",
+  "week": "漢字特訓",
+  "title": "夏第十二回",
   "category": "kanji-tokkun"
  },
  {
   "id": "KJ-13",
-  "week": "夏の漢字特訓",
-  "title": "第十三回",
+  "week": "漢字特訓",
+  "title": "夏第十三回",
   "category": "kanji-tokkun"
  },
  {
   "id": "KJ-14",
-  "week": "夏の漢字特訓",
-  "title": "第十四回",
+  "week": "漢字特訓",
+  "title": "夏第十四回",
   "category": "kanji-tokkun"
  },
  {
   "id": "KJ-15",
-  "week": "夏の漢字特訓",
-  "title": "第十五回",
+  "week": "漢字特訓",
+  "title": "夏第十五回",
   "category": "kanji-tokkun"
  },
  {
   "id": "KJ-16",
-  "week": "夏の漢字特訓",
-  "title": "第十六回",
+  "week": "漢字特訓",
+  "title": "夏第十六回",
   "category": "kanji-tokkun"
  },
  {
   "id": "KJ-17",
-  "week": "夏の漢字特訓",
-  "title": "第十七回",
+  "week": "漢字特訓",
+  "title": "夏第十七回",
   "category": "kanji-tokkun"
  },
  {
   "id": "KJ-18",
-  "week": "夏の漢字特訓",
-  "title": "第十八回",
+  "week": "漢字特訓",
+  "title": "夏第十八回",
+  "category": "kanji-tokkun"
+ },
+ {
+  "id": "KJ-62A-21",
+  "week": "漢字特訓",
+  "title": "62A-21（いろいろな言葉①）",
   "category": "kanji-tokkun"
  },
  {
