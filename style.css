@@ -326,6 +326,15 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+/* print2up 単元の見開き表示（印刷のB4横2面付けと同じ並び。右=先のページ・左=次のページ） */
+.wsm-spread {
+  display: flex; gap: 1%;
+  background: #fff; border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.wsm-spread-half { flex: 1 1 0; min-width: 0; }
+.wsm-spread-half img { border-radius: 0; box-shadow: none; }
+
 /* ===== プリントオーバーレイ（iPad対応・画面上は不可視）===== */
 #print-overlay {
   position: fixed;

@@ -457,21 +457,48 @@ function applyTabVisibility() {
 }
 
 // ---- ページ画像の描画（フル解像度・遅延読み込み） ----
+// print2up の単元（縦長ページを印刷でB4横2面付けするもの）は、画面表示も印刷と同じ
+// 2ページ見開き（縦書きの読み順=奇数ページを右・次ページを左）で並べる。
+// 縦ページを1枚ずつ横幅いっぱいに出すと拡大されすぎるため（2026-09-07 ユーザー要望）。
+function pagesHTML(pages, pt, label, twoUp, marks) {
+  const img = (p, i) => {
+    const tag = `<img src="${p.full}" loading="lazy" alt="${label}${i + 1}">`;
+    return (pt === 'q' && i === 0 && marks) ? `<div class="kanji-wrap">${tag}${marks}</div>` : tag;
+  };
+  const hide = pt === 'a' ? ' style="display:none"' : '';
+  const note = pt === 'q' && marks ? '（赤枠=対象問題）' : '';
+  if (!twoUp) {
+    return pages.map((p, i) => `
+      <div class="wsm-page" data-pt="${pt}"${hide}>
+        <div class="wsm-page-label">${label} ${i + 1} / ${pages.length}${note}</div>
+        ${img(p, i)}
+      </div>`).join('');
+  }
+  let out = '';
+  for (let i = 0; i < pages.length; i += 2) {
+    const lbl = pages[i + 1] ? `${label} ${i + 1}・${i + 2} / ${pages.length}` : `${label} ${i + 1} / ${pages.length}`;
+    out += `
+      <div class="wsm-page" data-pt="${pt}"${hide}>
+        <div class="wsm-page-label">${lbl}${note}</div>
+        <div class="wsm-spread">
+          <div class="wsm-spread-half">${pages[i + 1] ? img(pages[i + 1], i + 1) : ''}</div>
+          <div class="wsm-spread-half">${img(pages[i], i)}</div>
+        </div>
+      </div>`;
+  }
+  return out;
+}
 function renderPages() {
   const u = state.current;
   const el = $('#wsm-pages-inner');
   const marks = kanjiMarksHTML(u, wsmFilter);
-  const q = (u.questionPages || []).map((p, i) => `
-      <div class="wsm-page" data-pt="q">
-        <div class="wsm-page-label">問題 ${i + 1} / ${u.questionPages.length}${marks ? '（赤枠=対象問題）' : ''}</div>
-        <div class="kanji-wrap"><img src="${p.full}" loading="lazy" alt="問題${i + 1}">${i === 0 ? marks : ''}</div>
-      </div>`).join('');
-  const a = (u.answerPages || []).map((p, i) => `
-      <div class="wsm-page" data-pt="a" style="display:none">
-        <div class="wsm-page-label">解答 ${i + 1} / ${u.answerPages.length}</div>
-        <img src="${p.full}" loading="lazy" alt="解答${i + 1}">
-      </div>`).join('');
-  el.innerHTML = q + a;
+  // 見開き対象は印刷と同じ判定: 問題タブは cellRects（漢字特訓の合成横長1枚）を除き print2up、
+  // 解答タブは print2up（漢字特訓の 解答+解いた原本 もペア）
+  const q2up = !!u.print2up && !u.cellRects;
+  const a2up = !!u.print2up;
+  el.innerHTML =
+    pagesHTML(u.questionPages || [], 'q', '問題', q2up, marks) +
+    pagesHTML(u.answerPages || [], 'a', '解答', a2up, '');
   applyTabVisibility();
 }
 
