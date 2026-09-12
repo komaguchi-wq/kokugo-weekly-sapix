@@ -35,6 +35,9 @@ const CATEGORIES = [
     match: (u) => u.category === 'knowledge' && !String(u.week).startsWith('志望校別特訓') },
   { id: 'kanji',  name: '漢字特訓', icon: '🌻', bulk: true,
     match: (u) => u.category === 'kanji-tokkun' },
+  // 漢字の要（マスターブック）: 1ページ=1単元・セクション(week)ごとにグループ表示＋一括モードバー
+  { id: 'kaname', name: '漢字の要', icon: '📕', bulk: true, grouped: true,
+    match: (u) => u.category === 'kanji-kaname' },
   { id: 'ss', name: 'SS特訓', icon: '🎯',
     match: (u) => u.category === 'ss-tokkun' },
   { id: 'shibo',  name: '志望校別特訓', icon: '🔥',
@@ -42,6 +45,16 @@ const CATEGORIES = [
 ];
 
 function unitsOf(cat) { return state.units.filter(cat.match); }
+
+// ---- 画像パス解決 ----
+// unit.json に imageBase（絶対URL）がある単元は画像を別repo（kokugo-weekly-sapix-images-01 等）から読む。
+// ローカルQA用に ?imgbase=http://localhost:8818/ で上書きできる。
+const IMG_BASE_OVERRIDE = new URLSearchParams(location.search).get('imgbase');
+function imgURL(unit, path) {
+  if (!path || /^https?:/.test(path)) return path;
+  const base = unit && unit.imageBase ? (IMG_BASE_OVERRIDE || unit.imageBase) : '';
+  return base + path;
+}
 
 // ---- 画面切り替え ----
 function showScreen(id) {
@@ -292,12 +305,14 @@ function openCategory(cat) {
 function unitIcon(u) {
   if (u.category === 'daily-knowledge') return '📚';
   if (u.category === 'kanji-tokkun') return '🌻';
+  if (u.category === 'kanji-kaname') return '📕';
   if (u.category === 'ss-tokkun') return '🎯';
   return u.category === 'knowledge' ? '✍️' : '📖';
 }
 function unitTag(u) {
   if (u.category === 'daily-knowledge') return '知識の学習・コトノハ・漢字の要';
   if (u.category === 'kanji-tokkun') return '漢字20問';
+  if (u.category === 'kanji-kaname') return u.tag || '漢字の要';
   if (u.category === 'ss-tokkun') return u.tag || 'SS特訓';
   return u.category === 'knowledge' ? '知識の総完成' : '読解';
 }
@@ -322,7 +337,8 @@ function renderUnits() {
   if (cat.bulk) {
     // 一括モードバー（全単元の対象問題の確認と、対象のある単元だけの一括印刷）
     const bf = bulkFilterOf(cat);
-    const noun = cat.id === 'kanji' ? '回' : '単元';
+    const noun = cat.id === 'kanji' ? '回' : cat.id === 'kaname' ? 'ページ' : '単元';
+    const framed = cat.id === 'kanji' || cat.id === 'kaname';   // 対象マスに赤枠（cellRectsあり）
     const bulkTargets = (u) => {
       const unit = state.unitCache[u.id];
       return unit ? targetKeys(unit, bf) : [];
@@ -340,7 +356,7 @@ function renderUnits() {
       <div class="kanji-bulk-actions">
         <span class="kanji-bulk-hint">${bf === 'all'
           ? `${noun}を選ぶか、モードを選んで対象問題をしぼりこめます`
-          : `各${noun}の「対象」が印刷対象${cat.id === 'kanji' ? '（赤枠つき）' : ''}。対象0問の${noun}は印刷されません`}</span>
+          : `各${noun}の「対象」が印刷対象${framed ? '（赤枠つき）' : ''}。対象0問の${noun}は印刷されません`}</span>
         <span class="kanji-bulk-btns">
           <button class="btn-bulk-print" data-bulk-print="q">🖨 問題を印刷（${bf === 'all'
             ? `全${units.length}${noun}` : `${bulkCount(bf)}${noun}`}）</button>
@@ -348,14 +364,28 @@ function renderUnits() {
             ? `全${units.length}${noun}` : `${bulkCount(bf)}${noun}`}）</button>
         </span>
       </div>`;
-    html += units.map((u) => {
+    const bulkCard = (u) => {
       if (bf === 'all') return cardHTML(u);
       const t = bulkTargets(u);
       const info = t.length
         ? `<div class="kanji-targets">対象: ${t.join(' ')}（${t.length}問）</div>`
         : `<div class="kanji-targets kanji-targets-none">対象なし（印刷されません）</div>`;
       return cardHTML(u).replace(/(<div class="unit-card-subtitle">[^<]*<\/div>)/, `$1${info}`);
-    }).join('');
+    };
+    if (cat.grouped) {
+      // セクション（week）ごとに見出し。並びは units.json の出現順（書籍のページ順）
+      const groups = [];
+      for (const u of units) {
+        let g = groups.find((x) => x.week === u.week);
+        if (!g) { g = { week: u.week, units: [] }; groups.push(g); }
+        g.units.push(u);
+      }
+      html += groups.map((g) =>
+        `<section class="week-group"><h3 class="week-head">${g.week}（${g.units.length}${noun}）</h3>` +
+        g.units.map(bulkCard).join('') + '</section>').join('');
+    } else {
+      html += units.map(bulkCard).join('');
+    }
   } else if (cat.id === 'daily') {
     html = units.map(cardHTML).join('');
   } else {
@@ -401,15 +431,15 @@ async function bulkPrint(kind) {
     try {
       if (kind === 'a') {
         const imgs = [];
-        for (const p of unit.answerPages || []) imgs.push(await loadImage(p.full));
+        for (const p of unit.answerPages || []) imgs.push(await loadImage(imgURL(unit, p.full)));
         if (!imgs.length) continue;
         if (unit.print2up) sheets.push(...build2upSheets(imgs));
         else imgs.forEach((img) => sheets.push(plainSheet(img)));
       } else if (unit.cellRects) {
-        const img = await loadImage(unit.questionPages[0].full);
+        const img = await loadImage(imgURL(unit, unit.questionPages[0].full));
         sheets.push(drawKanjiSheet(img, unit, keys));
       } else {
-        for (const p of unit.questionPages || []) sheets.push(plainSheet(await loadImage(p.full)));
+        for (const p of unit.questionPages || []) sheets.push(plainSheet(await loadImage(imgURL(unit, p.full))));
       }
     } catch (e) { console.warn('bulk print load fail', u.id, e); }
   }
@@ -462,7 +492,7 @@ function applyTabVisibility() {
 // 縦ページを1枚ずつ横幅いっぱいに出すと拡大されすぎるため（2026-09-07 ユーザー要望）。
 function pagesHTML(pages, pt, label, twoUp, marks) {
   const img = (p, i) => {
-    const tag = `<img src="${p.full}" loading="lazy" alt="${label}${i + 1}">`;
+    const tag = `<img src="${imgURL(state.current, p.full)}" loading="lazy" alt="${label}${i + 1}">`;
     return (pt === 'q' && i === 0 && marks) ? `<div class="kanji-wrap">${tag}${marks}</div>` : tag;
   };
   const hide = pt === 'a' ? ' style="display:none"' : '';
@@ -625,7 +655,7 @@ async function printCurrentTab() {
   if (!u) return;
   if (!state.showingAnswer && u.cellRects) {   // 漢字特訓: 合成1枚＋対象マスの赤枠
     try {
-      const img = await loadImage(u.questionPages[0].full);
+      const img = await loadImage(imgURL(u, u.questionPages[0].full));
       _openPrintOverlay([drawKanjiSheet(img, u, targetKeys(u, wsmFilter))]);
     } catch (e) { alert('画像の読み込みに失敗しました'); }
     return;
@@ -634,7 +664,7 @@ async function printCurrentTab() {
   if (!pages || !pages.length) return;
   const imgs = [];
   for (const p of pages) {
-    try { imgs.push(await loadImage(p.full)); } catch (e) {}
+    try { imgs.push(await loadImage(imgURL(u, p.full))); } catch (e) {}
   }
   if (!imgs.length) { alert('画像の読み込みに失敗しました'); return; }
   const dataURLs = u.print2up ? build2upSheets(imgs) : imgs.map((img) => {

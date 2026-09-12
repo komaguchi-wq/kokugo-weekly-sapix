@@ -1,0 +1,57 @@
+{
+ "id": "KY-177",
+ "week": "部首",
+ "title": "部首 2",
+ "category": "kanji-kaname",
+ "tag": "p.177・28問",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-01/",
+ "questionPages": [
+  {
+   "full": "units/KY-177/qp_1.jpg",
+   "small": "units/KY-177/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/KY-177/ap_1.jpg",
+   "small": "units/KY-177/ap_1_small.jpg"
+  }
+ ],
+ "hasSolved": false,
+ "questionGroups": [
+  {
+   "head": "",
+   "labels": [
+    "43",
+    "44",
+    "45",
+    "46",
+    "47",
+    "48",
+    "49",
+    "50",
+    "51",
+    "52",
+    "53",
+    "54",
+    "55",
+    "56",
+    "57",
+    "58",
+    "59",
+    "60",
+    "61",
+    "62",
+    "63",
+    "64",
+    "65",
+    "66",
+    "67",
+    "68",
+    "69",
+    "70"
+   ]
+  }
+ ],
+ "print2up": false
+}

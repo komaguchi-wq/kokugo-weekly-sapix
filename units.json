@@ -693,5 +693,1258 @@
   "week": "漢字特訓",
   "title": "62A-22（慣用句①）",
   "category": "kanji-tokkun"
+ },
+ {
+  "id": "KY-006",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 1",
+  "category": "kanji-kaname",
+  "tag": "p.6・15問"
+ },
+ {
+  "id": "KY-007",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 2",
+  "category": "kanji-kaname",
+  "tag": "p.7・15問"
+ },
+ {
+  "id": "KY-008",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 3",
+  "category": "kanji-kaname",
+  "tag": "p.8・15問"
+ },
+ {
+  "id": "KY-009",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 4",
+  "category": "kanji-kaname",
+  "tag": "p.9・15問"
+ },
+ {
+  "id": "KY-010",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 5",
+  "category": "kanji-kaname",
+  "tag": "p.10・15問"
+ },
+ {
+  "id": "KY-011",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 6",
+  "category": "kanji-kaname",
+  "tag": "p.11・15問"
+ },
+ {
+  "id": "KY-012",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 7",
+  "category": "kanji-kaname",
+  "tag": "p.12・15問"
+ },
+ {
+  "id": "KY-013",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 8",
+  "category": "kanji-kaname",
+  "tag": "p.13・15問"
+ },
+ {
+  "id": "KY-014",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 9",
+  "category": "kanji-kaname",
+  "tag": "p.14・15問"
+ },
+ {
+  "id": "KY-015",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 10",
+  "category": "kanji-kaname",
+  "tag": "p.15・15問"
+ },
+ {
+  "id": "KY-016",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 11",
+  "category": "kanji-kaname",
+  "tag": "p.16・15問"
+ },
+ {
+  "id": "KY-017",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 12",
+  "category": "kanji-kaname",
+  "tag": "p.17・15問"
+ },
+ {
+  "id": "KY-018",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 13",
+  "category": "kanji-kaname",
+  "tag": "p.18・15問"
+ },
+ {
+  "id": "KY-019",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 14",
+  "category": "kanji-kaname",
+  "tag": "p.19・15問"
+ },
+ {
+  "id": "KY-020",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 15",
+  "category": "kanji-kaname",
+  "tag": "p.20・15問"
+ },
+ {
+  "id": "KY-021",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 16",
+  "category": "kanji-kaname",
+  "tag": "p.21・15問"
+ },
+ {
+  "id": "KY-022",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 17",
+  "category": "kanji-kaname",
+  "tag": "p.22・15問"
+ },
+ {
+  "id": "KY-023",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 18",
+  "category": "kanji-kaname",
+  "tag": "p.23・15問"
+ },
+ {
+  "id": "KY-024",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 19",
+  "category": "kanji-kaname",
+  "tag": "p.24・15問"
+ },
+ {
+  "id": "KY-025",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 20",
+  "category": "kanji-kaname",
+  "tag": "p.25・15問"
+ },
+ {
+  "id": "KY-026",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 21",
+  "category": "kanji-kaname",
+  "tag": "p.26・15問"
+ },
+ {
+  "id": "KY-027",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 22",
+  "category": "kanji-kaname",
+  "tag": "p.27・15問"
+ },
+ {
+  "id": "KY-028",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 23",
+  "category": "kanji-kaname",
+  "tag": "p.28・15問"
+ },
+ {
+  "id": "KY-029",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 24",
+  "category": "kanji-kaname",
+  "tag": "p.29・15問"
+ },
+ {
+  "id": "KY-030",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 25",
+  "category": "kanji-kaname",
+  "tag": "p.30・15問"
+ },
+ {
+  "id": "KY-031",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 26",
+  "category": "kanji-kaname",
+  "tag": "p.31・15問"
+ },
+ {
+  "id": "KY-032",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 27",
+  "category": "kanji-kaname",
+  "tag": "p.32・15問"
+ },
+ {
+  "id": "KY-033",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 28",
+  "category": "kanji-kaname",
+  "tag": "p.33・15問"
+ },
+ {
+  "id": "KY-034",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 29",
+  "category": "kanji-kaname",
+  "tag": "p.34・15問"
+ },
+ {
+  "id": "KY-035",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 30",
+  "category": "kanji-kaname",
+  "tag": "p.35・15問"
+ },
+ {
+  "id": "KY-036",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 31",
+  "category": "kanji-kaname",
+  "tag": "p.36・15問"
+ },
+ {
+  "id": "KY-037",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 32",
+  "category": "kanji-kaname",
+  "tag": "p.37・15問"
+ },
+ {
+  "id": "KY-038",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 33",
+  "category": "kanji-kaname",
+  "tag": "p.38・15問"
+ },
+ {
+  "id": "KY-039",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 34",
+  "category": "kanji-kaname",
+  "tag": "p.39・15問"
+ },
+ {
+  "id": "KY-040",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 35",
+  "category": "kanji-kaname",
+  "tag": "p.40・15問"
+ },
+ {
+  "id": "KY-041",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 36",
+  "category": "kanji-kaname",
+  "tag": "p.41・15問"
+ },
+ {
+  "id": "KY-042",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 37",
+  "category": "kanji-kaname",
+  "tag": "p.42・15問"
+ },
+ {
+  "id": "KY-043",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 38",
+  "category": "kanji-kaname",
+  "tag": "p.43・15問"
+ },
+ {
+  "id": "KY-044",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 39",
+  "category": "kanji-kaname",
+  "tag": "p.44・15問"
+ },
+ {
+  "id": "KY-045",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 40",
+  "category": "kanji-kaname",
+  "tag": "p.45・15問"
+ },
+ {
+  "id": "KY-046",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 41",
+  "category": "kanji-kaname",
+  "tag": "p.46・15問"
+ },
+ {
+  "id": "KY-047",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 42",
+  "category": "kanji-kaname",
+  "tag": "p.47・15問"
+ },
+ {
+  "id": "KY-048",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 43",
+  "category": "kanji-kaname",
+  "tag": "p.48・15問"
+ },
+ {
+  "id": "KY-049",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 44",
+  "category": "kanji-kaname",
+  "tag": "p.49・15問"
+ },
+ {
+  "id": "KY-050",
+  "week": "細部ミスに注意すべき漢字",
+  "title": "細部ミスに注意すべき漢字 45",
+  "category": "kanji-kaname",
+  "tag": "p.50・15問"
+ },
+ {
+  "id": "KY-051",
+  "week": "一文字で問われる漢字",
+  "title": "一文字で問われる漢字 1",
+  "category": "kanji-kaname",
+  "tag": "p.51・30問"
+ },
+ {
+  "id": "KY-052",
+  "week": "一文字で問われる漢字",
+  "title": "一文字で問われる漢字 2",
+  "category": "kanji-kaname",
+  "tag": "p.52・30問"
+ },
+ {
+  "id": "KY-053",
+  "week": "一文字で問われる漢字",
+  "title": "一文字で問われる漢字 3",
+  "category": "kanji-kaname",
+  "tag": "p.53・30問"
+ },
+ {
+  "id": "KY-054",
+  "week": "一文字で問われる漢字",
+  "title": "一文字で問われる漢字 4",
+  "category": "kanji-kaname",
+  "tag": "p.54・30問"
+ },
+ {
+  "id": "KY-055",
+  "week": "一文字で問われる漢字",
+  "title": "一文字で問われる漢字 5",
+  "category": "kanji-kaname",
+  "tag": "p.55・30問"
+ },
+ {
+  "id": "KY-056",
+  "week": "一文字で問われる漢字",
+  "title": "一文字で問われる漢字 6",
+  "category": "kanji-kaname",
+  "tag": "p.56・30問"
+ },
+ {
+  "id": "KY-057",
+  "week": "一文字で問われる漢字",
+  "title": "一文字で問われる漢字 7",
+  "category": "kanji-kaname",
+  "tag": "p.57・30問"
+ },
+ {
+  "id": "KY-058",
+  "week": "一文字で問われる漢字",
+  "title": "一文字で問われる漢字 8",
+  "category": "kanji-kaname",
+  "tag": "p.58・30問"
+ },
+ {
+  "id": "KY-059",
+  "week": "一文字で問われる漢字",
+  "title": "一文字で問われる漢字 9",
+  "category": "kanji-kaname",
+  "tag": "p.59・30問"
+ },
+ {
+  "id": "KY-060",
+  "week": "一文字で問われる漢字",
+  "title": "一文字で問われる漢字 10",
+  "category": "kanji-kaname",
+  "tag": "p.60・30問"
+ },
+ {
+  "id": "KY-061",
+  "week": "一文字で問われる漢字",
+  "title": "一文字で問われる漢字 11",
+  "category": "kanji-kaname",
+  "tag": "p.61・30問"
+ },
+ {
+  "id": "KY-062",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 1",
+  "category": "kanji-kaname",
+  "tag": "p.62・15問"
+ },
+ {
+  "id": "KY-063",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 2",
+  "category": "kanji-kaname",
+  "tag": "p.63・15問"
+ },
+ {
+  "id": "KY-064",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 3",
+  "category": "kanji-kaname",
+  "tag": "p.64・15問"
+ },
+ {
+  "id": "KY-065",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 4",
+  "category": "kanji-kaname",
+  "tag": "p.65・15問"
+ },
+ {
+  "id": "KY-066",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 5",
+  "category": "kanji-kaname",
+  "tag": "p.66・15問"
+ },
+ {
+  "id": "KY-067",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 6",
+  "category": "kanji-kaname",
+  "tag": "p.67・15問"
+ },
+ {
+  "id": "KY-068",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 7",
+  "category": "kanji-kaname",
+  "tag": "p.68・15問"
+ },
+ {
+  "id": "KY-069",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 8",
+  "category": "kanji-kaname",
+  "tag": "p.69・15問"
+ },
+ {
+  "id": "KY-070",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 9",
+  "category": "kanji-kaname",
+  "tag": "p.70・15問"
+ },
+ {
+  "id": "KY-071",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 10",
+  "category": "kanji-kaname",
+  "tag": "p.71・15問"
+ },
+ {
+  "id": "KY-072",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 11",
+  "category": "kanji-kaname",
+  "tag": "p.72・15問"
+ },
+ {
+  "id": "KY-073",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 12",
+  "category": "kanji-kaname",
+  "tag": "p.73・15問"
+ },
+ {
+  "id": "KY-074",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 13",
+  "category": "kanji-kaname",
+  "tag": "p.74・15問"
+ },
+ {
+  "id": "KY-075",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 14",
+  "category": "kanji-kaname",
+  "tag": "p.75・15問"
+ },
+ {
+  "id": "KY-076",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 15",
+  "category": "kanji-kaname",
+  "tag": "p.76・15問"
+ },
+ {
+  "id": "KY-077",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 16",
+  "category": "kanji-kaname",
+  "tag": "p.77・15問"
+ },
+ {
+  "id": "KY-078",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 17",
+  "category": "kanji-kaname",
+  "tag": "p.78・15問"
+ },
+ {
+  "id": "KY-079",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 18",
+  "category": "kanji-kaname",
+  "tag": "p.79・15問"
+ },
+ {
+  "id": "KY-080",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 19",
+  "category": "kanji-kaname",
+  "tag": "p.80・15問"
+ },
+ {
+  "id": "KY-081",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 20",
+  "category": "kanji-kaname",
+  "tag": "p.81・15問"
+ },
+ {
+  "id": "KY-082",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 21",
+  "category": "kanji-kaname",
+  "tag": "p.82・15問"
+ },
+ {
+  "id": "KY-083",
+  "week": "字は易しいが意味の難しい漢字",
+  "title": "字は易しいが意味の難しい漢字 22",
+  "category": "kanji-kaname",
+  "tag": "p.83・15問"
+ },
+ {
+  "id": "KY-084",
+  "week": "難しい読みの熟語",
+  "title": "難しい読みの熟語 1",
+  "category": "kanji-kaname",
+  "tag": "p.84・15問"
+ },
+ {
+  "id": "KY-085",
+  "week": "難しい読みの熟語",
+  "title": "難しい読みの熟語 2",
+  "category": "kanji-kaname",
+  "tag": "p.85・15問"
+ },
+ {
+  "id": "KY-086",
+  "week": "難しい読みの熟語",
+  "title": "難しい読みの熟語 3",
+  "category": "kanji-kaname",
+  "tag": "p.86・15問"
+ },
+ {
+  "id": "KY-087",
+  "week": "難しい読みの熟語",
+  "title": "難しい読みの熟語 4",
+  "category": "kanji-kaname",
+  "tag": "p.87・15問"
+ },
+ {
+  "id": "KY-088",
+  "week": "難しい読みの熟語",
+  "title": "難しい読みの熟語 5",
+  "category": "kanji-kaname",
+  "tag": "p.88・15問"
+ },
+ {
+  "id": "KY-089",
+  "week": "難しい読みの熟語",
+  "title": "難しい読みの熟語 6",
+  "category": "kanji-kaname",
+  "tag": "p.89・15問"
+ },
+ {
+  "id": "KY-090",
+  "week": "難しい読みの熟語",
+  "title": "難しい読みの熟語 7",
+  "category": "kanji-kaname",
+  "tag": "p.90・15問"
+ },
+ {
+  "id": "KY-091",
+  "week": "難しい読みの熟語",
+  "title": "難しい読みの熟語 8",
+  "category": "kanji-kaname",
+  "tag": "p.91・15問"
+ },
+ {
+  "id": "KY-092",
+  "week": "難しい読みの熟語",
+  "title": "難しい読みの熟語 9",
+  "category": "kanji-kaname",
+  "tag": "p.92・15問"
+ },
+ {
+  "id": "KY-093",
+  "week": "難しい読みの熟語",
+  "title": "難しい読みの熟語 10",
+  "category": "kanji-kaname",
+  "tag": "p.93・15問"
+ },
+ {
+  "id": "KY-096",
+  "week": "同音異義語",
+  "title": "同音異義語 1",
+  "category": "kanji-kaname",
+  "tag": "p.96・15問"
+ },
+ {
+  "id": "KY-097",
+  "week": "同音異義語",
+  "title": "同音異義語 2",
+  "category": "kanji-kaname",
+  "tag": "p.97・16問"
+ },
+ {
+  "id": "KY-098",
+  "week": "同音異義語",
+  "title": "同音異義語 3",
+  "category": "kanji-kaname",
+  "tag": "p.98・16問"
+ },
+ {
+  "id": "KY-099",
+  "week": "同音異義語",
+  "title": "同音異義語 4",
+  "category": "kanji-kaname",
+  "tag": "p.99・15問"
+ },
+ {
+  "id": "KY-100",
+  "week": "同音異義語",
+  "title": "同音異義語 5",
+  "category": "kanji-kaname",
+  "tag": "p.100・15問"
+ },
+ {
+  "id": "KY-101",
+  "week": "同音異義語",
+  "title": "同音異義語 6",
+  "category": "kanji-kaname",
+  "tag": "p.101・16問"
+ },
+ {
+  "id": "KY-102",
+  "week": "同音異義語",
+  "title": "同音異義語 7",
+  "category": "kanji-kaname",
+  "tag": "p.102・16問"
+ },
+ {
+  "id": "KY-103",
+  "week": "同音異義語",
+  "title": "同音異義語 8",
+  "category": "kanji-kaname",
+  "tag": "p.103・16問"
+ },
+ {
+  "id": "KY-104",
+  "week": "同音異義語",
+  "title": "同音異義語 9",
+  "category": "kanji-kaname",
+  "tag": "p.104・16問"
+ },
+ {
+  "id": "KY-105",
+  "week": "同音異義語",
+  "title": "同音異義語 10",
+  "category": "kanji-kaname",
+  "tag": "p.105・15問"
+ },
+ {
+  "id": "KY-106",
+  "week": "同音異義語",
+  "title": "同音異義語 11",
+  "category": "kanji-kaname",
+  "tag": "p.106・16問"
+ },
+ {
+  "id": "KY-107",
+  "week": "同音異義語",
+  "title": "同音異義語 12",
+  "category": "kanji-kaname",
+  "tag": "p.107・16問"
+ },
+ {
+  "id": "KY-108",
+  "week": "同音異義語",
+  "title": "同音異義語 13",
+  "category": "kanji-kaname",
+  "tag": "p.108・15問"
+ },
+ {
+  "id": "KY-109",
+  "week": "同音異義語",
+  "title": "同音異義語 14",
+  "category": "kanji-kaname",
+  "tag": "p.109・15問"
+ },
+ {
+  "id": "KY-110",
+  "week": "同音異義語",
+  "title": "同音異義語 15",
+  "category": "kanji-kaname",
+  "tag": "p.110・16問"
+ },
+ {
+  "id": "KY-111",
+  "week": "同音異義語",
+  "title": "同音異義語 16",
+  "category": "kanji-kaname",
+  "tag": "p.111・15問"
+ },
+ {
+  "id": "KY-112",
+  "week": "同音異義語",
+  "title": "同音異義語 17",
+  "category": "kanji-kaname",
+  "tag": "p.112・15問"
+ },
+ {
+  "id": "KY-113",
+  "week": "同音異義語",
+  "title": "同音異義語 18",
+  "category": "kanji-kaname",
+  "tag": "p.113・15問"
+ },
+ {
+  "id": "KY-114",
+  "week": "同音異義語",
+  "title": "同音異義語 19",
+  "category": "kanji-kaname",
+  "tag": "p.114・16問"
+ },
+ {
+  "id": "KY-115",
+  "week": "同音異義語",
+  "title": "同音異義語 20",
+  "category": "kanji-kaname",
+  "tag": "p.115・16問"
+ },
+ {
+  "id": "KY-116",
+  "week": "同音異義語",
+  "title": "同音異義語 21",
+  "category": "kanji-kaname",
+  "tag": "p.116・16問"
+ },
+ {
+  "id": "KY-117",
+  "week": "同音異義語",
+  "title": "同音異義語 22",
+  "category": "kanji-kaname",
+  "tag": "p.117・15問"
+ },
+ {
+  "id": "KY-118",
+  "week": "同音異義語",
+  "title": "同音異義語 23",
+  "category": "kanji-kaname",
+  "tag": "p.118・16問"
+ },
+ {
+  "id": "KY-119",
+  "week": "同音異義語",
+  "title": "同音異義語 24",
+  "category": "kanji-kaname",
+  "tag": "p.119・15問"
+ },
+ {
+  "id": "KY-120",
+  "week": "同音異義語",
+  "title": "同音異義語 25",
+  "category": "kanji-kaname",
+  "tag": "p.120・15問"
+ },
+ {
+  "id": "KY-121",
+  "week": "同音異義語",
+  "title": "同音異義語 26",
+  "category": "kanji-kaname",
+  "tag": "p.121・16問"
+ },
+ {
+  "id": "KY-122",
+  "week": "同音異義語",
+  "title": "同音異義語 27",
+  "category": "kanji-kaname",
+  "tag": "p.122・16問"
+ },
+ {
+  "id": "KY-123",
+  "week": "同音異義語",
+  "title": "同音異義語 28",
+  "category": "kanji-kaname",
+  "tag": "p.123・16問"
+ },
+ {
+  "id": "KY-124",
+  "week": "同音異義語",
+  "title": "同音異義語 29",
+  "category": "kanji-kaname",
+  "tag": "p.124・16問"
+ },
+ {
+  "id": "KY-125",
+  "week": "同訓異字",
+  "title": "同訓異字 1",
+  "category": "kanji-kaname",
+  "tag": "p.125・16問"
+ },
+ {
+  "id": "KY-126",
+  "week": "同訓異字",
+  "title": "同訓異字 2",
+  "category": "kanji-kaname",
+  "tag": "p.126・16問"
+ },
+ {
+  "id": "KY-127",
+  "week": "同訓異字",
+  "title": "同訓異字 3",
+  "category": "kanji-kaname",
+  "tag": "p.127・15問"
+ },
+ {
+  "id": "KY-128",
+  "week": "同訓異字",
+  "title": "同訓異字 4",
+  "category": "kanji-kaname",
+  "tag": "p.128・16問"
+ },
+ {
+  "id": "KY-129",
+  "week": "同訓異字",
+  "title": "同訓異字 5",
+  "category": "kanji-kaname",
+  "tag": "p.129・15問"
+ },
+ {
+  "id": "KY-130",
+  "week": "同訓異字",
+  "title": "同訓異字 6",
+  "category": "kanji-kaname",
+  "tag": "p.130・16問"
+ },
+ {
+  "id": "KY-131",
+  "week": "同訓異字",
+  "title": "同訓異字 7",
+  "category": "kanji-kaname",
+  "tag": "p.131・15問"
+ },
+ {
+  "id": "KY-132",
+  "week": "同訓異字",
+  "title": "同訓異字 8",
+  "category": "kanji-kaname",
+  "tag": "p.132・14問"
+ },
+ {
+  "id": "KY-133",
+  "week": "入試でよく見かける熟語",
+  "title": "入試でよく見かける熟語 1",
+  "category": "kanji-kaname",
+  "tag": "p.133・30問"
+ },
+ {
+  "id": "KY-134",
+  "week": "入試でよく見かける熟語",
+  "title": "入試でよく見かける熟語 2",
+  "category": "kanji-kaname",
+  "tag": "p.134・30問"
+ },
+ {
+  "id": "KY-135",
+  "week": "入試でよく見かける熟語",
+  "title": "入試でよく見かける熟語 3",
+  "category": "kanji-kaname",
+  "tag": "p.135・30問"
+ },
+ {
+  "id": "KY-136",
+  "week": "入試でよく見かける熟語",
+  "title": "入試でよく見かける熟語 4",
+  "category": "kanji-kaname",
+  "tag": "p.136・30問"
+ },
+ {
+  "id": "KY-137",
+  "week": "入試でよく見かける熟語",
+  "title": "入試でよく見かける熟語 5",
+  "category": "kanji-kaname",
+  "tag": "p.137・30問"
+ },
+ {
+  "id": "KY-138",
+  "week": "入試でよく見かける熟語",
+  "title": "入試でよく見かける熟語 6",
+  "category": "kanji-kaname",
+  "tag": "p.138・30問"
+ },
+ {
+  "id": "KY-139",
+  "week": "入試でよく見かける熟語",
+  "title": "入試でよく見かける熟語 7",
+  "category": "kanji-kaname",
+  "tag": "p.139・30問"
+ },
+ {
+  "id": "KY-140",
+  "week": "入試でよく見かける熟語",
+  "title": "入試でよく見かける熟語 8",
+  "category": "kanji-kaname",
+  "tag": "p.140・30問"
+ },
+ {
+  "id": "KY-141",
+  "week": "入試でよく見かける熟語",
+  "title": "入試でよく見かける熟語 9",
+  "category": "kanji-kaname",
+  "tag": "p.141・30問"
+ },
+ {
+  "id": "KY-142",
+  "week": "入試でよく見かける熟語",
+  "title": "入試でよく見かける熟語 10",
+  "category": "kanji-kaname",
+  "tag": "p.142・30問"
+ },
+ {
+  "id": "KY-143",
+  "week": "四字熟語",
+  "title": "四字熟語 1",
+  "category": "kanji-kaname",
+  "tag": "p.143・15問"
+ },
+ {
+  "id": "KY-144",
+  "week": "四字熟語",
+  "title": "四字熟語 2",
+  "category": "kanji-kaname",
+  "tag": "p.144・15問"
+ },
+ {
+  "id": "KY-145",
+  "week": "四字熟語",
+  "title": "四字熟語 3",
+  "category": "kanji-kaname",
+  "tag": "p.145・15問"
+ },
+ {
+  "id": "KY-146",
+  "week": "四字熟語",
+  "title": "四字熟語 4",
+  "category": "kanji-kaname",
+  "tag": "p.146・15問"
+ },
+ {
+  "id": "KY-147",
+  "week": "四字熟語",
+  "title": "四字熟語 5",
+  "category": "kanji-kaname",
+  "tag": "p.147・15問"
+ },
+ {
+  "id": "KY-148",
+  "week": "四字熟語",
+  "title": "四字熟語 6",
+  "category": "kanji-kaname",
+  "tag": "p.148・15問"
+ },
+ {
+  "id": "KY-149",
+  "week": "四字熟語",
+  "title": "四字熟語 7",
+  "category": "kanji-kaname",
+  "tag": "p.149・15問"
+ },
+ {
+  "id": "KY-150",
+  "week": "四字熟語",
+  "title": "四字熟語 8",
+  "category": "kanji-kaname",
+  "tag": "p.150・15問"
+ },
+ {
+  "id": "KY-151",
+  "week": "四字熟語",
+  "title": "四字熟語 9",
+  "category": "kanji-kaname",
+  "tag": "p.151・15問"
+ },
+ {
+  "id": "KY-152",
+  "week": "三字熟語",
+  "title": "三字熟語 1",
+  "category": "kanji-kaname",
+  "tag": "p.152・15問"
+ },
+ {
+  "id": "KY-153",
+  "week": "三字熟語",
+  "title": "三字熟語 2",
+  "category": "kanji-kaname",
+  "tag": "p.153・15問"
+ },
+ {
+  "id": "KY-154",
+  "week": "三字熟語",
+  "title": "三字熟語 3",
+  "category": "kanji-kaname",
+  "tag": "p.154・15問"
+ },
+ {
+  "id": "KY-155",
+  "week": "三字熟語",
+  "title": "三字熟語 4",
+  "category": "kanji-kaname",
+  "tag": "p.155・15問"
+ },
+ {
+  "id": "KY-156",
+  "week": "三字熟語",
+  "title": "三字熟語 5",
+  "category": "kanji-kaname",
+  "tag": "p.156・15問"
+ },
+ {
+  "id": "KY-157",
+  "week": "三字熟語",
+  "title": "三字熟語 6",
+  "category": "kanji-kaname",
+  "tag": "p.157・15問"
+ },
+ {
+  "id": "KY-158",
+  "week": "三字熟語",
+  "title": "三字熟語 7",
+  "category": "kanji-kaname",
+  "tag": "p.158・15問"
+ },
+ {
+  "id": "KY-159",
+  "week": "類義語",
+  "title": "類義語 1",
+  "category": "kanji-kaname",
+  "tag": "p.159・30問"
+ },
+ {
+  "id": "KY-160",
+  "week": "類義語",
+  "title": "類義語 2",
+  "category": "kanji-kaname",
+  "tag": "p.160・30問"
+ },
+ {
+  "id": "KY-161",
+  "week": "対義語",
+  "title": "対義語 1",
+  "category": "kanji-kaname",
+  "tag": "p.161・30問"
+ },
+ {
+  "id": "KY-162",
+  "week": "対義語",
+  "title": "対義語 2",
+  "category": "kanji-kaname",
+  "tag": "p.162・30問"
+ },
+ {
+  "id": "KY-163",
+  "week": "対義語",
+  "title": "対義語 3",
+  "category": "kanji-kaname",
+  "tag": "p.163・30問"
+ },
+ {
+  "id": "KY-164",
+  "week": "対義語",
+  "title": "対義語 4",
+  "category": "kanji-kaname",
+  "tag": "p.164・30問"
+ },
+ {
+  "id": "KY-166",
+  "week": "小学校では習わない漢字",
+  "title": "小学校では習わない漢字 1",
+  "category": "kanji-kaname",
+  "tag": "p.166・30問"
+ },
+ {
+  "id": "KY-167",
+  "week": "小学校では習わない漢字",
+  "title": "小学校では習わない漢字 2",
+  "category": "kanji-kaname",
+  "tag": "p.167・30問"
+ },
+ {
+  "id": "KY-168",
+  "week": "小学校では習わない漢字",
+  "title": "小学校では習わない漢字 3",
+  "category": "kanji-kaname",
+  "tag": "p.168・30問"
+ },
+ {
+  "id": "KY-169",
+  "week": "小学校では習わない漢字",
+  "title": "小学校では習わない漢字 4",
+  "category": "kanji-kaname",
+  "tag": "p.169・30問"
+ },
+ {
+  "id": "KY-170",
+  "week": "小学校では習わない漢字",
+  "title": "小学校では習わない漢字 5",
+  "category": "kanji-kaname",
+  "tag": "p.170・30問"
+ },
+ {
+  "id": "KY-171",
+  "week": "小学校では習わない漢字",
+  "title": "小学校では習わない漢字 6",
+  "category": "kanji-kaname",
+  "tag": "p.171・30問"
+ },
+ {
+  "id": "KY-172",
+  "week": "小学校では習わない漢字",
+  "title": "小学校では習わない漢字 7",
+  "category": "kanji-kaname",
+  "tag": "p.172・30問"
+ },
+ {
+  "id": "KY-173",
+  "week": "小学校では習わない漢字",
+  "title": "小学校では習わない漢字 8",
+  "category": "kanji-kaname",
+  "tag": "p.173・30問"
+ },
+ {
+  "id": "KY-174",
+  "week": "筆順・画数",
+  "title": "筆順・画数 1",
+  "category": "kanji-kaname",
+  "tag": "p.174・15問"
+ },
+ {
+  "id": "KY-175",
+  "week": "筆順・画数",
+  "title": "筆順・画数 2",
+  "category": "kanji-kaname",
+  "tag": "p.175・15問"
+ },
+ {
+  "id": "KY-176",
+  "week": "部首",
+  "title": "部首 1",
+  "category": "kanji-kaname",
+  "tag": "p.176・42問"
+ },
+ {
+  "id": "KY-177",
+  "week": "部首",
+  "title": "部首 2",
+  "category": "kanji-kaname",
+  "tag": "p.177・28問"
+ },
+ {
+  "id": "KY-178",
+  "week": "送りがな",
+  "title": "送りがな 1",
+  "category": "kanji-kaname",
+  "tag": "p.178・30問"
+ },
+ {
+  "id": "KY-179",
+  "week": "かなづかい",
+  "title": "かなづかい 1",
+  "category": "kanji-kaname",
+  "tag": "p.179・30問"
+ },
+ {
+  "id": "KY-180",
+  "week": "音読み・訓読み",
+  "title": "音読み・訓読み 1",
+  "category": "kanji-kaname",
+  "tag": "p.180・30問"
+ },
+ {
+  "id": "KY-181",
+  "week": "漢字辞典の使い方・漢字の成り立ち",
+  "title": "漢字辞典の使い方・漢字の成り立ち 1",
+  "category": "kanji-kaname",
+  "tag": "p.181・17問"
+ },
+ {
+  "id": "KY-182",
+  "week": "熟語の構成（組み立て）",
+  "title": "熟語の構成（組み立て） 1",
+  "category": "kanji-kaname",
+  "tag": "p.182・30問"
+ },
+ {
+  "id": "KY-183",
+  "week": "熟語の構成（組み立て）",
+  "title": "熟語の構成（組み立て） 2",
+  "category": "kanji-kaname",
+  "tag": "p.183・38問"
+ },
+ {
+  "id": "KY-184",
+  "week": "熟語作り・新傾向問題",
+  "title": "熟語作り・新傾向問題 1",
+  "category": "kanji-kaname",
+  "tag": "p.184・9問"
+ },
+ {
+  "id": "KY-185",
+  "week": "熟語作り・新傾向問題",
+  "title": "熟語作り・新傾向問題 2",
+  "category": "kanji-kaname",
+  "tag": "p.185・11問"
+ },
+ {
+  "id": "KY-186",
+  "week": "十二支",
+  "title": "十二支 1",
+  "category": "kanji-kaname",
+  "tag": "p.186・12問"
+ },
+ {
+  "id": "KY-187",
+  "week": "二十四節気",
+  "title": "二十四節気 1",
+  "category": "kanji-kaname",
+  "tag": "p.187・25問"
  }
 ]

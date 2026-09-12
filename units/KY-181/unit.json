@@ -1,0 +1,51 @@
+{
+ "id": "KY-181",
+ "week": "漢字辞典の使い方・漢字の成り立ち",
+ "title": "漢字辞典の使い方・漢字の成り立ち 1",
+ "category": "kanji-kaname",
+ "tag": "p.181・17問",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-01/",
+ "questionPages": [
+  {
+   "full": "units/KY-181/qp_1.jpg",
+   "small": "units/KY-181/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/KY-181/ap_1.jpg",
+   "small": "units/KY-181/ap_1_small.jpg"
+  }
+ ],
+ "hasSolved": false,
+ "questionGroups": [
+  {
+   "head": "1",
+   "labels": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤",
+    "⑥",
+    "⑦"
+   ]
+  },
+  {
+   "head": "2",
+   "labels": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤",
+    "⑥",
+    "⑦",
+    "⑧",
+    "⑨",
+    "⑩"
+   ]
+  }
+ ],
+ "print2up": false
+}

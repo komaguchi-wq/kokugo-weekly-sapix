@@ -1,0 +1,44 @@
+{
+ "id": "KY-175",
+ "week": "筆順・画数",
+ "title": "筆順・画数 2",
+ "category": "kanji-kaname",
+ "tag": "p.175・15問",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-01/",
+ "questionPages": [
+  {
+   "full": "units/KY-175/qp_1.jpg",
+   "small": "units/KY-175/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/KY-175/ap_1.jpg",
+   "small": "units/KY-175/ap_1_small.jpg"
+  }
+ ],
+ "hasSolved": false,
+ "questionGroups": [
+  {
+   "head": "",
+   "labels": [
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24",
+    "25",
+    "26",
+    "27",
+    "28",
+    "29",
+    "30"
+   ]
+  }
+ ],
+ "print2up": false
+}

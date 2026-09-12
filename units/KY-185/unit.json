@@ -1,0 +1,45 @@
+{
+ "id": "KY-185",
+ "week": "熟語作り・新傾向問題",
+ "title": "熟語作り・新傾向問題 2",
+ "category": "kanji-kaname",
+ "tag": "p.185・11問",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-01/",
+ "questionPages": [
+  {
+   "full": "units/KY-185/qp_1.jpg",
+   "small": "units/KY-185/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/KY-185/ap_1.jpg",
+   "small": "units/KY-185/ap_1_small.jpg"
+  }
+ ],
+ "hasSolved": false,
+ "questionGroups": [
+  {
+   "head": "3",
+   "labels": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤"
+   ]
+  },
+  {
+   "head": "4",
+   "labels": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤",
+    "⑥"
+   ]
+  }
+ ],
+ "print2up": false
+}

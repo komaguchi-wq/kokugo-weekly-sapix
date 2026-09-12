@@ -1,0 +1,59 @@
+{
+ "id": "KY-187",
+ "week": "二十四節気",
+ "title": "二十四節気 1",
+ "category": "kanji-kaname",
+ "tag": "p.187・25問",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-01/",
+ "questionPages": [
+  {
+   "full": "units/KY-187/qp_1.jpg",
+   "small": "units/KY-187/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/KY-187/ap_1.jpg",
+   "small": "units/KY-187/ap_1_small.jpg"
+  }
+ ],
+ "hasSolved": false,
+ "questionGroups": [
+  {
+   "head": "月名",
+   "labels": [
+    "六月",
+    "七月",
+    "八月",
+    "九月",
+    "十月",
+    "十二月"
+   ]
+  },
+  {
+   "head": "節気",
+   "labels": [
+    "立春",
+    "雨水",
+    "春分",
+    "清明",
+    "穀雨",
+    "立夏",
+    "小満",
+    "夏至",
+    "小暑",
+    "大暑",
+    "立秋",
+    "処暑",
+    "秋分",
+    "立冬",
+    "小雪",
+    "大雪",
+    "冬至",
+    "小寒",
+    "大寒"
+   ]
+  }
+ ],
+ "print2up": false
+}
