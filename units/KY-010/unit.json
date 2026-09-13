@@ -15,9 +15,13 @@
   {
    "full": "units/KY-010/ap_1.jpg",
    "small": "units/KY-010/ap_1_small.jpg"
+  },
+  {
+   "full": "units/KY-010/solved_2026-09-13_01.jpg",
+   "small": "units/KY-010/solved_2026-09-13_01_small.jpg"
   }
  ],
- "hasSolved": false,
+ "hasSolved": true,
  "questionGroups": [
   {
    "head": "",
