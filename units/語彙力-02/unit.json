@@ -1,0 +1,74 @@
+{
+ "id": "語彙力-02",
+ "week": "第2回",
+ "title": "語彙力完成02 第2回（1〜40）",
+ "category": "ss-tokkun",
+ "tag": "語彙力40問",
+ "questionPages": [
+  {
+   "full": "units/語彙力-02/q_1.jpg",
+   "small": "units/語彙力-02/q_1_small.jpg"
+  },
+  {
+   "full": "units/語彙力-02/q_2.jpg",
+   "small": "units/語彙力-02/q_2_small.jpg"
+  },
+  {
+   "full": "units/語彙力-02/q_3.jpg",
+   "small": "units/語彙力-02/q_3_small.jpg"
+  },
+  {
+   "full": "units/語彙力-02/q_4.jpg",
+   "small": "units/語彙力-02/q_4_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/語彙力-02/a_1.jpg",
+   "small": "units/語彙力-02/a_1_small.jpg"
+  }
+ ],
+ "hasSolved": false,
+ "questions": [
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "11",
+  "12",
+  "13",
+  "14",
+  "15",
+  "16",
+  "17",
+  "18",
+  "19",
+  "20",
+  "21",
+  "22",
+  "23",
+  "24",
+  "25",
+  "26",
+  "27",
+  "28",
+  "29",
+  "30",
+  "31",
+  "32",
+  "33",
+  "34",
+  "35",
+  "36",
+  "37",
+  "38",
+  "39",
+  "40"
+ ]
+}

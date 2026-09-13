@@ -1,0 +1,160 @@
+{
+ "id": "渋幕-02",
+ "week": "第2回",
+ "title": "渋幕対策02（読解二題）",
+ "category": "ss-tokkun",
+ "tag": "読解",
+ "questionPages": [
+  {
+   "full": "units/渋幕-02/q_cover.jpg",
+   "small": "units/渋幕-02/q_cover_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/q_01.jpg",
+   "small": "units/渋幕-02/q_01_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/q_02.jpg",
+   "small": "units/渋幕-02/q_02_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/q_03.jpg",
+   "small": "units/渋幕-02/q_03_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/q_04.jpg",
+   "small": "units/渋幕-02/q_04_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/q_05.jpg",
+   "small": "units/渋幕-02/q_05_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/q_06.jpg",
+   "small": "units/渋幕-02/q_06_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/q_07.jpg",
+   "small": "units/渋幕-02/q_07_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/q_08.jpg",
+   "small": "units/渋幕-02/q_08_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/q_09.jpg",
+   "small": "units/渋幕-02/q_09_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/q_10.jpg",
+   "small": "units/渋幕-02/q_10_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/q_11.jpg",
+   "small": "units/渋幕-02/q_11_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/q_12.jpg",
+   "small": "units/渋幕-02/q_12_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/q_13.jpg",
+   "small": "units/渋幕-02/q_13_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/q_14.jpg",
+   "small": "units/渋幕-02/q_14_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/q_15.jpg",
+   "small": "units/渋幕-02/q_15_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/q_16.jpg",
+   "small": "units/渋幕-02/q_16_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/q_17.jpg",
+   "small": "units/渋幕-02/q_17_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/q_18.jpg",
+   "small": "units/渋幕-02/q_18_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/渋幕-02/a_expl1.jpg",
+   "small": "units/渋幕-02/a_expl1_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/a_expl2.jpg",
+   "small": "units/渋幕-02/a_expl2_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/sv_sheet.jpg",
+   "small": "units/渋幕-02/sv_sheet_small.jpg"
+  },
+  {
+   "full": "units/渋幕-02/sv_memo.jpg",
+   "small": "units/渋幕-02/sv_memo_small.jpg"
+  }
+ ],
+ "hasSolved": true,
+ "questions": [
+  "一問一a",
+  "一問一b",
+  "一問一c",
+  "一問二A",
+  "一問二B",
+  "一問三",
+  "一問四",
+  "一問五",
+  "一問六",
+  "一問七",
+  "二問一a",
+  "二問一b",
+  "二問一c",
+  "二問二A",
+  "二問二B",
+  "二問三",
+  "二問四",
+  "二問五",
+  "二問六",
+  "二問七",
+  "二問八"
+ ],
+ "questionGroups": [
+  {
+   "head": "一",
+   "labels": [
+    "問一a",
+    "問一b",
+    "問一c",
+    "問二A",
+    "問二B",
+    "問三",
+    "問四",
+    "問五",
+    "問六",
+    "問七"
+   ]
+  },
+  {
+   "head": "二",
+   "labels": [
+    "問一a",
+    "問一b",
+    "問一c",
+    "問二A",
+    "問二B",
+    "問三",
+    "問四",
+    "問五",
+    "問六",
+    "問七",
+    "問八"
+   ]
+  }
+ ]
+}

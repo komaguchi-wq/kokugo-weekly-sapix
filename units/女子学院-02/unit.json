@@ -1,0 +1,153 @@
+{
+ "id": "女子学院-02",
+ "week": "第2回",
+ "title": "女子学院対策02（読解二題＋漢字）",
+ "category": "ss-tokkun",
+ "tag": "読解",
+ "questionPages": [
+  {
+   "full": "units/女子学院-02/q_cover.jpg",
+   "small": "units/女子学院-02/q_cover_small.jpg"
+  },
+  {
+   "full": "units/女子学院-02/q_01.jpg",
+   "small": "units/女子学院-02/q_01_small.jpg"
+  },
+  {
+   "full": "units/女子学院-02/q_02.jpg",
+   "small": "units/女子学院-02/q_02_small.jpg"
+  },
+  {
+   "full": "units/女子学院-02/q_03.jpg",
+   "small": "units/女子学院-02/q_03_small.jpg"
+  },
+  {
+   "full": "units/女子学院-02/q_04.jpg",
+   "small": "units/女子学院-02/q_04_small.jpg"
+  },
+  {
+   "full": "units/女子学院-02/q_05.jpg",
+   "small": "units/女子学院-02/q_05_small.jpg"
+  },
+  {
+   "full": "units/女子学院-02/q_06.jpg",
+   "small": "units/女子学院-02/q_06_small.jpg"
+  },
+  {
+   "full": "units/女子学院-02/q_07.jpg",
+   "small": "units/女子学院-02/q_07_small.jpg"
+  },
+  {
+   "full": "units/女子学院-02/q_08.jpg",
+   "small": "units/女子学院-02/q_08_small.jpg"
+  },
+  {
+   "full": "units/女子学院-02/q_09.jpg",
+   "small": "units/女子学院-02/q_09_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/女子学院-02/a_expl1.jpg",
+   "small": "units/女子学院-02/a_expl1_small.jpg"
+  },
+  {
+   "full": "units/女子学院-02/a_expl2.jpg",
+   "small": "units/女子学院-02/a_expl2_small.jpg"
+  },
+  {
+   "full": "units/女子学院-02/sv_sheet.jpg",
+   "small": "units/女子学院-02/sv_sheet_small.jpg"
+  }
+ ],
+ "hasSolved": true,
+ "questions": [
+  "一問一A",
+  "一問一B",
+  "一問一C",
+  "一問二",
+  "一問三1",
+  "一問三2",
+  "一問四",
+  "一問五",
+  "一問六",
+  "一問七",
+  "一問八",
+  "一問九",
+  "一問十1",
+  "一問十2",
+  "一問十3",
+  "一問十4",
+  "一問十5",
+  "二問一",
+  "二問二",
+  "二問三A",
+  "二問三B",
+  "二問三C",
+  "二問四",
+  "二問五(i)",
+  "二問五(ii)",
+  "二問六",
+  "二問七",
+  "二問八",
+  "二問九",
+  "二問十",
+  "三1",
+  "三2",
+  "三3",
+  "三4",
+  "三5"
+ ],
+ "questionGroups": [
+  {
+   "head": "一",
+   "labels": [
+    "問一A",
+    "問一B",
+    "問一C",
+    "問二",
+    "問三1",
+    "問三2",
+    "問四",
+    "問五",
+    "問六",
+    "問七",
+    "問八",
+    "問九",
+    "問十1",
+    "問十2",
+    "問十3",
+    "問十4",
+    "問十5"
+   ]
+  },
+  {
+   "head": "二",
+   "labels": [
+    "問一",
+    "問二",
+    "問三A",
+    "問三B",
+    "問三C",
+    "問四",
+    "問五(i)",
+    "問五(ii)",
+    "問六",
+    "問七",
+    "問八",
+    "問九",
+    "問十"
+   ]
+  },
+  {
+   "head": "三",
+   "labels": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ]
+  }
+ ]
+}
