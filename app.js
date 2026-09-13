@@ -139,18 +139,50 @@ function markGrade(key, v) {
   if (Object.keys(pendingGrades).length) gradeIdleTimer = setTimeout(commitGrades, IDLE_TIMEOUT);
 }
 
+// 解き直しシート（reviewItems あり）は各キーが元単元の小問を指す → 読みは仮想の正誤表・書きは元単元へ
+function gradesFor(unit) {
+  if (!unit.reviewItems) return loadGrades(unit.id);
+  const out = {};
+  const cache = {};
+  for (const k in unit.reviewItems) {
+    const it = unit.reviewItems[k];
+    if (!cache[it.unitId]) cache[it.unitId] = loadGrades(it.unitId);
+    const v = cache[it.unitId][it.key];
+    if (v !== undefined) out[k] = v;
+  }
+  return out;
+}
+
 function commitGrades() {
   if (gradeIdleTimer) { clearTimeout(gradeIdleTimer); gradeIdleTimer = null; }
   const keys = Object.keys(pendingGrades);
   if (!keys.length || !state.current) { pendingGrades = {}; return; }
   const u = state.current;
-  const g = loadGrades(u.id);
-  for (const k of keys) {
-    const st = gradeStat(g, k);
-    g[k] = { a: st.a + 1, c: st.c + (pendingGrades[k] === 'o' ? 1 : 0) };
+  if (u.reviewItems) {
+    // ★解き直しの○×は元のページの該当問題に記録する
+    const byUnit = {};
+    for (const k of keys) {
+      const it = u.reviewItems[k];
+      if (!it) continue;
+      (byUnit[it.unitId] || (byUnit[it.unitId] = [])).push([it.key, pendingGrades[k]]);
+    }
+    for (const uid in byUnit) {
+      const g = loadGrades(uid);
+      for (const [key, v] of byUnit[uid]) {
+        const st = gradeStat(g, key);
+        g[key] = { a: st.a + 1, c: st.c + (v === 'o' ? 1 : 0) };
+      }
+      saveGrades(uid, g);
+    }
+  } else {
+    const g = loadGrades(u.id);
+    for (const k of keys) {
+      const st = gradeStat(g, k);
+      g[k] = { a: st.a + 1, c: st.c + (pendingGrades[k] === 'o' ? 1 : 0) };
+    }
+    saveGrades(u.id, g);
   }
   pendingGrades = {};
-  saveGrades(u.id, g);
   if (document.querySelector('#screen-unit.active')) { renderGradeTable(); updateModeBar(); }
 }
 
@@ -181,7 +213,7 @@ function setWsFilter(mode) {
 function updateModeBar() {
   const u = state.current;
   if (!u) return;
-  const grades = loadGrades(u.id);
+  const grades = gradesFor(u);
   const keys = questionKeys(u);
   document.querySelectorAll('#wsm-modebar [data-wsm-mode]').forEach((btn) => {
     const m = btn.dataset.wsmMode;
@@ -195,7 +227,7 @@ function updateModeBar() {
 // ---- 一括カテゴリ（漢字特訓/知識の総完成）: 正答率フィルタの対象小問 ----
 function targetKeys(unit, mode) {
   if (mode === 'all') return [];
-  const grades = loadGrades(unit.id);
+  const grades = gradesFor(unit);
   return questionKeys(unit).filter((k) => keyMatchesMode(grades, k, mode));
 }
 
@@ -362,6 +394,10 @@ function renderUnits() {
             ? `全${units.length}${noun}` : `${bulkCount(bf)}${noun}`}）</button>
           <button class="btn-bulk-print btn-bulk-print-a" data-bulk-print="a">🖨 解答を印刷（${bf === 'all'
             ? `全${units.length}${noun}` : `${bulkCount(bf)}${noun}`}）</button>
+          ${cat.id === 'kaname' && bf !== 'all' ? (() => {
+            const n = reviewItemsFor(cat, bf).length;
+            return n ? `<button class="btn-bulk-print btn-review" data-review="1">✍️ 解き直しシート（${n}問→${Math.ceil(n / REVIEW_PER_PAGE)}枚）</button>` : '';
+          })() : ''}
         </span>
       </div>`;
     const bulkCard = (u) => {
@@ -405,6 +441,8 @@ function renderUnits() {
     btn.addEventListener('click', () => { bulkFilters[cat.id] = btn.dataset.kbMode; renderUnits(); }));
   list.querySelectorAll('[data-bulk-print]').forEach((btn) =>
     btn.addEventListener('click', () => bulkPrint(btn.dataset.bulkPrint)));
+  list.querySelectorAll('[data-review]').forEach((btn) =>
+    btn.addEventListener('click', () => openReview(cat, bulkFilterOf(cat), btn)));
 }
 
 // ---- 一括印刷（漢字特訓/知識の総完成。対象0問の単元はスキップ）----
@@ -445,6 +483,161 @@ async function bulkPrint(kind) {
   }
   if (!sheets.length) { alert('対象問題のある単元がありません'); return; }
   _openPrintOverlay(sheets);
+}
+
+// ==============================
+// 漢字の要: 解き直しシート
+//   フィルタ対象の問題（unit.json review = 問題文の列 / 答え入りマス の座標）を全ページから集め、
+//   15問ずつ「右=元の問題文の列を並べ替え / 左=15マスの解答用紙」をその場で合成する。
+//   解答タブは答え入りマス＋出典。○×は元単元の該当問題に記録（reviewItems）。
+// ==============================
+const REVIEW_PER_PAGE = 15;
+const REVIEW_W = 4000, REVIEW_H = 2300;   // iOSの画像1辺4096px制限内
+
+function reviewItemsFor(cat, mode) {
+  const items = [];
+  for (const u of unitsOf(cat)) {
+    const unit = state.unitCache[u.id];
+    if (!unit || !unit.review) continue;   // 特殊ページ（座標なし）は対象外
+    for (const k of targetKeys(unit, mode)) {
+      if (unit.review[k]) items.push({ unitId: u.id, key: k, short: unit.short || u.title, unit });
+    }
+  }
+  return items;
+}
+
+function _reviewCropQ(img, r) {   // 割合座標 → 元画像px
+  return { sx: r[0] * img.width, sy: r[1] * img.height, sw: (r[2] - r[0]) * img.width, sh: (r[3] - r[1]) * img.height };
+}
+
+// 1枚（最大15問）の問題/解答キャンバスを描く
+function drawReviewSheet(items, pageNo, pageCount, modeLabel, withAnswers) {
+  const cc = document.createElement('canvas');
+  cc.width = REVIEW_W; cc.height = REVIEW_H;
+  const ctx = cc.getContext('2d');
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0, 0, REVIEW_W, REVIEW_H);
+  const n = items.length;
+  // ---- 左: 解答用紙（5列×3段・列優先で右→左） ----
+  const gx0 = 80, gx1 = 1760, gy0 = 80, cols = 5, rows = 3, labelH = 74, bodyH = 620;
+  const cw = (gx1 - gx0) / cols, ch = labelH + bodyH;
+  ctx.strokeStyle = '#000'; ctx.lineWidth = 5; ctx.fillStyle = '#000';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  const cellRect = (i) => {
+    const c = Math.floor(i / rows), r = i % rows;
+    const x1 = gx1 - c * cw;
+    return { x0: x1 - cw, y0: gy0 + r * ch, x1, y1: gy0 + r * ch + ch };
+  };
+  items.forEach((it, i) => {
+    const { x0, y0, x1, y1 } = cellRect(i);
+    ctx.strokeRect(x0, y0, x1 - x0, y1 - y0);
+    ctx.beginPath(); ctx.moveTo(x0, y0 + labelH); ctx.lineTo(x1, y0 + labelH); ctx.stroke();
+    ctx.font = 'bold 42px "Hiragino Sans", sans-serif';
+    ctx.fillStyle = '#000';
+    ctx.fillText(String(i + 1), (x0 + x1) / 2, y0 + labelH / 2);
+    if (withAnswers) {
+      // 出典（例: 細部ミス3・12）をラベル欄の右下に小さく
+      ctx.font = '24px "Hiragino Sans", sans-serif';
+      ctx.fillStyle = '#6e6e73';
+      ctx.textAlign = 'right';
+      ctx.fillText(`${it.short}・${it.key}`, x1 - 8, y0 + labelH - 16);
+      ctx.textAlign = 'center';
+      const r = _reviewCropQ(it.aImg, it.unit.review[it.key].a);
+      const tw = (x1 - x0) * 0.82, th = bodyH * 0.86;
+      const sc = Math.min(tw / r.sw, th / r.sh);
+      const dw = r.sw * sc, dh = r.sh * sc;
+      ctx.drawImage(it.aImg, r.sx, r.sy, r.sw, r.sh, (x0 + x1) / 2 - dw / 2, y0 + labelH + bodyH * 0.06, dw, dh);
+    }
+  });
+  // 縦書きタイトル（用紙の右端）
+  const title = `漢字の要 解き直し ${modeLabel} ${pageNo}／${pageCount}`;
+  ctx.font = 'bold 44px "Hiragino Sans", sans-serif';
+  ctx.fillStyle = '#000';
+  let ty = 100;
+  for (const chr of title) {
+    if (chr === ' ') { ty += 30; continue; }
+    ctx.fillText(chr, 1890, ty);
+    ty += 50;
+  }
+  // 名前らん
+  ctx.strokeRect(1830, Math.max(ty + 60, 1500), 120, 520);
+  ctx.font = '30px "Hiragino Sans", sans-serif';
+  ctx.fillText('名', 1890, Math.max(ty + 60, 1500) + 30);
+  ctx.fillText('前', 1890, Math.max(ty + 60, 1500) + 66);
+  // ---- 右: 問題文の列（右→左に 1,2,3…・番号を付け直す） ----
+  const px0 = 2060, px1 = REVIEW_W - 40, ptop = 150;
+  const pitch = (px1 - px0) / REVIEW_PER_PAGE;
+  const crops = items.map((it) => _reviewCropQ(it.qImg, it.unit.review[it.key].q));
+  const maxH = Math.max(...crops.map((c) => c.sh)), maxW = Math.max(...crops.map((c) => c.sw));
+  const sc = Math.min(1.6, (REVIEW_H - ptop - 40) / maxH, (pitch - 10) / maxW);
+  ctx.font = 'bold 40px "Hiragino Sans", sans-serif';
+  ctx.fillStyle = '#000';
+  crops.forEach((c, i) => {
+    const cx = px1 - pitch * (i + 0.5);
+    ctx.fillText(String(i + 1), cx, 90);
+    const dw = c.sw * sc, dh = c.sh * sc;
+    ctx.drawImage(items[i].qImg, c.sx, c.sy, c.sw, c.sh, cx - dw / 2, ptop, dw, dh);
+  });
+  // 用紙と問題の境
+  ctx.strokeStyle = '#bbb'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(2010, 40); ctx.lineTo(2010, REVIEW_H - 40); ctx.stroke();
+  return cc.toDataURL('image/jpeg', 0.86);
+}
+
+async function openReview(cat, mode, btn) {
+  commitGrades();
+  const items = reviewItemsFor(cat, mode);
+  if (!items.length) { alert('対象の問題がありません'); return; }
+  const label = btn ? btn.textContent : '';
+  const setMsg = (m) => { if (btn) { btn.textContent = m; btn.disabled = true; } };
+  try {
+    // 必要な画像（元単元の問題/解答合成）を読み込む（単元ごとに1回）
+    const uids = [...new Set(items.map((it) => it.unitId))];
+    let done = 0;
+    const imgs = {};
+    for (const uid of uids) {
+      const unit = state.unitCache[uid];
+      setMsg(`作成中… ${++done}/${uids.length}ページ読込`);
+      imgs[uid] = {
+        q: await loadImage(imgURL(unit, unit.questionPages[0].full)),
+        a: await loadImage(imgURL(unit, unit.answerPages[0].full)),
+      };
+    }
+    items.forEach((it) => { it.qImg = imgs[it.unitId].q; it.aImg = imgs[it.unitId].a; });
+    const pages = [];
+    for (let i = 0; i < items.length; i += REVIEW_PER_PAGE) pages.push(items.slice(i, i + REVIEW_PER_PAGE));
+    const modeLabel = WSM_MODE_SHORT[mode];
+    const qPages = [], aPages = [], groups = [], reviewItems = {};
+    pages.forEach((pg, pi) => {
+      setMsg(`作成中… ${pi + 1}/${pages.length}枚`);
+      qPages.push({ full: drawReviewSheet(pg, pi + 1, pages.length, modeLabel, false) });
+      aPages.push({ full: drawReviewSheet(pg, pi + 1, pages.length, modeLabel, true) });
+      const head = `${pi + 1}枚目`;
+      groups.push({ head, labels: pg.map((_, i) => String(i + 1)) });
+      pg.forEach((it, i) => { reviewItems[head + String(i + 1)] = { unitId: it.unitId, key: it.key }; });
+    });
+    const unit = {
+      id: 'KY-REVIEW', title: `解き直し（${modeLabel}・${items.length}問・${pages.length}枚）`,
+      category: 'kanji-kaname', questionPages: qPages, answerPages: aPages,
+      questionGroups: groups, reviewItems, print2up: false,
+    };
+    wsmFilter = 'all';
+    state.current = unit;
+    state.showingAnswer = false;
+    $('#unit-title').textContent = unit.title;
+    renderGradeTable();
+    updateModeBar();
+    restoreWsmTableHeight();
+    renderPages();
+    updateTabUI();
+    showScreen('screen-unit');
+    $('#wsm-pages').scrollTop = 0;
+  } catch (e) {
+    console.error(e);
+    alert('解き直しシートの作成に失敗しました（画像の読み込みエラー）');
+  } finally {
+    if (btn) { btn.textContent = label; btn.disabled = false; }
+  }
 }
 
 // ---- 単元を開く（即・問題ページ） ----
@@ -537,7 +730,7 @@ function renderGradeTable() {
   const u = state.current;
   const el = $('#wsm-table');
   if (!u) { el.innerHTML = ''; return; }
-  const grades = loadGrades(u.id);
+  const grades = gradesFor(u);
   const prevScroll = el.scrollTop;
   el.innerHTML = questionGroups(u).map((g) => {
     const subs = g.labels.map((label) => {
