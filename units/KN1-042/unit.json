@@ -8,7 +8,7 @@
  "page": 42,
  "vol": 1,
  "title": "実践問題編 2",
- "tag": "p.42-43・実践問題（解答なし）",
+ "tag": "p.42-43・実践問題・15問",
  "questionPages": [
   {
    "full": "units/KN1-042/qp_1.jpg",
@@ -19,11 +19,58 @@
    "small": "units/KN1-042/qp_2_small.jpg"
   }
  ],
- "answerPages": [],
- "questionGroups": [],
- "view": true,
+ "answerPages": [
+  {
+   "full": "units/KN1-042/ap_1.jpg",
+   "small": "units/KN1-042/ap_1_small.jpg"
+  }
+ ],
+ "questionGroups": [
+  {
+   "head": "5",
+   "labels": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤"
+   ]
+  },
+  {
+   "head": "6",
+   "labels": [
+    "①",
+    "②",
+    "③"
+   ]
+  },
+  {
+   "head": "7",
+   "labels": [
+    "①",
+    "②",
+    "③"
+   ]
+  },
+  {
+   "head": "8",
+   "labels": [
+    "①",
+    "②"
+   ]
+  },
+  {
+   "head": "9",
+   "labels": [
+    "①",
+    "②"
+   ]
+  }
+ ],
+ "view": false,
  "pages": [
   42,
   43
- ]
+ ],
+ "answersGenerated": true
 }

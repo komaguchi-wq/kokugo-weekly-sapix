@@ -2220,24 +2220,24 @@
   "week": "上巻 第2章 ことわざ",
   "title": "実践問題編 1",
   "category": "kotoba-navi",
-  "tag": "p.40-41・実践問題（解答なし）",
-  "view": true
+  "tag": "p.40-41・実践問題・23問",
+  "view": false
  },
  {
   "id": "KN1-042",
   "week": "上巻 第2章 ことわざ",
   "title": "実践問題編 2",
   "category": "kotoba-navi",
-  "tag": "p.42-43・実践問題（解答なし）",
-  "view": true
+  "tag": "p.42-43・実践問題・15問",
+  "view": false
  },
  {
   "id": "KN1-044",
   "week": "上巻 第2章 ことわざ",
   "title": "実践問題編 3",
   "category": "kotoba-navi",
-  "tag": "p.44-45・実践問題（解答なし）",
-  "view": true
+  "tag": "p.44-45・実践問題・17問",
+  "view": false
  },
  {
   "id": "KN1-048",
@@ -2484,23 +2484,23 @@
   "week": "上巻 第3章 慣用句",
   "title": "実践問題編 1",
   "category": "kotoba-navi",
-  "tag": "p.78-79・実践問題（解答なし）",
-  "view": true
+  "tag": "p.78-79・実践問題・31問",
+  "view": false
  },
  {
   "id": "KN1-080",
   "week": "上巻 第3章 慣用句",
   "title": "実践問題編 2",
   "category": "kotoba-navi",
-  "tag": "p.80-81・実践問題（解答なし）",
-  "view": true
+  "tag": "p.80-81・実践問題・30問",
+  "view": false
  },
  {
   "id": "KN1-082",
   "week": "上巻 第3章 慣用句",
   "title": "実践問題編 3",
   "category": "kotoba-navi",
-  "tag": "p.82・実践問題（解答なし）",
+  "tag": "p.82・解答らん（p.80-81の続き）",
   "view": true
  },
  {
@@ -2884,32 +2884,32 @@
   "week": "上巻 第4章 熟語",
   "title": "実践問題編 1",
   "category": "kotoba-navi",
-  "tag": "p.131・実践問題（解答なし）",
-  "view": true
+  "tag": "p.131・実践問題・16問",
+  "view": false
  },
  {
   "id": "KN1-132",
   "week": "上巻 第4章 熟語",
   "title": "実践問題編 2",
   "category": "kotoba-navi",
-  "tag": "p.132-133・実践問題（解答なし）",
-  "view": true
+  "tag": "p.132-133・実践問題・41問",
+  "view": false
  },
  {
   "id": "KN1-134",
   "week": "上巻 第4章 熟語",
   "title": "実践問題編 3",
   "category": "kotoba-navi",
-  "tag": "p.134-135・実践問題（解答なし）",
-  "view": true
+  "tag": "p.134-135・実践問題・49問",
+  "view": false
  },
  {
   "id": "KN1-136",
   "week": "上巻 第4章 熟語",
   "title": "実践問題編 4",
   "category": "kotoba-navi",
-  "tag": "p.136-137・実践問題（解答なし）",
-  "view": true
+  "tag": "p.136-137・実践問題・35問",
+  "view": false
  },
  {
   "id": "KN1-140",
@@ -3124,31 +3124,31 @@
   "week": "上巻 第5章 同音異義語・同訓異字",
   "title": "実践問題編 1",
   "category": "kotoba-navi",
-  "tag": "p.166-167・実践問題（解答なし）",
-  "view": true
+  "tag": "p.166-167・実践問題・21問",
+  "view": false
  },
  {
   "id": "KN1-168",
   "week": "上巻 第5章 同音異義語・同訓異字",
   "title": "実践問題編 2",
   "category": "kotoba-navi",
-  "tag": "p.168-169・実践問題（解答なし）",
-  "view": true
+  "tag": "p.168-169・実践問題・39問",
+  "view": false
  },
  {
   "id": "KN1-170",
   "week": "上巻 第5章 同音異義語・同訓異字",
   "title": "実践問題編 3",
   "category": "kotoba-navi",
-  "tag": "p.170-171・実践問題（解答なし）",
-  "view": true
+  "tag": "p.170-171・実践問題・35問",
+  "view": false
  },
  {
   "id": "KN1-172",
   "week": "上巻 第5章 同音異義語・同訓異字",
   "title": "実践問題編 4",
   "category": "kotoba-navi",
-  "tag": "p.172・実践問題（解答なし）",
+  "tag": "p.172・解答らん（p.170-171の続き）",
   "view": true
  },
  {
@@ -3268,8 +3268,8 @@
   "week": "上巻 第6章 いろいろな言葉",
   "title": "実践問題編 1",
   "category": "kotoba-navi",
-  "tag": "p.188-189・実践問題（解答なし）",
-  "view": true
+  "tag": "p.188-189・実践問題・13問",
+  "view": false
  },
  {
   "id": "KN1-190",

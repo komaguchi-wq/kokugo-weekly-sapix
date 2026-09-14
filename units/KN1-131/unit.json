@@ -8,17 +8,50 @@
  "page": 131,
  "vol": 1,
  "title": "実践問題編 1",
- "tag": "p.131・実践問題（解答なし）",
+ "tag": "p.131・実践問題・16問",
  "questionPages": [
   {
    "full": "units/KN1-131/qp_1.jpg",
    "small": "units/KN1-131/qp_1_small.jpg"
   }
  ],
- "answerPages": [],
- "questionGroups": [],
- "view": true,
+ "answerPages": [
+  {
+   "full": "units/KN1-131/ap_1.jpg",
+   "small": "units/KN1-131/ap_1_small.jpg"
+  }
+ ],
+ "questionGroups": [
+  {
+   "head": "1",
+   "labels": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤",
+    "⑥",
+    "⑦",
+    "⑧",
+    "⑨",
+    "⑩"
+   ]
+  },
+  {
+   "head": "2",
+   "labels": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤",
+    "⑥"
+   ]
+  }
+ ],
+ "view": false,
  "pages": [
   131
- ]
+ ],
+ "answersGenerated": true
 }

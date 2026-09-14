@@ -8,7 +8,7 @@
  "page": 170,
  "vol": 1,
  "title": "実践問題編 3",
- "tag": "p.170-171・実践問題（解答なし）",
+ "tag": "p.170-171・実践問題・35問",
  "questionPages": [
   {
    "full": "units/KN1-170/qp_1.jpg",
@@ -19,11 +19,68 @@
    "small": "units/KN1-170/qp_2_small.jpg"
   }
  ],
- "answerPages": [],
- "questionGroups": [],
- "view": true,
+ "answerPages": [
+  {
+   "full": "units/KN1-170/ap_1.jpg",
+   "small": "units/KN1-170/ap_1_small.jpg"
+  }
+ ],
+ "questionGroups": [
+  {
+   "head": "6",
+   "labels": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤",
+    "⑥",
+    "⑦",
+    "⑧",
+    "⑨",
+    "⑩"
+   ]
+  },
+  {
+   "head": "7",
+   "labels": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤",
+    "⑥",
+    "⑦",
+    "⑧",
+    "⑨",
+    "⑩"
+   ]
+  },
+  {
+   "head": "8",
+   "labels": [
+    "①ア",
+    "①イ",
+    "①ウ",
+    "②ア",
+    "②イ",
+    "②ウ",
+    "③ア",
+    "③イ",
+    "③ウ",
+    "④ア",
+    "④イ",
+    "④ウ",
+    "⑤ア",
+    "⑤イ",
+    "⑤ウ"
+   ]
+  }
+ ],
+ "view": false,
  "pages": [
   170,
   171
- ]
+ ],
+ "answersGenerated": true
 }

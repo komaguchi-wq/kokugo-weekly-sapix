@@ -8,7 +8,7 @@
  "page": 166,
  "vol": 1,
  "title": "実践問題編 1",
- "tag": "p.166-167・実践問題（解答なし）",
+ "tag": "p.166-167・実践問題・21問",
  "questionPages": [
   {
    "full": "units/KN1-166/qp_1.jpg",
@@ -19,11 +19,59 @@
    "small": "units/KN1-166/qp_2_small.jpg"
   }
  ],
- "answerPages": [],
- "questionGroups": [],
- "view": true,
+ "answerPages": [
+  {
+   "full": "units/KN1-166/ap_1.jpg",
+   "small": "units/KN1-166/ap_1_small.jpg"
+  }
+ ],
+ "questionGroups": [
+  {
+   "head": "1",
+   "labels": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤"
+   ]
+  },
+  {
+   "head": "2",
+   "labels": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤"
+   ]
+  },
+  {
+   "head": "3",
+   "labels": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤"
+   ]
+  },
+  {
+   "head": "4",
+   "labels": [
+    "1①",
+    "1②",
+    "2①",
+    "2②",
+    "3①",
+    "3②"
+   ]
+  }
+ ],
+ "view": false,
  "pages": [
   166,
   167
- ]
+ ],
+ "answersGenerated": true
 }

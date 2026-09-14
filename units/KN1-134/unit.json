@@ -8,7 +8,7 @@
  "page": 134,
  "vol": 1,
  "title": "実践問題編 3",
- "tag": "p.134-135・実践問題（解答なし）",
+ "tag": "p.134-135・実践問題・49問",
  "questionPages": [
   {
    "full": "units/KN1-134/qp_1.jpg",
@@ -19,11 +19,92 @@
    "small": "units/KN1-134/qp_2_small.jpg"
   }
  ],
- "answerPages": [],
- "questionGroups": [],
- "view": true,
+ "answerPages": [
+  {
+   "full": "units/KN1-134/ap_1.jpg",
+   "small": "units/KN1-134/ap_1_small.jpg"
+  }
+ ],
+ "questionGroups": [
+  {
+   "head": "8",
+   "labels": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤",
+    "⑥",
+    "⑦",
+    "⑧",
+    "⑨",
+    "⑩",
+    "⑪",
+    "⑫",
+    "⑬",
+    "⑭",
+    "⑮"
+   ]
+  },
+  {
+   "head": "9",
+   "labels": [
+    "①",
+    "②",
+    "③",
+    "④"
+   ]
+  },
+  {
+   "head": "10",
+   "labels": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤",
+    "⑥",
+    "⑦",
+    "⑧",
+    "⑨"
+   ]
+  },
+  {
+   "head": "11",
+   "labels": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤",
+    "⑥",
+    "⑦",
+    "⑧",
+    "⑨",
+    "⑩",
+    "⑪",
+    "⑫"
+   ]
+  },
+  {
+   "head": "12",
+   "labels": [
+    "①",
+    "②",
+    "③",
+    "④",
+    "⑤",
+    "⑥",
+    "⑦",
+    "⑧",
+    "⑨"
+   ]
+  }
+ ],
+ "view": false,
  "pages": [
   134,
   135
- ]
+ ],
+ "answersGenerated": true
 }
