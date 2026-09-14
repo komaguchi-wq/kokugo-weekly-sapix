@@ -1974,5 +1974,2877 @@
   "title": "二十四節気 1",
   "category": "kanji-kaname",
   "tag": "p.187・25問"
+ },
+ {
+  "id": "KN1-010",
+  "week": "上巻 第2章 ことわざ",
+  "title": "ことわざってなんだろう？ 1",
+  "category": "kotoba-navi",
+  "tag": "p.10・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-011",
+  "week": "上巻 第2章 ことわざ",
+  "title": "ことわざってなんだろう？ 2",
+  "category": "kotoba-navi",
+  "tag": "p.11・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-012",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 1",
+  "category": "kotoba-navi",
+  "tag": "p.12・6問",
+  "view": false
+ },
+ {
+  "id": "KN1-013",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 2",
+  "category": "kotoba-navi",
+  "tag": "p.13・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-014",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 3",
+  "category": "kotoba-navi",
+  "tag": "p.14・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-015",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 4",
+  "category": "kotoba-navi",
+  "tag": "p.15・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-016",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 5",
+  "category": "kotoba-navi",
+  "tag": "p.16・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-017",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 6",
+  "category": "kotoba-navi",
+  "tag": "p.17・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-018",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 7",
+  "category": "kotoba-navi",
+  "tag": "p.18・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-019",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 8",
+  "category": "kotoba-navi",
+  "tag": "p.19・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-020",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 9",
+  "category": "kotoba-navi",
+  "tag": "p.20・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-021",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 10",
+  "category": "kotoba-navi",
+  "tag": "p.21・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-022",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 11",
+  "category": "kotoba-navi",
+  "tag": "p.22・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-023",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 12",
+  "category": "kotoba-navi",
+  "tag": "p.23・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-024",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 13",
+  "category": "kotoba-navi",
+  "tag": "p.24・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-025",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 14",
+  "category": "kotoba-navi",
+  "tag": "p.25・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-026",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 15",
+  "category": "kotoba-navi",
+  "tag": "p.26・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-027",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 16",
+  "category": "kotoba-navi",
+  "tag": "p.27・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-028",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 17",
+  "category": "kotoba-navi",
+  "tag": "p.28・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-029",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 18",
+  "category": "kotoba-navi",
+  "tag": "p.29・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-030",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 19",
+  "category": "kotoba-navi",
+  "tag": "p.30・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-031",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたいことわざ 20",
+  "category": "kotoba-navi",
+  "tag": "p.31・5問",
+  "view": false
+ },
+ {
+  "id": "KN1-032",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたい故事成語 1",
+  "category": "kotoba-navi",
+  "tag": "p.32・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-033",
+  "week": "上巻 第2章 ことわざ",
+  "title": "覚えておきたい故事成語 2",
+  "category": "kotoba-navi",
+  "tag": "p.33・5問",
+  "view": false
+ },
+ {
+  "id": "KN1-034",
+  "week": "上巻 第2章 ことわざ",
+  "title": "似た意味のことわざ 1",
+  "category": "kotoba-navi",
+  "tag": "p.34・14問",
+  "view": false
+ },
+ {
+  "id": "KN1-035",
+  "week": "上巻 第2章 ことわざ",
+  "title": "似た意味のことわざ 2",
+  "category": "kotoba-navi",
+  "tag": "p.35・14問",
+  "view": false
+ },
+ {
+  "id": "KN1-036",
+  "week": "上巻 第2章 ことわざ",
+  "title": "似た意味のことわざ 3",
+  "category": "kotoba-navi",
+  "tag": "p.36・8問",
+  "view": false
+ },
+ {
+  "id": "KN1-037",
+  "week": "上巻 第2章 ことわざ",
+  "title": "対になることわざ 1",
+  "category": "kotoba-navi",
+  "tag": "p.37・14問",
+  "view": false
+ },
+ {
+  "id": "KN1-038",
+  "week": "上巻 第2章 ことわざ",
+  "title": "対になることわざ 2",
+  "category": "kotoba-navi",
+  "tag": "p.38・14問",
+  "view": false
+ },
+ {
+  "id": "KN1-039",
+  "week": "上巻 第2章 ことわざ",
+  "title": "対になることわざ 3",
+  "category": "kotoba-navi",
+  "tag": "p.39・12問",
+  "view": false
+ },
+ {
+  "id": "KN1-040",
+  "week": "上巻 第2章 ことわざ",
+  "title": "実践問題編 1",
+  "category": "kotoba-navi",
+  "tag": "p.40・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-041",
+  "week": "上巻 第2章 ことわざ",
+  "title": "実践問題編 2",
+  "category": "kotoba-navi",
+  "tag": "p.41・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-042",
+  "week": "上巻 第2章 ことわざ",
+  "title": "実践問題編 3",
+  "category": "kotoba-navi",
+  "tag": "p.42・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-043",
+  "week": "上巻 第2章 ことわざ",
+  "title": "実践問題編 4",
+  "category": "kotoba-navi",
+  "tag": "p.43・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-044",
+  "week": "上巻 第2章 ことわざ",
+  "title": "実践問題編 5",
+  "category": "kotoba-navi",
+  "tag": "p.44・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-045",
+  "week": "上巻 第2章 ことわざ",
+  "title": "実践問題編 6",
+  "category": "kotoba-navi",
+  "tag": "p.45・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-048",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句ってなんだろう？ 1",
+  "category": "kotoba-navi",
+  "tag": "p.48・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-049",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句ってなんだろう？ 2",
+  "category": "kotoba-navi",
+  "tag": "p.49・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-050",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 1",
+  "category": "kotoba-navi",
+  "tag": "p.50・9問・「頭」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-051",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 2",
+  "category": "kotoba-navi",
+  "tag": "p.51・11問・「頭」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-052",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 3",
+  "category": "kotoba-navi",
+  "tag": "p.52・12問・「口」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-053",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 4",
+  "category": "kotoba-navi",
+  "tag": "p.53・11問・「口」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-054",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 5",
+  "category": "kotoba-navi",
+  "tag": "p.54・11問・「口」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-055",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 6",
+  "category": "kotoba-navi",
+  "tag": "p.55・13問・「口」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-056",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 7",
+  "category": "kotoba-navi",
+  "tag": "p.56・12問・「口」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-057",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 8",
+  "category": "kotoba-navi",
+  "tag": "p.57・9問・「あご」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-058",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 9",
+  "category": "kotoba-navi",
+  "tag": "p.58・10問・「あご」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-059",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 10",
+  "category": "kotoba-navi",
+  "tag": "p.59・10問・「あご」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-060",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 11",
+  "category": "kotoba-navi",
+  "tag": "p.60・11問・「あご」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-061",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 12",
+  "category": "kotoba-navi",
+  "tag": "p.61・9問・「背」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-062",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 13",
+  "category": "kotoba-navi",
+  "tag": "p.62・11問・「背」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-063",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 14",
+  "category": "kotoba-navi",
+  "tag": "p.63・10問・「腕」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-064",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 15",
+  "category": "kotoba-navi",
+  "tag": "p.64・13問・「腕」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-065",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 16",
+  "category": "kotoba-navi",
+  "tag": "p.65・8問・「腕」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-066",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 17",
+  "category": "kotoba-navi",
+  "tag": "p.66・11問・「腕」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-067",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 18",
+  "category": "kotoba-navi",
+  "tag": "p.67・11問・「息」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-068",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 19",
+  "category": "kotoba-navi",
+  "tag": "p.68・11問・「息」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-069",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 20",
+  "category": "kotoba-navi",
+  "tag": "p.69・10問・「息」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-070",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 21",
+  "category": "kotoba-navi",
+  "tag": "p.70・11問・「息」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-071",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 22",
+  "category": "kotoba-navi",
+  "tag": "p.71・10問・「息」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-072",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 23",
+  "category": "kotoba-navi",
+  "tag": "p.72・10問・「息」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-073",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 24",
+  "category": "kotoba-navi",
+  "tag": "p.73・11問・「息」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-074",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 25",
+  "category": "kotoba-navi",
+  "tag": "p.74・11問・「息」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-075",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 26",
+  "category": "kotoba-navi",
+  "tag": "p.75・11問・「息」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-076",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 27",
+  "category": "kotoba-navi",
+  "tag": "p.76・13問・「息」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-077",
+  "week": "上巻 第3章 慣用句",
+  "title": "慣用句 28",
+  "category": "kotoba-navi",
+  "tag": "p.77・11問・「息」を用いた慣用句",
+  "view": false
+ },
+ {
+  "id": "KN1-078",
+  "week": "上巻 第3章 慣用句",
+  "title": "実践問題編 1",
+  "category": "kotoba-navi",
+  "tag": "p.78・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-079",
+  "week": "上巻 第3章 慣用句",
+  "title": "実践問題編 2",
+  "category": "kotoba-navi",
+  "tag": "p.79・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-080",
+  "week": "上巻 第3章 慣用句",
+  "title": "実践問題編 3",
+  "category": "kotoba-navi",
+  "tag": "p.80・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-081",
+  "week": "上巻 第3章 慣用句",
+  "title": "実践問題編 4",
+  "category": "kotoba-navi",
+  "tag": "p.81・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-082",
+  "week": "上巻 第3章 慣用句",
+  "title": "実践問題編 5",
+  "category": "kotoba-navi",
+  "tag": "p.82・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-084",
+  "week": "上巻 第4章 熟語",
+  "title": "熟語ってなんだろう？ 1",
+  "category": "kotoba-navi",
+  "tag": "p.84・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-085",
+  "week": "上巻 第4章 熟語",
+  "title": "熟語ってなんだろう？ 2",
+  "category": "kotoba-navi",
+  "tag": "p.85・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-086",
+  "week": "上巻 第4章 熟語",
+  "title": "熟語ってなんだろう？ 3",
+  "category": "kotoba-navi",
+  "tag": "p.86・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-087",
+  "week": "上巻 第4章 熟語",
+  "title": "熟語ってなんだろう？ 4",
+  "category": "kotoba-navi",
+  "tag": "p.87・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-088",
+  "week": "上巻 第4章 熟語",
+  "title": "類義語 1",
+  "category": "kotoba-navi",
+  "tag": "p.88・28問",
+  "view": false
+ },
+ {
+  "id": "KN1-089",
+  "week": "上巻 第4章 熟語",
+  "title": "類義語 2",
+  "category": "kotoba-navi",
+  "tag": "p.89・32問",
+  "view": false
+ },
+ {
+  "id": "KN1-090",
+  "week": "上巻 第4章 熟語",
+  "title": "類義語 3",
+  "category": "kotoba-navi",
+  "tag": "p.90・32問",
+  "view": false
+ },
+ {
+  "id": "KN1-091",
+  "week": "上巻 第4章 熟語",
+  "title": "類義語 4",
+  "category": "kotoba-navi",
+  "tag": "p.91・24問",
+  "view": false
+ },
+ {
+  "id": "KN1-092",
+  "week": "上巻 第4章 熟語",
+  "title": "対義語 1",
+  "category": "kotoba-navi",
+  "tag": "p.92・28問",
+  "view": false
+ },
+ {
+  "id": "KN1-093",
+  "week": "上巻 第4章 熟語",
+  "title": "対義語 2",
+  "category": "kotoba-navi",
+  "tag": "p.93・32問",
+  "view": false
+ },
+ {
+  "id": "KN1-094",
+  "week": "上巻 第4章 熟語",
+  "title": "対義語 3",
+  "category": "kotoba-navi",
+  "tag": "p.94・32問",
+  "view": false
+ },
+ {
+  "id": "KN1-095",
+  "week": "上巻 第4章 熟語",
+  "title": "対義語 4",
+  "category": "kotoba-navi",
+  "tag": "p.95・32問",
+  "view": false
+ },
+ {
+  "id": "KN1-096",
+  "week": "上巻 第4章 熟語",
+  "title": "対義語 5",
+  "category": "kotoba-navi",
+  "tag": "p.96・32問",
+  "view": false
+ },
+ {
+  "id": "KN1-097",
+  "week": "上巻 第4章 熟語",
+  "title": "対義語 6",
+  "category": "kotoba-navi",
+  "tag": "p.97・32問",
+  "view": false
+ },
+ {
+  "id": "KN1-098",
+  "week": "上巻 第4章 熟語",
+  "title": "対義語 7",
+  "category": "kotoba-navi",
+  "tag": "p.98・32問",
+  "view": false
+ },
+ {
+  "id": "KN1-099",
+  "week": "上巻 第4章 熟語",
+  "title": "対義語 8",
+  "category": "kotoba-navi",
+  "tag": "p.99・32問",
+  "view": false
+ },
+ {
+  "id": "KN1-100",
+  "week": "上巻 第4章 熟語",
+  "title": "対義語 9",
+  "category": "kotoba-navi",
+  "tag": "p.100・8問",
+  "view": false
+ },
+ {
+  "id": "KN1-101",
+  "week": "上巻 第4章 熟語",
+  "title": "上と下の意味が反対になる熟語 1",
+  "category": "kotoba-navi",
+  "tag": "p.101・28問",
+  "view": false
+ },
+ {
+  "id": "KN1-102",
+  "week": "上巻 第4章 熟語",
+  "title": "上と下の意味が反対になる熟語 2",
+  "category": "kotoba-navi",
+  "tag": "p.102・32問",
+  "view": false
+ },
+ {
+  "id": "KN1-103",
+  "week": "上巻 第4章 熟語",
+  "title": "四字熟語 1",
+  "category": "kotoba-navi",
+  "tag": "p.103・6問",
+  "view": false
+ },
+ {
+  "id": "KN1-104",
+  "week": "上巻 第4章 熟語",
+  "title": "四字熟語 2",
+  "category": "kotoba-navi",
+  "tag": "p.104・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-105",
+  "week": "上巻 第4章 熟語",
+  "title": "四字熟語 3",
+  "category": "kotoba-navi",
+  "tag": "p.105・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-106",
+  "week": "上巻 第4章 熟語",
+  "title": "四字熟語 4",
+  "category": "kotoba-navi",
+  "tag": "p.106・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-107",
+  "week": "上巻 第4章 熟語",
+  "title": "四字熟語 5",
+  "category": "kotoba-navi",
+  "tag": "p.107・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-108",
+  "week": "上巻 第4章 熟語",
+  "title": "四字熟語 6",
+  "category": "kotoba-navi",
+  "tag": "p.108・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-109",
+  "week": "上巻 第4章 熟語",
+  "title": "四字熟語 7",
+  "category": "kotoba-navi",
+  "tag": "p.109・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-110",
+  "week": "上巻 第4章 熟語",
+  "title": "四字熟語 8",
+  "category": "kotoba-navi",
+  "tag": "p.110・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-111",
+  "week": "上巻 第4章 熟語",
+  "title": "四字熟語 9",
+  "category": "kotoba-navi",
+  "tag": "p.111・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-112",
+  "week": "上巻 第4章 熟語",
+  "title": "四字熟語 10",
+  "category": "kotoba-navi",
+  "tag": "p.112・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-113",
+  "week": "上巻 第4章 熟語",
+  "title": "四字熟語 11",
+  "category": "kotoba-navi",
+  "tag": "p.113・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-114",
+  "week": "上巻 第4章 熟語",
+  "title": "四字熟語 12",
+  "category": "kotoba-navi",
+  "tag": "p.114・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-115",
+  "week": "上巻 第4章 熟語",
+  "title": "四字熟語 13",
+  "category": "kotoba-navi",
+  "tag": "p.115・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-116",
+  "week": "上巻 第4章 熟語",
+  "title": "四字熟語 14",
+  "category": "kotoba-navi",
+  "tag": "p.116・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-117",
+  "week": "上巻 第4章 熟語",
+  "title": "四字熟語 15",
+  "category": "kotoba-navi",
+  "tag": "p.117・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-118",
+  "week": "上巻 第4章 熟語",
+  "title": "四字熟語 16",
+  "category": "kotoba-navi",
+  "tag": "p.118・3問",
+  "view": false
+ },
+ {
+  "id": "KN1-119",
+  "week": "上巻 第4章 熟語",
+  "title": "三字熟語 1",
+  "category": "kotoba-navi",
+  "tag": "p.119・8問",
+  "view": false
+ },
+ {
+  "id": "KN1-120",
+  "week": "上巻 第4章 熟語",
+  "title": "三字熟語 2",
+  "category": "kotoba-navi",
+  "tag": "p.120・9問",
+  "view": false
+ },
+ {
+  "id": "KN1-121",
+  "week": "上巻 第4章 熟語",
+  "title": "三字熟語 3",
+  "category": "kotoba-navi",
+  "tag": "p.121・9問",
+  "view": false
+ },
+ {
+  "id": "KN1-122",
+  "week": "上巻 第4章 熟語",
+  "title": "三字熟語 4",
+  "category": "kotoba-navi",
+  "tag": "p.122・9問",
+  "view": false
+ },
+ {
+  "id": "KN1-123",
+  "week": "上巻 第4章 熟語",
+  "title": "三字熟語 5",
+  "category": "kotoba-navi",
+  "tag": "p.123・9問",
+  "view": false
+ },
+ {
+  "id": "KN1-124",
+  "week": "上巻 第4章 熟語",
+  "title": "三字熟語 6",
+  "category": "kotoba-navi",
+  "tag": "p.124・9問",
+  "view": false
+ },
+ {
+  "id": "KN1-125",
+  "week": "上巻 第4章 熟語",
+  "title": "三字熟語 7",
+  "category": "kotoba-navi",
+  "tag": "p.125・9問",
+  "view": false
+ },
+ {
+  "id": "KN1-126",
+  "week": "上巻 第4章 熟語",
+  "title": "三字熟語 8",
+  "category": "kotoba-navi",
+  "tag": "p.126・9問",
+  "view": false
+ },
+ {
+  "id": "KN1-127",
+  "week": "上巻 第4章 熟語",
+  "title": "三字熟語 9",
+  "category": "kotoba-navi",
+  "tag": "p.127・9問",
+  "view": false
+ },
+ {
+  "id": "KN1-128",
+  "week": "上巻 第4章 熟語",
+  "title": "三字熟語 10",
+  "category": "kotoba-navi",
+  "tag": "p.128・9問",
+  "view": false
+ },
+ {
+  "id": "KN1-129",
+  "week": "上巻 第4章 熟語",
+  "title": "三字熟語 11",
+  "category": "kotoba-navi",
+  "tag": "p.129・9問",
+  "view": false
+ },
+ {
+  "id": "KN1-130",
+  "week": "上巻 第4章 熟語",
+  "title": "三字熟語 12",
+  "category": "kotoba-navi",
+  "tag": "p.130・3問",
+  "view": false
+ },
+ {
+  "id": "KN1-131",
+  "week": "上巻 第4章 熟語",
+  "title": "実践問題編 1",
+  "category": "kotoba-navi",
+  "tag": "p.131・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-132",
+  "week": "上巻 第4章 熟語",
+  "title": "実践問題編 2",
+  "category": "kotoba-navi",
+  "tag": "p.132・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-133",
+  "week": "上巻 第4章 熟語",
+  "title": "実践問題編 3",
+  "category": "kotoba-navi",
+  "tag": "p.133・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-134",
+  "week": "上巻 第4章 熟語",
+  "title": "実践問題編 4",
+  "category": "kotoba-navi",
+  "tag": "p.134・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-135",
+  "week": "上巻 第4章 熟語",
+  "title": "実践問題編 5",
+  "category": "kotoba-navi",
+  "tag": "p.135・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-136",
+  "week": "上巻 第4章 熟語",
+  "title": "実践問題編 6",
+  "category": "kotoba-navi",
+  "tag": "p.136・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-137",
+  "week": "上巻 第4章 熟語",
+  "title": "実践問題編 7",
+  "category": "kotoba-navi",
+  "tag": "p.137・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-140",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同音異義語・同訓異字ってなんだろう？ 1",
+  "category": "kotoba-navi",
+  "tag": "p.140・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-141",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同音異義語・同訓異字ってなんだろう？ 2",
+  "category": "kotoba-navi",
+  "tag": "p.141・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-142",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同音異義語・同訓異字ってなんだろう？ 3",
+  "category": "kotoba-navi",
+  "tag": "p.142・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-143",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同音異義語・同訓異字ってなんだろう？ 4",
+  "category": "kotoba-navi",
+  "tag": "p.143・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-144",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同音異義語 1",
+  "category": "kotoba-navi",
+  "tag": "p.144・15問",
+  "view": false
+ },
+ {
+  "id": "KN1-145",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同音異義語 2",
+  "category": "kotoba-navi",
+  "tag": "p.145・16問",
+  "view": false
+ },
+ {
+  "id": "KN1-146",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同音異義語 3",
+  "category": "kotoba-navi",
+  "tag": "p.146・16問",
+  "view": false
+ },
+ {
+  "id": "KN1-147",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同音異義語 4",
+  "category": "kotoba-navi",
+  "tag": "p.147・14問",
+  "view": false
+ },
+ {
+  "id": "KN1-148",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同音異義語 5",
+  "category": "kotoba-navi",
+  "tag": "p.148・14問",
+  "view": false
+ },
+ {
+  "id": "KN1-149",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同音異義語 6",
+  "category": "kotoba-navi",
+  "tag": "p.149・16問",
+  "view": false
+ },
+ {
+  "id": "KN1-150",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同音異義語 7",
+  "category": "kotoba-navi",
+  "tag": "p.150・16問",
+  "view": false
+ },
+ {
+  "id": "KN1-151",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同音異義語 8",
+  "category": "kotoba-navi",
+  "tag": "p.151・16問",
+  "view": false
+ },
+ {
+  "id": "KN1-152",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同音異義語 9",
+  "category": "kotoba-navi",
+  "tag": "p.152・15問",
+  "view": false
+ },
+ {
+  "id": "KN1-153",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同音異義語 10",
+  "category": "kotoba-navi",
+  "tag": "p.153・16問",
+  "view": false
+ },
+ {
+  "id": "KN1-154",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同音異義語 11",
+  "category": "kotoba-navi",
+  "tag": "p.154・16問",
+  "view": false
+ },
+ {
+  "id": "KN1-155",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同音異義語 12",
+  "category": "kotoba-navi",
+  "tag": "p.155・16問",
+  "view": false
+ },
+ {
+  "id": "KN1-156",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同音異義語 13",
+  "category": "kotoba-navi",
+  "tag": "p.156・15問",
+  "view": false
+ },
+ {
+  "id": "KN1-157",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同音異義語 14",
+  "category": "kotoba-navi",
+  "tag": "p.157・15問",
+  "view": false
+ },
+ {
+  "id": "KN1-158",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同訓異字 1",
+  "category": "kotoba-navi",
+  "tag": "p.158・15問",
+  "view": false
+ },
+ {
+  "id": "KN1-159",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同訓異字 2",
+  "category": "kotoba-navi",
+  "tag": "p.159・15問",
+  "view": false
+ },
+ {
+  "id": "KN1-160",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同訓異字 3",
+  "category": "kotoba-navi",
+  "tag": "p.160・15問",
+  "view": false
+ },
+ {
+  "id": "KN1-161",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同訓異字 4",
+  "category": "kotoba-navi",
+  "tag": "p.161・16問",
+  "view": false
+ },
+ {
+  "id": "KN1-162",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同訓異字 5",
+  "category": "kotoba-navi",
+  "tag": "p.162・15問",
+  "view": false
+ },
+ {
+  "id": "KN1-163",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同訓異字 6",
+  "category": "kotoba-navi",
+  "tag": "p.163・16問",
+  "view": false
+ },
+ {
+  "id": "KN1-164",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同訓異字 7",
+  "category": "kotoba-navi",
+  "tag": "p.164・14問",
+  "view": false
+ },
+ {
+  "id": "KN1-165",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "同訓異字 8",
+  "category": "kotoba-navi",
+  "tag": "p.165・10問",
+  "view": false
+ },
+ {
+  "id": "KN1-166",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "実践問題編 1",
+  "category": "kotoba-navi",
+  "tag": "p.166・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-167",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "実践問題編 2",
+  "category": "kotoba-navi",
+  "tag": "p.167・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-168",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "実践問題編 3",
+  "category": "kotoba-navi",
+  "tag": "p.168・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-169",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "実践問題編 4",
+  "category": "kotoba-navi",
+  "tag": "p.169・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-170",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "実践問題編 5",
+  "category": "kotoba-navi",
+  "tag": "p.170・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-171",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "実践問題編 6",
+  "category": "kotoba-navi",
+  "tag": "p.171・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-172",
+  "week": "上巻 第5章 同音異義語・同訓異字",
+  "title": "実践問題編 7",
+  "category": "kotoba-navi",
+  "tag": "p.172・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-174",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "いろいろな言葉ってなんだろう？ 1",
+  "category": "kotoba-navi",
+  "tag": "p.174・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-175",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "気持ちがわかる表現 1",
+  "category": "kotoba-navi",
+  "tag": "p.175・13問",
+  "view": false
+ },
+ {
+  "id": "KN1-176",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "気持ちがわかる表現 2",
+  "category": "kotoba-navi",
+  "tag": "p.176・15問",
+  "view": false
+ },
+ {
+  "id": "KN1-177",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "気持ちがわかる表現 3",
+  "category": "kotoba-navi",
+  "tag": "p.177・8問",
+  "view": false
+ },
+ {
+  "id": "KN1-178",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "いろいろな気持ち 1",
+  "category": "kotoba-navi",
+  "tag": "p.178・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-179",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "いろいろな気持ち 2",
+  "category": "kotoba-navi",
+  "tag": "p.179・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-180",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "いろいろな気持ち 3",
+  "category": "kotoba-navi",
+  "tag": "p.180・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-181",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "いろいろな気持ち 4",
+  "category": "kotoba-navi",
+  "tag": "p.181・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-182",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "いろいろな気持ち 5",
+  "category": "kotoba-navi",
+  "tag": "p.182・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-183",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "いろいろな気持ち 6",
+  "category": "kotoba-navi",
+  "tag": "p.183・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-184",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "性格・態度をあらわす言葉 1",
+  "category": "kotoba-navi",
+  "tag": "p.184・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-185",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "性格・態度をあらわす言葉 2",
+  "category": "kotoba-navi",
+  "tag": "p.185・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-186",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "性格・態度をあらわす言葉 3",
+  "category": "kotoba-navi",
+  "tag": "p.186・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-187",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "性格・態度をあらわす言葉 4",
+  "category": "kotoba-navi",
+  "tag": "p.187・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-188",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "実践問題編 1",
+  "category": "kotoba-navi",
+  "tag": "p.188・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-189",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "実践問題編 2",
+  "category": "kotoba-navi",
+  "tag": "p.189・実践問題（解答なし）",
+  "view": true
+ },
+ {
+  "id": "KN1-190",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "多義語 1",
+  "category": "kotoba-navi",
+  "tag": "p.190・13問",
+  "view": false
+ },
+ {
+  "id": "KN1-191",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "多義語 2",
+  "category": "kotoba-navi",
+  "tag": "p.191・15問",
+  "view": false
+ },
+ {
+  "id": "KN1-192",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "多義語 3",
+  "category": "kotoba-navi",
+  "tag": "p.192・15問",
+  "view": false
+ },
+ {
+  "id": "KN1-193",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "多義語 4",
+  "category": "kotoba-navi",
+  "tag": "p.193・15問",
+  "view": false
+ },
+ {
+  "id": "KN1-194",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "多義語 5",
+  "category": "kotoba-navi",
+  "tag": "p.194・14問",
+  "view": false
+ },
+ {
+  "id": "KN1-195",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "多義語 6",
+  "category": "kotoba-navi",
+  "tag": "p.195・9問",
+  "view": false
+ },
+ {
+  "id": "KN1-196",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "どんな言葉で表現する？ 1",
+  "category": "kotoba-navi",
+  "tag": "p.196・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-197",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "どんな言葉で表現する？ 2",
+  "category": "kotoba-navi",
+  "tag": "p.197・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-198",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "程度をあらわす言葉 1",
+  "category": "kotoba-navi",
+  "tag": "p.198・6問",
+  "view": false
+ },
+ {
+  "id": "KN1-199",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "程度をあらわす言葉 2",
+  "category": "kotoba-navi",
+  "tag": "p.199・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-200",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "程度をあらわす言葉 3",
+  "category": "kotoba-navi",
+  "tag": "p.200・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-201",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "程度をあらわす言葉 4",
+  "category": "kotoba-navi",
+  "tag": "p.201・7問",
+  "view": false
+ },
+ {
+  "id": "KN1-202",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "程度をあらわす言葉 5",
+  "category": "kotoba-navi",
+  "tag": "p.202・4問",
+  "view": false
+ },
+ {
+  "id": "KN1-203",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "ものの数え方 1",
+  "category": "kotoba-navi",
+  "tag": "p.203・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN1-204",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "からだの言葉 1",
+  "category": "kotoba-navi",
+  "tag": "p.204・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN2-006",
+  "week": "下巻 第1章 ことわざ",
+  "title": "覚えておきたいことわざ 1",
+  "category": "kotoba-navi",
+  "tag": "p.6・6問",
+  "view": false
+ },
+ {
+  "id": "KN2-007",
+  "week": "下巻 第1章 ことわざ",
+  "title": "覚えておきたいことわざ 2",
+  "category": "kotoba-navi",
+  "tag": "p.7・7問",
+  "view": false
+ },
+ {
+  "id": "KN2-008",
+  "week": "下巻 第1章 ことわざ",
+  "title": "覚えておきたいことわざ 3",
+  "category": "kotoba-navi",
+  "tag": "p.8・7問",
+  "view": false
+ },
+ {
+  "id": "KN2-009",
+  "week": "下巻 第1章 ことわざ",
+  "title": "覚えておきたいことわざ 4",
+  "category": "kotoba-navi",
+  "tag": "p.9・7問",
+  "view": false
+ },
+ {
+  "id": "KN2-010",
+  "week": "下巻 第1章 ことわざ",
+  "title": "覚えておきたいことわざ 5",
+  "category": "kotoba-navi",
+  "tag": "p.10・7問",
+  "view": false
+ },
+ {
+  "id": "KN2-011",
+  "week": "下巻 第1章 ことわざ",
+  "title": "覚えておきたいことわざ 6",
+  "category": "kotoba-navi",
+  "tag": "p.11・7問",
+  "view": false
+ },
+ {
+  "id": "KN2-012",
+  "week": "下巻 第1章 ことわざ",
+  "title": "覚えておきたいことわざ 7",
+  "category": "kotoba-navi",
+  "tag": "p.12・1問",
+  "view": false
+ },
+ {
+  "id": "KN2-013",
+  "week": "下巻 第1章 ことわざ",
+  "title": "覚えておきたい故事成語 1",
+  "category": "kotoba-navi",
+  "tag": "p.13・5問",
+  "view": false
+ },
+ {
+  "id": "KN2-014",
+  "week": "下巻 第1章 ことわざ",
+  "title": "実践問題編 1",
+  "category": "kotoba-navi",
+  "tag": "p.14・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-015",
+  "week": "下巻 第1章 ことわざ",
+  "title": "実践問題編 2",
+  "category": "kotoba-navi",
+  "tag": "p.15・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-016",
+  "week": "下巻 第1章 ことわざ",
+  "title": "実践問題編 3",
+  "category": "kotoba-navi",
+  "tag": "p.16・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-017",
+  "week": "下巻 第1章 ことわざ",
+  "title": "実践問題編 4",
+  "category": "kotoba-navi",
+  "tag": "p.17・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-018",
+  "week": "下巻 第1章 ことわざ",
+  "title": "実践問題編 5",
+  "category": "kotoba-navi",
+  "tag": "p.18・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-019",
+  "week": "下巻 第1章 ことわざ",
+  "title": "実践問題編 6",
+  "category": "kotoba-navi",
+  "tag": "p.19・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-020",
+  "week": "下巻 第1章 ことわざ",
+  "title": "実践問題編 7",
+  "category": "kotoba-navi",
+  "tag": "p.20・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-021",
+  "week": "下巻 第1章 ことわざ",
+  "title": "実践問題編 8",
+  "category": "kotoba-navi",
+  "tag": "p.21・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-022",
+  "week": "下巻 第1章 ことわざ",
+  "title": "実践問題編 9",
+  "category": "kotoba-navi",
+  "tag": "p.22・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-023",
+  "week": "下巻 第1章 ことわざ",
+  "title": "実践問題編 10",
+  "category": "kotoba-navi",
+  "tag": "p.23・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-024",
+  "week": "下巻 第1章 ことわざ",
+  "title": "実践問題編 11",
+  "category": "kotoba-navi",
+  "tag": "p.24・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-025",
+  "week": "下巻 第1章 ことわざ",
+  "title": "実践問題編 12",
+  "category": "kotoba-navi",
+  "tag": "p.25・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-026",
+  "week": "下巻 第1章 ことわざ",
+  "title": "実践問題編 13",
+  "category": "kotoba-navi",
+  "tag": "p.26・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-027",
+  "week": "下巻 第1章 ことわざ",
+  "title": "実践問題編 14",
+  "category": "kotoba-navi",
+  "tag": "p.27・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-028",
+  "week": "下巻 第1章 ことわざ",
+  "title": "実践問題編 15",
+  "category": "kotoba-navi",
+  "tag": "p.28・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-030",
+  "week": "下巻 第2章 慣用句",
+  "title": "慣用句 1",
+  "category": "kotoba-navi",
+  "tag": "p.30・11問",
+  "view": false
+ },
+ {
+  "id": "KN2-031",
+  "week": "下巻 第2章 慣用句",
+  "title": "慣用句 2",
+  "category": "kotoba-navi",
+  "tag": "p.31・13問",
+  "view": false
+ },
+ {
+  "id": "KN2-032",
+  "week": "下巻 第2章 慣用句",
+  "title": "慣用句 3",
+  "category": "kotoba-navi",
+  "tag": "p.32・13問",
+  "view": false
+ },
+ {
+  "id": "KN2-033",
+  "week": "下巻 第2章 慣用句",
+  "title": "慣用句 4",
+  "category": "kotoba-navi",
+  "tag": "p.33・13問",
+  "view": false
+ },
+ {
+  "id": "KN2-034",
+  "week": "下巻 第2章 慣用句",
+  "title": "慣用句 5",
+  "category": "kotoba-navi",
+  "tag": "p.34・13問",
+  "view": false
+ },
+ {
+  "id": "KN2-035",
+  "week": "下巻 第2章 慣用句",
+  "title": "慣用句 6",
+  "category": "kotoba-navi",
+  "tag": "p.35・13問",
+  "view": false
+ },
+ {
+  "id": "KN2-036",
+  "week": "下巻 第2章 慣用句",
+  "title": "慣用句 7",
+  "category": "kotoba-navi",
+  "tag": "p.36・13問",
+  "view": false
+ },
+ {
+  "id": "KN2-037",
+  "week": "下巻 第2章 慣用句",
+  "title": "慣用句 8",
+  "category": "kotoba-navi",
+  "tag": "p.37・13問",
+  "view": false
+ },
+ {
+  "id": "KN2-038",
+  "week": "下巻 第2章 慣用句",
+  "title": "慣用句 9",
+  "category": "kotoba-navi",
+  "tag": "p.38・13問",
+  "view": false
+ },
+ {
+  "id": "KN2-039",
+  "week": "下巻 第2章 慣用句",
+  "title": "慣用句 10",
+  "category": "kotoba-navi",
+  "tag": "p.39・13問",
+  "view": false
+ },
+ {
+  "id": "KN2-040",
+  "week": "下巻 第2章 慣用句",
+  "title": "慣用句 11",
+  "category": "kotoba-navi",
+  "tag": "p.40・13問",
+  "view": false
+ },
+ {
+  "id": "KN2-041",
+  "week": "下巻 第2章 慣用句",
+  "title": "慣用句 12",
+  "category": "kotoba-navi",
+  "tag": "p.41・13問",
+  "view": false
+ },
+ {
+  "id": "KN2-042",
+  "week": "下巻 第2章 慣用句",
+  "title": "慣用句 13",
+  "category": "kotoba-navi",
+  "tag": "p.42・13問",
+  "view": false
+ },
+ {
+  "id": "KN2-043",
+  "week": "下巻 第2章 慣用句",
+  "title": "慣用句 14",
+  "category": "kotoba-navi",
+  "tag": "p.43・13問",
+  "view": false
+ },
+ {
+  "id": "KN2-044",
+  "week": "下巻 第2章 慣用句",
+  "title": "慣用句 15",
+  "category": "kotoba-navi",
+  "tag": "p.44・13問",
+  "view": false
+ },
+ {
+  "id": "KN2-045",
+  "week": "下巻 第2章 慣用句",
+  "title": "慣用句 16",
+  "category": "kotoba-navi",
+  "tag": "p.45・4問",
+  "view": false
+ },
+ {
+  "id": "KN2-046",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 1",
+  "category": "kotoba-navi",
+  "tag": "p.46・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-047",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 2",
+  "category": "kotoba-navi",
+  "tag": "p.47・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-048",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 3",
+  "category": "kotoba-navi",
+  "tag": "p.48・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-049",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 4",
+  "category": "kotoba-navi",
+  "tag": "p.49・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-050",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 5",
+  "category": "kotoba-navi",
+  "tag": "p.50・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-051",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 6",
+  "category": "kotoba-navi",
+  "tag": "p.51・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-052",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 7",
+  "category": "kotoba-navi",
+  "tag": "p.52・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-053",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 8",
+  "category": "kotoba-navi",
+  "tag": "p.53・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-054",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 9",
+  "category": "kotoba-navi",
+  "tag": "p.54・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-055",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 10",
+  "category": "kotoba-navi",
+  "tag": "p.55・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-056",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 11",
+  "category": "kotoba-navi",
+  "tag": "p.56・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-057",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 12",
+  "category": "kotoba-navi",
+  "tag": "p.57・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-058",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 13",
+  "category": "kotoba-navi",
+  "tag": "p.58・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-059",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 14",
+  "category": "kotoba-navi",
+  "tag": "p.59・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-060",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 15",
+  "category": "kotoba-navi",
+  "tag": "p.60・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-061",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 16",
+  "category": "kotoba-navi",
+  "tag": "p.61・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-062",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 17",
+  "category": "kotoba-navi",
+  "tag": "p.62・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-063",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 18",
+  "category": "kotoba-navi",
+  "tag": "p.63・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-064",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 19",
+  "category": "kotoba-navi",
+  "tag": "p.64・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-065",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 20",
+  "category": "kotoba-navi",
+  "tag": "p.65・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-066",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 21",
+  "category": "kotoba-navi",
+  "tag": "p.66・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-067",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 22",
+  "category": "kotoba-navi",
+  "tag": "p.67・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-068",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 23",
+  "category": "kotoba-navi",
+  "tag": "p.68・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-069",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 24",
+  "category": "kotoba-navi",
+  "tag": "p.69・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-070",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 25",
+  "category": "kotoba-navi",
+  "tag": "p.70・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-071",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 26",
+  "category": "kotoba-navi",
+  "tag": "p.71・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-072",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 27",
+  "category": "kotoba-navi",
+  "tag": "p.72・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-073",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 28",
+  "category": "kotoba-navi",
+  "tag": "p.73・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-074",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 29",
+  "category": "kotoba-navi",
+  "tag": "p.74・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-075",
+  "week": "下巻 第2章 慣用句",
+  "title": "実践問題編 30",
+  "category": "kotoba-navi",
+  "tag": "p.75・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-078",
+  "week": "下巻 第3章 熟語",
+  "title": "類義語 1",
+  "category": "kotoba-navi",
+  "tag": "p.78・28問",
+  "view": false
+ },
+ {
+  "id": "KN2-079",
+  "week": "下巻 第3章 熟語",
+  "title": "類義語 2",
+  "category": "kotoba-navi",
+  "tag": "p.79・32問",
+  "view": false
+ },
+ {
+  "id": "KN2-080",
+  "week": "下巻 第3章 熟語",
+  "title": "類義語 3",
+  "category": "kotoba-navi",
+  "tag": "p.80・16問",
+  "view": false
+ },
+ {
+  "id": "KN2-081",
+  "week": "下巻 第3章 熟語",
+  "title": "対義語 1",
+  "category": "kotoba-navi",
+  "tag": "p.81・28問",
+  "view": false
+ },
+ {
+  "id": "KN2-082",
+  "week": "下巻 第3章 熟語",
+  "title": "対義語 2",
+  "category": "kotoba-navi",
+  "tag": "p.82・32問",
+  "view": false
+ },
+ {
+  "id": "KN2-083",
+  "week": "下巻 第3章 熟語",
+  "title": "対義語 3",
+  "category": "kotoba-navi",
+  "tag": "p.83・28問",
+  "view": false
+ },
+ {
+  "id": "KN2-084",
+  "week": "下巻 第3章 熟語",
+  "title": "上と下の意味が反対になる熟語 1",
+  "category": "kotoba-navi",
+  "tag": "p.84・13問",
+  "view": false
+ },
+ {
+  "id": "KN2-085",
+  "week": "下巻 第3章 熟語",
+  "title": "四字熟語 1",
+  "category": "kotoba-navi",
+  "tag": "p.85・6問",
+  "view": false
+ },
+ {
+  "id": "KN2-086",
+  "week": "下巻 第3章 熟語",
+  "title": "四字熟語 2",
+  "category": "kotoba-navi",
+  "tag": "p.86・7問",
+  "view": false
+ },
+ {
+  "id": "KN2-087",
+  "week": "下巻 第3章 熟語",
+  "title": "四字熟語 3",
+  "category": "kotoba-navi",
+  "tag": "p.87・7問",
+  "view": false
+ },
+ {
+  "id": "KN2-088",
+  "week": "下巻 第3章 熟語",
+  "title": "四字熟語 4",
+  "category": "kotoba-navi",
+  "tag": "p.88・7問",
+  "view": false
+ },
+ {
+  "id": "KN2-089",
+  "week": "下巻 第3章 熟語",
+  "title": "四字熟語 5",
+  "category": "kotoba-navi",
+  "tag": "p.89・7問",
+  "view": false
+ },
+ {
+  "id": "KN2-090",
+  "week": "下巻 第3章 熟語",
+  "title": "四字熟語 6",
+  "category": "kotoba-navi",
+  "tag": "p.90・7問",
+  "view": false
+ },
+ {
+  "id": "KN2-091",
+  "week": "下巻 第3章 熟語",
+  "title": "四字熟語 7",
+  "category": "kotoba-navi",
+  "tag": "p.91・7問",
+  "view": false
+ },
+ {
+  "id": "KN2-092",
+  "week": "下巻 第3章 熟語",
+  "title": "四字熟語 8",
+  "category": "kotoba-navi",
+  "tag": "p.92・7問",
+  "view": false
+ },
+ {
+  "id": "KN2-093",
+  "week": "下巻 第3章 熟語",
+  "title": "四字熟語 9",
+  "category": "kotoba-navi",
+  "tag": "p.93・7問",
+  "view": false
+ },
+ {
+  "id": "KN2-094",
+  "week": "下巻 第3章 熟語",
+  "title": "四字熟語 10",
+  "category": "kotoba-navi",
+  "tag": "p.94・3問",
+  "view": false
+ },
+ {
+  "id": "KN2-095",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 1",
+  "category": "kotoba-navi",
+  "tag": "p.95・8問",
+  "view": false
+ },
+ {
+  "id": "KN2-096",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 2",
+  "category": "kotoba-navi",
+  "tag": "p.96・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-097",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 3",
+  "category": "kotoba-navi",
+  "tag": "p.97・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-098",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 4",
+  "category": "kotoba-navi",
+  "tag": "p.98・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-099",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 5",
+  "category": "kotoba-navi",
+  "tag": "p.99・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-100",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 6",
+  "category": "kotoba-navi",
+  "tag": "p.100・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-101",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 7",
+  "category": "kotoba-navi",
+  "tag": "p.101・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-102",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 8",
+  "category": "kotoba-navi",
+  "tag": "p.102・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-103",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 9",
+  "category": "kotoba-navi",
+  "tag": "p.103・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-104",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 10",
+  "category": "kotoba-navi",
+  "tag": "p.104・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-105",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 11",
+  "category": "kotoba-navi",
+  "tag": "p.105・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-106",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 12",
+  "category": "kotoba-navi",
+  "tag": "p.106・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-107",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 13",
+  "category": "kotoba-navi",
+  "tag": "p.107・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-108",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 14",
+  "category": "kotoba-navi",
+  "tag": "p.108・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-109",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 15",
+  "category": "kotoba-navi",
+  "tag": "p.109・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-110",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 16",
+  "category": "kotoba-navi",
+  "tag": "p.110・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-111",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 17",
+  "category": "kotoba-navi",
+  "tag": "p.111・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-112",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 18",
+  "category": "kotoba-navi",
+  "tag": "p.112・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-113",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 19",
+  "category": "kotoba-navi",
+  "tag": "p.113・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-114",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 20",
+  "category": "kotoba-navi",
+  "tag": "p.114・9問",
+  "view": false
+ },
+ {
+  "id": "KN2-115",
+  "week": "下巻 第3章 熟語",
+  "title": "三字熟語 21",
+  "category": "kotoba-navi",
+  "tag": "p.115・6問",
+  "view": false
+ },
+ {
+  "id": "KN2-116",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 1",
+  "category": "kotoba-navi",
+  "tag": "p.116・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-117",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 2",
+  "category": "kotoba-navi",
+  "tag": "p.117・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-118",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 3",
+  "category": "kotoba-navi",
+  "tag": "p.118・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-119",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 4",
+  "category": "kotoba-navi",
+  "tag": "p.119・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-120",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 5",
+  "category": "kotoba-navi",
+  "tag": "p.120・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-121",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 6",
+  "category": "kotoba-navi",
+  "tag": "p.121・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-122",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 7",
+  "category": "kotoba-navi",
+  "tag": "p.122・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-123",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 8",
+  "category": "kotoba-navi",
+  "tag": "p.123・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-124",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 9",
+  "category": "kotoba-navi",
+  "tag": "p.124・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-125",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 10",
+  "category": "kotoba-navi",
+  "tag": "p.125・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-126",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 11",
+  "category": "kotoba-navi",
+  "tag": "p.126・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-127",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 12",
+  "category": "kotoba-navi",
+  "tag": "p.127・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-128",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 13",
+  "category": "kotoba-navi",
+  "tag": "p.128・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-129",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 14",
+  "category": "kotoba-navi",
+  "tag": "p.129・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-130",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 15",
+  "category": "kotoba-navi",
+  "tag": "p.130・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-131",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 16",
+  "category": "kotoba-navi",
+  "tag": "p.131・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-132",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 17",
+  "category": "kotoba-navi",
+  "tag": "p.132・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-133",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 18",
+  "category": "kotoba-navi",
+  "tag": "p.133・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-134",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 19",
+  "category": "kotoba-navi",
+  "tag": "p.134・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-135",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 20",
+  "category": "kotoba-navi",
+  "tag": "p.135・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-136",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 21",
+  "category": "kotoba-navi",
+  "tag": "p.136・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-137",
+  "week": "下巻 第3章 熟語",
+  "title": "実践問題編 22",
+  "category": "kotoba-navi",
+  "tag": "p.137・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-140",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "同音異義語 1",
+  "category": "kotoba-navi",
+  "tag": "p.140・14問",
+  "view": false
+ },
+ {
+  "id": "KN2-141",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "同音異義語 2",
+  "category": "kotoba-navi",
+  "tag": "p.141・15問",
+  "view": false
+ },
+ {
+  "id": "KN2-142",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "同音異義語 3",
+  "category": "kotoba-navi",
+  "tag": "p.142・15問",
+  "view": false
+ },
+ {
+  "id": "KN2-143",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "同音異義語 4",
+  "category": "kotoba-navi",
+  "tag": "p.143・14問",
+  "view": false
+ },
+ {
+  "id": "KN2-144",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "同音異義語 5",
+  "category": "kotoba-navi",
+  "tag": "p.144・15問",
+  "view": false
+ },
+ {
+  "id": "KN2-145",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "同音異義語 6",
+  "category": "kotoba-navi",
+  "tag": "p.145・15問",
+  "view": false
+ },
+ {
+  "id": "KN2-146",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "同音異義語 7",
+  "category": "kotoba-navi",
+  "tag": "p.146・7問",
+  "view": false
+ },
+ {
+  "id": "KN2-147",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "同訓異字 1",
+  "category": "kotoba-navi",
+  "tag": "p.147・15問",
+  "view": false
+ },
+ {
+  "id": "KN2-148",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "同訓異字 2",
+  "category": "kotoba-navi",
+  "tag": "p.148・15問",
+  "view": false
+ },
+ {
+  "id": "KN2-149",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "同訓異字 3",
+  "category": "kotoba-navi",
+  "tag": "p.149・16問",
+  "view": false
+ },
+ {
+  "id": "KN2-150",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "同訓異字 4",
+  "category": "kotoba-navi",
+  "tag": "p.150・16問",
+  "view": false
+ },
+ {
+  "id": "KN2-151",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "同訓異字 5",
+  "category": "kotoba-navi",
+  "tag": "p.151・15問",
+  "view": false
+ },
+ {
+  "id": "KN2-152",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "実践問題編 1",
+  "category": "kotoba-navi",
+  "tag": "p.152・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-153",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "実践問題編 2",
+  "category": "kotoba-navi",
+  "tag": "p.153・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-154",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "実践問題編 3",
+  "category": "kotoba-navi",
+  "tag": "p.154・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-155",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "実践問題編 4",
+  "category": "kotoba-navi",
+  "tag": "p.155・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-156",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "実践問題編 5",
+  "category": "kotoba-navi",
+  "tag": "p.156・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-157",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "実践問題編 6",
+  "category": "kotoba-navi",
+  "tag": "p.157・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-158",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "実践問題編 7",
+  "category": "kotoba-navi",
+  "tag": "p.158・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-159",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "実践問題編 8",
+  "category": "kotoba-navi",
+  "tag": "p.159・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-160",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "実践問題編 9",
+  "category": "kotoba-navi",
+  "tag": "p.160・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-161",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "実践問題編 10",
+  "category": "kotoba-navi",
+  "tag": "p.161・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-162",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "実践問題編 11",
+  "category": "kotoba-navi",
+  "tag": "p.162・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-163",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "実践問題編 12",
+  "category": "kotoba-navi",
+  "tag": "p.163・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-164",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "実践問題編 13",
+  "category": "kotoba-navi",
+  "tag": "p.164・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-165",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "実践問題編 14",
+  "category": "kotoba-navi",
+  "tag": "p.165・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-166",
+  "week": "下巻 第4章 同音異義語・同訓異字",
+  "title": "実践問題編 15",
+  "category": "kotoba-navi",
+  "tag": "p.166・実践問題",
+  "view": true
+ },
+ {
+  "id": "KN2-168",
+  "week": "下巻 第5章 その他",
+  "title": "いろいろな気持ち 1",
+  "category": "kotoba-navi",
+  "tag": "p.168・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN2-169",
+  "week": "下巻 第5章 その他",
+  "title": "いろいろな気持ち 2",
+  "category": "kotoba-navi",
+  "tag": "p.169・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN2-170",
+  "week": "下巻 第5章 その他",
+  "title": "文学史 1",
+  "category": "kotoba-navi",
+  "tag": "p.170・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN2-171",
+  "week": "下巻 第5章 その他",
+  "title": "文学史 2",
+  "category": "kotoba-navi",
+  "tag": "p.171・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN2-172",
+  "week": "下巻 第5章 その他",
+  "title": "文学史 3",
+  "category": "kotoba-navi",
+  "tag": "p.172・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN2-173",
+  "week": "下巻 第5章 その他",
+  "title": "覚えておきたい文学作品 1",
+  "category": "kotoba-navi",
+  "tag": "p.173・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN2-174",
+  "week": "下巻 第5章 その他",
+  "title": "覚えておきたい文学作品 2",
+  "category": "kotoba-navi",
+  "tag": "p.174・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN2-175",
+  "week": "下巻 第5章 その他",
+  "title": "覚えておきたい文学作品 3",
+  "category": "kotoba-navi",
+  "tag": "p.175・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN2-176",
+  "week": "下巻 第5章 その他",
+  "title": "覚えておきたい文学作品 4",
+  "category": "kotoba-navi",
+  "tag": "p.176・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN2-177",
+  "week": "下巻 第5章 その他",
+  "title": "覚えておきたい文学作品 5",
+  "category": "kotoba-navi",
+  "tag": "p.177・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN2-178",
+  "week": "下巻 第5章 その他",
+  "title": "親族の呼称・家系図 1",
+  "category": "kotoba-navi",
+  "tag": "p.178・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN2-179",
+  "week": "下巻 第5章 その他",
+  "title": "親族の呼称・家系図 2",
+  "category": "kotoba-navi",
+  "tag": "p.179・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN2-180",
+  "week": "下巻 第5章 その他",
+  "title": "野球にまつわる用語 1",
+  "category": "kotoba-navi",
+  "tag": "p.180・閲覧",
+  "view": true
+ },
+ {
+  "id": "KN2-181",
+  "week": "下巻 第5章 その他",
+  "title": "野球にまつわる用語 2",
+  "category": "kotoba-navi",
+  "tag": "p.181・閲覧",
+  "view": true
  }
 ]

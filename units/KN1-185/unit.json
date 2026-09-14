@@ -1,0 +1,26 @@
+{
+ "id": "KN1-185",
+ "week": "上巻 第6章 いろいろな言葉",
+ "category": "kotoba-navi",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/",
+ "hasSolved": false,
+ "print2up": false,
+ "page": 185,
+ "vol": 1,
+ "title": "性格・態度をあらわす言葉 2",
+ "tag": "p.185・閲覧",
+ "questionPages": [
+  {
+   "full": "units/KN1-185/qp_1.jpg",
+   "small": "units/KN1-185/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/KN1-185/ap_1.jpg",
+   "small": "units/KN1-185/ap_1_small.jpg"
+  }
+ ],
+ "questionGroups": [],
+ "view": true
+}

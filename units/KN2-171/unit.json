@@ -1,0 +1,26 @@
+{
+ "id": "KN2-171",
+ "week": "下巻 第5章 その他",
+ "category": "kotoba-navi",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/",
+ "hasSolved": false,
+ "print2up": false,
+ "page": 171,
+ "vol": 2,
+ "title": "文学史 2",
+ "tag": "p.171・閲覧",
+ "questionPages": [
+  {
+   "full": "units/KN2-171/qp_1.jpg",
+   "small": "units/KN2-171/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/KN2-171/ap_1.jpg",
+   "small": "units/KN2-171/ap_1_small.jpg"
+  }
+ ],
+ "questionGroups": [],
+ "view": true
+}

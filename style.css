@@ -407,3 +407,6 @@ body {
     visibility: visible !important;
   }
 }
+
+/* 閲覧用単元（言葉ナビの説明ページ・実践問題）: 正誤表の代わりの注記 */
+.wsm-view-note { padding: 8px 12px; font-size: 13px; color: #6e6e73; }

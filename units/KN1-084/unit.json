@@ -1,0 +1,26 @@
+{
+ "id": "KN1-084",
+ "week": "上巻 第4章 熟語",
+ "category": "kotoba-navi",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/",
+ "hasSolved": false,
+ "print2up": false,
+ "page": 84,
+ "vol": 1,
+ "title": "熟語ってなんだろう？ 1",
+ "tag": "p.84・閲覧",
+ "questionPages": [
+  {
+   "full": "units/KN1-084/qp_1.jpg",
+   "small": "units/KN1-084/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/KN1-084/ap_1.jpg",
+   "small": "units/KN1-084/ap_1_small.jpg"
+  }
+ ],
+ "questionGroups": [],
+ "view": true
+}

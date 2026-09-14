@@ -1,0 +1,26 @@
+{
+ "id": "KN1-140",
+ "week": "上巻 第5章 同音異義語・同訓異字",
+ "category": "kotoba-navi",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/",
+ "hasSolved": false,
+ "print2up": false,
+ "page": 140,
+ "vol": 1,
+ "title": "同音異義語・同訓異字ってなんだろう？ 1",
+ "tag": "p.140・閲覧",
+ "questionPages": [
+  {
+   "full": "units/KN1-140/qp_1.jpg",
+   "small": "units/KN1-140/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/KN1-140/ap_1.jpg",
+   "small": "units/KN1-140/ap_1_small.jpg"
+  }
+ ],
+ "questionGroups": [],
+ "view": true
+}

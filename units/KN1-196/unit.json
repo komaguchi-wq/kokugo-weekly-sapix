@@ -1,0 +1,26 @@
+{
+ "id": "KN1-196",
+ "week": "上巻 第6章 いろいろな言葉",
+ "category": "kotoba-navi",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/",
+ "hasSolved": false,
+ "print2up": false,
+ "page": 196,
+ "vol": 1,
+ "title": "どんな言葉で表現する？ 1",
+ "tag": "p.196・閲覧",
+ "questionPages": [
+  {
+   "full": "units/KN1-196/qp_1.jpg",
+   "small": "units/KN1-196/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/KN1-196/ap_1.jpg",
+   "small": "units/KN1-196/ap_1_small.jpg"
+  }
+ ],
+ "questionGroups": [],
+ "view": true
+}

@@ -38,6 +38,9 @@ const CATEGORIES = [
   // 漢字の要（マスターブック）: 1ページ=1単元・セクション(week)ごとにグループ表示＋一括モードバー
   { id: 'kaname', name: '漢字の要', icon: '📕', bulk: true, grouped: true,
     match: (u) => u.category === 'kanji-kaname' },
+  // 言葉ナビ（上巻・下巻）: 漢字の要と同じ別紙式（1ページ=1単元・巻/章ごとにグループ・一括モードバー・解き直し）
+  { id: 'kotoba', name: '言葉ナビ', icon: '📗', bulk: true, grouped: true,
+    match: (u) => u.category === 'kotoba-navi' },
   { id: 'ss', name: 'SS特訓', icon: '🎯',
     match: (u) => u.category === 'ss-tokkun' },
   { id: 'shibo',  name: '志望校別特訓', icon: '🔥',
@@ -338,6 +341,7 @@ function unitIcon(u) {
   if (u.category === 'daily-knowledge') return '📚';
   if (u.category === 'kanji-tokkun') return '🌻';
   if (u.category === 'kanji-kaname') return '📕';
+  if (u.category === 'kotoba-navi') return '📗';
   if (u.category === 'ss-tokkun') return '🎯';
   return u.category === 'knowledge' ? '✍️' : '📖';
 }
@@ -345,6 +349,7 @@ function unitTag(u) {
   if (u.category === 'daily-knowledge') return '知識の学習・コトノハ・漢字の要';
   if (u.category === 'kanji-tokkun') return '漢字20問';
   if (u.category === 'kanji-kaname') return u.tag || '漢字の要';
+  if (u.category === 'kotoba-navi') return u.tag || '言葉ナビ';
   if (u.category === 'ss-tokkun') return u.tag || 'SS特訓';
   return u.category === 'knowledge' ? '知識の総完成' : '読解';
 }
@@ -369,8 +374,9 @@ function renderUnits() {
   if (cat.bulk) {
     // 一括モードバー（全単元の対象問題の確認と、対象のある単元だけの一括印刷）
     const bf = bulkFilterOf(cat);
-    const noun = cat.id === 'kanji' ? '回' : cat.id === 'kaname' ? 'ページ' : '単元';
-    const framed = cat.id === 'kanji' || cat.id === 'kaname';   // 対象マスに赤枠（cellRectsあり）
+    const sheetCat = !!REVIEW_CFG[cat.id];                        // 別紙式（漢字の要/言葉ナビ）
+    const noun = cat.id === 'kanji' ? '回' : sheetCat ? 'ページ' : '単元';
+    const framed = cat.id === 'kanji' || sheetCat;   // 対象マスに赤枠（cellRectsあり）
     const bulkTargets = (u) => {
       const unit = state.unitCache[u.id];
       return unit ? targetKeys(unit, bf) : [];
@@ -394,9 +400,9 @@ function renderUnits() {
             ? `全${units.length}${noun}` : `${bulkCount(bf)}${noun}`}）</button>
           <button class="btn-bulk-print btn-bulk-print-a" data-bulk-print="a">🖨 解答を印刷（${bf === 'all'
             ? `全${units.length}${noun}` : `${bulkCount(bf)}${noun}`}）</button>
-          ${cat.id === 'kaname' && bf !== 'all' ? (() => {
+          ${sheetCat && bf !== 'all' ? (() => {
             const n = reviewItemsFor(cat, bf).length;
-            return n ? `<button class="btn-bulk-print btn-review" data-review="1">✍️ 解き直しシート（${n}問→${Math.ceil(n / REVIEW_PER_PAGE)}枚）</button>` : '';
+            return n ? `<button class="btn-bulk-print btn-review" data-review="1">✍️ 解き直しシート（${n}問→${Math.ceil(n / REVIEW_CFG[cat.id].per)}枚）</button>` : '';
           })() : ''}
         </span>
       </div>`;
@@ -405,6 +411,7 @@ function renderUnits() {
       const t = bulkTargets(u);
       const info = t.length
         ? `<div class="kanji-targets">対象: ${t.join(' ')}（${t.length}問）</div>`
+        : u.view ? `<div class="kanji-targets kanji-targets-none">閲覧用（○×なし・印刷されません）</div>`
         : `<div class="kanji-targets kanji-targets-none">対象なし（印刷されません）</div>`;
       return cardHTML(u).replace(/(<div class="unit-card-subtitle">[^<]*<\/div>)/, `$1${info}`);
     };
@@ -491,7 +498,12 @@ async function bulkPrint(kind) {
 //   15問ずつ「右=元の問題文の列を並べ替え / 左=15マスの解答用紙」をその場で合成する。
 //   解答タブは答え入りマス＋出典。○×は元単元の該当問題に記録（reviewItems）。
 // ==============================
-const REVIEW_PER_PAGE = 15;
+// カテゴリごとの解き直しシートの形（per=1枚の問数, cols×rows=用紙のマス配置, bodyH=マスの高さ）
+//   漢字の要: 漢字1〜数字＝小さいマス 5×3=15問 / 言葉ナビ: ことわざ等の長い答え＝縦長マス 8×1=8問
+const REVIEW_CFG = {
+  kaname: { per: 15, cols: 5, rows: 3, bodyH: 620, qTop: 150 },
+  kotoba: { per: 8, cols: 8, rows: 1, bodyH: 1990, qTop: 150 },
+};
 const REVIEW_W = 4000, REVIEW_H = 2300;   // iOSの画像1辺4096px制限内
 
 function reviewItemsFor(cat, mode) {
@@ -511,15 +523,17 @@ function _reviewCropQ(img, r) {   // 割合座標 → 元画像px
 }
 
 // 1枚（最大15問）の問題/解答キャンバスを描く
-function drawReviewSheet(items, pageNo, pageCount, modeLabel, withAnswers) {
+function drawReviewSheet(items, pageNo, pageCount, modeLabel, withAnswers, cfg, catName) {
+  cfg = cfg || REVIEW_CFG.kaname;
+  catName = catName || '漢字の要';
   const cc = document.createElement('canvas');
   cc.width = REVIEW_W; cc.height = REVIEW_H;
   const ctx = cc.getContext('2d');
   ctx.fillStyle = '#fff';
   ctx.fillRect(0, 0, REVIEW_W, REVIEW_H);
   const n = items.length;
-  // ---- 左: 解答用紙（5列×3段・列優先で右→左） ----
-  const gx0 = 80, gx1 = 1760, gy0 = 80, cols = 5, rows = 3, labelH = 74, bodyH = 620;
+  // ---- 左: 解答用紙（cols列×rows段・列優先で右→左） ----
+  const gx0 = 80, gx1 = 1760, gy0 = 80, cols = cfg.cols, rows = cfg.rows, labelH = 74, bodyH = cfg.bodyH;
   const cw = (gx1 - gx0) / cols, ch = labelH + bodyH;
   ctx.strokeStyle = '#000'; ctx.lineWidth = 5; ctx.fillStyle = '#000';
   ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
@@ -550,7 +564,7 @@ function drawReviewSheet(items, pageNo, pageCount, modeLabel, withAnswers) {
     }
   });
   // 縦書きタイトル（用紙の右端）
-  const title = `漢字の要 解き直し ${modeLabel} ${pageNo}／${pageCount}`;
+  const title = `${catName} 解き直し ${modeLabel} ${pageNo}／${pageCount}`;
   ctx.font = 'bold 44px "Hiragino Sans", sans-serif';
   ctx.fillStyle = '#000';
   let ty = 100;
@@ -565,8 +579,8 @@ function drawReviewSheet(items, pageNo, pageCount, modeLabel, withAnswers) {
   ctx.fillText('名', 1890, Math.max(ty + 60, 1500) + 30);
   ctx.fillText('前', 1890, Math.max(ty + 60, 1500) + 66);
   // ---- 右: 問題文の列（右→左に 1,2,3…・番号を付け直す） ----
-  const px0 = 2060, px1 = REVIEW_W - 40, ptop = 150;
-  const pitch = (px1 - px0) / REVIEW_PER_PAGE;
+  const px0 = 2060, px1 = REVIEW_W - 40, ptop = cfg.qTop;
+  const pitch = (px1 - px0) / cfg.per;
   const crops = items.map((it) => _reviewCropQ(it.qImg, it.unit.review[it.key].q));
   const maxH = Math.max(...crops.map((c) => c.sh)), maxW = Math.max(...crops.map((c) => c.sw));
   const sc = Math.min(1.6, (REVIEW_H - ptop - 40) / maxH, (pitch - 10) / maxW);
@@ -604,21 +618,22 @@ async function openReview(cat, mode, btn) {
       };
     }
     items.forEach((it) => { it.qImg = imgs[it.unitId].q; it.aImg = imgs[it.unitId].a; });
+    const cfg = REVIEW_CFG[cat.id] || REVIEW_CFG.kaname;
     const pages = [];
-    for (let i = 0; i < items.length; i += REVIEW_PER_PAGE) pages.push(items.slice(i, i + REVIEW_PER_PAGE));
+    for (let i = 0; i < items.length; i += cfg.per) pages.push(items.slice(i, i + cfg.per));
     const modeLabel = WSM_MODE_SHORT[mode];
     const qPages = [], aPages = [], groups = [], reviewItems = {};
     pages.forEach((pg, pi) => {
       setMsg(`作成中… ${pi + 1}/${pages.length}枚`);
-      qPages.push({ full: drawReviewSheet(pg, pi + 1, pages.length, modeLabel, false) });
-      aPages.push({ full: drawReviewSheet(pg, pi + 1, pages.length, modeLabel, true) });
+      qPages.push({ full: drawReviewSheet(pg, pi + 1, pages.length, modeLabel, false, cfg, cat.name) });
+      aPages.push({ full: drawReviewSheet(pg, pi + 1, pages.length, modeLabel, true, cfg, cat.name) });
       const head = `${pi + 1}枚目`;
       groups.push({ head, labels: pg.map((_, i) => String(i + 1)) });
       pg.forEach((it, i) => { reviewItems[head + String(i + 1)] = { unitId: it.unitId, key: it.key }; });
     });
     const unit = {
-      id: 'KY-REVIEW', title: `解き直し（${modeLabel}・${items.length}問・${pages.length}枚）`,
-      category: 'kanji-kaname', questionPages: qPages, answerPages: aPages,
+      id: `${cat.id.toUpperCase()}-REVIEW`, title: `解き直し（${modeLabel}・${items.length}問・${pages.length}枚）`,
+      category: (unitsOf(cat)[0] || {}).category || 'kanji-kaname', questionPages: qPages, answerPages: aPages,
       questionGroups: groups, reviewItems, print2up: false,
     };
     wsmFilter = 'all';
@@ -732,6 +747,10 @@ function renderGradeTable() {
   if (!u) { el.innerHTML = ''; return; }
   const grades = gradesFor(u);
   const prevScroll = el.scrollTop;
+  if (!questionKeys(u).length) {   // 閲覧用（説明ページ・実践問題）: 正誤表なし
+    el.innerHTML = `<div class="wsm-view-note">${u.view ? 'このページは閲覧用です（正誤表なし）' : ''}</div>`;
+    return;
+  }
   el.innerHTML = questionGroups(u).map((g) => {
     const subs = g.labels.map((label) => {
       const key = g.head ? g.head + label : label;

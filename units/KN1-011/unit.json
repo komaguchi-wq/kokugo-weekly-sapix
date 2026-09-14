@@ -1,0 +1,26 @@
+{
+ "id": "KN1-011",
+ "week": "上巻 第2章 ことわざ",
+ "category": "kotoba-navi",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/",
+ "hasSolved": false,
+ "print2up": false,
+ "page": 11,
+ "vol": 1,
+ "title": "ことわざってなんだろう？ 2",
+ "tag": "p.11・閲覧",
+ "questionPages": [
+  {
+   "full": "units/KN1-011/qp_1.jpg",
+   "small": "units/KN1-011/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/KN1-011/ap_1.jpg",
+   "small": "units/KN1-011/ap_1_small.jpg"
+  }
+ ],
+ "questionGroups": [],
+ "view": true
+}

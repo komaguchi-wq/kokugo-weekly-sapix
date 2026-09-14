@@ -1,0 +1,38 @@
+{
+ "id": "KN2-126",
+ "week": "下巻 第3章 熟語",
+ "category": "kotoba-navi",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/",
+ "hasSolved": false,
+ "print2up": true,
+ "page": 126,
+ "vol": 2,
+ "title": "実践問題編 11",
+ "tag": "p.126・実践問題",
+ "questionPages": [
+  {
+   "full": "units/KN2-126/qp_1.jpg",
+   "small": "units/KN2-126/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/KN2-TA8/ap_1.jpg",
+   "small": "units/KN2-TA8/ap_1_small.jpg"
+  },
+  {
+   "full": "units/KN2-TA8/ap_2.jpg",
+   "small": "units/KN2-TA8/ap_2_small.jpg"
+  },
+  {
+   "full": "units/KN2-TA8/ap_3.jpg",
+   "small": "units/KN2-TA8/ap_3_small.jpg"
+  },
+  {
+   "full": "units/KN2-TA8/ap_4.jpg",
+   "small": "units/KN2-TA8/ap_4_small.jpg"
+  }
+ ],
+ "questionGroups": [],
+ "view": true
+}

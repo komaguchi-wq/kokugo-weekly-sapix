@@ -1,0 +1,59 @@
+{
+ "id": "KN2-012",
+ "week": "下巻 第1章 ことわざ",
+ "category": "kotoba-navi",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/",
+ "hasSolved": false,
+ "print2up": false,
+ "page": 12,
+ "vol": 2,
+ "title": "覚えておきたいことわざ 7",
+ "tag": "p.12・1問",
+ "questionPages": [
+  {
+   "full": "units/KN2-012/qp_1.jpg",
+   "small": "units/KN2-012/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/KN2-012/ap_1.jpg",
+   "small": "units/KN2-012/ap_1_small.jpg"
+  }
+ ],
+ "questionGroups": [
+  {
+   "head": "",
+   "labels": [
+    "42"
+   ]
+  }
+ ],
+ "cellRects": {
+  "42": [
+   0.3214,
+   0.0365,
+   0.3819,
+   0.9502
+  ]
+ },
+ "review": {
+  "42": {
+   "q": [
+    0.9066,
+    0.068,
+    0.9532,
+    0.9403
+   ],
+   "a": [
+    0.3214,
+    0.0657,
+    0.3819,
+    0.9502
+   ]
+  }
+ },
+ "short": "ことわざ7",
+ "kindCode": "S",
+ "lenClass": "long"
+}

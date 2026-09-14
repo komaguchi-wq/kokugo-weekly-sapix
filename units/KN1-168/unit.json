@@ -1,0 +1,21 @@
+{
+ "id": "KN1-168",
+ "week": "上巻 第5章 同音異義語・同訓異字",
+ "category": "kotoba-navi",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/",
+ "hasSolved": false,
+ "print2up": true,
+ "page": 168,
+ "vol": 1,
+ "title": "実践問題編 3",
+ "tag": "p.168・実践問題（解答なし）",
+ "questionPages": [
+  {
+   "full": "units/KN1-168/qp_1.jpg",
+   "small": "units/KN1-168/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [],
+ "questionGroups": [],
+ "view": true
+}

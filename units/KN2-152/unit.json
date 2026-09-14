@@ -1,0 +1,34 @@
+{
+ "id": "KN2-152",
+ "week": "下巻 第4章 同音異義語・同訓異字",
+ "category": "kotoba-navi",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/",
+ "hasSolved": false,
+ "print2up": true,
+ "page": 152,
+ "vol": 2,
+ "title": "実践問題編 1",
+ "tag": "p.152・実践問題",
+ "questionPages": [
+  {
+   "full": "units/KN2-152/qp_1.jpg",
+   "small": "units/KN2-152/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/KN2-TA9/ap_1.jpg",
+   "small": "units/KN2-TA9/ap_1_small.jpg"
+  },
+  {
+   "full": "units/KN2-TA9/ap_2.jpg",
+   "small": "units/KN2-TA9/ap_2_small.jpg"
+  },
+  {
+   "full": "units/KN2-TA9/ap_3.jpg",
+   "small": "units/KN2-TA9/ap_3_small.jpg"
+  }
+ ],
+ "questionGroups": [],
+ "view": true
+}

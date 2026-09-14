@@ -1,0 +1,101 @@
+{
+ "id": "KN1-130",
+ "week": "上巻 第4章 熟語",
+ "category": "kotoba-navi",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/",
+ "hasSolved": false,
+ "print2up": false,
+ "page": 130,
+ "vol": 1,
+ "title": "三字熟語 12",
+ "tag": "p.130・3問",
+ "questionPages": [
+  {
+   "full": "units/KN1-130/qp_1.jpg",
+   "small": "units/KN1-130/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/KN1-130/ap_1.jpg",
+   "small": "units/KN1-130/ap_1_small.jpg"
+  }
+ ],
+ "questionGroups": [
+  {
+   "head": "",
+   "labels": [
+    "99",
+    "100",
+    "101"
+   ]
+  }
+ ],
+ "cellRects": {
+  "99": [
+   0.3121,
+   0.0365,
+   0.3819,
+   0.3048
+  ],
+  "100": [
+   0.3121,
+   0.3048,
+   0.3819,
+   0.573
+  ],
+  "101": [
+   0.2422,
+   0.0365,
+   0.3121,
+   0.3048
+  ]
+ },
+ "review": {
+  "99": {
+   "q": [
+    0.9215,
+    0.0684,
+    0.9653,
+    0.9402
+   ],
+   "a": [
+    0.3121,
+    0.0657,
+    0.3819,
+    0.3048
+   ]
+  },
+  "100": {
+   "q": [
+    0.8775,
+    0.0684,
+    0.9215,
+    0.9402
+   ],
+   "a": [
+    0.3121,
+    0.334,
+    0.3819,
+    0.573
+   ]
+  },
+  "101": {
+   "q": [
+    0.8337,
+    0.0684,
+    0.8775,
+    0.9402
+   ],
+   "a": [
+    0.2422,
+    0.0657,
+    0.3121,
+    0.3048
+   ]
+  }
+ },
+ "short": "三字12",
+ "kindCode": "S",
+ "lenClass": "short"
+}
