@@ -7,12 +7,16 @@
  "print2up": true,
  "page": 72,
  "vol": 2,
- "title": "実践問題編 27",
- "tag": "p.72・実践問題",
+ "title": "実践問題編 14",
+ "tag": "p.72-73・実践問題",
  "questionPages": [
   {
    "full": "units/KN2-072/qp_1.jpg",
    "small": "units/KN2-072/qp_1_small.jpg"
+  },
+  {
+   "full": "units/KN2-072/qp_2.jpg",
+   "small": "units/KN2-072/qp_2_small.jpg"
   }
  ],
  "answerPages": [
@@ -34,5 +38,9 @@
   }
  ],
  "questionGroups": [],
- "view": true
+ "view": true,
+ "pages": [
+  72,
+  73
+ ]
 }

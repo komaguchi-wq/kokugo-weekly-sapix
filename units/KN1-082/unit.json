@@ -7,7 +7,7 @@
  "print2up": true,
  "page": 82,
  "vol": 1,
- "title": "実践問題編 5",
+ "title": "実践問題編 3",
  "tag": "p.82・実践問題（解答なし）",
  "questionPages": [
   {
@@ -17,5 +17,8 @@
  ],
  "answerPages": [],
  "questionGroups": [],
- "view": true
+ "view": true,
+ "pages": [
+  82
+ ]
 }

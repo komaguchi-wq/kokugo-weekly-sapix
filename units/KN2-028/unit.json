@@ -7,7 +7,7 @@
  "print2up": true,
  "page": 28,
  "vol": 2,
- "title": "実践問題編 15",
+ "title": "実践問題編 8",
  "tag": "p.28・実践問題",
  "questionPages": [
   {
@@ -30,5 +30,8 @@
   }
  ],
  "questionGroups": [],
- "view": true
+ "view": true,
+ "pages": [
+  28
+ ]
 }

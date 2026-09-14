@@ -484,7 +484,12 @@ async function bulkPrint(kind) {
         const img = await loadImage(imgURL(unit, unit.questionPages[0].full));
         sheets.push(drawKanjiSheet(img, unit, keys));
       } else {
-        for (const p of unit.questionPages || []) sheets.push(plainSheet(await loadImage(imgURL(unit, p.full))));
+        const imgs = [];
+        for (const p of unit.questionPages || []) imgs.push(await loadImage(imgURL(unit, p.full)));
+        if (!imgs.length) continue;
+        // 単元内の印刷と同じ: print2up（言葉ナビ実践問題の見開き等）はB4横2面付け
+        if (unit.print2up) sheets.push(...build2upSheets(imgs));
+        else imgs.forEach((img) => sheets.push(plainSheet(img)));
       }
     } catch (e) { console.warn('bulk print load fail', u.id, e); }
   }

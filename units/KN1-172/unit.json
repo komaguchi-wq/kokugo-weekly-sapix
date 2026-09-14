@@ -7,7 +7,7 @@
  "print2up": true,
  "page": 172,
  "vol": 1,
- "title": "実践問題編 7",
+ "title": "実践問題編 4",
  "tag": "p.172・実践問題（解答なし）",
  "questionPages": [
   {
@@ -17,5 +17,8 @@
  ],
  "answerPages": [],
  "questionGroups": [],
- "view": true
+ "view": true,
+ "pages": [
+  172
+ ]
 }

@@ -7,12 +7,16 @@
  "print2up": true,
  "page": 48,
  "vol": 2,
- "title": "実践問題編 3",
- "tag": "p.48・実践問題",
+ "title": "実践問題編 2",
+ "tag": "p.48-49・実践問題",
  "questionPages": [
   {
    "full": "units/KN2-048/qp_1.jpg",
    "small": "units/KN2-048/qp_1_small.jpg"
+  },
+  {
+   "full": "units/KN2-048/qp_2.jpg",
+   "small": "units/KN2-048/qp_2_small.jpg"
   }
  ],
  "answerPages": [
@@ -34,5 +38,9 @@
   }
  ],
  "questionGroups": [],
- "view": true
+ "view": true,
+ "pages": [
+  48,
+  49
+ ]
 }

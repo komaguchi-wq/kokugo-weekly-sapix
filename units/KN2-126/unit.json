@@ -7,12 +7,16 @@
  "print2up": true,
  "page": 126,
  "vol": 2,
- "title": "実践問題編 11",
- "tag": "p.126・実践問題",
+ "title": "実践問題編 6",
+ "tag": "p.126-127・実践問題",
  "questionPages": [
   {
    "full": "units/KN2-126/qp_1.jpg",
    "small": "units/KN2-126/qp_1_small.jpg"
+  },
+  {
+   "full": "units/KN2-126/qp_2.jpg",
+   "small": "units/KN2-126/qp_2_small.jpg"
   }
  ],
  "answerPages": [
@@ -34,5 +38,9 @@
   }
  ],
  "questionGroups": [],
- "view": true
+ "view": true,
+ "pages": [
+  126,
+  127
+ ]
 }

@@ -7,15 +7,23 @@
  "print2up": true,
  "page": 42,
  "vol": 1,
- "title": "実践問題編 3",
- "tag": "p.42・実践問題（解答なし）",
+ "title": "実践問題編 2",
+ "tag": "p.42-43・実践問題（解答なし）",
  "questionPages": [
   {
    "full": "units/KN1-042/qp_1.jpg",
    "small": "units/KN1-042/qp_1_small.jpg"
+  },
+  {
+   "full": "units/KN1-042/qp_2.jpg",
+   "small": "units/KN1-042/qp_2_small.jpg"
   }
  ],
  "answerPages": [],
  "questionGroups": [],
- "view": true
+ "view": true,
+ "pages": [
+  42,
+  43
+ ]
 }
