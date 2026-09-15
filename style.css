@@ -337,6 +337,7 @@ body {
 }
 .wsm-spread-half { flex: 1 1 0; min-width: 0; }
 .wsm-spread-half img { border-radius: 0; box-shadow: none; }
+.wsm-spread-blank { background: #fafafa; border: 1px dashed #d8d8dc; border-radius: 4px; }
 
 /* ===== プリントオーバーレイ（iPad対応・画面上は不可視）===== */
 #print-overlay {

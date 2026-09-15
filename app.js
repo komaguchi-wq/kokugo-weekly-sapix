@@ -707,13 +707,32 @@ function applyTabVisibility() {
 // print2up の単元（縦長ページを印刷でB4横2面付けするもの）は、画面表示も印刷と同じ
 // 2ページ見開き（縦書きの読み順=奇数ページを右・次ページを左）で並べる。
 // 縦ページを1枚ずつ横幅いっぱいに出すと拡大されすぎるため（2026-09-07 ユーザー要望）。
-function pagesHTML(pages, pt, label, twoUp, marks) {
+function pagesHTML(pages, pt, label, twoUp, marks, spreads) {
   const img = (p, i) => {
     const tag = `<img src="${imgURL(state.current, p.full)}" loading="lazy" alt="${label}${i + 1}">`;
     return (pt === 'q' && i === 0 && marks) ? `<div class="kanji-wrap">${tag}${marks}</div>` : tag;
   };
   const hide = pt === 'a' ? ' style="display:none"' : '';
   const note = pt === 'q' && marks ? '（赤枠=対象問題）' : '';
+  // ★2026-09-15 冊子（B5縦）は本来の見開き（B4横・右綴じ＝右が若い番号）で表示: unit.json spreads
+  //   要素 [i] = 横長1ページを1面 / [right, left] = 見開き（null = 白ページ）
+  if (spreads && spreads.length) {
+    const half = (idx) => idx == null ? '<div class="wsm-spread-half wsm-spread-blank"></div>'
+      : `<div class="wsm-spread-half">${img(pages[idx], idx)}</div>`;
+    return spreads.map((g) => {
+      const nums = g.filter((x) => x != null).map((x) => x + 1).join('・');
+      if (g.length === 1) return `
+      <div class="wsm-page" data-pt="${pt}"${hide}>
+        <div class="wsm-page-label">${label} ${nums} / ${pages.length}${note}</div>
+        ${img(pages[g[0]], g[0])}
+      </div>`;
+      return `
+      <div class="wsm-page" data-pt="${pt}"${hide}>
+        <div class="wsm-page-label">${label} ${nums} / ${pages.length}（見開き）${note}</div>
+        <div class="wsm-spread">${half(g[1])}${half(g[0])}</div>
+      </div>`;
+    }).join('');
+  }
   if (!twoUp) {
     return pages.map((p, i) => `
       <div class="wsm-page" data-pt="${pt}"${hide}>
@@ -743,9 +762,10 @@ function renderPages() {
   // 解答タブは print2up（漢字特訓の 解答+解いた原本 もペア）
   const q2up = !!u.print2up && !u.cellRects;
   const a2up = !!u.print2up;
+  const sp = u.spreads || {};
   el.innerHTML =
-    pagesHTML(u.questionPages || [], 'q', '問題', q2up, marks) +
-    pagesHTML(u.answerPages || [], 'a', '解答', a2up, '');
+    pagesHTML(u.questionPages || [], 'q', '問題', q2up, sp.q ? '' : marks, sp.q) +
+    pagesHTML(u.answerPages || [], 'a', '解答', a2up, '', sp.a);
   // ★2026-09-15 解説（HTML断片 units/{id}/kaisetsu.html）: 解答タブの末尾に付ける（社会v2/理科v2と同じ型）
   if (u.kaisetsu) {
     el.insertAdjacentHTML('beforeend',
@@ -959,36 +979,41 @@ async function printCurrentTab() {
     try { imgs.push(await loadImage(imgURL(u, p.full))); } catch (e) {}
   }
   if (!imgs.length) { alert('画像の読み込みに失敗しました'); return; }
-  const dataURLs = u.print2up ? build2upSheets(imgs) : imgs.map((img) => {
+  const single = (img) => {
     const cc = document.createElement('canvas');
     cc.width = img.width; cc.height = img.height;
     cc.getContext('2d').drawImage(img, 0, 0);
     return cc.toDataURL('image/jpeg', 0.92);
-  });
+  };
+  const sp = (u.spreads || {})[state.showingAnswer ? 'a' : 'q'];
+  const dataURLs = sp && sp.length
+    ? sp.map((g) => g.length === 1 ? single(imgs[g[0]]) : _sheet2up(g[0] == null ? null : imgs[g[0]], g[1] == null ? null : imgs[g[1]]))
+    : (u.print2up ? build2upSheets(imgs) : imgs.map(single));
   _openPrintOverlay(dataURLs);
 }
 
 // 縦長ページ2枚を1枚のB4横シートへ（縦書きの読み順=1枚目を右・2枚目を左）
 function build2upSheets(imgs) {
   const out = [];
-  for (let i = 0; i < imgs.length; i += 2) {
-    const right = imgs[i];
-    const left = imgs[i + 1] || null;
-    const H = Math.max(right.height, left ? left.height : 0);
-    const rw = Math.round(right.width * H / right.height);
-    const lw = left ? Math.round(left.width * H / left.height) : rw;
-    const gutter = Math.round(H * 0.015);
-    const W = rw + lw + gutter;
-    const cc = document.createElement('canvas');
-    cc.width = W; cc.height = H;
-    const ctx = cc.getContext('2d');
-    ctx.fillStyle = '#fff';
-    ctx.fillRect(0, 0, W, H);
-    ctx.drawImage(right, W - rw, 0, rw, H);
-    if (left) ctx.drawImage(left, 0, 0, lw, H);
-    out.push(cc.toDataURL('image/jpeg', 0.92));
-  }
+  for (let i = 0; i < imgs.length; i += 2) out.push(_sheet2up(imgs[i], imgs[i + 1] || null));
   return out;
+}
+// 見開き1枚（右・左のどちらかが null なら白）を B4横相当の1シートに合成
+function _sheet2up(right, left) {
+  const ref = right || left;
+  const H = Math.max(right ? right.height : 0, left ? left.height : 0);
+  const rw = right ? Math.round(right.width * H / right.height) : Math.round(ref.width * H / ref.height);
+  const lw = left ? Math.round(left.width * H / left.height) : rw;
+  const gutter = Math.round(H * 0.015);
+  const W = rw + lw + gutter;
+  const cc = document.createElement('canvas');
+  cc.width = W; cc.height = H;
+  const ctx = cc.getContext('2d');
+  ctx.fillStyle = '#fff';
+  ctx.fillRect(0, 0, W, H);
+  if (right) ctx.drawImage(right, W - rw, 0, rw, H);
+  if (left) ctx.drawImage(left, 0, 0, lw, H);
+  return cc.toDataURL('image/jpeg', 0.92);
 }
 
 // ---- プリントオーバーレイ（理科v2/社会v2と同方式・iPad対応） ----
