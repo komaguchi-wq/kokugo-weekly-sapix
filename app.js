@@ -408,6 +408,14 @@ function renderUnits() {
           })() : ''}
         </span>
       </div>`;
+    const pk = sheetCat ? pickOf(cat) : null;
+    if (sheetCat) html += pickBarHTML(cat, pk, noun);
+    const bulkCard0 = (u) => {
+      if (!pk || !pk.on) return bulkCard(u);
+      const on = pk.sel.has(u.id);
+      return bulkCard(u).replace('class="unit-card ', `class="unit-card pick-mode${on ? ' picked' : ''} `)
+        .replace('<span class="unit-icon">', `<span class="pick-check">${on ? '✓' : ''}</span><span class="unit-icon">`);
+    };
     const bulkCard = (u) => {
       if (bf === 'all') return cardHTML(u);
       const t = bulkTargets(u);
@@ -427,9 +435,9 @@ function renderUnits() {
       }
       html += groups.map((g) =>
         `<section class="week-group"><h3 class="week-head">${g.week}（${g.units.length}${noun}）</h3>` +
-        g.units.map(bulkCard).join('') + '</section>').join('');
+        g.units.map(bulkCard0).join('') + '</section>').join('');
     } else {
-      html += units.map(bulkCard).join('');
+      html += units.map(bulkCard0).join('');
     }
   } else if (cat.id === 'daily') {
     html = units.map(cardHTML).join('');
@@ -445,7 +453,12 @@ function renderUnits() {
   }
   list.innerHTML = html || '<p class="loading">まだ単元がありません。</p>';
   list.querySelectorAll('.unit-card[data-id]').forEach((c) =>
-    c.addEventListener('click', () => openUnit(c.dataset.id)));
+    c.addEventListener('click', () => {
+      const pk = REVIEW_CFG[cat.id] ? pickOf(cat) : null;
+      if (pk && pk.on) { togglePick(cat, c); return; }   // 選んで印刷モード中はタップで選択
+      openUnit(c.dataset.id);
+    }));
+  bindPickBar(cat, list);
   list.querySelectorAll('[data-kb-mode]').forEach((btn) =>
     btn.addEventListener('click', () => { bulkFilters[cat.id] = btn.dataset.kbMode; renderUnits(); }));
   list.querySelectorAll('[data-bulk-print]').forEach((btn) =>
@@ -465,6 +478,26 @@ function plainSheet(img) {
   cc.getContext('2d').drawImage(img, 0, 0);
   return cc.toDataURL('image/jpeg', 0.92);
 }
+// 1単元ぶんの印刷シート（kind='q' 問題 / 'a' 解答）。keys=赤枠を焼き込む対象マス（空なら枠なし）
+async function unitPrintSheets(unit, kind, keys) {
+  const sheets = [];
+  if (kind === 'a') {
+    const imgs = [];
+    for (const p of unit.answerPages || []) imgs.push(await loadImage(imgURL(unit, p.full)));
+    if (unit.print2up) sheets.push(...build2upSheets(imgs));
+    else imgs.forEach((img) => sheets.push(plainSheet(img)));
+  } else if (unit.cellRects) {
+    const img = await loadImage(imgURL(unit, unit.questionPages[0].full));
+    sheets.push(drawKanjiSheet(img, unit, keys));
+  } else {
+    const imgs = [];
+    for (const p of unit.questionPages || []) imgs.push(await loadImage(imgURL(unit, p.full)));
+    // 単元内の印刷と同じ: print2up（言葉ナビ実践問題の見開き等）はB4横2面付け
+    if (unit.print2up) sheets.push(...build2upSheets(imgs));
+    else imgs.forEach((img) => sheets.push(plainSheet(img)));
+  }
+  return sheets;
+}
 async function bulkPrint(kind) {
   const cat = state.category;
   if (!cat || !cat.bulk) return;
@@ -476,27 +509,128 @@ async function bulkPrint(kind) {
     const keys = targetKeys(unit, bf);
     if (bf !== 'all' && keys.length === 0) continue;   // 対象なしの単元は印刷しない
     try {
-      if (kind === 'a') {
-        const imgs = [];
-        for (const p of unit.answerPages || []) imgs.push(await loadImage(imgURL(unit, p.full)));
-        if (!imgs.length) continue;
-        if (unit.print2up) sheets.push(...build2upSheets(imgs));
-        else imgs.forEach((img) => sheets.push(plainSheet(img)));
-      } else if (unit.cellRects) {
-        const img = await loadImage(imgURL(unit, unit.questionPages[0].full));
-        sheets.push(drawKanjiSheet(img, unit, keys));
-      } else {
-        const imgs = [];
-        for (const p of unit.questionPages || []) imgs.push(await loadImage(imgURL(unit, p.full)));
-        if (!imgs.length) continue;
-        // 単元内の印刷と同じ: print2up（言葉ナビ実践問題の見開き等）はB4横2面付け
-        if (unit.print2up) sheets.push(...build2upSheets(imgs));
-        else imgs.forEach((img) => sheets.push(plainSheet(img)));
-      }
+      sheets.push(...await unitPrintSheets(unit, kind, keys));
     } catch (e) { console.warn('bulk print load fail', u.id, e); }
   }
   if (!sheets.length) { alert('対象問題のある単元がありません'); return; }
   _openPrintOverlay(sheets);
+}
+
+// ---- 選んで印刷（漢字の要/言葉ナビ）----
+//   セクション＋番号の範囲（例: 細部ミス 16〜20）やカードのタップでページを選び、
+//   「問題（選んだ順＝本の順）→ 解答」を1回の印刷にまとめる。選択は画面内だけ（保存しない）。
+const pickStates = {};   // cat.id -> { on, sel:Set<unitId>, sec }
+function pickOf(cat) {
+  return pickStates[cat.id] || (pickStates[cat.id] = { on: false, sel: new Set(), sec: 0 });
+}
+// セクション = week ＋ タイトルの番号前（言葉ナビは章の中に複数セクション）。番号はセクション内で 1〜
+function pickSections(cat) {
+  const secs = [];
+  for (const u of unitsOf(cat)) {
+    const m = String(u.title).match(/^(.*) (\d+)$/);
+    const name = m ? m[1] : u.title, no = m ? +m[2] : 1;
+    let s = secs[secs.length - 1];
+    if (!s || s.week !== u.week || s.name !== name) {
+      s = { week: u.week, name, units: [] };
+      secs.push(s);
+    }
+    s.units.push({ no, id: u.id });
+  }
+  return secs;
+}
+function pickBarHTML(cat, pk, noun) {
+  if (!pk.on) {
+    return `<div class="pick-bar"><button class="btn-pick-toggle" data-pick="open">☑ ${noun}を選んで印刷（例: 16〜20）</button></div>`;
+  }
+  const secs = pickSections(cat);
+  const sec = secs[pk.sec] || secs[0];
+  const label = (s) => (cat.id === 'kaname' ? s.name : `${s.week}｜${s.name}`) + `（1〜${s.units.length}）`;
+  const n = pk.sel.size;
+  return `<div class="pick-bar pick-bar-on">
+      <div class="pick-row">
+        <select class="pick-sec" data-pick="sec">${secs.map((s, i) =>
+          `<option value="${i}"${s === sec ? ' selected' : ''}>${label(s)}</option>`).join('')}</select>
+        <span class="pick-range">
+          <input class="pick-num" type="number" inputmode="numeric" min="1" max="${sec.units.length}" data-pick="from" placeholder="1">
+          〜
+          <input class="pick-num" type="number" inputmode="numeric" min="1" max="${sec.units.length}" data-pick="to" placeholder="${sec.units.length}">
+          <button class="btn-pick-add" data-pick="add">選ぶ</button>
+        </span>
+      </div>
+      <div class="pick-row">
+        <span class="pick-count">選択中 <b data-pick-count>${n}</b> ${noun}（カードをタップでも追加・解除）</span>
+        <span class="pick-btns">
+          <button class="btn-pick-sub" data-pick="clear">クリア</button>
+          <button class="btn-pick-sub" data-pick="close">やめる</button>
+          <button class="btn-bulk-print" data-pick="print"${n ? '' : ' disabled'}>🖨 問題→解答を印刷（<span data-pick-count>${n}</span>${noun}）</button>
+        </span>
+      </div>
+    </div>`;
+}
+function updatePickCount(cat, list) {
+  const n = pickOf(cat).sel.size;
+  list.querySelectorAll('[data-pick-count]').forEach((el) => { el.textContent = n; });
+  const pb = list.querySelector('[data-pick="print"]');
+  if (pb) pb.disabled = n === 0;
+}
+function togglePick(cat, card) {
+  const pk = pickOf(cat), id = card.dataset.id;
+  if (pk.sel.has(id)) pk.sel.delete(id); else pk.sel.add(id);
+  const on = pk.sel.has(id);
+  card.classList.toggle('picked', on);
+  const chk = card.querySelector('.pick-check');
+  if (chk) chk.textContent = on ? '✓' : '';
+  updatePickCount(cat, $('#unit-list'));
+}
+function bindPickBar(cat, list) {
+  if (!REVIEW_CFG[cat.id]) return;
+  const pk = pickOf(cat);
+  const q = (k) => list.querySelector(`[data-pick="${k}"]`);
+  const on = (k, ev, fn) => { const el = q(k); if (el) el.addEventListener(ev, fn); };
+  on('open', 'click', () => { pk.on = true; renderUnits(); });
+  on('close', 'click', () => { pk.on = false; renderUnits(); });
+  on('clear', 'click', () => { pk.sel.clear(); renderUnits(); });
+  on('sec', 'change', (e) => { pk.sec = +e.target.value; renderUnits(); });
+  on('add', 'click', () => {
+    const sec = pickSections(cat)[pk.sec];
+    if (!sec) return;
+    const max = sec.units.length;
+    const val = (k, d) => { const v = parseInt(q(k).value, 10); return Number.isFinite(v) ? v : d; };
+    let a = val('from', 1), b = val('to', max);
+    if (a > b) [a, b] = [b, a];
+    a = Math.max(1, a); b = Math.min(max, b);
+    const hit = sec.units.filter((x) => x.no >= a && x.no <= b);
+    if (!hit.length) { alert(`番号は 1〜${max} の間で入れてください`); return; }
+    hit.forEach((x) => pk.sel.add(x.id));
+    renderUnits();
+    const first = list.querySelector(`.unit-card[data-id="${hit[0].id}"]`);
+    if (first) first.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  });
+  on('print', 'click', async (e) => {
+    const btn = e.currentTarget;
+    const ids = unitsOf(cat).map((u) => u.id).filter((id) => pk.sel.has(id));   // 本の順
+    if (!ids.length) return;
+    const bf = bulkFilterOf(cat);
+    const label = btn.innerHTML;
+    btn.disabled = true;
+    btn.textContent = '⏳ 準備中…';
+    try {
+      const qs = [], as = [];
+      for (const id of ids) {
+        const unit = state.unitCache[id];
+        if (!unit) continue;
+        try {
+          qs.push(...await unitPrintSheets(unit, 'q', targetKeys(unit, bf)));   // 絞り込み中なら対象マスに赤枠
+          as.push(...await unitPrintSheets(unit, 'a', []));
+        } catch (err) { console.warn('pick print load fail', id, err); }
+      }
+      if (!qs.length && !as.length) { alert('画像の読み込みに失敗しました'); return; }
+      await _openPrintOverlay([...qs, ...as]);
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = label;
+    }
+  });
 }
 
 // ==============================
