@@ -772,7 +772,7 @@ function renderPages() {
       `<div class="wsm-page wsm-kaisetsu-wrap" data-pt="a" style="display:none" id="wsm-kaisetsu">
          <div class="wsm-page-label">解説</div>
          <div class="kaisetsu-toolbar">
-           <span class="kaisetsu-toolbar-title">解説（👀 まず見るところ → 📚 前提知識 → 🔍 こう読み解く／✍️ 答案の組み立て → 答え → 今回）</span>
+           <span class="kaisetsu-toolbar-title">解説（① 聞き方 → ② 傍線を切る → ③ 部品を集める → 答え → 今回）</span>
            <button type="button" class="kaisetsu-print-btn" onclick="printWsKaisetsu()">🖨 解説を印刷（B4横）</button>
          </div>
          <div class="kaisetsu" id="wsm-kaisetsu-body"><p class="kaisetsu-loading">解説を読み込み中…</p></div>
