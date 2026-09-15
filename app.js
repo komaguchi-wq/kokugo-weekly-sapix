@@ -485,7 +485,7 @@ async function unitPrintSheets(unit, kind, keys) {
     const imgs = [];
     for (const p of unit.answerPages || []) imgs.push(await loadImage(imgURL(unit, p.full)));
     if (unit.print2up) sheets.push(...build2upSheets(imgs));
-    else imgs.forEach((img) => sheets.push(plainSheet(img)));
+    else imgs.forEach((img, i) => sheets.push(markBlackRed(plainSheet(img), isBlackRedPage(unit, unit.answerPages[i]))));
   } else if (unit.cellRects) {
     const img = await loadImage(imgURL(unit, unit.questionPages[0].full));
     sheets.push(drawKanjiSheet(img, unit, keys));
@@ -1108,9 +1108,9 @@ async function printCurrentTab() {
   }
   const pages = state.showingAnswer ? u.answerPages : u.questionPages;
   if (!pages || !pages.length) return;
-  const imgs = [];
+  const imgs = [], loaded = [];
   for (const p of pages) {
-    try { imgs.push(await loadImage(imgURL(u, p.full))); } catch (e) {}
+    try { imgs.push(await loadImage(imgURL(u, p.full))); loaded.push(p); } catch (e) {}
   }
   if (!imgs.length) { alert('画像の読み込みに失敗しました'); return; }
   const single = (img) => {
@@ -1122,7 +1122,8 @@ async function printCurrentTab() {
   const sp = (u.spreads || {})[state.showingAnswer ? 'a' : 'q'];
   const dataURLs = sp && sp.length
     ? sp.map((g) => g.length === 1 ? single(imgs[g[0]]) : _sheet2up(g[0] == null ? null : imgs[g[0]], g[1] == null ? null : imgs[g[1]]))
-    : (u.print2up ? build2upSheets(imgs) : imgs.map(single));
+    : (u.print2up ? build2upSheets(imgs)
+      : imgs.map((img, i) => markBlackRed(single(img), state.showingAnswer && isBlackRedPage(u, loaded[i]))));
   _openPrintOverlay(dataURLs);
 }
 
@@ -1269,8 +1270,138 @@ function _loadPrintImage(u) {
 }
 // dataURL の配列を1枚ずつ濃度補正して JPEG dataURL に置き換える（作業canvasは1枚を使い回し、
 // 各ページの後で width=0 で即解放＝iOS の canvas メモリ枯渇対策。算数アプリと同じ）
+// ===== 黒と赤の2色刷りページの高速印刷（2026-09-15 ユーザー要望: 漢字の要の解答のカラー印刷がとても遅い）=====
+// 本の赤は網点のうすい赤(≈246,135,143)、黒文字のふちや見出しの帯はグレー＝プリンターが1点ずつ色を計算して遅い。
+// 解答ページは色味が要らないので「白・真っ黒・真っ赤(255,0,0)」の3色だけにして PNG で渡す（JPEGは色のにじみが戻る）。
+//  - 赤: R-(G+B)/2 ≥ 50 かつ R ≥ 150
+//  - 平らなグレーの帯（見出し帯など）: 白にして、中の文字だけ（明るさ<135）黒
+//  - それ以外: 明るさ<160 は黒。□や罫線などうすい長い細線（明るさ<225・24px以上・太さ5px以下）も黒で残す
+// 対象: 漢字の要（kanji-kaname）の解答ページ・解き直しシートの解答。解いた用紙（solved_*）は鉛筆があるので対象外。
+// ?print=color で無効（濃度補正と同じスイッチ）。
+const _blackRedSheets = new Set();
+function isBlackRedPage(unit, page) {
+  return !!(unit && unit.category === 'kanji-kaname' && page && !/solved/.test(page.full || ''));
+}
+function markBlackRed(url, on) { if (on && url) _blackRedSheets.add(url); return url; }
+function _boxMean(src, w, h, r) {
+  const tmp = new Float32Array(w * h), out = new Float32Array(w * h), k = 2 * r + 1;
+  for (let y = 0; y < h; y++) {
+    const o = y * w; let acc = 0;
+    for (let x = -r; x <= r; x++) acc += src[o + Math.min(w - 1, Math.max(0, x))];
+    for (let x = 0; x < w; x++) {
+      tmp[o + x] = acc / k;
+      acc += src[o + Math.min(w - 1, x + r + 1)] - src[o + Math.max(0, x - r)];
+    }
+  }
+  for (let x = 0; x < w; x++) {
+    let acc = 0;
+    for (let y = -r; y <= r; y++) acc += tmp[Math.min(h - 1, Math.max(0, y)) * w + x];
+    for (let y = 0; y < h; y++) {
+      out[y * w + x] = acc / k;
+      acc += tmp[Math.min(h - 1, y + r + 1) * w + x] - tmp[Math.max(0, y - r) * w + x];
+    }
+  }
+  return out;
+}
+// 平らなグレーの面（9px四方の標準偏差<25・平均120〜235）を3x3ブロックで判定し1ブロック広げたマスク
+function _flatGrayMask(L, w, h) {
+  const B = 3, sw = Math.ceil(w / B), sh = Math.ceil(h / B);
+  const m1 = new Float32Array(sw * sh), m2 = new Float32Array(sw * sh);
+  for (let by = 0; by < sh; by++) for (let bx = 0; bx < sw; bx++) {
+    let s1 = 0, s2 = 0;
+    for (let yy = 0; yy < B; yy++) {
+      const y = Math.min(h - 1, by * B + yy);
+      for (let xx = 0; xx < B; xx++) { const v = L[y * w + Math.min(w - 1, bx * B + xx)]; s1 += v; s2 += v * v; }
+    }
+    m1[by * sw + bx] = s1 / (B * B); m2[by * sw + bx] = s2 / (B * B);
+  }
+  const M1 = _boxMean(m1, sw, sh, 1), M2 = _boxMean(m2, sw, sh, 1);
+  const k0 = new Uint8Array(sw * sh);
+  for (let i = 0; i < sw * sh; i++) {
+    const sd = Math.sqrt(Math.max(M2[i] - M1[i] * M1[i], 0));
+    k0[i] = (sd < 25 && M1[i] >= 120 && M1[i] < 235) ? 1 : 0;
+  }
+  const mask = new Uint8Array(w * h);
+  for (let by = 0; by < sh; by++) for (let bx = 0; bx < sw; bx++) {
+    let v = 0;
+    for (let dy = -1; dy <= 1 && !v; dy++) for (let dx = -1; dx <= 1; dx++) {
+      const yy = by + dy, xx = bx + dx;
+      if (yy >= 0 && yy < sh && xx >= 0 && xx < sw && k0[yy * sw + xx]) { v = 1; break; }
+    }
+    if (!v) continue;
+    for (let y = by * B; y < Math.min(h, by * B + B); y++) for (let x = bx * B; x < Math.min(w, bx * B + B); x++) mask[y * w + x] = 1;
+  }
+  return mask;
+}
+// うすい長い細線（明るさ<LT が、GAP px までの切れ目を埋めて RUN px 以上続き、太さ THICK px 以下）
+function _longThinLineMask(L, w, h, LT, RUN, GAP, THICK) {
+  const n = w * h, m = new Uint8Array(n);
+  for (let i = 0; i < n; i++) m[i] = L[i] < LT ? 1 : 0;
+  const th = new Uint16Array(n), tw = new Uint16Array(n);
+  for (let y = 0; y < h; y++) {
+    const o = y * w;
+    for (let x = 0; x < w; ) {
+      if (!m[o + x]) { x++; continue; }
+      const s = x; while (x < w && m[o + x]) x++;
+      for (let k = s; k < x; k++) tw[o + k] = Math.min(x - s, 65535);
+    }
+  }
+  for (let x = 0; x < w; x++) {
+    for (let y = 0; y < h; ) {
+      if (!m[y * w + x]) { y++; continue; }
+      const s = y; while (y < h && m[y * w + x]) y++;
+      for (let k = s; k < y; k++) th[k * w + x] = Math.min(y - s, 65535);
+    }
+  }
+  const line = new Uint8Array(n), rowC = new Uint8Array(w), colC = new Uint8Array(h);
+  for (let y = 0; y < h; y++) {
+    const o = y * w;
+    for (let x = 0; x < w; x++) {
+      let v = m[o + x];
+      for (let k = 1; k <= GAP && !v; k++) if (x - k >= 0 && x + k < w && m[o + x - k] && m[o + x + k]) v = 1;
+      rowC[x] = v;
+    }
+    for (let x = 0; x < w; ) {
+      if (!rowC[x]) { x++; continue; }
+      const s = x; while (x < w && rowC[x]) x++;
+      if (x - s >= RUN) for (let k = s; k < x; k++) if (th[o + k] <= THICK) line[o + k] = 1;
+    }
+  }
+  for (let x = 0; x < w; x++) {
+    for (let y = 0; y < h; y++) {
+      let v = m[y * w + x];
+      for (let k = 1; k <= GAP && !v; k++) if (y - k >= 0 && y + k < h && m[(y - k) * w + x] && m[(y + k) * w + x]) v = 1;
+      colC[y] = v;
+    }
+    for (let y = 0; y < h; ) {
+      if (!colC[y]) { y++; continue; }
+      const s = y; while (y < h && colC[y]) y++;
+      if (y - s >= RUN) for (let k = s; k < y; k++) if (tw[k * w + x] <= THICK) line[k * w + x] = 1;
+    }
+  }
+  return line;
+}
+function toBlackRed(ctx, w, h) {
+  const id = ctx.getImageData(0, 0, w, h);
+  const d = id.data, n = w * h;
+  const L = new Uint8Array(n);
+  for (let i = 0, p = 0; i < n; i++, p += 4) L[i] = (d[p] * 299 + d[p + 1] * 587 + d[p + 2] * 114) / 1000 | 0;
+  const flat = _flatGrayMask(L, w, h);
+  const line = _longThinLineMask(L, w, h, 225, 24, 2, 5);
+  for (let i = 0, p = 0; i < n; i++, p += 4) {
+    const r = d[p], g = d[p + 1], b = d[p + 2];
+    if (r - (g + b) / 2 >= 50 && r >= 150) { d[p] = 255; d[p + 1] = 0; d[p + 2] = 0; }
+    else {
+      const black = flat[i] ? L[i] < 135 : (L[i] < 160 || (line[i] && L[i] < 225));
+      d[p] = d[p + 1] = d[p + 2] = black ? 0 : 255;
+    }
+    d[p + 3] = 255;
+  }
+  ctx.putImageData(id, 0, 0);
+}
+
 async function _monoPrintDataURLs(urls) {
-  if (!PRINT_MONO) return urls;
+  if (!PRINT_MONO) { _blackRedSheets.clear(); return urls; }
   const work = document.createElement("canvas");
   const out = [];
   for (const u of urls) {
@@ -1280,8 +1411,10 @@ async function _monoPrintDataURLs(urls) {
       work.width = im.naturalWidth; work.height = im.naturalHeight;
       const ctx = work.getContext("2d");
       ctx.drawImage(im, 0, 0);
-      toMonoWhite(ctx, work.width, work.height);
-      const j = work.toDataURL("image/jpeg", 0.85);
+      const br = _blackRedSheets.has(u);
+      if (br) toBlackRed(ctx, work.width, work.height);
+      else toMonoWhite(ctx, work.width, work.height);
+      const j = br ? work.toDataURL("image/png") : work.toDataURL("image/jpeg", 0.85);
       if (j && j.length > 1000) r = j;    // iOS は空の canvas から "data:," を返すことがある
     } catch (e) {
       console.warn("print mono failed, using original image", e);
@@ -1291,6 +1424,7 @@ async function _monoPrintDataURLs(urls) {
     out.push(r);
     await new Promise(r2 => setTimeout(r2, 0));   // 1ページごとに event loop へ戻す
   }
+  _blackRedSheets.clear();
   return out;
 }
 
