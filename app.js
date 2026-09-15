@@ -110,6 +110,8 @@ async function init() {
   $('#wsm-print-btn').addEventListener('click', printCurrentTab);
   $('#wsm-tab-q').addEventListener('click', () => setTab(false));
   $('#wsm-tab-a').addEventListener('click', () => setTab(true));
+  const kj = document.getElementById('wsm-kaisetsu-jump');
+  if (kj) kj.addEventListener('click', jumpToWsKaisetsu);
   $('#wsm-table-toggle').addEventListener('click', toggleWsmTableHeight);
   initWsmDivider();
   attachPinchZoom('wsm-pages', '#wsm-pages-inner', 'container', 0.5, 2);   // ページは50%〜200%
@@ -693,6 +695,8 @@ function setTab(showAnswer) {
 function updateTabUI() {
   $('#wsm-tab-q').classList.toggle('active', !state.showingAnswer);
   $('#wsm-tab-a').classList.toggle('active', state.showingAnswer);
+  const jump = document.getElementById('wsm-kaisetsu-jump');
+  if (jump) jump.style.display = (state.current && state.current.kaisetsu) ? '' : 'none';
 }
 function applyTabVisibility() {
   document.querySelectorAll('#wsm-pages .wsm-page[data-pt="q"]').forEach((e) => e.style.display = state.showingAnswer ? 'none' : '');
@@ -742,7 +746,78 @@ function renderPages() {
   el.innerHTML =
     pagesHTML(u.questionPages || [], 'q', '問題', q2up, marks) +
     pagesHTML(u.answerPages || [], 'a', '解答', a2up, '');
+  // ★2026-09-15 解説（HTML断片 units/{id}/kaisetsu.html）: 解答タブの末尾に付ける（社会v2/理科v2と同じ型）
+  if (u.kaisetsu) {
+    el.insertAdjacentHTML('beforeend',
+      `<div class="wsm-page wsm-kaisetsu-wrap" data-pt="a" style="display:none" id="wsm-kaisetsu">
+         <div class="wsm-page-label">解説</div>
+         <div class="kaisetsu-toolbar">
+           <span class="kaisetsu-toolbar-title">解説（👀 まず見るところ → 📚 前提知識 → 🔍 こう読み解く／✍️ 答案の組み立て → 答え → 今回）</span>
+           <button type="button" class="kaisetsu-print-btn" onclick="printWsKaisetsu()">🖨 解説を印刷（B4横）</button>
+         </div>
+         <div class="kaisetsu" id="wsm-kaisetsu-body"><p class="kaisetsu-loading">解説を読み込み中…</p></div>
+       </div>`);
+    loadWsKaisetsu();
+  }
   applyTabVisibility();
+}
+
+// ---- 解説（解答タブ末尾）----
+// 断片は本体repoの units/{id}/kaisetsu.html（画像repoではない）。単元ごとに1回だけ fetch してキャッシュ
+const _kaisetsuCache = {};
+function wsKaisetsuURL() {
+  const u = state.current;
+  if (!u || !u.kaisetsu) return null;
+  return `units/${u.id}/${u.kaisetsu}`;
+}
+async function loadWsKaisetsu() {
+  const url = wsKaisetsuURL();
+  const body = document.getElementById('wsm-kaisetsu-body');
+  if (!url || !body) return;
+  try {
+    if (!_kaisetsuCache[url]) {
+      const res = await fetch(url, { cache: 'no-cache' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      _kaisetsuCache[url] = await res.text();
+    }
+    if (document.getElementById('wsm-kaisetsu-body') === body) {
+      body.innerHTML = _kaisetsuCache[url];
+      // 目次リンク(#一 等)は location.hash（画面ルーティング）を変えずにブロック内スクロール
+      body.querySelectorAll(".toc a[href^='#']").forEach((a) => a.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        const target = body.querySelector(`[id="${a.getAttribute('href').slice(1)}"]`);
+        const pages = document.getElementById('wsm-pages');
+        if (target && pages) pages.scrollTop = pages.scrollTop + target.getBoundingClientRect().top - pages.getBoundingClientRect().top - 6;
+      }));
+    }
+  } catch (e) {
+    body.innerHTML = `<p class="kaisetsu-loading">解説を読み込めませんでした（${e.message}）</p>`;
+  }
+}
+// 「解説へ▼」: 解答タブに切り替えて解説ブロックまでスクロール
+function jumpToWsKaisetsu() {
+  if (!state.showingAnswer) setTab(true);
+  const el = document.getElementById('wsm-kaisetsu');
+  const pages = document.getElementById('wsm-pages');
+  if (el && pages) pages.scrollTop = pages.scrollTop + el.getBoundingClientRect().top - pages.getBoundingClientRect().top - 6;
+}
+// 解説の印刷: B4横・2段組（他の解答解説と同じ紙）。画像の印刷（.pg）とは別に HTML をそのまま流す
+async function printWsKaisetsu() {
+  const url = wsKaisetsuURL();
+  if (!url) return;
+  if (!_kaisetsuCache[url]) await loadWsKaisetsu();
+  const html = _kaisetsuCache[url];
+  if (!html) { alert('解説がまだ読み込めていません'); return; }
+  const body = document.getElementById('print-overlay-body');
+  if (!body) return;
+  _resetPrintOverlay();
+  const u = state.current;
+  const title = `${u.id} ${u.title || ''} 解説`;
+  body.innerHTML = `<div class="kp"><div class="kp-title">${title}</div><div class="kaisetsu kaisetsu-print">${html}</div></div>`;
+  let style = document.getElementById('dynamic-print-page');
+  if (!style) { style = document.createElement('style'); style.id = 'dynamic-print-page'; document.head.appendChild(style); }
+  style.textContent = `@page { size: B4 landscape; margin: 12mm 12mm 12mm 12mm; }`;
+  requestAnimationFrame(() => { try { window.print(); } catch (e) { console.warn('print err', e); } });
 }
 
 // ---- 正誤表（両タブ共通・常時表示。○×は複数回記録: タップ=仮選択→放置/遷移で確定） ----
