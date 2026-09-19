@@ -1,0 +1,83 @@
+{
+  "id": "WS-23-K",
+  "week": "WS-23",
+  "title": "WS-23 知識の総完成",
+  "category": "knowledge",
+  "questionPages": [
+    {
+      "full": "units/WS-23-K/q_1.jpg",
+      "small": "units/WS-23-K/q_1_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/_shared/WS-23/expl_1.jpg",
+      "small": "units/_shared/WS-23/expl_1_small.jpg"
+    },
+    {
+      "full": "units/_shared/WS-23/expl_2.jpg",
+      "small": "units/_shared/WS-23/expl_2_small.jpg"
+    }
+  ],
+  "hasSolved": false,
+  "questions": [
+    "一①a",
+    "一①b",
+    "一②a",
+    "一②b",
+    "一③a",
+    "一③b",
+    "二①",
+    "二②",
+    "二③",
+    "二④",
+    "二⑤",
+    "三①",
+    "三②",
+    "三③",
+    "三④",
+    "四(ア)",
+    "四(イ)",
+    "四(ウ)"
+  ],
+  "questionGroups": [
+    {
+      "head": "一",
+      "labels": [
+        "①a",
+        "①b",
+        "②a",
+        "②b",
+        "③a",
+        "③b"
+      ]
+    },
+    {
+      "head": "二",
+      "labels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ]
+    },
+    {
+      "head": "三",
+      "labels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ]
+    },
+    {
+      "head": "四",
+      "labels": [
+        "(ア)",
+        "(イ)",
+        "(ウ)"
+      ]
+    }
+  ]
+}
