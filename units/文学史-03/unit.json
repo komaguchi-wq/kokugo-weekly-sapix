@@ -1,0 +1,59 @@
+{
+ "id": "文学史-03",
+ "week": "第3回",
+ "title": "テーマ別文学史特訓③ 有名作家 その三",
+ "category": "ss-tokkun",
+ "tag": "文学史6問",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-01/",
+ "questionPages": [
+  {
+   "full": "units/文学史-03/q_1.jpg",
+   "small": "units/文学史-03/q_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/文学史-03/a_1.jpg",
+   "small": "units/文学史-03/a_1_small.jpg"
+  }
+ ],
+ "hasSolved": false,
+ "questions": [
+  "一問1",
+  "一問2",
+  "一問3",
+  "二問1",
+  "二問2",
+  "二問3"
+ ],
+ "questionGroups": [
+  {
+   "head": "一",
+   "labels": [
+    "問1",
+    "問2",
+    "問3"
+   ]
+  },
+  {
+   "head": "二",
+   "labels": [
+    "問1",
+    "問2",
+    "問3"
+   ]
+  }
+ ],
+ "spreads": {
+  "q": [
+   [
+    0
+   ]
+  ],
+  "a": [
+   [
+    0
+   ]
+  ]
+ }
+}

@@ -1,0 +1,104 @@
+{
+ "id": "慶應知識-03",
+ "week": "第3回",
+ "title": "慶應知識問題対策03",
+ "category": "ss-tokkun",
+ "tag": "知識26問",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-01/",
+ "questionPages": [
+  {
+   "full": "units/慶應知識-03/q_1.jpg",
+   "small": "units/慶應知識-03/q_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/慶應知識-03/a_1.jpg",
+   "small": "units/慶應知識-03/a_1_small.jpg"
+  }
+ ],
+ "hasSolved": false,
+ "questions": [
+  "一ア",
+  "一イ",
+  "一ウ",
+  "一エ",
+  "一オ",
+  "二A",
+  "二B",
+  "二C",
+  "二D",
+  "二E",
+  "三ア",
+  "三イ",
+  "三ウ",
+  "三エ",
+  "三オ",
+  "三カ",
+  "三キ",
+  "三ク",
+  "三ケ",
+  "三コ",
+  "三サ",
+  "三シ",
+  "三ス",
+  "三セ",
+  "三ソ",
+  "三タ"
+ ],
+ "questionGroups": [
+  {
+   "head": "一",
+   "labels": [
+    "ア",
+    "イ",
+    "ウ",
+    "エ",
+    "オ"
+   ]
+  },
+  {
+   "head": "二",
+   "labels": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+   ]
+  },
+  {
+   "head": "三",
+   "labels": [
+    "ア",
+    "イ",
+    "ウ",
+    "エ",
+    "オ",
+    "カ",
+    "キ",
+    "ク",
+    "ケ",
+    "コ",
+    "サ",
+    "シ",
+    "ス",
+    "セ",
+    "ソ",
+    "タ"
+   ]
+  }
+ ],
+ "spreads": {
+  "q": [
+   [
+    0
+   ]
+  ],
+  "a": [
+   [
+    0
+   ]
+  ]
+ }
+}
