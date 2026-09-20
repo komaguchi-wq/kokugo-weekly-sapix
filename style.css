@@ -413,13 +413,18 @@ body {
 .wsm-view-note { padding: 8px 12px; font-size: 13px; color: #6e6e73; }
 
 /* kaisetsu-css:begin （scripts/kaisetsu/inject_css.py が生成。手で編集せず css/ を直して再注入） */
-.wsm-tab-jump { margin-left: auto; font-size: 13px; }
+#wsm-tab-k.active { color: #1a6fb5; }
 .wsm-kaisetsu-wrap { margin-top: 8px; }
 .kaisetsu-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
   background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 8px 12px; margin-bottom: 10px; }
 .kaisetsu-toolbar-title { font-size: 13px; color: #555; }
 .kaisetsu-print-btn { font-size: 14px; padding: 6px 12px; border-radius: 8px; border: 1px solid #1a6fb5; background: #eef4fb; color: #1a6fb5; font-weight: 600; }
 .kaisetsu-loading { color: #888; font-size: 14px; padding: 12px; }
+/* ★2026-09-20 問題選択（全問以外）の対象/対象外: 対象は赤い左帯・対象外は薄く。大問ごと対象なしは見出しも薄く */
+.kaisetsu-target-note { background: #fff4f4; border: 1px solid #f1caca; color: #c0392b; border-radius: 10px; padding: 8px 12px; margin-bottom: 10px; font-size: 14px; font-weight: 600; }
+.kaisetsu .card.k-on { border-left: 6px solid #ff3b30; }
+.kaisetsu .card.k-off { opacity: 0.38; }
+.kaisetsu .daimon.k-empty .dtitle, .kaisetsu .daimon.k-empty .card-overview, .kaisetsu .daimon.k-empty .card-summary { opacity: 0.38; }
 .kaisetsu { --k-ink:#222; --k-sub:#666; --k-line:#dfe3ea; --k-acc:#1a6fb5; --k-hint:#e0891a; --k-read:#2e8b57; --k-warn:#c0392b; --k-ok:#2e8b57;
   color: var(--k-ink); line-height: 1.85; font-size: 17px; max-width: 900px; margin: 0 auto; -webkit-user-select: text; user-select: text;
   font-family: -apple-system, "Hiragino Maru Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif; }
@@ -456,18 +461,27 @@ body {
 .kaisetsu .card-fact { border-left: 6px solid #9aa7b8; padding-top: 14px; }
 .kaisetsu .card-fact .type { background:#f0f2f5; color:#556; }
 .kaisetsu .fact { margin: 4px 0 2px; padding: 2px 4px; }
+/* 算数の簡易図（文字で描く連除法・数直線・○の並び） */
+.kaisetsu pre.fig { font-family: Menlo, "Osaka-Mono", "MS Gothic", "Noto Sans Mono CJK JP", monospace; font-size:14px; line-height:1.5; background:#fafafa; border:1px dashed #cfd6de; border-radius:8px; padding:8px 12px; margin:6px 0 4px; white-space:pre; overflow-x:auto; }
 
 #print-overlay-body .kp { display: none; }
 @media print {
   #print-overlay-body .kp { display: block !important; width: 100% !important; visibility: visible !important; background: #fff !important; }
   #print-overlay-body .kp-title { font-size: 15pt; font-weight: 700; margin: 0 0 5mm; padding-bottom: 2mm; border-bottom: 2px solid #1a6fb5; }
+  #print-overlay-body .kp-sub { font-size: 10.5pt; font-weight: 700; color: #c0392b; margin: -3mm 0 4mm; }
+  /* 画面用の対象/対象外の印は印刷では使わない（印刷は対象だけを流す） */
+  #print-overlay-body .kaisetsu-print .card.k-off { opacity: 1; }
+  #print-overlay-body .kaisetsu-print .card.k-on { border-left: 1px solid #bbb; }
   #print-overlay-body .kaisetsu-print {
-    column-count: 2; column-gap: 12mm; column-fill: auto; column-rule: 1px solid #ccc;
     max-width: none !important; font-size: 10.5pt !important; line-height: 1.65 !important; color: #000 !important;
   }
   #print-overlay-body .kaisetsu-print .toc { display: none; }
-  #print-overlay-body .kaisetsu-print .daimon { margin-top: 5mm; }
-  #print-overlay-body .kaisetsu-print .daimon:first-of-type { margin-top: 0; }
+  /* ★2026-09-16 大問（.daimon）ごとに2段組の箱を分け、区切りは必ず新しいページから始める（ユーザー要望） */
+  #print-overlay-body .kaisetsu-print .daimon {
+    column-count: 2; column-gap: 12mm; column-fill: auto; column-rule: 1px solid #ccc;
+    margin-top: 0; break-before: page; page-break-before: always;
+  }
+  #print-overlay-body .kaisetsu-print .daimon:first-of-type { break-before: auto; page-break-before: auto; }
   #print-overlay-body .kaisetsu-print .dtitle { font-size: 13pt; margin: 0 0 4mm; padding: 2mm 4mm; break-after: avoid; break-inside: avoid;
     background: #1a6fb5 !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   #print-overlay-body .kaisetsu-print .card {
@@ -499,6 +513,7 @@ body {
   #print-overlay-body .kaisetsu-print .ok { color: #2e8b57 !important; }
   #print-overlay-body .kaisetsu-print .x, #print-overlay-body .kaisetsu-print .miss b { color: #c0392b !important; }
 }
+#print-overlay-body .kaisetsu-print pre.fig { font-size: 9pt; line-height:1.4; page-break-inside: avoid; break-inside: avoid; background:#fff; }
 
 /* kaisetsu-css:end */
 /* 解説へ▼ ボタン（タブバー右端・幅を取らない） */
