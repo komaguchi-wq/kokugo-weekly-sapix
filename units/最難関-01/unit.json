@@ -1,0 +1,212 @@
+{
+ "id": "最難関-01",
+ "week": "第1回",
+ "title": "最難関対策01（読解二題）",
+ "category": "ss-tokkun",
+ "tag": "読解",
+ "questionPages": [
+  {
+   "full": "units/最難関-01/q_cover.jpg",
+   "small": "units/最難関-01/q_cover_small.jpg"
+  },
+  {
+   "full": "units/最難関-01/q_01.jpg",
+   "small": "units/最難関-01/q_01_small.jpg"
+  },
+  {
+   "full": "units/最難関-01/q_02.jpg",
+   "small": "units/最難関-01/q_02_small.jpg"
+  },
+  {
+   "full": "units/最難関-01/q_03.jpg",
+   "small": "units/最難関-01/q_03_small.jpg"
+  },
+  {
+   "full": "units/最難関-01/q_04.jpg",
+   "small": "units/最難関-01/q_04_small.jpg"
+  },
+  {
+   "full": "units/最難関-01/q_05.jpg",
+   "small": "units/最難関-01/q_05_small.jpg"
+  },
+  {
+   "full": "units/最難関-01/q_06.jpg",
+   "small": "units/最難関-01/q_06_small.jpg"
+  },
+  {
+   "full": "units/最難関-01/q_07.jpg",
+   "small": "units/最難関-01/q_07_small.jpg"
+  },
+  {
+   "full": "units/最難関-01/q_08.jpg",
+   "small": "units/最難関-01/q_08_small.jpg"
+  },
+  {
+   "full": "units/最難関-01/q_09.jpg",
+   "small": "units/最難関-01/q_09_small.jpg"
+  },
+  {
+   "full": "units/最難関-01/q_10.jpg",
+   "small": "units/最難関-01/q_10_small.jpg"
+  },
+  {
+   "full": "units/最難関-01/q_11.jpg",
+   "small": "units/最難関-01/q_11_small.jpg"
+  },
+  {
+   "full": "units/最難関-01/q_12.jpg",
+   "small": "units/最難関-01/q_12_small.jpg"
+  },
+  {
+   "full": "units/最難関-01/q_13.jpg",
+   "small": "units/最難関-01/q_13_small.jpg"
+  },
+  {
+   "full": "units/最難関-01/q_14.jpg",
+   "small": "units/最難関-01/q_14_small.jpg"
+  },
+  {
+   "full": "units/最難関-01/q_15.jpg",
+   "small": "units/最難関-01/q_15_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/最難関-01/a_expl1.jpg",
+   "small": "units/最難関-01/a_expl1_small.jpg"
+  },
+  {
+   "full": "units/最難関-01/a_expl2.jpg",
+   "small": "units/最難関-01/a_expl2_small.jpg"
+  },
+  {
+   "full": "units/最難関-01/sv_sheet.jpg",
+   "small": "units/最難関-01/sv_sheet_small.jpg"
+  }
+ ],
+ "hasSolved": true,
+ "questions": [
+  "一問一a",
+  "一問一b",
+  "一問一c",
+  "一問一d",
+  "一問二",
+  "一問三",
+  "一問四",
+  "一問五A",
+  "一問五B",
+  "一問六",
+  "一問七",
+  "一問八",
+  "一問九",
+  "一問十",
+  "一問十一",
+  "一問十二",
+  "一問十三",
+  "二問一a",
+  "二問一b",
+  "二問二Ⅰ",
+  "二問二Ⅱ",
+  "二問三",
+  "二問四",
+  "二問五",
+  "二問六",
+  "二問七",
+  "二問八",
+  "二問九",
+  "二問十",
+  "二問十一"
+ ],
+ "questionGroups": [
+  {
+   "head": "一",
+   "labels": [
+    "問一a",
+    "問一b",
+    "問一c",
+    "問一d",
+    "問二",
+    "問三",
+    "問四",
+    "問五A",
+    "問五B",
+    "問六",
+    "問七",
+    "問八",
+    "問九",
+    "問十",
+    "問十一",
+    "問十二",
+    "問十三"
+   ]
+  },
+  {
+   "head": "二",
+   "labels": [
+    "問一a",
+    "問一b",
+    "問二Ⅰ",
+    "問二Ⅱ",
+    "問三",
+    "問四",
+    "問五",
+    "問六",
+    "問七",
+    "問八",
+    "問九",
+    "問十",
+    "問十一"
+   ]
+  }
+ ],
+ "spreads": {
+  "q": [
+   [
+    0
+   ],
+   [
+    null,
+    1
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    4,
+    5
+   ],
+   [
+    6,
+    7
+   ],
+   [
+    8,
+    9
+   ],
+   [
+    10,
+    11
+   ],
+   [
+    12,
+    13
+   ],
+   [
+    14,
+    15
+   ]
+  ],
+  "a": [
+   [
+    0
+   ],
+   [
+    1
+   ],
+   [
+    2
+   ]
+  ]
+ }
+}
