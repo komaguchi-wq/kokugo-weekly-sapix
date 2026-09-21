@@ -3,7 +3,7 @@
  "week": "上巻 第5章 同音異義語・同訓異字",
  "category": "kotoba-navi",
  "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/",
- "hasSolved": false,
+ "hasSolved": true,
  "print2up": false,
  "page": 144,
  "vol": 1,
@@ -19,6 +19,10 @@
   {
    "full": "units/KN1-144/ap_1.jpg",
    "small": "units/KN1-144/ap_1_small.jpg"
+  },
+  {
+   "full": "units/KN1-144/solved_2026-09-21_01.jpg",
+   "small": "units/KN1-144/solved_2026-09-21_01_small.jpg"
   }
  ],
  "questionGroups": [
