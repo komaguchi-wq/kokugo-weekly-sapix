@@ -53,9 +53,21 @@
     {
       "full": "units/62A-23/a_4.jpg",
       "small": "units/62A-23/a_4_small.jpg"
+    },
+    {
+      "full": "units/62A-23/solved_2026-09-22_01.jpg",
+      "small": "units/62A-23/solved_2026-09-22_01_small.jpg"
+    },
+    {
+      "full": "units/62A-23/solved_2026-09-22_02.jpg",
+      "small": "units/62A-23/solved_2026-09-22_02_small.jpg"
+    },
+    {
+      "full": "units/62A-23/solved_2026-09-22_03.jpg",
+      "small": "units/62A-23/solved_2026-09-22_03_small.jpg"
     }
   ],
-  "hasSolved": false,
+  "hasSolved": true,
   "questions": [
     "漢字の要①",
     "漢字の要②",
