@@ -1,0 +1,35 @@
+{
+ "version": 1,
+ "created": "2026-09-24 00:37",
+ "app": "kokugo",
+ "category": "ss-tokkun",
+ "unit": "慶應知識-01",
+ "block": null,
+ "method": "vision-ocr+sequence",
+ "pages": [
+  {
+   "i": 0,
+   "file": "q_1.jpg",
+   "W": 3000,
+   "H": 2116
+  }
+ ],
+ "daimons": {},
+ "subs": {
+  "一問一": {
+   "page": 0,
+   "x": 0.8763,
+   "y": 0.0702,
+   "kind": "mon"
+  }
+ },
+ "failed": [
+  "二",
+  "三"
+ ],
+ "notes": {
+  "一": "kokugo 1/5",
+  "二": "ラベルから番号が取れない",
+  "三": "ラベルから番号が取れない"
+ }
+}
