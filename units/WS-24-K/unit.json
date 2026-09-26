@@ -1,0 +1,103 @@
+{
+  "id": "WS-24-K",
+  "week": "WS-24",
+  "title": "WS-24 知識の総完成",
+  "category": "knowledge",
+  "questionPages": [
+    {
+      "full": "units/WS-24-K/q_1.jpg",
+      "small": "units/WS-24-K/q_1_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/_shared/WS-24/expl_1.jpg",
+      "small": "units/_shared/WS-24/expl_1_small.jpg"
+    },
+    {
+      "full": "units/_shared/WS-24/expl_2.jpg",
+      "small": "units/_shared/WS-24/expl_2_small.jpg"
+    }
+  ],
+  "hasSolved": false,
+  "questions": [
+    "一①",
+    "一②",
+    "一③",
+    "一④",
+    "二1",
+    "二2",
+    "二3",
+    "二4",
+    "二5",
+    "三1",
+    "三2",
+    "三3",
+    "三4",
+    "三5",
+    "三6",
+    "四(ア)",
+    "四(イ)",
+    "四(ウ)",
+    "四(エ)",
+    "四(オ)",
+    "四(カ)",
+    "五①",
+    "五②",
+    "五③",
+    "五④"
+  ],
+  "questionGroups": [
+    {
+      "head": "一",
+      "labels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ]
+    },
+    {
+      "head": "二",
+      "labels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    {
+      "head": "三",
+      "labels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    },
+    {
+      "head": "四",
+      "labels": [
+        "(ア)",
+        "(イ)",
+        "(ウ)",
+        "(エ)",
+        "(オ)",
+        "(カ)"
+      ]
+    },
+    {
+      "head": "五",
+      "labels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ]
+    }
+  ],
+  "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/"
+}

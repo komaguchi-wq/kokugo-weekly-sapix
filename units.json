@@ -552,6 +552,30 @@
   "category": "knowledge"
  },
  {
+  "id": "WS-24-1",
+  "week": "WS-24",
+  "title": "WS-24-1 大問一（読解）",
+  "category": "reading"
+ },
+ {
+  "id": "WS-24-2",
+  "week": "WS-24",
+  "title": "WS-24-2 大問二（読解）",
+  "category": "reading"
+ },
+ {
+  "id": "WS-24-3",
+  "week": "WS-24",
+  "title": "WS-24-3 大問三（読解）",
+  "category": "reading"
+ },
+ {
+  "id": "WS-24-K",
+  "week": "WS-24",
+  "title": "WS-24 知識の総完成",
+  "category": "knowledge"
+ },
+ {
   "id": "62A-21",
   "week": "デイリーサピックス",
   "title": "62A-21 いろいろな言葉①",
@@ -782,6 +806,13 @@
   "title": "語彙力完成03 第3回（1〜40）",
   "category": "ss-tokkun",
   "tag": "語彙力40問"
+ },
+ {
+  "id": "最難関-03",
+  "week": "最難関対策（土特）",
+  "title": "最難関対策03（読解二題）",
+  "category": "reading",
+  "tag": "読解"
  },
  {
   "id": "62A-22",

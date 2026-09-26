@@ -1,0 +1,48 @@
+{
+  "id": "WS-24-2",
+  "week": "WS-24",
+  "title": "WS-24-2 大問二（読解）",
+  "category": "reading",
+  "questionPages": [
+    {
+      "full": "units/WS-24-2/q_1.jpg",
+      "small": "units/WS-24-2/q_1_small.jpg"
+    },
+    {
+      "full": "units/WS-24-2/q_2.jpg",
+      "small": "units/WS-24-2/q_2_small.jpg"
+    },
+    {
+      "full": "units/WS-24-2/q_3.jpg",
+      "small": "units/WS-24-2/q_3_small.jpg"
+    },
+    {
+      "full": "units/WS-24-2/qsheet.jpg",
+      "small": "units/WS-24-2/qsheet_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/_shared/WS-24/expl_1.jpg",
+      "small": "units/_shared/WS-24/expl_1_small.jpg"
+    },
+    {
+      "full": "units/_shared/WS-24/expl_2.jpg",
+      "small": "units/_shared/WS-24/expl_2_small.jpg"
+    }
+  ],
+  "hasSolved": false,
+  "questions": [
+    "問一X",
+    "問一Y",
+    "問二A",
+    "問二B",
+    "問三",
+    "問四",
+    "問五",
+    "問六",
+    "問七",
+    "問八"
+  ],
+  "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/"
+}
