@@ -851,6 +851,18 @@
   "category": "kanji-tokkun"
  },
  {
+  "id": "62A-25",
+  "week": "デイリーサピックス",
+  "title": "62A-25 同音異義語・同訓異字",
+  "category": "daily-knowledge"
+ },
+ {
+  "id": "KJ-62A-25",
+  "week": "漢字特訓",
+  "title": "62A-25（同音異義語・同訓異字）",
+  "category": "kanji-tokkun"
+ },
+ {
   "id": "KY-006",
   "week": "細部ミスに注意すべき漢字",
   "title": "細部ミスに注意すべき漢字 1",
