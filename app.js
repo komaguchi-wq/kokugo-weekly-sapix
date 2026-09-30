@@ -358,6 +358,19 @@ function unitTag(u) {
   return u.category === 'knowledge' ? '知識の総完成' : '読解';
 }
 
+// ---- グループの開閉状態（漢字の要/言葉ナビ）。端末ごとの表示の記憶だけ（正誤データとは無関係） ----
+let grpKeys = [];            // 直近の描画での「見出し index → グループのキー」
+const _grpOpen = {};
+function groupOpenSet(cat) {
+  if (_grpOpen[cat.id]) return _grpOpen[cat.id];
+  let arr = [];
+  try { arr = JSON.parse(localStorage.getItem('kokugo-ws-grp-open-' + cat.id) || '[]'); } catch (e) { arr = []; }
+  return (_grpOpen[cat.id] = new Set(Array.isArray(arr) ? arr : []));
+}
+function saveGroupOpenSet(cat, set) {
+  try { localStorage.setItem('kokugo-ws-grp-open-' + cat.id, JSON.stringify([...set])); } catch (e) { /* 保存できなくても表示は動く */ }
+}
+
 function renderUnits() {
   const cat = state.category;
   if (!cat) return;
@@ -428,16 +441,66 @@ function renderUnits() {
       return cardHTML(u).replace(/(<div class="unit-card-subtitle">[^<]*<\/div>)/, `$1${info}`);
     };
     if (cat.grouped) {
-      // セクション（week）ごとに見出し。並びは units.json の出現順（書籍のページ順）
+      // ★2026-09-30 ユーザー要望: 一覧が縦に長すぎるので、グループ（章／セクション）を折りたたみにして、
+      //   見出しにそのグループ全体の ○／✕／未 の合計と棒グラフを出す。開閉は端末ごとに記憶（localStorage・表示の都合だけ）。
+      //   第1階層 = week（漢字の要=セクション／言葉ナビ=巻・章）。章の中に複数の小分類（タイトルの番号前）があれば第2階層。
       const groups = [];
       for (const u of units) {
-        let g = groups.find((x) => x.week === u.week);
-        if (!g) { g = { week: u.week, units: [] }; groups.push(g); }
+        let g = groups[groups.length - 1];
+        if (!g || g.week !== u.week) { g = groups.find((x) => x.week === u.week); }
+        if (!g) { g = { week: u.week, units: [], subs: [] }; groups.push(g); }
         g.units.push(u);
+        const m = String(u.title).match(/^(.*) (\d+)$/);
+        const name = m ? m[1] : u.title;
+        let sb = g.subs[g.subs.length - 1];
+        if (!sb || sb.name !== name) { sb = { name, units: [] }; g.subs.push(sb); }
+        sb.units.push(u);
       }
-      html += groups.map((g) =>
-        `<section class="week-group"><h3 class="week-head">${g.week}（${g.units.length}${noun}）</h3>` +
-        g.units.map(bulkCard0).join('') + '</section>').join('');
+      const openSet = groupOpenSet(cat);
+      grpKeys = [];
+      const sumStats = (us) => us.reduce((a, u) => {
+        const st = unitBarStats(u);
+        a.total += st.total; a.good += st.good; a.low += st.low; a.unanswered += st.unanswered; return a;
+      }, { total: 0, good: 0, low: 0, unanswered: 0 });
+      const tgtInfo = (us) => {
+        if (bf === 'all') return '';
+        let nu = 0, nq = 0;
+        for (const u of us) { const t = bulkTargets(u).length; if (t) { nu++; nq += t; } }
+        return `<span class="grp-target${nu ? '' : ' none'}">対象 ${nu}${noun}・${nq}問</span>`;
+      };
+      const grpSection = (key, name, us, lvl, bodyHTML) => {
+        const idx = grpKeys.push(key) - 1;
+        const st = sumStats(us);
+        const pct = (n) => (st.total ? n / st.total * 100 : 0);
+        const pickN = pk && pk.on ? us.filter((u) => pk.sel.has(u.id)).length : 0;
+        return `<section class="week-group grp${openSet.has(key) ? '' : ' collapsed'}">
+          <div class="grp-head grp-lv${lvl}" data-grp-toggle="${idx}">
+            <div class="grp-row">
+              <span class="grp-caret">▸</span><span class="grp-name">${name}</span>
+              <span class="grp-count">${us.length}${noun}</span>${tgtInfo(us)}${pickN ? `<span class="grp-picked">✓ ${pickN}</span>` : ''}
+              ${st.total ? `<span class="grp-totals"><span class="lg-good">○ ${st.good}</span><span class="lg-low">✕ ${st.low}</span><span class="lg-none">未 ${st.unanswered}</span></span>` : '<span class="grp-totals"><span class="lg-none">閲覧用</span></span>'}
+            </div>
+            ${st.total ? `<div class="unit-card-bar grp-bar" title="緑=正答率60%以上 / 黄=60%未満 / 灰=未回答">
+              <div class="unit-card-bar-good" style="width:${pct(st.good)}%"></div>
+              <div class="unit-card-bar-low" style="width:${pct(st.low)}%"></div></div>` : ''}
+          </div>
+          <div class="grp-body">${bodyHTML}</div></section>`;
+      };
+      const chapterOf = (u) => {   // 漢字の要だけ: 書籍の章（ページ番号で判定）を小見出しにする
+        if (cat.id !== 'kaname') return '';
+        const pg = +String(u.id).replace(/\D/g, '');
+        return pg < 95 ? '第1章' : pg < 165 ? '第2章' : '第3章';
+      };
+      let lastCh = '';
+      html += groups.map((g) => {
+        const ch = chapterOf(g.units[0]);
+        const chHTML = ch && ch !== lastCh ? `<div class="grp-chapter">${ch}</div>` : '';
+        lastCh = ch || lastCh;
+        const body = g.subs.length > 1
+          ? g.subs.map((sb, k) => grpSection(`${g.week}｜${sb.name}#${k}`, sb.name, sb.units, 2, sb.units.map(bulkCard0).join(''))).join('')
+          : g.units.map(bulkCard0).join('');
+        return chHTML + grpSection(g.week, g.week, g.units, 1, body);
+      }).join('');
     } else {
       html += units.map(bulkCard0).join('');
     }
@@ -461,6 +524,15 @@ function renderUnits() {
       openUnit(c.dataset.id);
     }));
   bindPickBar(cat, list);
+  list.querySelectorAll('[data-grp-toggle]').forEach((h) =>
+    h.addEventListener('click', () => {
+      const key = grpKeys[+h.dataset.grpToggle];
+      const sec = h.parentElement;
+      const open = sec.classList.toggle('collapsed') === false;
+      const set = groupOpenSet(cat);
+      if (open) set.add(key); else set.delete(key);
+      saveGroupOpenSet(cat, set);
+    }));
   list.querySelectorAll('[data-kb-mode]').forEach((btn) =>
     btn.addEventListener('click', () => { bulkFilters[cat.id] = btn.dataset.kbMode; renderUnits(); }));
   list.querySelectorAll('[data-bulk-print]').forEach((btn) =>

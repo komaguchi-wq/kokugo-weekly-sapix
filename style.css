@@ -104,6 +104,35 @@ body {
   margin-bottom: -2px;
 }
 
+/* グループの折りたたみ（漢字の要/言葉ナビ・2026-09-30）: 見出しに ○／✕／未 の合計と棒グラフ */
+.grp { gap: 10px; }
+.grp-head {
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.grp-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.grp-caret { color: #86868b; font-size: 14px; display: inline-block; transition: transform 0.15s; }
+.grp:not(.collapsed) > .grp-head .grp-caret { transform: rotate(90deg); }
+.grp-name { font-size: 15px; font-weight: 700; color: #1d1d1f; }
+.grp-count { font-size: 12px; color: #86868b; }
+.grp-totals { margin-left: auto; display: flex; gap: 12px; font-size: 13px; font-weight: 600; color: #86868b; white-space: nowrap; }
+.grp-totals .lg-good { color: #34c759; }
+.grp-totals .lg-low { color: #ff9f0a; }
+.grp-bar { margin-top: 8px; }
+.grp.collapsed > .grp-body { display: none; }
+.grp-body { display: flex; flex-direction: column; gap: 12px; margin-left: 6px; padding-left: 10px; border-left: 3px solid #e5e5ea; }
+.grp-head.grp-lv2 { background: #f5f5f7; box-shadow: none; border: 1px solid #e5e5ea; padding: 9px 12px; }
+.grp-lv2 .grp-name { font-size: 14px; }
+.grp-lv2 .grp-totals { font-size: 12px; }
+.grp-chapter { font-size: 13px; font-weight: 700; color: #6e6e73; padding: 8px 4px 0; }
+.grp-target { font-size: 12px; font-weight: 600; color: #c2274d; }
+.grp-target.none { color: #b0b0b5; font-weight: 400; }
+.grp-picked { font-size: 12px; font-weight: 700; color: #0071e3; }
+
 .unit-card {
   background: #fff;
   border-radius: 12px;
