@@ -1,0 +1,188 @@
+{
+ "id": "女子学院-04",
+ "week": "第4回",
+ "title": "女子学院対策04（読解二題）",
+ "category": "ss-tokkun",
+ "tag": "読解",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/",
+ "questionPages": [
+  {
+   "full": "units/女子学院-04/q_cover.jpg",
+   "small": "units/女子学院-04/q_cover_small.jpg"
+  },
+  {
+   "full": "units/女子学院-04/q_01.jpg",
+   "small": "units/女子学院-04/q_01_small.jpg"
+  },
+  {
+   "full": "units/女子学院-04/q_02.jpg",
+   "small": "units/女子学院-04/q_02_small.jpg"
+  },
+  {
+   "full": "units/女子学院-04/q_03.jpg",
+   "small": "units/女子学院-04/q_03_small.jpg"
+  },
+  {
+   "full": "units/女子学院-04/q_04.jpg",
+   "small": "units/女子学院-04/q_04_small.jpg"
+  },
+  {
+   "full": "units/女子学院-04/q_05.jpg",
+   "small": "units/女子学院-04/q_05_small.jpg"
+  },
+  {
+   "full": "units/女子学院-04/q_06.jpg",
+   "small": "units/女子学院-04/q_06_small.jpg"
+  },
+  {
+   "full": "units/女子学院-04/q_07.jpg",
+   "small": "units/女子学院-04/q_07_small.jpg"
+  },
+  {
+   "full": "units/女子学院-04/q_08.jpg",
+   "small": "units/女子学院-04/q_08_small.jpg"
+  },
+  {
+   "full": "units/女子学院-04/q_09.jpg",
+   "small": "units/女子学院-04/q_09_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/女子学院-04/a_expl1.jpg",
+   "small": "units/女子学院-04/a_expl1_small.jpg"
+  },
+  {
+   "full": "units/女子学院-04/a_expl2.jpg",
+   "small": "units/女子学院-04/a_expl2_small.jpg"
+  },
+  {
+   "full": "units/女子学院-04/sv_sheet.jpg",
+   "small": "units/女子学院-04/sv_sheet_small.jpg"
+  }
+ ],
+ "hasSolved": true,
+ "questions": [
+  "一問二",
+  "一問三A",
+  "一問三B",
+  "一問四",
+  "一問五",
+  "一問六",
+  "一問七",
+  "一問八",
+  "一問九",
+  "一問十",
+  "一問十一a",
+  "一問十一b",
+  "一問十一c",
+  "二問一",
+  "二問二",
+  "二問三",
+  "二問四(1)",
+  "二問四(2)",
+  "二問五",
+  "二問六",
+  "二問七A",
+  "二問七B",
+  "二問八",
+  "二問九",
+  "二問十",
+  "二問十一1",
+  "二問十一2",
+  "二問十一3",
+  "二問十二",
+  "二問十三(1)",
+  "二問十三(2)",
+  "二問十四a",
+  "二問十四b",
+  "二問十四c",
+  "二問十四d"
+ ],
+ "questionGroups": [
+  {
+   "head": "一",
+   "labels": [
+    "問二",
+    "問三A",
+    "問三B",
+    "問四",
+    "問五",
+    "問六",
+    "問七",
+    "問八",
+    "問九",
+    "問十",
+    "問十一a",
+    "問十一b",
+    "問十一c"
+   ]
+  },
+  {
+   "head": "二",
+   "labels": [
+    "問一",
+    "問二",
+    "問三",
+    "問四(1)",
+    "問四(2)",
+    "問五",
+    "問六",
+    "問七A",
+    "問七B",
+    "問八",
+    "問九",
+    "問十",
+    "問十一1",
+    "問十一2",
+    "問十一3",
+    "問十二",
+    "問十三(1)",
+    "問十三(2)",
+    "問十四a",
+    "問十四b",
+    "問十四c",
+    "問十四d"
+   ]
+  }
+ ],
+ "spreads": {
+  "q": [
+   [
+    0,
+    null
+   ],
+   [
+    null,
+    1
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    4,
+    5
+   ],
+   [
+    6,
+    7
+   ],
+   [
+    8,
+    9
+   ]
+  ],
+  "a": [
+   [
+    0
+   ],
+   [
+    1
+   ],
+   [
+    2
+   ]
+  ]
+ }
+}
