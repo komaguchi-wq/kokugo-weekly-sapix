@@ -18,7 +18,7 @@ const state = {
   deepLinked: false, // ?cat= で国語トップから直接カテゴリを開いた（←は国語トップへ戻す）
 };
 
-const GOOD_RATE = 0.6;      // 単元カードの緑=正答率60%以上（全アプリ共通）
+const GOOD_RATE = 0.5;      // 単元カードの緑=正答率50%以上（全アプリ共通）
 const IDLE_TIMEOUT = 10000; // 仮選択を確定するまでの放置時間(ms)
 
 const KOKUGO_TOP_URL = 'https://komaguchi-wq.github.io/kokugo/';
@@ -277,7 +277,7 @@ function questionKeys(unit) {
   return out;
 }
 
-// ---- 単元カードの正誤棒グラフ（全アプリ共通デザイン。緑=正答率60%以上/黄=未満/灰=未） ----
+// ---- 単元カードの正誤棒グラフ（全アプリ共通デザイン。緑=正答率50%以上/黄=未満/灰=未） ----
 function unitBarStats(u) {
   const unit = state.unitCache[u.id];
   const keys = unit ? questionKeys(unit) : [];
@@ -294,7 +294,7 @@ function unitBarBlock(st) {
   const pct = (n) => (n / st.total * 100);
   const donePct = Math.round(st.attempted / st.total * 100);
   return `
-      <div class="unit-card-bar" title="緑=正答率60%以上 / 黄=60%未満 / 灰=未回答">
+      <div class="unit-card-bar" title="緑=正答率50%以上 / 黄=50%未満 / 灰=未回答">
         <div class="unit-card-bar-good" style="width:${pct(st.good)}%"></div>
         <div class="unit-card-bar-low" style="width:${pct(st.low)}%"></div>
       </div>
@@ -480,7 +480,7 @@ function renderUnits() {
               <span class="grp-count">${us.length}${noun}</span>${tgtInfo(us)}${pickN ? `<span class="grp-picked">✓ ${pickN}</span>` : ''}
               ${st.total ? `<span class="grp-totals"><span class="lg-good">○ ${st.good}</span><span class="lg-low">✕ ${st.low}</span><span class="lg-none">未 ${st.unanswered}</span></span>` : '<span class="grp-totals"><span class="lg-none">閲覧用</span></span>'}
             </div>
-            ${st.total ? `<div class="unit-card-bar grp-bar" title="緑=正答率60%以上 / 黄=60%未満 / 灰=未回答">
+            ${st.total ? `<div class="unit-card-bar grp-bar" title="緑=正答率50%以上 / 黄=50%未満 / 灰=未回答">
               <div class="unit-card-bar-good" style="width:${pct(st.good)}%"></div>
               <div class="unit-card-bar-low" style="width:${pct(st.low)}%"></div></div>` : ''}
           </div>
