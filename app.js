@@ -988,7 +988,7 @@ function renderPages() {
       `<div class="wsm-page wsm-kaisetsu-wrap" data-pt="k" style="display:none" id="wsm-kaisetsu">
          <div class="wsm-page-label">解説</div>
          <div class="kaisetsu-toolbar">
-           <span class="kaisetsu-toolbar-title">解説（① 聞き方 → ② 型ごとの見出し → ③ 答えの作り方 → 答え → 今回）。右上の「🖨 印刷」で解説を印刷（上の問題選択で絞った小問だけ・B4横）</span>
+           <span class="kaisetsu-toolbar-title">${u.category === 'kanji-kaname' ? '解説（決め手の字 → 意味と本の例文 → なぜその字か → 見分け方）。右上の「🖨 印刷」で解説を印刷（上の問題選択で絞った組だけ・B4横）' : '解説（① 聞き方 → ② 型ごとの見出し → ③ 答えの作り方 → 答え → 今回）。右上の「🖨 印刷」で解説を印刷（上の問題選択で絞った小問だけ・B4横）'}</span>
          </div>
          <div class="kaisetsu-target-note" id="wsm-kaisetsu-note" style="display:none"></div>
          <div class="kaisetsu" id="wsm-kaisetsu-body"><p class="kaisetsu-loading">解説を読み込み中…</p></div>

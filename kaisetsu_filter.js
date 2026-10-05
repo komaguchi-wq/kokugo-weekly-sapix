@@ -121,6 +121,8 @@
     for (const e of index) {
       if (full.startsWith(e.key) && (boundaryOK(e.key, full) || spacedN.startsWith(e.key + ' '))) { hit = e; break; }
     }
+    // ★2026-10-05 大問の無い単元（漢字の要など head=''）: 索引が空なら「大問なし」として残り全体を小問ラベルと照合する
+    if (!hit && index.length === 0 && questions.length) hit = { key: '', dm: '' };
     if (!hit) return null;
     const tokens = expandRest(full.slice(hit.key.length));
     const ids = [];
