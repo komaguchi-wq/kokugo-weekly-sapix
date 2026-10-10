@@ -1,0 +1,100 @@
+{
+  "id": "WS-26-K",
+  "week": "WS-26",
+  "title": "WS-26 知識の総完成",
+  "category": "knowledge",
+  "questionPages": [
+    {
+      "full": "units/WS-26-K/q_1.jpg",
+      "small": "units/WS-26-K/q_1_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/_shared/WS-26/expl_1.jpg",
+      "small": "units/_shared/WS-26/expl_1_small.jpg"
+    },
+    {
+      "full": "units/_shared/WS-26/expl_2.jpg",
+      "small": "units/_shared/WS-26/expl_2_small.jpg"
+    }
+  ],
+  "hasSolved": false,
+  "questions": [
+    "一①",
+    "一②",
+    "二①",
+    "二②",
+    "二③",
+    "三①",
+    "三②",
+    "三③",
+    "四①",
+    "四②",
+    "四③",
+    "四④",
+    "四⑤",
+    "四⑥",
+    "五①",
+    "五②",
+    "五③",
+    "六①",
+    "六②",
+    "六③",
+    "六④"
+  ],
+  "questionGroups": [
+    {
+      "head": "一",
+      "labels": [
+        "①",
+        "②"
+      ]
+    },
+    {
+      "head": "二",
+      "labels": [
+        "①",
+        "②",
+        "③"
+      ]
+    },
+    {
+      "head": "三",
+      "labels": [
+        "①",
+        "②",
+        "③"
+      ]
+    },
+    {
+      "head": "四",
+      "labels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥"
+      ]
+    },
+    {
+      "head": "五",
+      "labels": [
+        "①",
+        "②",
+        "③"
+      ]
+    },
+    {
+      "head": "六",
+      "labels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ]
+    }
+  ],
+  "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/"
+}
