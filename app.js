@@ -61,8 +61,53 @@ function imgURL(unit, path) {
 }
 
 // ---- 画面切り替え ----
-function showScreen(id) {
+// ==============================
+// 戻るボタンで前の画面へ戻るとき、離れたときのスクロール位置に復元する
+// （display:none になった要素はスクロール位置が 0 に戻るため、離れる直前に覚えておく。
+//   一覧から単元を開くなど「進む」ときは従来どおり最上部から）
+// ==============================
+const _screenScrollMemo = {};
+function _rememberScreenScroll(screenEl) {
+  if (!screenEl) return;
+  const memo = [];
+  if (window.scrollY > 0) memo.push({ win: true, top: window.scrollY });
+  if (screenEl.scrollTop > 0) memo.push({ path: [], top: screenEl.scrollTop });
+  screenEl.querySelectorAll('*').forEach(el => {
+    if (el.scrollTop > 0) {
+      const path = [];
+      for (let n = el; n !== screenEl; n = n.parentElement) path.unshift(Array.prototype.indexOf.call(n.parentElement.children, n));
+      memo.push({ path, top: el.scrollTop });
+    }
+  });
+  _screenScrollMemo[screenEl.id] = memo;
+}
+function _restoreScreenScroll(screenEl) {
+  const memo = screenEl && _screenScrollMemo[screenEl.id];
+  if (!memo || !memo.length) return;
+  const apply = () => memo.forEach(m => {
+    if (m.win) { window.scrollTo(0, m.top); return; }
+    let el = screenEl;
+    for (const i of m.path) el = el && el.children[i];
+    if (el) el.scrollTop = m.top;
+  });
+  apply();
+  requestAnimationFrame(apply);   // 画像の読み込みなどで高さが後から伸びた場合の再適用
+}
+
+function _resetScreenScroll(screenEl) {
+  // 「進む」ときは最上部から（Chrome は display:none でもスクロール位置を保つため明示的に戻す）
+  window.scrollTo(0, 0);
+  if (!screenEl) return;
+  screenEl.scrollTop = 0;
+  screenEl.querySelectorAll('*').forEach(el => { if (el.scrollTop > 0) el.scrollTop = 0; });
+}
+
+function showScreen(id, restoreScroll) {
+  const _prevScreen = document.querySelector('.screen.active');
+  _rememberScreenScroll(_prevScreen);
   document.querySelectorAll('.screen').forEach((s) => s.classList.toggle('active', s.id === id));
+  if (restoreScroll) _restoreScreenScroll(document.getElementById(id));
+  else if (_prevScreen !== document.getElementById(id)) _resetScreenScroll(document.getElementById(id));
 }
 
 // ---- 初期化 ----
@@ -95,13 +140,13 @@ async function init() {
   $('#btn-back-categories').addEventListener('click', () => {
     if (state.deepLinked) { location.href = KOKUGO_TOP_URL; return; }  // 直リンク時は国語トップへ
     renderCategories();
-    showScreen('screen-categories');
+    showScreen('screen-categories', true);
   });
   $('#btn-back-units').addEventListener('click', () => {
     commitGrades();   // 仮選択を確定してから戻る
     state.current = null;
     renderUnits();
-    showScreen('screen-units');
+    showScreen('screen-units', true);
   });
   document.querySelectorAll('#wsm-modebar [data-wsm-mode]').forEach((btn) =>
     btn.addEventListener('click', () => setWsFilter(btn.dataset.wsmMode)));
