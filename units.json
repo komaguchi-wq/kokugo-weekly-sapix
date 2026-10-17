@@ -624,6 +624,30 @@
   "category": "knowledge"
  },
  {
+  "id": "WS-27-1",
+  "week": "WS-27",
+  "title": "WS-27-1 大問一（読解）",
+  "category": "reading"
+ },
+ {
+  "id": "WS-27-2",
+  "week": "WS-27",
+  "title": "WS-27-2 大問二（読解）",
+  "category": "reading"
+ },
+ {
+  "id": "WS-27-3",
+  "week": "WS-27",
+  "title": "WS-27-3 大問三（読解）",
+  "category": "reading"
+ },
+ {
+  "id": "WS-27-K",
+  "week": "WS-27",
+  "title": "WS-27 知識の総完成",
+  "category": "knowledge"
+ },
+ {
   "id": "62A-21",
   "week": "デイリーサピックス",
   "title": "62A-21 いろいろな言葉①",
@@ -866,6 +890,13 @@
   "id": "最難関-04",
   "week": "最難関対策（土特）",
   "title": "最難関対策04（読解二題）",
+  "category": "reading",
+  "tag": "読解"
+ },
+ {
+  "id": "最難関-06",
+  "week": "最難関対策（土特）",
+  "title": "最難関対策06（読解二題）",
   "category": "reading",
   "tag": "読解"
  },
