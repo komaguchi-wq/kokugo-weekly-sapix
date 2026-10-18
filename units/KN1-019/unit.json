@@ -181,5 +181,6 @@
  },
  "short": "ことわざ8",
  "kindCode": "S",
- "lenClass": "long"
+ "lenClass": "long",
+ "kaisetsu": "kaisetsu.html"
 }

@@ -139,5 +139,6 @@
  },
  "short": "ことわざ20",
  "kindCode": "S",
- "lenClass": "long"
+ "lenClass": "long",
+ "kaisetsu": "kaisetsu.html"
 }
