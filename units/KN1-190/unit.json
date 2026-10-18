@@ -311,5 +311,6 @@
  },
  "short": "多義語1",
  "kindCode": "MH",
- "lenClass": "short"
+ "lenClass": "short",
+ "kaisetsu": "kaisetsu.html"
 }

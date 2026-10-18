@@ -206,5 +206,6 @@
  },
  "short": "気持ち3",
  "kindCode": "S",
- "lenClass": "mid"
+ "lenClass": "mid",
+ "kaisetsu": "kaisetsu.html"
 }

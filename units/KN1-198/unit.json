@@ -164,5 +164,6 @@
  },
  "short": "程度1",
  "kindCode": "S",
- "lenClass": "mid"
+ "lenClass": "mid",
+ "kaisetsu": "kaisetsu.html"
 }
