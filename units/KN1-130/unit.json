@@ -105,5 +105,6 @@
  },
  "short": "三字12",
  "kindCode": "S",
- "lenClass": "short"
+ "lenClass": "short",
+ "kaisetsu": "kaisetsu.html"
 }
