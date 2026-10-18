@@ -289,6 +289,7 @@ body {
 }
 .btn-bulk-print-a { background: #ff9500; }
 .btn-review { background: #8e44ad; }
+.btn-pick-k { background: #1a6fb5; }   /* 2026-10-18 選んで印刷: 解説 */
 .btn-review:disabled { opacity: 0.6; }
 .btn-bulk-print:active { opacity: 0.8; }
 .kanji-targets { margin-top: 4px; font-size: 13px; font-weight: 600; color: #ff3b30; }

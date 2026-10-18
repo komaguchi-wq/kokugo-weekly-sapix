@@ -455,13 +455,13 @@ function renderUnits() {
       `</div>
       <div class="kanji-bulk-actions">
         <span class="kanji-bulk-hint">${bf === 'all'
-          ? `${noun}を選ぶか、モードを選んで対象問題をしぼりこめます`
+          ? (sheetCat ? `下の「${noun}を選んで印刷」で問題・解答・解説を印刷。モードを選ぶと対象問題をしぼりこめます` : `${noun}を選ぶか、モードを選んで対象問題をしぼりこめます`)
           : `各${noun}の「対象」が印刷対象${framed ? '（赤枠つき）' : ''}。対象0問の${noun}は印刷されません`}</span>
         <span class="kanji-bulk-btns">
-          <button class="btn-bulk-print" data-bulk-print="q">🖨 問題を印刷（${bf === 'all'
+          ${sheetCat ? '' : `<button class="btn-bulk-print" data-bulk-print="q">🖨 問題を印刷（${bf === 'all'
             ? `全${units.length}${noun}` : `${bulkCount(bf)}${noun}`}）</button>
           <button class="btn-bulk-print btn-bulk-print-a" data-bulk-print="a">🖨 解答を印刷（${bf === 'all'
-            ? `全${units.length}${noun}` : `${bulkCount(bf)}${noun}`}）</button>
+            ? `全${units.length}${noun}` : `${bulkCount(bf)}${noun}`}）</button>`}
           ${sheetCat && bf !== 'all' ? (() => {
             const n = reviewItemsFor(cat, bf).length;
             return n ? `<button class="btn-bulk-print btn-review" data-review="1">✍️ 解き直しシート（${n}問→${Math.ceil(n / REVIEW_CFG[cat.id].per)}枚）</button>` : '';
@@ -681,7 +681,9 @@ function pickBarHTML(cat, pk, noun) {
         <span class="pick-btns">
           <button class="btn-pick-sub" data-pick="clear">クリア</button>
           <button class="btn-pick-sub" data-pick="close">やめる</button>
-          <button class="btn-bulk-print" data-pick="print"${n ? '' : ' disabled'}>🖨 問題→解答を印刷（<span data-pick-count>${n}</span>${noun}）</button>
+          <button class="btn-bulk-print" data-pick="print-q"${n ? '' : ' disabled'}>🖨 問題を印刷（<span data-pick-count>${n}</span>${noun}）</button>
+          <button class="btn-bulk-print btn-bulk-print-a" data-pick="print-a"${n ? '' : ' disabled'}>🖨 解答を印刷（<span data-pick-count>${n}</span>${noun}）</button>
+          <button class="btn-bulk-print btn-pick-k" data-pick="print-k"${n ? '' : ' disabled'}>🖨 解説を印刷（<span data-pick-count>${n}</span>${noun}）</button>
         </span>
       </div>
     </div>`;
@@ -689,8 +691,7 @@ function pickBarHTML(cat, pk, noun) {
 function updatePickCount(cat, list) {
   const n = pickOf(cat).sel.size;
   list.querySelectorAll('[data-pick-count]').forEach((el) => { el.textContent = n; });
-  const pb = list.querySelector('[data-pick="print"]');
-  if (pb) pb.disabled = n === 0;
+  list.querySelectorAll('[data-pick^="print-"]').forEach((pb) => { pb.disabled = n === 0; });
 }
 function togglePick(cat, card) {
   const pk = pickOf(cat), id = card.dataset.id;
@@ -725,31 +726,81 @@ function bindPickBar(cat, list) {
     const first = list.querySelector(`.unit-card[data-id="${hit[0].id}"]`);
     if (first) first.scrollIntoView({ block: 'center', behavior: 'smooth' });
   });
-  on('print', 'click', async (e) => {
-    const btn = e.currentTarget;
-    const ids = unitsOf(cat).map((u) => u.id).filter((id) => pk.sel.has(id));   // 本の順
+  // ★2026-10-18 「問題→解答」の1本から 問題／解答／解説 の3本に分離（ユーザー要望）
+  const pickIds = () => unitsOf(cat).map((u) => u.id).filter((id) => pk.sel.has(id));   // 本の順
+  const busy = async (btn, fn) => {
+    const label = btn.innerHTML;
+    btn.disabled = true; btn.textContent = '⏳ 準備中…';
+    try { await fn(); } finally { btn.disabled = false; btn.innerHTML = label; }
+  };
+  const printSheets = (kind) => async (e) => {
+    const ids = pickIds();
     if (!ids.length) return;
     const bf = bulkFilterOf(cat);
-    const label = btn.innerHTML;
-    btn.disabled = true;
-    btn.textContent = '⏳ 準備中…';
-    try {
-      const qs = [], as = [];
+    await busy(e.currentTarget, async () => {
+      const sheets = [];
       for (const id of ids) {
         const unit = state.unitCache[id];
         if (!unit) continue;
         try {
-          qs.push(...await unitPrintSheets(unit, 'q', targetKeys(unit, bf)));   // 絞り込み中なら対象マスに赤枠
-          as.push(...await unitPrintSheets(unit, 'a', []));
+          sheets.push(...await unitPrintSheets(unit, kind, kind === 'q' ? targetKeys(unit, bf) : []));   // 絞り込み中なら問題の対象マスに赤枠
         } catch (err) { console.warn('pick print load fail', id, err); }
       }
-      if (!qs.length && !as.length) { alert('画像の読み込みに失敗しました'); return; }
-      await _openPrintOverlay([...qs, ...as]);
-    } finally {
-      btn.disabled = false;
-      btn.innerHTML = label;
-    }
+      if (!sheets.length) { alert('画像の読み込みに失敗しました'); return; }
+      await _openPrintOverlay(sheets);
+    });
+  };
+  on('print-q', 'click', printSheets('q'));
+  on('print-a', 'click', printSheets('a'));
+  on('print-k', 'click', async (e) => {
+    const ids = pickIds();
+    if (!ids.length) return;
+    await busy(e.currentTarget, () => printUnitsKaisetsu(cat, ids, bulkFilterOf(cat)));
   });
+}
+
+// ★2026-10-18 選んだページの解説をまとめて印刷（B4横・2段組）。絞り込み中は各単元の対象小問のカードだけ残す
+async function printUnitsKaisetsu(cat, ids, bf) {
+  const parts = [];
+  let kept = 0, total = 0, noK = 0;
+  for (const id of ids) {
+    const unit = state.unitCache[id];
+    if (!unit || !unit.kaisetsu) { noK++; continue; }
+    const url = `units/${unit.id}/${unit.kaisetsu}`;
+    try {
+      if (!_kaisetsuCache[url]) {
+        const res = await fetch(url, { cache: 'no-cache' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        _kaisetsuCache[url] = await res.text();
+      }
+    } catch (e) { console.warn('kaisetsu load fail', id, e); noK++; continue; }
+    let html = _kaisetsuCache[url];
+    if (bf !== 'all' && window.KaisetsuFilter) {
+      const qs = [];
+      questionGroups(unit).forEach((g) => g.labels.forEach((l) =>
+        qs.push({ id: g.head ? g.head + l : l, dm: g.head || '', dmLabel: '', group: '', label: l })));
+      const r = KaisetsuFilter.filterHTML(html, qs, new Set(targetKeys(unit, bf)));
+      total += r.total;
+      if (r.kept === 0) continue;
+      kept += r.kept; html = r.html;
+    }
+    parts.push(html);   // 断片は自分の見出し（.daimon > .dtitle）を持っている
+  }
+  if (!parts.length) {
+    alert(noK === ids.length ? '選んだページには解説がまだありません' : 'いまの問題選択に対象の解説はありません（「全ての問題」に戻すか、別の選択にしてください）');
+    return;
+  }
+  const body = document.getElementById('print-overlay-body');
+  if (!body) return;
+  _resetPrintOverlay();
+  const sub = bf !== 'all' ? `${WSM_MODE_SHORT[bf] || bf}の解説（${kept} / ${total} 問）` : '';
+  body.innerHTML = `<div class="kp"><div class="kp-title">${cat.name} 解説（${parts.length}ページ分）</div>${sub ? `<div class="kp-sub">${sub}</div>` : ''}` +
+    `<div class="kaisetsu kaisetsu-print kaisetsu-print-multi">${parts.join('')}</div></div>`;
+  let style = document.getElementById('dynamic-print-page');
+  if (!style) { style = document.createElement('style'); style.id = 'dynamic-print-page'; document.head.appendChild(style); }
+  style.textContent = `@page { size: B4 landscape; margin: 12mm 12mm 12mm 12mm; }`;
+  await new Promise((r) => setTimeout(r, 50));
+  try { window.print(); } catch (e) { console.warn('print err', e); }
 }
 
 // ==============================
