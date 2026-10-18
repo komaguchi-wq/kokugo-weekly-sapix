@@ -333,5 +333,6 @@
  },
  "short": "対になる1",
  "kindCode": "P",
- "lenClass": "long"
+ "lenClass": "long",
+ "kaisetsu": "kaisetsu.html"
 }

@@ -333,5 +333,6 @@
  },
  "short": "似た意味2",
  "kindCode": "P",
- "lenClass": "long"
+ "lenClass": "long",
+ "kaisetsu": "kaisetsu.html"
 }
