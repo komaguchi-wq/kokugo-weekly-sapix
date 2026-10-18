@@ -307,5 +307,6 @@
  },
  "short": "上下反対1",
  "kindCode": "S2",
- "lenClass": "short"
+ "lenClass": "short",
+ "kaisetsu": "kaisetsu.html"
 }

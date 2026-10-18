@@ -711,5 +711,6 @@
  },
  "short": "対義語2",
  "kindCode": "P",
- "lenClass": "short"
+ "lenClass": "short",
+ "kaisetsu": "kaisetsu.html"
 }

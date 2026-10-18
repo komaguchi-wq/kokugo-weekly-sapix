@@ -123,6 +123,21 @@
     }
     // ★2026-10-05 大問の無い単元（漢字の要など head=''）: 索引が空なら「大問なし」として残り全体を小問ラベルと照合する
     if (!hit && index.length === 0 && questions.length) hit = { key: '', dm: '' };
+    // ★2026-10-18 言葉ナビ類義語/対義語（head '' と '類'/'対' が混在・qid「1・類1」）: 大問が見つからない qid は「・」で分けて部ごとに照合し、
+    //   大問の付かない部は head='' の小問と照合する（従来 null だった場合だけ動く）
+    if (!hit) {
+      const parts = full.split('・');
+      if (parts.length > 1) {
+        const ids = [];
+        for (const p of parts) {
+          const r = coveredIds(p, questions, index);
+          if (!r) return null;
+          r.forEach((i) => { if (!ids.includes(i)) ids.push(i); });
+        }
+        return ids.length ? ids : null;
+      }
+      if (questions.some((q) => !q.dm)) hit = { key: '', dm: '' };
+    }
     if (!hit) return null;
     const tokens = expandRest(full.slice(hit.key.length));
     const ids = [];
