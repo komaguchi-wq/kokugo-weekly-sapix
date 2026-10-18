@@ -227,5 +227,6 @@
  },
  "short": "慣用句1",
  "kindCode": "S",
- "lenClass": "mid"
+ "lenClass": "mid",
+ "kaisetsu": "kaisetsu.html"
 }
