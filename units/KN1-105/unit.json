@@ -185,5 +185,6 @@
  },
  "short": "四字3",
  "kindCode": "S",
- "lenClass": "short"
+ "lenClass": "short",
+ "kaisetsu": "kaisetsu.html"
 }
