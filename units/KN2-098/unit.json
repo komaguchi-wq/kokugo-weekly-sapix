@@ -223,5 +223,6 @@
  },
  "short": "三字4",
  "kindCode": "S",
- "lenClass": "short"
+ "lenClass": "short",
+ "kaisetsu": "kaisetsu.html"
 }
