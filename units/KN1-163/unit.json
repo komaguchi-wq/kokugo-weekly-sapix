@@ -374,5 +374,6 @@
  },
  "short": "同訓6",
  "kindCode": "MH",
- "lenClass": "short"
+ "lenClass": "short",
+ "kaisetsu": "kaisetsu.html"
 }
