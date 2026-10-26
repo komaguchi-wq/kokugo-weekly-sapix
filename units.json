@@ -3594,6 +3594,62 @@
   "view": true
  },
  {
+  "id": "KN1-178M1",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "いろいろな気持ち 意味 1",
+  "category": "kotoba-navi",
+  "tag": "p.178〜・17問・意味",
+  "view": false
+ },
+ {
+  "id": "KN1-178M2",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "いろいろな気持ち 意味 2",
+  "category": "kotoba-navi",
+  "tag": "p.178〜・17問・意味",
+  "view": false
+ },
+ {
+  "id": "KN1-178M3",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "いろいろな気持ち 意味 3",
+  "category": "kotoba-navi",
+  "tag": "p.178〜・17問・意味",
+  "view": false
+ },
+ {
+  "id": "KN1-178M4",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "いろいろな気持ち 意味 4",
+  "category": "kotoba-navi",
+  "tag": "p.178〜・15問・意味",
+  "view": false
+ },
+ {
+  "id": "KN1-182M1",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "いろいろな気持ち 中級の意味 1",
+  "category": "kotoba-navi",
+  "tag": "p.182〜・17問・意味",
+  "view": false
+ },
+ {
+  "id": "KN1-182M2",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "いろいろな気持ち 中級の意味 2",
+  "category": "kotoba-navi",
+  "tag": "p.182〜・17問・意味",
+  "view": false
+ },
+ {
+  "id": "KN1-182M3",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "いろいろな気持ち 中級の意味 3",
+  "category": "kotoba-navi",
+  "tag": "p.182〜・16問・意味",
+  "view": false
+ },
+ {
   "id": "KN1-184",
   "week": "上巻 第6章 いろいろな言葉",
   "title": "性格・態度をあらわす言葉 1",
@@ -3624,6 +3680,30 @@
   "category": "kotoba-navi",
   "tag": "p.187・閲覧",
   "view": true
+ },
+ {
+  "id": "KN1-185M1",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "性格・態度をあらわす言葉 意味 1",
+  "category": "kotoba-navi",
+  "tag": "p.185〜・17問・意味",
+  "view": false
+ },
+ {
+  "id": "KN1-185M2",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "性格・態度をあらわす言葉 意味 2",
+  "category": "kotoba-navi",
+  "tag": "p.185〜・17問・意味",
+  "view": false
+ },
+ {
+  "id": "KN1-185M3",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "性格・態度をあらわす言葉 意味 3",
+  "category": "kotoba-navi",
+  "tag": "p.185〜・17問・意味",
+  "view": false
  },
  {
   "id": "KN1-188",
@@ -3742,16 +3822,24 @@
   "week": "上巻 第6章 いろいろな言葉",
   "title": "ものの数え方 1",
   "category": "kotoba-navi",
-  "tag": "p.203・閲覧",
-  "view": true
+  "tag": "p.203・16問",
+  "view": false
+ },
+ {
+  "id": "KN1-203b",
+  "week": "上巻 第6章 いろいろな言葉",
+  "title": "ものの数え方 2",
+  "category": "kotoba-navi",
+  "tag": "p.203・16問",
+  "view": false
  },
  {
   "id": "KN1-204",
   "week": "上巻 第6章 いろいろな言葉",
   "title": "からだの言葉 1",
   "category": "kotoba-navi",
-  "tag": "p.204・閲覧",
-  "view": true
+  "tag": "p.204・21問",
+  "view": false
  },
  {
   "id": "KN2-006",
@@ -4696,6 +4784,22 @@
   "category": "kotoba-navi",
   "tag": "p.169・閲覧",
   "view": true
+ },
+ {
+  "id": "KN2-168M1",
+  "week": "下巻 第5章 その他",
+  "title": "いろいろな気持ち 意味 1",
+  "category": "kotoba-navi",
+  "tag": "p.168〜・25問・意味",
+  "view": false
+ },
+ {
+  "id": "KN2-168M2",
+  "week": "下巻 第5章 その他",
+  "title": "いろいろな気持ち 意味 2",
+  "category": "kotoba-navi",
+  "tag": "p.168〜・25問・意味",
+  "view": false
  },
  {
   "id": "KN2-170",
