@@ -1388,7 +1388,9 @@ function _resetPrintOverlay() {
 function _setPrintPageGeometry(img) {
   const portrait = !!(img && img.naturalHeight > img.naturalWidth);
   const pageSize = portrait ? 'A4 portrait' : 'B4 landscape';
-  const maxH = portrait ? 285 : 245;   // 印刷可能高(mm)
+  // 印刷可能高(mm)。縦は B4 縦（364-10=354）でも使えるよう 349 にし、A4 では幅（200mm→高さ283mm）で決まる
+  // （画像は幅も高さも上限だけ＝縦横比を保つ。style.css の .pg img と組・2026-10-26）
+  const maxH = portrait ? 349 : 245;
   let style = document.getElementById('dynamic-print-page');
   if (!style) {
     style = document.createElement('style');

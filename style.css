@@ -430,11 +430,14 @@ body {
     visibility: visible !important;
   }
   #print-overlay-body .pg:last-child { page-break-after: auto; break-after: auto; }
+  /* ★2026-10-26 幅100%固定＋max-height だと、用紙を B4 にしたとき高さだけ切り詰められて横に潰れる
+     （A4 では幅で決まるので無事）。幅も高さも上限だけにして縦横比を保ち、中央に置く */
   #print-overlay-body .pg img {
-    width: 100% !important;
+    width: auto !important;
     max-width: 100% !important;
     height: auto !important;
     display: block !important;
+    margin: 0 auto !important;
     visibility: visible !important;
   }
 }
