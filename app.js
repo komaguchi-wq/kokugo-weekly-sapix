@@ -456,16 +456,13 @@ function renderUnits() {
       <div class="kanji-bulk-actions">
         <span class="kanji-bulk-hint">${bf === 'all'
           ? (sheetCat ? `下の「${noun}を選んで印刷」で問題・解答・解説を印刷。モードを選ぶと対象問題をしぼりこめます` : `${noun}を選ぶか、モードを選んで対象問題をしぼりこめます`)
-          : `各${noun}の「対象」が印刷対象${framed ? '（赤枠つき）' : ''}。対象0問の${noun}は印刷されません`}</span>
+          : `各${noun}の「対象」が印刷対象${framed ? '（赤枠つき）' : ''}。対象0問の${noun}は印刷されません${sheetCat ? `。解き直しシートは${(pickOf(cat).on && pickOf(cat).sel.size) ? '選択中の' : ''}${noun}の対象を1枚1${noun}で` : ''}`}</span>
         <span class="kanji-bulk-btns">
           ${sheetCat ? '' : `<button class="btn-bulk-print" data-bulk-print="q">🖨 問題を印刷（${bf === 'all'
             ? `全${units.length}${noun}` : `${bulkCount(bf)}${noun}`}）</button>
           <button class="btn-bulk-print btn-bulk-print-a" data-bulk-print="a">🖨 解答を印刷（${bf === 'all'
             ? `全${units.length}${noun}` : `${bulkCount(bf)}${noun}`}）</button>`}
-          ${sheetCat && bf !== 'all' ? (() => {
-            const n = reviewItemsFor(cat, bf).length;
-            return n ? `<button class="btn-bulk-print btn-review" data-review="1">✍️ 解き直しシート（${n}問→${Math.ceil(n / REVIEW_CFG[cat.id].per)}枚）</button>` : '';
-          })() : ''}
+          ${sheetCat && bf !== 'all' ? `<button class="btn-bulk-print btn-review" data-review="1"${reviewItemsFor(cat, bf).length ? '' : ' hidden'}>${reviewBtnLabel(cat, bf)}</button>` : ''}
         </span>
       </div>`;
     const pk = sheetCat ? pickOf(cat) : null;
@@ -692,6 +689,13 @@ function updatePickCount(cat, list) {
   const n = pickOf(cat).sel.size;
   list.querySelectorAll('[data-pick-count]').forEach((el) => { el.textContent = n; });
   list.querySelectorAll('[data-pick^="print-"]').forEach((pb) => { pb.disabled = n === 0; });
+  // 解き直しシートのボタンも選択に合わせて問数・枚数を更新（選択0のときは全単元の対象）
+  const bf = bulkFilterOf(cat);
+  list.querySelectorAll('[data-review]').forEach((rb) => {
+    const k = bf === 'all' ? 0 : reviewItemsFor(cat, bf).length;
+    rb.hidden = !k;
+    if (k) rb.textContent = reviewBtnLabel(cat, bf);
+  });
 }
 function togglePick(cat, card) {
   const pk = pickOf(cat), id = card.dataset.id;
@@ -817,9 +821,15 @@ const REVIEW_CFG = {
 };
 const REVIEW_W = 4000, REVIEW_H = 2300;   // iOSの画像1辺4096px制限内
 
+// ★2026-10-27 ユーザー要望: 「ページを選んで印刷」で単元を選んでいる間は、その単元の対象だけを集める（選択0なら全単元）
+function reviewUnitsOf(cat) {
+  const pk = REVIEW_CFG[cat.id] ? pickOf(cat) : null;
+  const us = unitsOf(cat);
+  return pk && pk.on && pk.sel.size ? us.filter((u) => pk.sel.has(u.id)) : us;
+}
 function reviewItemsFor(cat, mode) {
   const items = [];
-  for (const u of unitsOf(cat)) {
+  for (const u of reviewUnitsOf(cat)) {
     const unit = state.unitCache[u.id];
     if (!unit || !unit.review) continue;   // 特殊ページ（座標なし）は対象外
     for (const k of targetKeys(unit, mode)) {
@@ -827,6 +837,24 @@ function reviewItemsFor(cat, mode) {
     }
   }
   return items;
+}
+// ★2026-10-27 1枚＝1単元（単元が変わるところで改ページ。1単元が per 問を超えれば複数枚）
+function reviewPaginate(items, per) {
+  const pages = [];
+  let cur = null;
+  for (const it of items) {
+    if (!cur || cur[0].unitId !== it.unitId || cur.length >= per) { cur = []; pages.push(cur); }
+    cur.push(it);
+  }
+  return pages;
+}
+function reviewBtnLabel(cat, mode) {
+  const items = reviewItemsFor(cat, mode);
+  const pages = reviewPaginate(items, REVIEW_CFG[cat.id].per);
+  const nUnits = new Set(items.map((it) => it.unitId)).size;
+  const pk = pickOf(cat);
+  const sel = pk.on && pk.sel.size ? '選択中の' : '';
+  return `✍️ 解き直しシート（${sel}${nUnits}${cat.id === 'kanji' ? '回' : 'ページ'}・${items.length}問→${pages.length}枚）`;
 }
 
 function _reviewCropQ(img, r) {   // 割合座標 → 元画像px
@@ -890,19 +918,32 @@ function drawReviewSheet(items, pageNo, pageCount, modeLabel, withAnswers, cfg, 
   ctx.fillText('名', 1890, Math.max(ty + 60, 1500) + 30);
   ctx.fillText('前', 1890, Math.max(ty + 60, 1500) + 66);
   // ---- 右: 問題文の列（右→左に 1,2,3…・番号を付け直す） ----
-  const px0 = 2060, px1 = REVIEW_W - 40, ptop = cfg.qTop;
+  // ★2026-10-27 出典を問題面にも印字（スキャンした用紙から元の問題に正誤を紐づけるため）:
+  //   各番号の下に元の小問番号（灰色・小）＋用紙の下端に「出典 KN1-012 ことわざ1」（1枚＝1単元）
+  const px0 = 2060, px1 = REVIEW_W - 40, ptop = cfg.qTop, footH = 70;
   const pitch = (px1 - px0) / cfg.per;
   const crops = items.map((it) => _reviewCropQ(it.qImg, it.unit.review[it.key].q));
   const maxH = Math.max(...crops.map((c) => c.sh)), maxW = Math.max(...crops.map((c) => c.sw));
-  const sc = Math.min(1.6, (REVIEW_H - ptop - 40) / maxH, (pitch - 10) / maxW);
-  ctx.font = 'bold 40px "Hiragino Sans", sans-serif';
-  ctx.fillStyle = '#000';
+  const sc = Math.min(1.6, (REVIEW_H - ptop - footH - 40) / maxH, (pitch - 10) / maxW);
+  const srcFont = Math.min(26, Math.floor(pitch / 3.2));   // 漢字の要15列は列が狭いので小さく
   crops.forEach((c, i) => {
     const cx = px1 - pitch * (i + 0.5);
-    ctx.fillText(String(i + 1), cx, 90);
+    ctx.font = 'bold 40px "Hiragino Sans", sans-serif';
+    ctx.fillStyle = '#000';
+    ctx.fillText(String(i + 1), cx, 80);
+    ctx.font = `${srcFont}px "Hiragino Sans", sans-serif`;
+    ctx.fillStyle = '#86868b';
+    ctx.fillText(String(items[i].key), cx, 124);
     const dw = c.sw * sc, dh = c.sh * sc;
     ctx.drawImage(items[i].qImg, c.sx, c.sy, c.sw, c.sh, cx - dw / 2, ptop, dw, dh);
   });
+  // 出典（用紙の下端・横書き）: 単元ID＋単元名。1枚に複数単元が混ざる旧データにも備えて重複を除いて並べる
+  const srcs = [...new Set(items.map((it) => `${it.unitId} ${it.short}`))];
+  ctx.font = '30px "Hiragino Sans", sans-serif';
+  ctx.fillStyle = '#000';
+  ctx.textAlign = 'right';
+  ctx.fillText(`出典 ${srcs.join(' ／ ')}`, px1, REVIEW_H - footH / 2 - 10);
+  ctx.textAlign = 'center';
   // 用紙と問題の境
   ctx.strokeStyle = '#bbb'; ctx.lineWidth = 3;
   ctx.beginPath(); ctx.moveTo(2010, 40); ctx.lineTo(2010, REVIEW_H - 40); ctx.stroke();
@@ -930,20 +971,20 @@ async function openReview(cat, mode, btn) {
     }
     items.forEach((it) => { it.qImg = imgs[it.unitId].q; it.aImg = imgs[it.unitId].a; });
     const cfg = REVIEW_CFG[cat.id] || REVIEW_CFG.kaname;
-    const pages = [];
-    for (let i = 0; i < items.length; i += cfg.per) pages.push(items.slice(i, i + cfg.per));
+    const pages = reviewPaginate(items, cfg.per);   // 1枚＝1単元
+    const nUnits = new Set(items.map((it) => it.unitId)).size;
     const modeLabel = WSM_MODE_SHORT[mode];
     const qPages = [], aPages = [], groups = [], reviewItems = {};
     pages.forEach((pg, pi) => {
       setMsg(`作成中… ${pi + 1}/${pages.length}枚`);
       qPages.push({ full: drawReviewSheet(pg, pi + 1, pages.length, modeLabel, false, cfg, cat.name) });
       aPages.push({ full: drawReviewSheet(pg, pi + 1, pages.length, modeLabel, true, cfg, cat.name) });
-      const head = `${pi + 1}枚目`;
+      const head = `${pi + 1}枚目（${pg[0].short}）`;   // 正誤表の見出しに単元名（キーは head＋番号・枚目で一意）
       groups.push({ head, labels: pg.map((_, i) => String(i + 1)) });
       pg.forEach((it, i) => { reviewItems[head + String(i + 1)] = { unitId: it.unitId, key: it.key }; });
     });
     const unit = {
-      id: `${cat.id.toUpperCase()}-REVIEW`, title: `解き直し（${modeLabel}・${items.length}問・${pages.length}枚）`,
+      id: `${cat.id.toUpperCase()}-REVIEW`, title: `解き直し（${modeLabel}・${nUnits}${cat.id === 'kanji' ? '回' : 'ページ'}・${items.length}問・${pages.length}枚）`,
       category: (unitsOf(cat)[0] || {}).category || 'kanji-kaname', questionPages: qPages, answerPages: aPages,
       questionGroups: groups, reviewItems, print2up: false,
     };
