@@ -1429,9 +1429,10 @@ function _resetPrintOverlay() {
 function _setPrintPageGeometry(img) {
   const portrait = !!(img && img.naturalHeight > img.naturalWidth);
   const pageSize = portrait ? 'A4 portrait' : 'B4 landscape';
-  // 印刷可能高(mm)。縦は B4 縦（364-10=354）でも使えるよう 349 にし、A4 では幅（200mm→高さ283mm）で決まる
-  // （画像は幅も高さも上限だけ＝縦横比を保つ。style.css の .pg img と組・2026-10-26）
-  const maxH = portrait ? 349 : 245;
+  // ★2026-10-28 ページ箱 .pg の縦横比（幅/高さ）。印刷可能領域（余白5mm）は 縦: A4 200×287・B4 247×354（高さ/幅 1.435/1.433）
+  // 横: A4 287×200・B4 354×247（0.697/0.698）。幅は用紙の印刷幅に追随するので、A4/B4 どちらでも同じ比で収まる。
+  // 少し低め（縦 1.425・横 0.690）にして丸めで次ページへ落ちないようにする。画像は箱に contain（style.css .pg img）
+  const ratio = portrait ? '1000 / 1425' : '1000 / 690';
   let style = document.getElementById('dynamic-print-page');
   if (!style) {
     style = document.createElement('style');
@@ -1440,7 +1441,7 @@ function _setPrintPageGeometry(img) {
   }
   style.textContent =
     `@page { size: ${pageSize}; margin: 5mm; }\n` +
-    `@media print { #print-overlay-body .pg img { max-height: ${maxH}mm !important; } }`;
+    `@media print { #print-overlay-body .pg { aspect-ratio: ${ratio} !important; } }`;
 }
 // ===== 印刷の濃度補正（2026-09-15 ユーザー要望: スキャン系プリントの印刷が薄くて読みにくい）=====
 // 算数アプリ(math-quiz)の toMonoWhite と同じ式を、全印刷経路が通る _openPrintOverlay に共通適用する。

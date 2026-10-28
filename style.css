@@ -418,6 +418,10 @@ body {
     width: 100% !important;
     visibility: visible !important;
   }
+  /* ★2026-10-28 1画像=1枚を「用紙にぎりぎり収める」: .pg を印刷可能領域と同じ縦横比の箱にし（高さは幅から決まる＝
+     用紙を A4/B4 どちらにしても印刷幅に追随・余白5mmのとき A4 200×287 と B4 247×354 はほぼ同比）、画像はその中に
+     contain で収める。縦横比は app.js _setPrintPageGeometry が向きごとに注入（縦 1000/1425・横 1000/690）。
+     以前の「幅100%＋max-height 349mm」は A4 で縦長の画像（高さ 316mm）が次ページへ割れた */
   #print-overlay-body .pg {
     width: 100% !important;
     page-break-after: always;
@@ -427,17 +431,21 @@ body {
     background: #fff !important;
     display: block !important;
     height: auto !important;
+    overflow: hidden !important;
     visibility: visible !important;
   }
   #print-overlay-body .pg:last-child { page-break-after: auto; break-after: auto; }
   /* ★2026-10-26 幅100%固定＋max-height だと、用紙を B4 にしたとき高さだけ切り詰められて横に潰れる
      （A4 では幅で決まるので無事）。幅も高さも上限だけにして縦横比を保ち、中央に置く */
   #print-overlay-body .pg img {
-    width: auto !important;
-    max-width: 100% !important;
-    height: auto !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: contain !important;
+    object-position: 50% 0 !important;
     display: block !important;
-    margin: 0 auto !important;
+    margin: 0 !important;
     visibility: visible !important;
   }
 }
