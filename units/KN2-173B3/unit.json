@@ -1,0 +1,72 @@
+{
+ "id": "KN2-173B3",
+ "week": "下巻 第5章 その他",
+ "category": "kotoba-navi",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/",
+ "hasSolved": false,
+ "print2up": false,
+ "page": 173,
+ "vol": 2,
+ "title": "作家まとめ（日本） 3",
+ "tag": "p.173〜・5人・作家まとめ",
+ "questionPages": [
+  {
+   "full": "units/KN2-173B3/qp_1.jpg",
+   "small": "units/KN2-173B3/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/KN2-173B3/ap_1.jpg",
+   "small": "units/KN2-173B3/ap_1_small.jpg"
+  }
+ ],
+ "questionGroups": [
+  {
+   "head": "",
+   "labels": [
+    "太宰治",
+    "川端康成",
+    "井伏鱒二",
+    "三島由紀夫",
+    "大江健三郎"
+   ]
+  }
+ ],
+ "cellRects": {
+  "太宰治": [
+   0.0344,
+   0.1028,
+   0.9053,
+   0.2463
+  ],
+  "川端康成": [
+   0.0344,
+   0.2463,
+   0.9053,
+   0.3375
+  ],
+  "井伏鱒二": [
+   0.0344,
+   0.3375,
+   0.9053,
+   0.4273
+  ],
+  "三島由紀夫": [
+   0.0344,
+   0.4273,
+   0.9053,
+   0.5399
+  ],
+  "大江健三郎": [
+   0.0344,
+   0.5399,
+   0.9053,
+   0.6788
+  ]
+ },
+ "short": "作家日本3",
+ "kindCode": "XQ",
+ "view": false,
+ "note": "文学史 作家まとめ（言葉ナビ p.173〜177＋SS特訓 文学史＋慶應知識）。名前・作品名・決め手が空らん、解答はオレンジ（赤い下敷きで隠す）。1人=1行"
+}

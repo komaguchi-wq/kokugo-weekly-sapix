@@ -1,0 +1,79 @@
+{
+ "id": "KN2-173B1",
+ "week": "下巻 第5章 その他",
+ "category": "kotoba-navi",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/",
+ "hasSolved": false,
+ "print2up": false,
+ "page": 173,
+ "vol": 2,
+ "title": "作家まとめ（日本） 1",
+ "tag": "p.173〜・6人・作家まとめ",
+ "questionPages": [
+  {
+   "full": "units/KN2-173B1/qp_1.jpg",
+   "small": "units/KN2-173B1/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/KN2-173B1/ap_1.jpg",
+   "small": "units/KN2-173B1/ap_1_small.jpg"
+  }
+ ],
+ "questionGroups": [
+  {
+   "head": "",
+   "labels": [
+    "福澤諭吉",
+    "夏目漱石",
+    "森鷗外",
+    "樋口一葉",
+    "島崎藤村",
+    "石川啄木"
+   ]
+  }
+ ],
+ "cellRects": {
+  "福澤諭吉": [
+   0.0344,
+   0.1028,
+   0.9053,
+   0.2236
+  ],
+  "夏目漱石": [
+   0.0344,
+   0.2236,
+   0.9053,
+   0.439
+  ],
+  "森鷗外": [
+   0.0344,
+   0.439,
+   0.9053,
+   0.6134
+  ],
+  "樋口一葉": [
+   0.0344,
+   0.6134,
+   0.9053,
+   0.6765
+  ],
+  "島崎藤村": [
+   0.0344,
+   0.6765,
+   0.9053,
+   0.7831
+  ],
+  "石川啄木": [
+   0.0344,
+   0.7831,
+   0.9053,
+   0.8528
+  ]
+ },
+ "short": "作家日本1",
+ "kindCode": "XQ",
+ "view": false,
+ "note": "文学史 作家まとめ（言葉ナビ p.173〜177＋SS特訓 文学史＋慶應知識）。名前・作品名・決め手が空らん、解答はオレンジ（赤い下敷きで隠す）。1人=1行"
+}

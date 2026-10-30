@@ -1,0 +1,72 @@
+{
+ "id": "KN2-173B2",
+ "week": "下巻 第5章 その他",
+ "category": "kotoba-navi",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-02/",
+ "hasSolved": false,
+ "print2up": false,
+ "page": 173,
+ "vol": 2,
+ "title": "作家まとめ（日本） 2",
+ "tag": "p.173〜・5人・作家まとめ",
+ "questionPages": [
+  {
+   "full": "units/KN2-173B2/qp_1.jpg",
+   "small": "units/KN2-173B2/qp_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/KN2-173B2/ap_1.jpg",
+   "small": "units/KN2-173B2/ap_1_small.jpg"
+  }
+ ],
+ "questionGroups": [
+  {
+   "head": "",
+   "labels": [
+    "与謝野晶子",
+    "芥川龍之介",
+    "志賀直哉",
+    "有島武郎",
+    "宮沢賢治"
+   ]
+  }
+ ],
+ "cellRects": {
+  "与謝野晶子": [
+   0.0344,
+   0.1028,
+   0.9053,
+   0.1712
+  ],
+  "芥川龍之介": [
+   0.0344,
+   0.1712,
+   0.9053,
+   0.3912
+  ],
+  "志賀直哉": [
+   0.0344,
+   0.3912,
+   0.9053,
+   0.5489
+  ],
+  "有島武郎": [
+   0.0344,
+   0.5489,
+   0.9053,
+   0.6555
+  ],
+  "宮沢賢治": [
+   0.0344,
+   0.6555,
+   0.9053,
+   0.836
+  ]
+ },
+ "short": "作家日本2",
+ "kindCode": "XQ",
+ "view": false,
+ "note": "文学史 作家まとめ（言葉ナビ p.173〜177＋SS特訓 文学史＋慶應知識）。名前・作品名・決め手が空らん、解答はオレンジ（赤い下敷きで隠す）。1人=1行"
+}
