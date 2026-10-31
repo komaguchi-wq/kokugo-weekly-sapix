@@ -1,0 +1,119 @@
+{
+  "id": "WS-29-K",
+  "week": "WS-29",
+  "title": "WS-29 知識の総完成",
+  "category": "knowledge",
+  "questionPages": [
+    {
+      "full": "units/WS-29-K/q_1.jpg",
+      "small": "units/WS-29-K/q_1_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/_shared/WS-29/expl_1.jpg",
+      "small": "units/_shared/WS-29/expl_1_small.jpg"
+    },
+    {
+      "full": "units/_shared/WS-29/expl_2.jpg",
+      "small": "units/_shared/WS-29/expl_2_small.jpg"
+    }
+  ],
+  "hasSolved": false,
+  "questions": [
+    "一1a",
+    "一1b",
+    "一1c",
+    "一1d",
+    "一2①",
+    "一2②",
+    "一3①",
+    "一3②",
+    "二①",
+    "二②",
+    "二③",
+    "二④",
+    "二⑤",
+    "二⑥",
+    "二⑦",
+    "二⑧",
+    "二⑨",
+    "二⑩",
+    "三(A)1",
+    "三(A)2",
+    "三(A)3",
+    "三(A)4",
+    "三(B)1",
+    "三(B)2",
+    "三(B)3",
+    "三(C)1",
+    "三(C)2",
+    "三(C)3"
+  ],
+  "questionGroups": [
+    {
+      "head": "一1",
+      "labels": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ]
+    },
+    {
+      "head": "一2",
+      "labels": [
+        "①",
+        "②"
+      ]
+    },
+    {
+      "head": "一3",
+      "labels": [
+        "①",
+        "②"
+      ]
+    },
+    {
+      "head": "二",
+      "labels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦",
+        "⑧",
+        "⑨",
+        "⑩"
+      ]
+    },
+    {
+      "head": "三(A)",
+      "labels": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "head": "三(B)",
+      "labels": [
+        "1",
+        "2",
+        "3"
+      ]
+    },
+    {
+      "head": "三(C)",
+      "labels": [
+        "1",
+        "2",
+        "3"
+      ]
+    }
+  ],
+  "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-03/"
+}
