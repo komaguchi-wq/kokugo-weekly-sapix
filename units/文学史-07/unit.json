@@ -1,0 +1,74 @@
+{
+ "id": "文学史-07",
+ "week": "第7回",
+ "title": "テーマ別文学史特訓⑦ 年代別 その二",
+ "category": "ss-tokkun",
+ "tag": "文学史16問",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-03/",
+ "questionPages": [
+  {
+   "full": "units/文学史-07/q_1.jpg",
+   "small": "units/文学史-07/q_1_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/文学史-07/a_1.jpg",
+   "small": "units/文学史-07/a_1_small.jpg"
+  }
+ ],
+ "hasSolved": false,
+ "questions": [
+  "問1",
+  "問2A",
+  "問2B",
+  "問2C",
+  "問2D",
+  "問3A",
+  "問3B",
+  "問4A",
+  "問4B",
+  "問5A",
+  "問5B",
+  "問6",
+  "問7A",
+  "問7B",
+  "問8A",
+  "問8B"
+ ],
+ "questionGroups": [
+  {
+   "head": "",
+   "labels": [
+    "問1",
+    "問2A",
+    "問2B",
+    "問2C",
+    "問2D",
+    "問3A",
+    "問3B",
+    "問4A",
+    "問4B",
+    "問5A",
+    "問5B",
+    "問6",
+    "問7A",
+    "問7B",
+    "問8A",
+    "問8B"
+   ]
+  }
+ ],
+ "spreads": {
+  "q": [
+   [
+    0
+   ]
+  ],
+  "a": [
+   [
+    0
+   ]
+  ]
+ }
+}
