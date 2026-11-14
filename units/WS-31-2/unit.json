@@ -1,0 +1,48 @@
+{
+  "id": "WS-31-2",
+  "week": "WS-31",
+  "title": "WS-31-2 大問二（読解）",
+  "category": "reading",
+  "questionPages": [
+    {
+      "full": "units/WS-31-2/q_1.jpg",
+      "small": "units/WS-31-2/q_1_small.jpg"
+    },
+    {
+      "full": "units/WS-31-2/q_2.jpg",
+      "small": "units/WS-31-2/q_2_small.jpg"
+    },
+    {
+      "full": "units/WS-31-2/qsheet.jpg",
+      "small": "units/WS-31-2/qsheet_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/_shared/WS-31/expl_1.jpg",
+      "small": "units/_shared/WS-31/expl_1_small.jpg"
+    },
+    {
+      "full": "units/_shared/WS-31/expl_2.jpg",
+      "small": "units/_shared/WS-31/expl_2_small.jpg"
+    }
+  ],
+  "hasSolved": false,
+  "questions": [
+    "問一ア",
+    "問一イ",
+    "問一ウ",
+    "問一エ",
+    "問一オ",
+    "問二",
+    "問三(1)",
+    "問三(2)X",
+    "問三(2)Y",
+    "問四",
+    "問五",
+    "問六",
+    "問七",
+    "問八"
+  ],
+  "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-03/"
+}

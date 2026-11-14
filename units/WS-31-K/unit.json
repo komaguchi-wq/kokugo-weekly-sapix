@@ -1,0 +1,88 @@
+{
+  "id": "WS-31-K",
+  "week": "WS-31",
+  "title": "WS-31 知識の総完成",
+  "category": "knowledge",
+  "questionPages": [
+    {
+      "full": "units/WS-31-K/q_1.jpg",
+      "small": "units/WS-31-K/q_1_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/_shared/WS-31/expl_1.jpg",
+      "small": "units/_shared/WS-31/expl_1_small.jpg"
+    },
+    {
+      "full": "units/_shared/WS-31/expl_2.jpg",
+      "small": "units/_shared/WS-31/expl_2_small.jpg"
+    }
+  ],
+  "hasSolved": false,
+  "questions": [
+    "一問1",
+    "一問2",
+    "一問3-1",
+    "一問3-2",
+    "一問4",
+    "一問5",
+    "一問6",
+    "一問7季語",
+    "一問7季節",
+    "一問7切れ字",
+    "一問8",
+    "一問9イ",
+    "一問9ウ",
+    "二問1-1",
+    "二問1-2",
+    "二問2-1",
+    "二問2-2",
+    "二問3",
+    "二問4①",
+    "二問4②",
+    "二問4③",
+    "二問4④",
+    "二問4⑤",
+    "二問5①",
+    "二問5②"
+  ],
+  "questionGroups": [
+    {
+      "head": "一",
+      "labels": [
+        "問1",
+        "問2",
+        "問3-1",
+        "問3-2",
+        "問4",
+        "問5",
+        "問6",
+        "問7季語",
+        "問7季節",
+        "問7切れ字",
+        "問8",
+        "問9イ",
+        "問9ウ"
+      ]
+    },
+    {
+      "head": "二",
+      "labels": [
+        "問1-1",
+        "問1-2",
+        "問2-1",
+        "問2-2",
+        "問3",
+        "問4①",
+        "問4②",
+        "問4③",
+        "問4④",
+        "問4⑤",
+        "問5①",
+        "問5②"
+      ]
+    }
+  ],
+  "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-03/"
+}
