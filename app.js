@@ -598,6 +598,8 @@ function plainSheet(img) {
 async function unitPrintSheets(unit, kind, keys) {
   const sheets = [];
   if (kind === 'a') {
+    const it = await ittaiSheet(unit, keys);   // 漢字の要: 解答＝一体型（左=橙の答え・右=問題・対象に青丸）
+    if (it) return [it];
     const imgs = [];
     for (const p of unit.answerPages || []) imgs.push(await loadImage(imgURL(unit, p.full)));
     if (unit.print2up) sheets.push(...build2upSheets(imgs));
@@ -679,7 +681,7 @@ function pickBarHTML(cat, pk, noun) {
           <button class="btn-pick-sub" data-pick="clear">クリア</button>
           <button class="btn-pick-sub" data-pick="close">やめる</button>
           <button class="btn-bulk-print" data-pick="print-q"${n ? '' : ' disabled'}>🖨 問題を印刷（<span data-pick-count>${n}</span>${noun}）</button>
-          <button class="btn-bulk-print btn-bulk-print-a" data-pick="print-a"${n ? '' : ' disabled'}>🖨 解答を印刷（<span data-pick-count>${n}</span>${noun}）</button>
+          <button class="btn-bulk-print btn-bulk-print-a" data-pick="print-a"${n ? '' : ' disabled'}>🖨 ${cat.id === 'kaname' ? '解答（問題つき）' : '解答'}を印刷（<span data-pick-count>${n}</span>${noun}）</button>
           <button class="btn-bulk-print btn-pick-k" data-pick="print-k"${n ? '' : ' disabled'}>🖨 解説を印刷（<span data-pick-count>${n}</span>${noun}）</button>
         </span>
       </div>
@@ -747,7 +749,7 @@ function bindPickBar(cat, list) {
         const unit = state.unitCache[id];
         if (!unit) continue;
         try {
-          sheets.push(...await unitPrintSheets(unit, kind, kind === 'q' ? targetKeys(unit, bf) : []));   // 絞り込み中なら問題の対象マスに赤枠
+          sheets.push(...await unitPrintSheets(unit, kind, (kind === 'q' || ittaiUnit(unit)) ? targetKeys(unit, bf) : []));   // 絞り込み中なら問題の対象マスに赤枠／漢字の要の解答（一体型）は対象に青丸
         } catch (err) { console.warn('pick print load fail', id, err); }
       }
       if (!sheets.length) { alert('画像の読み込みに失敗しました'); return; }
@@ -1364,6 +1366,12 @@ async function printCurrentTab() {
     } catch (e) { alert('画像の読み込みに失敗しました'); }
     return;
   }
+  if (state.showingAnswer && ittaiUnit(u)) {   // 漢字の要の解答: 一体型（一覧の「解答を印刷」と同じ紙）
+    try {
+      const it = await ittaiSheet(u, targetKeys(u, wsmFilter));
+      if (it) { _openPrintOverlay([it]); return; }
+    } catch (e) { console.warn('ittai fail', e); }
+  }
   const pages = state.showingAnswer ? u.answerPages : u.questionPages;
   if (!pages || !pages.length) return;
   const imgs = [], loaded = [];
@@ -1407,6 +1415,151 @@ function _sheet2up(right, left) {
   if (right) ctx.drawImage(right, W - rw, 0, rw, H);
   if (left) ctx.drawImage(left, 0, 0, lw, H);
   return cc.toDataURL('image/jpeg', 0.92);
+}
+
+// ===== 漢字の要「解答を印刷」＝問題・解答一体型（2026-11-15 ユーザー要望: 一体型PDFと同じ紙をアプリから最新の正誤で出す）=====
+// 左 = 解答用紙（ap_1 の左側・答えは橙＝赤い下敷きで隠れる）／右 = 本の問題面（qp_1 の右側・傾き補正）。
+// keys（絞り込み中の対象小問）に青丸＝問題側の番号と解答側のマスの見出し。ページ全体が未解答なら丸のかわりに右上に青い「未解答」。
+// 画像からしか決まらない値（切れ目 sx・傾き ang・丸の位置）は kaname_ittai.json（scripts/daily_print/kotoba_ittai_export.py）。
+// 色・丸の大きさ・余白は scripts/daily_print/kotoba_ittai.py（一体型PDF）と同じ式。解いた用紙（solved_*）はこの紙には入れない。
+const ITTAI_BLUE = 'rgb(0,90,230)';
+const ITTAI_INK = [248, 135, 60];
+const _readySheets = new Set();   // 濃度補正を済ませて組み立てたシート（_monoPrintDataURLs は素通し）
+let _ittaiData = null;
+function ittaiUnit(unit) { return !!(unit && unit.category === 'kanji-kaname' && !unit.view && !unit.reviewItems); }
+async function loadIttai() {
+  if (_ittaiData) return _ittaiData;
+  try {
+    const r = await fetch('kaname_ittai.json?v=1');
+    if (r.ok) _ittaiData = await r.json();
+  } catch (e) { console.warn('ittai data load fail', e); }
+  return _ittaiData || {};
+}
+// 赤い答え → 橙（to_orange_sheet と同じ: 赤の画素とその 5x5 近傍を、G/B の暗さを濃さにして橙で塗り直す。黒い線のふちは塗らない）
+function ittaiOrange(ctx, w, h) {
+  if (w <= 0 || h <= 0) return;
+  const id = ctx.getImageData(0, 0, w, h);
+  const d = id.data, n = w * h;
+  const sel = new Uint8Array(n), V = new Uint8Array(n), S = new Uint8Array(n);
+  for (let i = 0, p = 0; i < n; i++, p += 4) {
+    const r = d[p], g = d[p + 1], b = d[p + 2];
+    const mx = r > g ? (r > b ? r : b) : (g > b ? g : b);
+    const mi = r < g ? (r < b ? r : b) : (g < b ? g : b);
+    const df = mx - mi;
+    V[i] = mx; S[i] = mx ? Math.round(255 * df / mx) : 0;
+    if (!df || S[i] < 40 || mx < 90) continue;
+    let hh = mx === r ? 60 * (g - b) / df : mx === g ? 120 + 60 * (b - r) / df : 240 + 60 * (r - g) / df;
+    if (hh < 0) hh += 360;
+    const H = Math.round(hh / 2);   // OpenCV と同じ 0〜180
+    if (H <= 25 || H >= 168) sel[i] = 1;
+  }
+  const tmp = new Uint8Array(n), near = new Uint8Array(n);   // 5x5 の広げ（横→縦）
+  for (let y = 0; y < h; y++) {
+    const o = y * w;
+    for (let x = 0; x < w; x++) {
+      if (sel[o + x]) { for (let k = Math.max(0, x - 2); k <= Math.min(w - 1, x + 2); k++) tmp[o + k] = 1; }
+    }
+  }
+  for (let y = 0; y < h; y++) {
+    const o = y * w;
+    for (let x = 0; x < w; x++) {
+      if (tmp[o + x]) { for (let k = Math.max(0, y - 2); k <= Math.min(h - 1, y + 2); k++) near[k * w + x] = 1; }
+    }
+  }
+  for (let i = 0, p = 0; i < n; i++, p += 4) {
+    if (!near[i]) continue;
+    const gb = d[p + 1] < d[p + 2] ? d[p + 1] : d[p + 2];
+    let a = (255 - gb) / 245; a = a > 1 ? 1 : a;
+    if (V[i] < 90 || (S[i] < 20 && !sel[i])) a = 0;
+    a = (a - 0.15) / 0.35; a = a < 0 ? 0 : a > 1 ? 1 : a;
+    if (a > 0) {
+      d[p] = 255 * (1 - a) + ITTAI_INK[0] * a; d[p + 1] = 255 * (1 - a) + ITTAI_INK[1] * a; d[p + 2] = 255 * (1 - a) + ITTAI_INK[2] * a;
+    } else if (V[i] >= 200 && S[i] < 30) { d[p] = d[p + 1] = d[p + 2] = 255; }
+  }
+  ctx.putImageData(id, 0, 0);
+}
+function ittaiRing(ctx, box, W, H, lw, ox, oy) {
+  const x0 = box[0] * W, y0 = box[1] * H, x1 = box[2] * W, y1 = box[3] * H;
+  const ry = Math.max((y1 - y0) / 2 + W * 0.006, W * 0.011);
+  const rx = Math.max((x1 - x0) / 2 + W * 0.006, ry);
+  ctx.beginPath();
+  ctx.ellipse(ox + (x0 + x1) / 2, oy + (y0 + y1) / 2, rx - lw / 2, ry - lw / 2, 0, 0, Math.PI * 2);   // PIL の outline は内側に太る
+  ctx.stroke();
+}
+// keys = 青丸を付ける小問（'all' のときは空）。一体型にできない単元は null（＝今までどおりの解答印刷）
+async function ittaiSheet(unit, keys) {
+  if (!ittaiUnit(unit)) return null;
+  const info = (await loadIttai())[unit.id];
+  if (!info || !(unit.answerPages || []).length) return null;
+  const grades = gradesFor(unit);
+  const allq = questionKeys(unit);
+  const unans = allq.length > 0 && allq.every((k) => gradeStat(grades, k).a === 0);
+  const a = await loadImage(imgURL(unit, unit.answerPages[0].full));
+  let W, H;
+  const cc = document.createElement('canvas');
+  let ctx;
+  const rad = -(info.ang || 0) * Math.PI / 180;   // PIL rotate(ang)=反時計回り → canvas は時計回りが＋
+  if (info.special) {
+    // 座標の無い特殊ページ（筆順・部首など）: 答えの入った原本1枚を傾き補正して橙に
+    W = a.width; H = a.height;
+    cc.width = W; cc.height = H; ctx = cc.getContext('2d');
+    ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
+    ctx.save(); ctx.translate(W / 2, H / 2); ctx.rotate(rad); ctx.drawImage(a, -W / 2, -H / 2); ctx.restore();
+    ittaiOrange(ctx, W, H);
+  } else {
+    const q = await loadImage(imgURL(unit, unit.questionPages[0].full));
+    W = q.width; H = q.height;
+    if (a.width !== W || a.height < H) return null;
+    const sx = Math.round(info.sx * W), rw = W - sx;
+    cc.width = W; cc.height = H; ctx = cc.getContext('2d');
+    ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, W, H);
+    ctx.drawImage(a, 0, 0, sx, H, 0, 0, sx, H);
+    ittaiOrange(ctx, sx, H);
+    ctx.save();
+    ctx.beginPath(); ctx.rect(sx, 0, rw, H); ctx.clip();
+    ctx.translate(sx + rw / 2, H / 2); ctx.rotate(rad);
+    ctx.drawImage(q, sx, 0, rw, H, -rw / 2, -H / 2, rw, H);
+    ctx.restore();
+  }
+  if (PRINT_MONO) toMonoWhite(ctx, W, H);   // 問題の印刷と同じ濃度補正（色の付いた画素はそのまま）
+  // B4 の縦横比に余白を足す（to_b4 と同じ。「未解答」は上の余白の右端・大きさは元画像の幅の 2.8%）
+  const land = W >= H, ratio = land ? 364 / 257 : 257 / 364;
+  const fs = Math.round(W * 0.028), need = unans ? Math.round(fs * 1.6) : 0;
+  let top = land ? 0 : Math.round(H * 0.05), W2, H2, oy;
+  for (let i = 0; i < 12; i++) {
+    const h2 = H + top;
+    if (W / h2 > ratio) { W2 = W; H2 = Math.round(W / ratio); } else { W2 = Math.round(h2 * ratio); H2 = h2; }
+    oy = top + Math.floor((H2 - h2) / 2);
+    if (oy >= need) break;
+    top += need - oy + 2;
+  }
+  const ox = Math.floor((W2 - W) / 2);
+  const out = document.createElement('canvas');
+  out.width = W2; out.height = H2;
+  const o = out.getContext('2d');
+  o.fillStyle = '#fff'; o.fillRect(0, 0, W2, H2);
+  o.drawImage(cc, ox, oy);
+  cc.width = 0; cc.height = 0;
+  if (unans) {
+    o.fillStyle = ITTAI_BLUE; o.textAlign = 'right'; o.textBaseline = 'middle';
+    o.font = `${fs}px "Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif`;
+    o.fillText('未解答', ox + W - Math.round(W * 0.02), oy / 2);
+  } else if (!info.special && keys && keys.length) {
+    const lw = Math.max(6, Math.floor(W * 0.0024));
+    o.strokeStyle = ITTAI_BLUE; o.lineWidth = lw;
+    const seen = new Set();
+    for (const k of keys) {
+      const qb = info.q && info.q[k];
+      if (qb && !seen.has(qb.join())) { seen.add(qb.join()); ittaiRing(o, qb, W, H, lw, ox, oy); }   // サブキーは同じ列＝番号に1つ
+      const ab = info.a && info.a[k];
+      if (ab) ittaiRing(o, ab, W, H, lw, ox, oy);
+    }
+  }
+  const url = out.toDataURL('image/jpeg', 0.92);
+  out.width = 0; out.height = 0;
+  if (!url || url.length < 1000) return null;   // iOS は空の canvas から "data:," を返すことがある
+  _readySheets.add(url);
+  return url;
 }
 
 // ---- プリントオーバーレイ（理科v2/社会v2と同方式・iPad対応） ----
@@ -1663,11 +1816,12 @@ function toBlackRed(ctx, w, h) {
 }
 
 async function _monoPrintDataURLs(urls) {
-  if (!PRINT_MONO) { _blackRedSheets.clear(); return urls; }
+  if (!PRINT_MONO) { _blackRedSheets.clear(); _readySheets.clear(); return urls; }
   const work = document.createElement("canvas");
   const out = [];
   for (const u of urls) {
     let r = u;
+    if (_readySheets.has(u)) { out.push(u); continue; }   // 一体型は組み立て時に濃度補正済み
     try {
       const im = await _loadPrintImage(u);
       work.width = im.naturalWidth; work.height = im.naturalHeight;
@@ -1686,7 +1840,7 @@ async function _monoPrintDataURLs(urls) {
     out.push(r);
     await new Promise(r2 => setTimeout(r2, 0));   // 1ページごとに event loop へ戻す
   }
-  _blackRedSheets.clear();
+  _blackRedSheets.clear(); _readySheets.clear();
   return out;
 }
 
