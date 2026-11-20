@@ -456,7 +456,7 @@ function renderUnits() {
       <div class="kanji-bulk-actions">
         <span class="kanji-bulk-hint">${bf === 'all'
           ? (sheetCat ? `下の「${noun}を選んで印刷」で問題・解答・解説を印刷。モードを選ぶと対象問題をしぼりこめます` : `${noun}を選ぶか、モードを選んで対象問題をしぼりこめます`)
-          : `各${noun}の「対象」が印刷対象${framed ? '（赤枠つき）' : ''}。対象0問の${noun}は印刷されません${sheetCat ? `。解き直しシートは${(pickOf(cat).on && pickOf(cat).sel.size) ? '選択中の' : ''}${noun}の対象を1枚1${noun}で` : ''}`}</span>
+          : `各${noun}の「対象」が印刷対象${framed ? '（赤枠つき）' : ''}。対象0問の${noun}は印刷されません${sheetCat ? `。解き直しシートは${(pickOf(cat).on && pickOf(cat).sel.size) ? '選択中の' : ''}${noun}の対象を1枚に数${noun}ぶんまとめて` : ''}`}</span>
         <span class="kanji-bulk-btns">
           ${sheetCat ? '' : `<button class="btn-bulk-print" data-bulk-print="q">🖨 問題を印刷（${bf === 'all'
             ? `全${units.length}${noun}` : `${bulkCount(bf)}${noun}`}）</button>
@@ -840,14 +840,31 @@ function reviewItemsFor(cat, mode) {
   }
   return items;
 }
-// ★2026-10-27 1枚＝1単元（単元が変わるところで改ページ。1単元が per 問を超えれば複数枚）
+// ★2026-11-20 ユーザー要望: 1枚に数単元ぶんを詰める（誤りが少ない単元で用紙がスカスカになるため。旧=1枚1単元）
+//   1枚は per 問まで。単元は途中で切らず、入りきらない単元は次の用紙から（per 問を超える単元だけ分割）。
+//   元の問題への紐づけは、問題面の各列に印字する「単元ID＋元の小問番号」で行う（drawReviewSheet）
 function reviewPaginate(items, per) {
-  const pages = [];
-  let cur = null;
+  const runs = [];
   for (const it of items) {
-    if (!cur || cur[0].unitId !== it.unitId || cur.length >= per) { cur = []; pages.push(cur); }
-    cur.push(it);
+    const last = runs[runs.length - 1];
+    if (last && last[0].unitId === it.unitId) last.push(it); else runs.push([it]);
   }
+  const pages = [];
+  let cur = [];
+  for (const run of runs) {
+    if (run.length > per) {
+      if (cur.length) { pages.push(cur); cur = []; }
+      for (let i = 0; i < run.length; i += per) {
+        const chunk = run.slice(i, i + per);
+        if (chunk.length === per) pages.push(chunk); else cur = chunk;
+      }
+    } else if (cur.length + run.length > per) {
+      pages.push(cur); cur = run.slice();
+    } else {
+      cur.push(...run);
+    }
+  }
+  if (cur.length) pages.push(cur);
   return pages;
 }
 function reviewBtnLabel(cat, mode) {
@@ -921,8 +938,9 @@ function drawReviewSheet(items, pageNo, pageCount, modeLabel, withAnswers, cfg, 
   ctx.fillText('前', 1890, Math.max(ty + 60, 1500) + 66);
   // ---- 右: 問題文の列（右→左に 1,2,3…・番号を付け直す） ----
   // ★2026-10-27 出典を問題面にも印字（スキャンした用紙から元の問題に正誤を紐づけるため）:
-  //   各番号の下に元の小問番号（灰色・小）＋用紙の下端に「出典 KN1-012 ことわざ1」（1枚＝1単元）
-  const px0 = 2060, px1 = REVIEW_W - 40, ptop = cfg.qTop, footH = 70;
+  //   各番号の下に単元ID（例 KY-012）と元の小問番号（灰色・小）＋用紙の下端に「出典 1〜3 KY-012 細部ミス3 ／ 4 KY-013 …」
+  //   ★2026-11-20 1枚に数単元が入るので、単元IDは列ごとに印字し、単元の変わり目に点線を引く
+  const px0 = 2060, px1 = REVIEW_W - 40, ptop = cfg.qTop + 30, footH = 70;
   const pitch = (px1 - px0) / cfg.per;
   const crops = items.map((it) => _reviewCropQ(it.qImg, it.unit.review[it.key].q));
   const maxH = Math.max(...crops.map((c) => c.sh)), maxW = Math.max(...crops.map((c) => c.sw));
@@ -935,20 +953,39 @@ function drawReviewSheet(items, pageNo, pageCount, modeLabel, withAnswers, cfg, 
     ctx.fillText(String(i + 1), cx, 80);
     ctx.font = `${srcFont}px "Hiragino Sans", sans-serif`;
     ctx.fillStyle = '#86868b';
-    ctx.fillText(String(items[i].key), cx, 124);
+    ctx.fillText(String(items[i].unitId), cx, 122);
+    ctx.fillText(String(items[i].key), cx, 152);
+    if (i > 0 && items[i].unitId !== items[i - 1].unitId) {   // 単元の変わり目（右→左に並ぶので列の右側）
+      ctx.save();
+      ctx.strokeStyle = '#999'; ctx.lineWidth = 3; ctx.setLineDash([10, 12]);
+      ctx.beginPath(); ctx.moveTo(cx + pitch / 2, 50); ctx.lineTo(cx + pitch / 2, REVIEW_H - footH - 30); ctx.stroke();
+      ctx.restore();
+    }
     const dw = c.sw * sc, dh = c.sh * sc;
     ctx.drawImage(items[i].qImg, c.sx, c.sy, c.sw, c.sh, cx - dw / 2, ptop, dw, dh);
   });
-  // 出典（用紙の下端・横書き）: 単元ID＋単元名。1枚に複数単元が混ざる旧データにも備えて重複を除いて並べる
-  const srcs = [...new Set(items.map((it) => `${it.unitId} ${it.short}`))];
-  ctx.font = '30px "Hiragino Sans", sans-serif';
+  // 出典（用紙の下端・横書き）: 「通し番号の範囲 単元ID 単元名」を単元ごとに。長いときは用紙の全幅まで使い、文字を小さくして1行に収める
+  const srcs = [];
+  items.forEach((it, i) => {
+    const last = srcs[srcs.length - 1];
+    if (last && last.unitId === it.unitId) last.to = i + 1;
+    else srcs.push({ unitId: it.unitId, short: it.short, from: i + 1, to: i + 1 });
+  });
+  const srcText = '出典 ' + srcs.map((g) => `${srcs.length > 1 ? (g.from === g.to ? `${g.from} ` : `${g.from}〜${g.to} `) : ''}${g.unitId} ${g.short}`).join(' ／ ');
+  let srcPx = 30;
+  ctx.font = `${srcPx}px "Hiragino Sans", sans-serif`;
+  const srcMax = px1 - 80;
+  if (ctx.measureText(srcText).width > srcMax) {
+    srcPx = Math.max(18, Math.floor(srcPx * srcMax / ctx.measureText(srcText).width));
+    ctx.font = `${srcPx}px "Hiragino Sans", sans-serif`;
+  }
   ctx.fillStyle = '#000';
   ctx.textAlign = 'right';
-  ctx.fillText(`出典 ${srcs.join(' ／ ')}`, px1, REVIEW_H - footH / 2 - 10);
+  ctx.fillText(srcText, px1, REVIEW_H - footH / 2 - 10, srcMax);
   ctx.textAlign = 'center';
-  // 用紙と問題の境
+  // 用紙と問題の境（出典の行にかからない高さまで）
   ctx.strokeStyle = '#bbb'; ctx.lineWidth = 3;
-  ctx.beginPath(); ctx.moveTo(2010, 40); ctx.lineTo(2010, REVIEW_H - 40); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(2010, 40); ctx.lineTo(2010, REVIEW_H - footH - 30); ctx.stroke();
   return cc.toDataURL('image/jpeg', 0.86);
 }
 
@@ -973,7 +1010,7 @@ async function openReview(cat, mode, btn) {
     }
     items.forEach((it) => { it.qImg = imgs[it.unitId].q; it.aImg = imgs[it.unitId].a; });
     const cfg = REVIEW_CFG[cat.id] || REVIEW_CFG.kaname;
-    const pages = reviewPaginate(items, cfg.per);   // 1枚＝1単元
+    const pages = reviewPaginate(items, cfg.per);   // 1枚に数単元（単元は切らない）
     const nUnits = new Set(items.map((it) => it.unitId)).size;
     const modeLabel = WSM_MODE_SHORT[mode];
     const qPages = [], aPages = [], groups = [], reviewItems = {};
@@ -981,7 +1018,8 @@ async function openReview(cat, mode, btn) {
       setMsg(`作成中… ${pi + 1}/${pages.length}枚`);
       qPages.push({ full: drawReviewSheet(pg, pi + 1, pages.length, modeLabel, false, cfg, cat.name) });
       aPages.push({ full: drawReviewSheet(pg, pi + 1, pages.length, modeLabel, true, cfg, cat.name) });
-      const head = `${pi + 1}枚目（${pg[0].short}）`;   // 正誤表の見出しに単元名（キーは head＋番号・枚目で一意）
+      const nu = new Set(pg.map((it) => it.unitId)).size;
+      const head = `${pi + 1}枚目（${pg[0].short}${nu > 1 ? ` ほか${nu - 1}` : ''}）`;   // 正誤表の見出しに単元名（キーは head＋番号・枚目で一意）
       groups.push({ head, labels: pg.map((_, i) => String(i + 1)) });
       pg.forEach((it, i) => { reviewItems[head + String(i + 1)] = { unitId: it.unitId, key: it.key }; });
     });
