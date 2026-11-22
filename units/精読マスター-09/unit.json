@@ -1,0 +1,206 @@
+{
+ "id": "精読マスター-09",
+ "week": "第9回",
+ "title": "精読マスタープリント09（読解二題）",
+ "category": "ss-tokkun",
+ "tag": "読解",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-03/",
+ "questionPages": [
+  {
+   "full": "units/精読マスター-09/q_cover.jpg",
+   "small": "units/精読マスター-09/q_cover_small.jpg"
+  },
+  {
+   "full": "units/精読マスター-09/q_01.jpg",
+   "small": "units/精読マスター-09/q_01_small.jpg"
+  },
+  {
+   "full": "units/精読マスター-09/q_02.jpg",
+   "small": "units/精読マスター-09/q_02_small.jpg"
+  },
+  {
+   "full": "units/精読マスター-09/q_03.jpg",
+   "small": "units/精読マスター-09/q_03_small.jpg"
+  },
+  {
+   "full": "units/精読マスター-09/q_04.jpg",
+   "small": "units/精読マスター-09/q_04_small.jpg"
+  },
+  {
+   "full": "units/精読マスター-09/q_05.jpg",
+   "small": "units/精読マスター-09/q_05_small.jpg"
+  },
+  {
+   "full": "units/精読マスター-09/q_06.jpg",
+   "small": "units/精読マスター-09/q_06_small.jpg"
+  },
+  {
+   "full": "units/精読マスター-09/q_07.jpg",
+   "small": "units/精読マスター-09/q_07_small.jpg"
+  },
+  {
+   "full": "units/精読マスター-09/q_08.jpg",
+   "small": "units/精読マスター-09/q_08_small.jpg"
+  },
+  {
+   "full": "units/精読マスター-09/q_09.jpg",
+   "small": "units/精読マスター-09/q_09_small.jpg"
+  },
+  {
+   "full": "units/精読マスター-09/q_10.jpg",
+   "small": "units/精読マスター-09/q_10_small.jpg"
+  },
+  {
+   "full": "units/精読マスター-09/q_11.jpg",
+   "small": "units/精読マスター-09/q_11_small.jpg"
+  },
+  {
+   "full": "units/精読マスター-09/q_12.jpg",
+   "small": "units/精読マスター-09/q_12_small.jpg"
+  },
+  {
+   "full": "units/精読マスター-09/q_13.jpg",
+   "small": "units/精読マスター-09/q_13_small.jpg"
+  },
+  {
+   "full": "units/精読マスター-09/q_14.jpg",
+   "small": "units/精読マスター-09/q_14_small.jpg"
+  },
+  {
+   "full": "units/精読マスター-09/q_15.jpg",
+   "small": "units/精読マスター-09/q_15_small.jpg"
+  },
+  {
+   "full": "units/精読マスター-09/q_16.jpg",
+   "small": "units/精読マスター-09/q_16_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/精読マスター-09/a_expl1.jpg",
+   "small": "units/精読マスター-09/a_expl1_small.jpg"
+  },
+  {
+   "full": "units/精読マスター-09/a_expl2.jpg",
+   "small": "units/精読マスター-09/a_expl2_small.jpg"
+  },
+  {
+   "full": "units/精読マスター-09/sv_sheet.jpg",
+   "small": "units/精読マスター-09/sv_sheet_small.jpg"
+  }
+ ],
+ "hasSolved": true,
+ "questions": [
+  "一問一",
+  "一問二",
+  "一問三",
+  "一問四1",
+  "一問四2",
+  "一問五",
+  "一問六X",
+  "一問六Y",
+  "一問七",
+  "一問八",
+  "一問九",
+  "一問十",
+  "二問一",
+  "二問二",
+  "二問三(1)",
+  "二問三(2)",
+  "二問四",
+  "二問五",
+  "二問六",
+  "二問七",
+  "二問八A",
+  "二問八B"
+ ],
+ "questionGroups": [
+  {
+   "head": "一",
+   "labels": [
+    "問一",
+    "問二",
+    "問三",
+    "問四1",
+    "問四2",
+    "問五",
+    "問六X",
+    "問六Y",
+    "問七",
+    "問八",
+    "問九",
+    "問十"
+   ]
+  },
+  {
+   "head": "二",
+   "labels": [
+    "問一",
+    "問二",
+    "問三(1)",
+    "問三(2)",
+    "問四",
+    "問五",
+    "問六",
+    "問七",
+    "問八A",
+    "問八B"
+   ]
+  }
+ ],
+ "spreads": {
+  "q": [
+   [
+    0,
+    null
+   ],
+   [
+    null,
+    1
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    4,
+    5
+   ],
+   [
+    6,
+    7
+   ],
+   [
+    8,
+    9
+   ],
+   [
+    10,
+    11
+   ],
+   [
+    12,
+    13
+   ],
+   [
+    14,
+    15
+   ],
+   [
+    16,
+    null
+   ]
+  ],
+  "a": [
+   [
+    0
+   ],
+   [
+    1
+   ],
+   [
+    2
+   ]
+  ]
+ }
+}

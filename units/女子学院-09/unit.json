@@ -1,0 +1,164 @@
+{
+ "id": "女子学院-09",
+ "week": "第9回",
+ "title": "女子学院対策09（読解二題）",
+ "category": "ss-tokkun",
+ "tag": "読解",
+ "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-03/",
+ "questionPages": [
+  {
+   "full": "units/女子学院-09/q_cover.jpg",
+   "small": "units/女子学院-09/q_cover_small.jpg"
+  },
+  {
+   "full": "units/女子学院-09/q_00_notice.jpg",
+   "small": "units/女子学院-09/q_00_notice_small.jpg"
+  },
+  {
+   "full": "units/女子学院-09/q_04.jpg",
+   "small": "units/女子学院-09/q_04_small.jpg"
+  },
+  {
+   "full": "units/女子学院-09/q_05.jpg",
+   "small": "units/女子学院-09/q_05_small.jpg"
+  },
+  {
+   "full": "units/女子学院-09/q_06.jpg",
+   "small": "units/女子学院-09/q_06_small.jpg"
+  },
+  {
+   "full": "units/女子学院-09/q_07.jpg",
+   "small": "units/女子学院-09/q_07_small.jpg"
+  },
+  {
+   "full": "units/女子学院-09/q_08.jpg",
+   "small": "units/女子学院-09/q_08_small.jpg"
+  },
+  {
+   "full": "units/女子学院-09/q_09.jpg",
+   "small": "units/女子学院-09/q_09_small.jpg"
+  }
+ ],
+ "answerPages": [
+  {
+   "full": "units/女子学院-09/a_expl1.jpg",
+   "small": "units/女子学院-09/a_expl1_small.jpg"
+  },
+  {
+   "full": "units/女子学院-09/a_expl2.jpg",
+   "small": "units/女子学院-09/a_expl2_small.jpg"
+  },
+  {
+   "full": "units/女子学院-09/sv_sheet.jpg",
+   "small": "units/女子学院-09/sv_sheet_small.jpg"
+  }
+ ],
+ "hasSolved": true,
+ "questions": [
+  "一問一",
+  "一問二",
+  "一問三",
+  "一問四",
+  "一問五",
+  "一問六あ",
+  "一問六い",
+  "一問七",
+  "一問八",
+  "一問九",
+  "一問十",
+  "一問十一",
+  "一問十二a",
+  "一問十二b",
+  "一問十二c",
+  "二問一(1)",
+  "二問一(2)1",
+  "二問一(2)2",
+  "二問一(2)3",
+  "二問一(2)4",
+  "二問二",
+  "二問三",
+  "二問四",
+  "二問五",
+  "二問六",
+  "二問七",
+  "二問八",
+  "二問九(1)",
+  "二問九(2)"
+ ],
+ "questionGroups": [
+  {
+   "head": "一",
+   "labels": [
+    "問一",
+    "問二",
+    "問三",
+    "問四",
+    "問五",
+    "問六あ",
+    "問六い",
+    "問七",
+    "問八",
+    "問九",
+    "問十",
+    "問十一",
+    "問十二a",
+    "問十二b",
+    "問十二c"
+   ]
+  },
+  {
+   "head": "二",
+   "labels": [
+    "問一(1)",
+    "問一(2)1",
+    "問一(2)2",
+    "問一(2)3",
+    "問一(2)4",
+    "問二",
+    "問三",
+    "問四",
+    "問五",
+    "問六",
+    "問七",
+    "問八",
+    "問九(1)",
+    "問九(2)"
+   ]
+  }
+ ],
+ "spreads": {
+  "q": [
+   [
+    0,
+    null
+   ],
+   [
+    null,
+    1
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    4,
+    5
+   ],
+   [
+    6,
+    7
+   ]
+  ],
+  "a": [
+   [
+    0
+   ],
+   [
+    1
+   ],
+   [
+    2
+   ]
+  ]
+ }
+}
