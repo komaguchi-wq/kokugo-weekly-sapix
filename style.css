@@ -164,6 +164,7 @@ body {
 .unit-card-color.kanji-tokkun { border-left: 6px solid #e0862a; }
 .unit-card-color.kanji-kaname { border-left: 6px solid #8e44ad; }
 .unit-card-color.ss-tokkun { border-left: 6px solid #c2274d; }
+.unit-card-color.hiroo-goi { border-left: 6px solid #1f7a8c; }
 
 /* 単元カードの正誤棒グラフ（全アプリ共通デザイン） */
 .unit-card-bar {

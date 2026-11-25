@@ -42,6 +42,9 @@ const CATEGORIES = [
   // 言葉ナビ（上巻・下巻）: 漢字の要と同じ別紙式（1ページ=1単元・巻/章ごとにグループ・一括モードバー・解き直し）
   { id: 'kotoba', name: '言葉ナビ', icon: '📗', bulk: true, grouped: true,
     match: (u) => u.category === 'kotoba-navi' },
+  // 広尾の語彙（国語 大問二の形・自作プリント）: 1回=1単元・和語／慣用句／四字熟語ごとにグループ・対象は赤枠
+  { id: 'hiroo', name: '広尾の語彙', icon: '🏫', bulk: true, grouped: true,
+    match: (u) => u.category === 'hiroo-goi' },
   { id: 'ss', name: 'SS特訓', icon: '🎯',
     match: (u) => u.category === 'ss-tokkun' },
   { id: 'shibo',  name: '志望校別特訓', icon: '🔥',
@@ -392,6 +395,7 @@ function unitIcon(u) {
   if (u.category === 'kanji-kaname') return '📕';
   if (u.category === 'kotoba-navi') return '📗';
   if (u.category === 'ss-tokkun') return '🎯';
+  if (u.category === 'hiroo-goi') return '🏫';
   return u.category === 'knowledge' ? '✍️' : '📖';
 }
 function unitTag(u) {
@@ -400,6 +404,7 @@ function unitTag(u) {
   if (u.category === 'kanji-kaname') return u.tag || '漢字の要';
   if (u.category === 'kotoba-navi') return u.tag || '言葉ナビ';
   if (u.category === 'ss-tokkun') return u.tag || 'SS特訓';
+  if (u.category === 'hiroo-goi') return u.tag || '広尾の語彙';
   return u.category === 'knowledge' ? '知識の総完成' : '読解';
 }
 
