@@ -43,7 +43,7 @@ const CATEGORIES = [
   { id: 'kotoba', name: '言葉ナビ', icon: '📗', bulk: true, grouped: true,
     match: (u) => u.category === 'kotoba-navi' },
   // 広尾の語彙（国語 大問二の形・自作プリント）: 1回=1単元・和語／慣用句／四字熟語ごとにグループ・対象は赤枠
-  { id: 'hiroo', name: '広尾の語彙', icon: '🏫', bulk: true, grouped: true,
+  { id: 'hiroo', name: '広尾の語彙', icon: '🏫', bulk: true, grouped: true, pick: true, noun: '回',   // pick: 言葉ナビと同じ「選んで印刷」（問題・解答・解説）。解き直しシートは無し
     match: (u) => u.category === 'hiroo-goi' },
   { id: 'ss', name: 'SS特訓', icon: '🎯',
     match: (u) => u.category === 'ss-tokkun' },
@@ -52,6 +52,8 @@ const CATEGORIES = [
 ];
 
 function unitsOf(cat) { return state.units.filter(cat.match); }
+// 「選んで印刷」バーを出すカテゴリ（漢字の要・言葉ナビ＝解き直しシートつき／広尾の語彙＝pick だけ）
+function pickCat(cat) { return !!(cat && (REVIEW_CFG[cat.id] || cat.pick)); }
 
 // ---- 画像パス解決 ----
 // unit.json に imageBase（絶対URL）がある単元は画像を別repo（kokugo-weekly-sapix-images-01 等）から読む。
@@ -441,8 +443,9 @@ function renderUnits() {
   if (cat.bulk) {
     // 一括モードバー（全単元の対象問題の確認と、対象のある単元だけの一括印刷）
     const bf = bulkFilterOf(cat);
-    const sheetCat = !!REVIEW_CFG[cat.id];                        // 別紙式（漢字の要/言葉ナビ）
-    const noun = cat.id === 'kanji' ? '回' : sheetCat ? 'ページ' : '単元';
+    const sheetCat = pickCat(cat);                                // 別紙式（漢字の要/言葉ナビ）＋広尾の語彙
+    const hasReview = !!REVIEW_CFG[cat.id];                       // 解き直しシートがあるカテゴリ
+    const noun = cat.noun || (cat.id === 'kanji' ? '回' : sheetCat ? 'ページ' : '単元');
     const framed = cat.id === 'kanji' || sheetCat;   // 対象マスに赤枠（cellRectsあり）
     const bulkTargets = (u) => {
       const unit = state.unitCache[u.id];
@@ -461,13 +464,13 @@ function renderUnits() {
       <div class="kanji-bulk-actions">
         <span class="kanji-bulk-hint">${bf === 'all'
           ? (sheetCat ? `下の「${noun}を選んで印刷」で問題・解答・解説を印刷。モードを選ぶと対象問題をしぼりこめます` : `${noun}を選ぶか、モードを選んで対象問題をしぼりこめます`)
-          : `各${noun}の「対象」が印刷対象${framed ? '（赤枠つき）' : ''}。対象0問の${noun}は印刷されません${sheetCat ? `。解き直しシートは${(pickOf(cat).on && pickOf(cat).sel.size) ? '選択中の' : ''}${noun}の対象を1枚に数${noun}ぶんまとめて` : ''}`}</span>
+          : `各${noun}の「対象」が印刷対象${framed ? '（赤枠つき）' : ''}。対象0問の${noun}は印刷されません${hasReview ? `。解き直しシートは${(pickOf(cat).on && pickOf(cat).sel.size) ? '選択中の' : ''}${noun}の対象を1枚に数${noun}ぶんまとめて` : ''}`}</span>
         <span class="kanji-bulk-btns">
           ${sheetCat ? '' : `<button class="btn-bulk-print" data-bulk-print="q">🖨 問題を印刷（${bf === 'all'
             ? `全${units.length}${noun}` : `${bulkCount(bf)}${noun}`}）</button>
           <button class="btn-bulk-print btn-bulk-print-a" data-bulk-print="a">🖨 解答を印刷（${bf === 'all'
             ? `全${units.length}${noun}` : `${bulkCount(bf)}${noun}`}）</button>`}
-          ${sheetCat && bf !== 'all' ? `<button class="btn-bulk-print btn-review" data-review="1"${reviewItemsFor(cat, bf).length ? '' : ' hidden'}>${reviewBtnLabel(cat, bf)}</button>` : ''}
+          ${hasReview && bf !== 'all' ? `<button class="btn-bulk-print btn-review" data-review="1"${reviewItemsFor(cat, bf).length ? '' : ' hidden'}>${reviewBtnLabel(cat, bf)}</button>` : ''}
         </span>
       </div>`;
     const pk = sheetCat ? pickOf(cat) : null;
@@ -566,7 +569,7 @@ function renderUnits() {
   list.innerHTML = html || '<p class="loading">まだ単元がありません。</p>';
   list.querySelectorAll('.unit-card[data-id]').forEach((c) =>
     c.addEventListener('click', () => {
-      const pk = REVIEW_CFG[cat.id] ? pickOf(cat) : null;
+      const pk = pickCat(cat) ? pickOf(cat) : null;
       if (pk && pk.on) { togglePick(cat, c); return; }   // 選んで印刷モード中はタップで選択
       openUnit(c.dataset.id);
     }));
@@ -667,7 +670,7 @@ function pickBarHTML(cat, pk, noun) {
   }
   const secs = pickSections(cat);
   const sec = secs[pk.sec] || secs[0];
-  const label = (s) => (cat.id === 'kaname' ? s.name : `${s.week}｜${s.name}`) + `（1〜${s.units.length}）`;
+  const label = (s) => (cat.id === 'kaname' ? s.name : cat.pick ? s.week : `${s.week}｜${s.name}`) + `（1〜${s.units.length}）`;
   const n = pk.sel.size;
   return `<div class="pick-bar pick-bar-on">
       <div class="pick-row">
@@ -698,7 +701,7 @@ function updatePickCount(cat, list) {
   list.querySelectorAll('[data-pick^="print-"]').forEach((pb) => { pb.disabled = n === 0; });
   // 解き直しシートのボタンも選択に合わせて問数・枚数を更新（選択0のときは全単元の対象）
   const bf = bulkFilterOf(cat);
-  list.querySelectorAll('[data-review]').forEach((rb) => {
+  if (REVIEW_CFG[cat.id]) list.querySelectorAll('[data-review]').forEach((rb) => {
     const k = bf === 'all' ? 0 : reviewItemsFor(cat, bf).length;
     rb.hidden = !k;
     if (k) rb.textContent = reviewBtnLabel(cat, bf);
@@ -714,7 +717,7 @@ function togglePick(cat, card) {
   updatePickCount(cat, $('#unit-list'));
 }
 function bindPickBar(cat, list) {
-  if (!REVIEW_CFG[cat.id]) return;
+  if (!pickCat(cat)) return;
   const pk = pickOf(cat);
   const q = (k) => list.querySelector(`[data-pick="${k}"]`);
   const on = (k, ev, fn) => { const el = q(k); if (el) el.addEventListener(ev, fn); };
@@ -798,14 +801,14 @@ async function printUnitsKaisetsu(cat, ids, bf) {
     parts.push(html);   // 断片は自分の見出し（.daimon > .dtitle）を持っている
   }
   if (!parts.length) {
-    alert(noK === ids.length ? '選んだページには解説がまだありません' : 'いまの問題選択に対象の解説はありません（「全ての問題」に戻すか、別の選択にしてください）');
+    alert(noK === ids.length ? `選んだ${cat.noun || 'ページ'}には解説がまだありません` : 'いまの問題選択に対象の解説はありません（「全ての問題」に戻すか、別の選択にしてください）');
     return;
   }
   const body = document.getElementById('print-overlay-body');
   if (!body) return;
   _resetPrintOverlay();
   const sub = bf !== 'all' ? `${WSM_MODE_SHORT[bf] || bf}の解説（${kept} / ${total} 問）` : '';
-  body.innerHTML = `<div class="kp"><div class="kp-title">${cat.name} 解説（${parts.length}ページ分）</div>${sub ? `<div class="kp-sub">${sub}</div>` : ''}` +
+  body.innerHTML = `<div class="kp"><div class="kp-title">${cat.name} 解説（${parts.length}${cat.noun || 'ページ'}分）</div>${sub ? `<div class="kp-sub">${sub}</div>` : ''}` +
     `<div class="kaisetsu kaisetsu-print kaisetsu-print-multi">${parts.join('')}</div></div>`;
   let style = document.getElementById('dynamic-print-page');
   if (!style) { style = document.createElement('style'); style.id = 'dynamic-print-page'; document.head.appendChild(style); }
