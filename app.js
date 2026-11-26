@@ -904,6 +904,7 @@ async function printUnitsKaisetsu(cat, ids, bf) {
 const REVIEW_CFG = {
   kaname: { per: 15, cols: 5, rows: 3, bodyH: 620, qTop: 150 },
   kotoba: { per: 8, cols: 8, rows: 1, bodyH: 1990, qTop: 150 },
+  hiroo: { per: 10, hg: true },   // ★2026-11-26 広尾の語彙: 10問ずつ・語群を作り直す（hgReview*／drawHgSheet）
 };
 const REVIEW_W = 4000, REVIEW_H = 2300;   // iOSの画像1辺4096px制限内
 
@@ -951,13 +952,17 @@ function reviewPaginate(items, per) {
   if (cur.length) pages.push(cur);
   return pages;
 }
+function reviewPagesOf(cat, items) {
+  const cfg = REVIEW_CFG[cat.id] || REVIEW_CFG.kaname;
+  return cfg.hg ? hgReviewPaginate(items, cfg.per) : reviewPaginate(items, cfg.per);
+}
 function reviewBtnLabel(cat, mode) {
   const items = reviewItemsFor(cat, mode);
-  const pages = reviewPaginate(items, REVIEW_CFG[cat.id].per);
+  const pages = reviewPagesOf(cat, items);
   const nUnits = new Set(items.map((it) => it.unitId)).size;
   const pk = pickOf(cat);
   const sel = pk.on && pk.sel.size ? '選択中の' : '';
-  return `✍️ 解き直しシート（${sel}${nUnits}${cat.id === 'kanji' ? '回' : 'ページ'}・${items.length}問→${pages.length}枚）`;
+  return `✍️ 解き直しシート（${sel}${nUnits}${cat.noun || (cat.id === 'kanji' ? '回' : 'ページ')}・${items.length}問→${pages.length}枚）`;
 }
 
 function _reviewCropQ(img, r) {   // 割合座標 → 元画像px
@@ -1073,6 +1078,152 @@ function drawReviewSheet(items, pageNo, pageCount, modeLabel, withAnswers, cfg, 
   return cc.toDataURL('image/jpeg', 0.86);
 }
 
+// ==============================
+// ★2026-11-26 広尾の語彙: 解き直しシート（ユーザー要望）
+//   語群（意味の12個）は回ごとに別なので、問題の列を寄せ集めるだけでは解けない → 1枚（10問）ごとに語群を作り直す。
+//   問題の列・答えのわくは元のプリント画像から切り出し（unit.json review = q / box / mean・scripts/kakomon/hiroo_goi_review.py）、
+//   語群と解答の記号だけを新しく描く。用紙は元のプリントと同じA4横の割りつけ（4000×2828）。
+//   種類（和語／慣用句／四字熟語／古い文学）ごとに別の紙。語群の並びは問題の組み合わせから決まる（開き直しても同じ）。
+// ==============================
+const HG_W = 4000, HG_H = 2828, HG_KANA = 'アイウエオカキクケコサシ', HG_ORANGE = '#f39800';
+function hgKind(unit) { return String(unit.title || '').replace(/\s*\d+$/, ''); }
+function hgBigrams(t) { const o = new Set(); for (let i = 0; i < t.length - 1; i++) o.add(t.slice(i, i + 2)); return o; }
+function hgSimilar(a, b) {   // 意味の文が似ている（同じ2字の並びが、短いほうの半分以上）
+  if (a === b) return true;
+  const x = hgBigrams(a), y = hgBigrams(b);
+  let n = 0; x.forEach((g) => { if (y.has(g)) n++; });
+  return n / Math.max(1, Math.min(x.size, y.size)) >= 0.5;
+}
+function hgRand(seedStr) {   // 文字列から決まる乱数（mulberry32）
+  let h = 2166136261;
+  for (let i = 0; i < seedStr.length; i++) { h ^= seedStr.charCodeAt(i); h = Math.imul(h, 16777619); }
+  let a = h >>> 0;
+  return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+}
+function hgShuffle(arr, rnd) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+const hgMean = (it) => it.unit.review[it.key].mean;
+// 種類ごとに per 問ずつ。意味の似た問題は同じ紙に入れない（あとの問題と入れかえる。入れかえ先が無ければそのまま）
+function hgReviewPaginate(items, per) {
+  const kinds = [], by = {};
+  for (const it of items) { const k = it.unit.week || ''; if (!by[k]) { by[k] = []; kinds.push(k); } by[k].push(it); }
+  const pages = [];
+  for (const k of kinds) {
+    let rest = by[k];
+    while (rest.length) {
+      const pg = [], later = [];
+      for (const it of rest) {
+        if (pg.length < per && !pg.some((p) => hgSimilar(hgMean(p), hgMean(it)))) pg.push(it); else later.push(it);
+      }
+      while (pg.length < per && later.length) pg.push(later.shift());   // 似た意味しか残っていないとき
+      pages.push(pg);
+      rest = later;
+    }
+  }
+  return pages;
+}
+// 1枚ぶんの語群: この紙の答えの意味＋使わない意味（同じ種類のほかの問題・元の回の使わない意味から、答えと似ていないもの）で12個
+function hgReviewBank(cat, pg) {
+  const rnd = hgRand(pg.map((it) => it.unitId + ':' + it.key).join(','));
+  const answers = [];
+  pg.forEach((it) => { if (!answers.includes(hgMean(it))) answers.push(hgMean(it)); });
+  const week = pg[0].unit.week;
+  const pool = [];
+  unitsOf(cat).forEach((u) => {
+    const unit = state.unitCache[u.id];
+    if (!unit || unit.week !== week || !unit.review) return;
+    Object.keys(unit.review).forEach((k) => pool.push(unit.review[k].mean));
+    (unit.reviewDummy || []).forEach((m) => pool.push(m));
+  });
+  const extra = [];
+  for (const m of hgShuffle([...new Set(pool)].sort(), rnd)) {
+    if (answers.length + extra.length >= HG_KANA.length) break;
+    if (answers.concat(extra).some((x) => hgSimilar(x, m))) continue;
+    extra.push(m);
+  }
+  const means = hgShuffle(answers.concat(extra), rnd);
+  return { means, symOf: (it) => HG_KANA[means.indexOf(hgMean(it))], unused: extra.length };
+}
+function hgVText(ctx, text, cx, y, fs, pitch) {   // 縦書き（1字ずつ。、は右上へ・〜（）は横にたおす）
+  for (const ch of text) {
+    if ('、。'.includes(ch)) { ctx.fillText(ch, cx + fs * 0.6, y - fs * 0.55); y += pitch; continue; }
+    if ('〜～（）()「」ー―…'.includes(ch)) {
+      ctx.save(); ctx.translate(cx, y); ctx.rotate(Math.PI / 2); ctx.fillText(ch, 0, 0); ctx.restore();
+    } else ctx.fillText(ch, cx, y);
+    y += pitch;
+  }
+  return y;
+}
+function drawHgSheet(items, bank, pageNo, pageCount, modeLabel, withAnswers, catName) {
+  const cc = document.createElement('canvas');
+  cc.width = HG_W; cc.height = HG_H;
+  const ctx = cc.getContext('2d');
+  ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, HG_W, HG_H);
+  const SANS = '"Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif';
+  const kind = hgKind(items[0].unit);
+  // ---- 上: 題と書きこみらん ----
+  ctx.fillStyle = '#111'; ctx.textBaseline = 'middle'; ctx.textAlign = 'left';
+  ctx.font = `bold 60px ${SANS}`;
+  ctx.fillText(`${catName} 解き直し　${kind}${withAnswers ? '　解答' : ''}`, 150, 150);
+  const tw = ctx.measureText(`${catName} 解き直し　${kind}${withAnswers ? '　解答' : ''}`).width;
+  ctx.font = `44px ${SANS}`;
+  ctx.fillText(`${modeLabel}　${pageNo}／${pageCount}`, 150 + tw + 50, 154);
+  ctx.textAlign = 'right';
+  ctx.fillText(withAnswers ? 'オレンジの字は赤シートでかくせるよ' : '月　　日　　名前　　　　　　　　', HG_W - 150, 154);
+  ctx.strokeStyle = '#111'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(150, 212); ctx.lineTo(HG_W - 150, 212); ctx.stroke();
+  ctx.textAlign = 'left'; ctx.font = `36px ${SANS}`; ctx.fillStyle = '#333';
+  ctx.fillText(withAnswers
+    ? '記号は、このシートの語群の記号。□の字は元のプリントと同じ。'
+    : '意味を語群から選んで、下のわくに記号で答えよう（□がある問題は□もうめる）。語群はこのシート用にならべ直してあるよ。', 150, 262);
+  // ---- 右: 問題の列（右→左に ①②③…）----
+  const pitch = 0.0421 * HG_W, xr = 0.925 * HG_W;
+  ctx.textAlign = 'center';
+  items.forEach((it, i) => {
+    const rv = it.unit.review[it.key], cx = xr - pitch * (i + 0.5);
+    ctx.fillStyle = '#111'; ctx.font = `56px ${SANS}`;
+    ctx.fillText('①②③④⑤⑥⑦⑧⑨⑩'[i], cx, 0.136 * HG_H);
+    // 文の列: 解答面は答え入りの画像から（□の字がオレンジで入っている）。位置は元のプリントと同じ高さ
+    const src = withAnswers ? it.aImg : it.qImg;
+    const q = _reviewCropQ(src, rv.q), sc = HG_W / src.width;
+    ctx.drawImage(src, q.sx, q.sy, q.sw, q.sh, cx - q.sw * sc / 2, rv.q[1] * HG_H, q.sw * sc, q.sh * sc);
+    // 答えのわく: 空のわくを問題画像から。解答面は新しい記号をオレンジで
+    const b = _reviewCropQ(it.qImg, rv.box), bs = HG_W / it.qImg.width;
+    const bw = b.sw * bs, bh = b.sh * bs, by = rv.box[1] * HG_H;
+    ctx.drawImage(it.qImg, b.sx, b.sy, b.sw, b.sh, cx - bw / 2, by, bw, bh);
+    if (withAnswers) {
+      ctx.fillStyle = HG_ORANGE; ctx.font = `bold ${Math.round(bw * 0.62)}px ${SANS}`;
+      ctx.fillText(bank.symOf(it), cx, by + bh / 2 + 2);
+    }
+    // 出典（元の回と番号）: スキャンした用紙から元の問題に○×をひもづける
+    ctx.fillStyle = '#86868b'; ctx.font = `24px ${SANS}`;
+    ctx.fillText(`${it.unitId}・${it.key}`, cx, by + bh + 34);
+  });
+  // ---- 左: 語群（作り直し）----
+  const bx0 = 0.112 * HG_W, bx1 = 0.482 * HG_W, by0 = 0.125 * HG_H, by1 = 0.94 * HG_H, rad = 36;
+  ctx.strokeStyle = '#111'; ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.moveTo(bx0 + rad, by0); ctx.lineTo(bx1 - rad, by0); ctx.arcTo(bx1, by0, bx1, by0 + rad, rad);
+  ctx.lineTo(bx1, by1 - rad); ctx.arcTo(bx1, by1, bx1 - rad, by1, rad);
+  ctx.lineTo(bx0 + rad, by1); ctx.arcTo(bx0, by1, bx0, by1 - rad, rad);
+  ctx.lineTo(bx0, by0 + rad); ctx.arcTo(bx0, by0, bx0 + rad, by0, rad);
+  ctx.stroke();
+  ctx.fillStyle = '#111';
+  const headX = bx1 - 70, n = bank.means.length;
+  ctx.font = `bold 50px ${SANS}`;
+  const KAN = ['〇', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一'];
+  let hy = hgVText(ctx, '語群（意味）', headX, by0 + 76, 50, 55);
+  if (bank.unused > 0) hgVText(ctx, `※${KAN[bank.unused] || bank.unused}つは使わない`, headX, hy + 40, 50, 55);
+  const mp = (headX - 70 - (bx0 + 40)) / HG_KANA.length;
+  bank.means.forEach((m, i) => {
+    const cx = headX - 70 - mp * (i + 0.5);
+    ctx.font = `bold 60px ${SANS}`;
+    ctx.fillText(HG_KANA[i], cx, by0 + 80);
+    ctx.font = `56px ${SANS}`;
+    hgVText(ctx, m, cx, by0 + 196, 56, 61);
+  });
+  return cc.toDataURL('image/jpeg', 0.88);
+}
+
 async function openReview(cat, mode, btn) {
   commitGrades();
   const items = reviewItemsFor(cat, mode);
@@ -1094,21 +1245,22 @@ async function openReview(cat, mode, btn) {
     }
     items.forEach((it) => { it.qImg = imgs[it.unitId].q; it.aImg = imgs[it.unitId].a; });
     const cfg = REVIEW_CFG[cat.id] || REVIEW_CFG.kaname;
-    const pages = reviewPaginate(items, cfg.per);   // 1枚に数単元（単元は切らない）
+    const pages = reviewPagesOf(cat, items);   // 1枚に数単元（単元は切らない）／広尾の語彙は種類ごとに10問ずつ
     const nUnits = new Set(items.map((it) => it.unitId)).size;
     const modeLabel = WSM_MODE_SHORT[mode];
     const qPages = [], aPages = [], groups = [], reviewItems = {};
     pages.forEach((pg, pi) => {
       setMsg(`作成中… ${pi + 1}/${pages.length}枚`);
-      qPages.push({ full: drawReviewSheet(pg, pi + 1, pages.length, modeLabel, false, cfg, cat.name) });
-      aPages.push({ full: drawReviewSheet(pg, pi + 1, pages.length, modeLabel, true, cfg, cat.name) });
+      const bank = cfg.hg ? hgReviewBank(cat, pg) : null;
+      qPages.push({ full: cfg.hg ? drawHgSheet(pg, bank, pi + 1, pages.length, modeLabel, false, cat.name) : drawReviewSheet(pg, pi + 1, pages.length, modeLabel, false, cfg, cat.name) });
+      aPages.push({ full: cfg.hg ? drawHgSheet(pg, bank, pi + 1, pages.length, modeLabel, true, cat.name) : drawReviewSheet(pg, pi + 1, pages.length, modeLabel, true, cfg, cat.name) });
       const nu = new Set(pg.map((it) => it.unitId)).size;
-      const head = `${pi + 1}枚目（${pg[0].short}${nu > 1 ? ` ほか${nu - 1}` : ''}）`;   // 正誤表の見出しに単元名（キーは head＋番号・枚目で一意）
+      const head = cfg.hg ? `${pi + 1}枚目（${hgKind(pg[0].unit)}）` : `${pi + 1}枚目（${pg[0].short}${nu > 1 ? ` ほか${nu - 1}` : ''}）`;   // 正誤表の見出しに単元名（キーは head＋番号・枚目で一意）
       groups.push({ head, labels: pg.map((_, i) => String(i + 1)) });
       pg.forEach((it, i) => { reviewItems[head + String(i + 1)] = { unitId: it.unitId, key: it.key }; });
     });
     const unit = {
-      id: `${cat.id.toUpperCase()}-REVIEW`, title: `解き直し（${modeLabel}・${nUnits}${cat.id === 'kanji' ? '回' : 'ページ'}・${items.length}問・${pages.length}枚）`,
+      id: `${cat.id.toUpperCase()}-REVIEW`, title: `解き直し（${modeLabel}・${nUnits}${cat.noun || (cat.id === 'kanji' ? '回' : 'ページ')}・${items.length}問・${pages.length}枚）`,
       category: (unitsOf(cat)[0] || {}).category || 'kanji-kaname', questionPages: qPages, answerPages: aPages,
       questionGroups: groups, reviewItems, print2up: false,
     };
