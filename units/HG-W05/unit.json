@@ -3,7 +3,7 @@
  "week": "和語（□にひらがな二字）",
  "category": "hiroo-goi",
  "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-03/",
- "hasSolved": false,
+ "hasSolved": true,
  "print2up": false,
  "title": "和語 5",
  "tag": "第5回・10問",
@@ -17,6 +17,10 @@
   {
    "full": "units/HG-W05/ap_1.jpg",
    "small": "units/HG-W05/ap_1_small.jpg"
+  },
+  {
+   "full": "units/HG-W05/solved_2026-11-26_01.jpg",
+   "small": "units/HG-W05/solved_2026-11-26_01_small.jpg"
   }
  ],
  "questionGroups": [
