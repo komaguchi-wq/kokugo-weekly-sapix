@@ -773,9 +773,78 @@ function bindPickBar(cat, list) {
   });
 }
 
+// kfit:start
+// ★2026-11-26 広尾の語彙の解説印刷: 1回 = B4横の表裏1枚（2ページ）に必ず収める（ユーザー要望）。
+//   流しこみの2段組だと回によって3ページ目へこぼれるので、ページ箱（style.css .kfit-pg）にカードを割りふる。
+//   画面外で実際に組んで高さを測り、4段（2ページ×2段）に入る一番大きい文字サイズを回ごとに選ぶ。カードは段をまたがない。
+const KFIT = { fmax: 1.09, fmin: 0.70, step: 0.985, slack: 0.97 };   // 文字サイズ＝ページ箱の幅に対する cqw（1.09 ≒ B4横で 10.5pt）
+function kfitUnit(unit) { return !!(unit && unit.category === 'hiroo-goi'); }
+function kfitSupported() {
+  try { return !!(window.CSS && CSS.supports('font-size', '1cqw') && CSS.supports('aspect-ratio', '1 / 1') && CSS.supports('container-type', 'inline-size')); } catch (e) { return false; }
+}
+function kfitEsc(s) { return String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c])); }
+// html = 単元の解説（絞り込み済みでもよい）。forceTwo=true なら必ず2ページ。戻り値 = ページ箱の HTML（.kfit-pg の並び）
+function kfitBuild(html, forceTwo, note) {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html;
+  const out = [];
+  const host = document.createElement('div');
+  host.className = 'kfit-measure';
+  host.innerHTML = '<div class="kfit-pg"><div class="kfit-in"><div class="kfit-head">x</div><div class="kfit-col kfit-l"></div></div></div>';
+  document.body.appendChild(host);
+  const inner = host.querySelector('.kfit-in'), col = host.querySelector('.kfit-col');
+  try {
+    tmp.querySelectorAll('.daimon').forEach((dm) => {
+      const cards = Array.from(dm.querySelectorAll('section.card')).map((c) => c.outerHTML);
+      if (!cards.length) return;
+      const t = dm.querySelector('.dtitle');
+      const title = (t ? t.textContent : '') + (note ? `　${note}` : '');
+      col.innerHTML = cards.join('');
+      const els = Array.from(col.children);
+      // 文字サイズ f で段に割りふる。入りきれば [[段ごとのカード番号]…]、入らなければ null
+      const layout = (f, maxCols) => {
+        inner.style.fontSize = f + 'cqw';
+        const avail = col.clientHeight * KFIT.slack;
+        const cols = [[]];
+        let top = els[0].offsetTop;
+        for (let i = 0; i < els.length; i++) {
+          const bottom = els[i].offsetTop + els[i].offsetHeight;
+          if (bottom - top > avail && cols[cols.length - 1].length) {
+            cols.push([]); top = els[i].offsetTop;
+            if (cols.length > maxCols) return null;
+          }
+          if (bottom - top > avail) return null;   // 1枚で段より長い
+          cols[cols.length - 1].push(i);
+        }
+        return cols;
+      };
+      let f = KFIT.fmax, cols = null;
+      if (!forceTwo) cols = layout(f, 2);            // 絞り込みで少ないときは1ページ
+      while (!cols) {
+        cols = layout(f, 4);
+        if (cols || f <= KFIT.fmin) break;
+        f = Math.max(KFIT.fmin, f * KFIT.step);
+      }
+      if (!cols) {   // 下限でも入らない（ふつうは起きない）: 4段に均等に割って流す
+        console.warn('kfit: 入りきらない', title);
+        cols = [[], [], [], []];
+        els.forEach((_, i) => cols[Math.min(3, Math.floor(i * 4 / els.length))].push(i));
+      }
+      const nPages = forceTwo ? 2 : Math.ceil(cols.length / 2);
+      for (let p = 0; p < nPages; p++) {
+        const side = nPages > 1 ? `<span class="kfit-side">${p === 0 ? '表' : '裏'} ${p + 1} / ${nPages}</span>` : '';
+        const colHTML = (k, cls) => `<div class="kfit-col ${cls}">${(cols[p * 2 + k] || []).map((i) => cards[i]).join('')}</div>`;
+        out.push(`<div class="kfit-pg"><div class="kfit-in" style="font-size:${f.toFixed(4)}cqw"><div class="kfit-head">${side}${kfitEsc(title)}</div>${colHTML(0, 'kfit-l')}${colHTML(1, 'kfit-r')}</div></div>`);
+      }
+    });
+  } finally { host.remove(); }
+  return out.join('');
+}
+// kfit:end
+
 // ★2026-10-18 選んだページの解説をまとめて印刷（B4横・2段組）。絞り込み中は各単元の対象小問のカードだけ残す
 async function printUnitsKaisetsu(cat, ids, bf) {
-  const parts = [];
+  const parts = [], fitFlags = [];
   let kept = 0, total = 0, noK = 0;
   for (const id of ids) {
     const unit = state.unitCache[id];
@@ -798,7 +867,7 @@ async function printUnitsKaisetsu(cat, ids, bf) {
       if (r.kept === 0) continue;
       kept += r.kept; html = r.html;
     }
-    parts.push(html);   // 断片は自分の見出し（.daimon > .dtitle）を持っている
+    parts.push(html); fitFlags.push(kfitUnit(unit));   // 断片は自分の見出し（.daimon > .dtitle）を持っている
   }
   if (!parts.length) {
     alert(noK === ids.length ? `選んだ${cat.noun || 'ページ'}には解説がまだありません` : 'いまの問題選択に対象の解説はありません（「全ての問題」に戻すか、別の選択にしてください）');
@@ -808,11 +877,18 @@ async function printUnitsKaisetsu(cat, ids, bf) {
   if (!body) return;
   _resetPrintOverlay();
   const sub = bf !== 'all' ? `${WSM_MODE_SHORT[bf] || bf}の解説（${kept} / ${total} 問）` : '';
-  body.innerHTML = `<div class="kp"><div class="kp-title">${cat.name} 解説（${parts.length}${cat.noun || 'ページ'}分）</div>${sub ? `<div class="kp-sub">${sub}</div>` : ''}` +
-    `<div class="kaisetsu kaisetsu-print kaisetsu-print-multi">${parts.join('')}</div></div>`;
+  // ★2026-11-26 広尾の語彙: 1回 = 表裏1枚（2ページ）のページ箱に組む（kfitBuild）。絞り込み中は入る分だけ（1〜2ページ）
+  const fit = fitFlags.every(Boolean) && kfitSupported();
   let style = document.getElementById('dynamic-print-page');
   if (!style) { style = document.createElement('style'); style.id = 'dynamic-print-page'; document.head.appendChild(style); }
-  style.textContent = `@page { size: B4 landscape; margin: 12mm 12mm 12mm 12mm; }`;
+  if (fit) {
+    body.innerHTML = `<div class="kp">${parts.map((h) => kfitBuild(h, bf === 'all', sub ? `〔${WSM_MODE_SHORT[bf] || bf}〕` : '')).join('')}</div>`;
+    style.textContent = `@page { size: B4 landscape; margin: 5mm; }`;
+  } else {
+    body.innerHTML = `<div class="kp"><div class="kp-title">${cat.name} 解説（${parts.length}${cat.noun || 'ページ'}分）</div>${sub ? `<div class="kp-sub">${sub}</div>` : ''}` +
+      `<div class="kaisetsu kaisetsu-print kaisetsu-print-multi">${parts.join('')}</div></div>`;
+    style.textContent = `@page { size: B4 landscape; margin: 12mm 12mm 12mm 12mm; }`;
+  }
   await new Promise((r) => setTimeout(r, 50));
   try { window.print(); } catch (e) { console.warn('print err', e); }
 }
@@ -1272,10 +1348,15 @@ async function printWsKaisetsu() {
     sub = `${WSM_MODE_SHORT[wsmFilter] || wsmFilter}の解説（${r.kept} / ${r.total} 問）`;
   }
   const title = `${u.id} ${u.title || ''} 解説`;
-  body.innerHTML = `<div class="kp"><div class="kp-title">${title}</div>${sub ? `<div class="kp-sub">${sub}</div>` : ''}<div class="kaisetsu kaisetsu-print">${printHTML}</div></div>`;
   let style = document.getElementById('dynamic-print-page');
   if (!style) { style = document.createElement('style'); style.id = 'dynamic-print-page'; document.head.appendChild(style); }
-  style.textContent = `@page { size: B4 landscape; margin: 12mm 12mm 12mm 12mm; }`;
+  if (kfitUnit(u) && kfitSupported()) {   // ★2026-11-26 広尾の語彙: 表裏1枚のページ箱（kfitBuild）
+    body.innerHTML = `<div class="kp">${kfitBuild(printHTML, !sub, sub ? `〔${WSM_MODE_SHORT[wsmFilter] || wsmFilter}〕` : '')}</div>`;
+    style.textContent = `@page { size: B4 landscape; margin: 5mm; }`;
+  } else {
+    body.innerHTML = `<div class="kp"><div class="kp-title">${title}</div>${sub ? `<div class="kp-sub">${sub}</div>` : ''}<div class="kaisetsu kaisetsu-print">${printHTML}</div></div>`;
+    style.textContent = `@page { size: B4 landscape; margin: 12mm 12mm 12mm 12mm; }`;
+  }
   requestAnimationFrame(() => { try { window.print(); } catch (e) { console.warn('print err', e); } });
 }
 
