@@ -1293,6 +1293,18 @@
   "category": "kanji-tokkun"
  },
  {
+  "id": "62A-32",
+  "week": "デイリーサピックス",
+  "title": "62A-32 文法①",
+  "category": "daily-knowledge"
+ },
+ {
+  "id": "KJ-62A-32",
+  "week": "漢字特訓",
+  "title": "62A-32（文法①）",
+  "category": "kanji-tokkun"
+ },
+ {
   "id": "KY-006",
   "week": "細部ミスに注意すべき漢字",
   "title": "細部ミスに注意すべき漢字 1",
@@ -5593,12 +5605,6 @@
   "title": "四字熟語 6",
   "category": "hiroo-goi",
   "tag": "第6回・10問"
- },
- {
-  "id": "62A-32",
-  "week": "デイリーサピックス",
-  "title": "62A-32 文法①",
-  "category": "daily-knowledge"
  },
  {
   "id": "HG-B01",
