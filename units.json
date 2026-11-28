@@ -696,6 +696,30 @@
   "category": "knowledge"
  },
  {
+  "id": "WS-32-1",
+  "week": "WS-32",
+  "title": "WS-32-1 大問一（読解）",
+  "category": "reading"
+ },
+ {
+  "id": "WS-32-2",
+  "week": "WS-32",
+  "title": "WS-32-2 大問二（読解）",
+  "category": "reading"
+ },
+ {
+  "id": "WS-32-3",
+  "week": "WS-32",
+  "title": "WS-32-3 大問三（読解）",
+  "category": "reading"
+ },
+ {
+  "id": "WS-32-K",
+  "week": "WS-32",
+  "title": "WS-32 知識の総完成",
+  "category": "knowledge"
+ },
+ {
   "id": "62A-21",
   "week": "デイリーサピックス",
   "title": "62A-21 いろいろな言葉①",

@@ -1,0 +1,144 @@
+{
+  "id": "WS-32-K",
+  "week": "WS-32",
+  "title": "WS-32 知識の総完成",
+  "category": "knowledge",
+  "questionPages": [
+    {
+      "full": "units/WS-32-K/q_1.jpg",
+      "small": "units/WS-32-K/q_1_small.jpg"
+    }
+  ],
+  "answerPages": [
+    {
+      "full": "units/_shared/WS-32/expl_1.jpg",
+      "small": "units/_shared/WS-32/expl_1_small.jpg"
+    },
+    {
+      "full": "units/_shared/WS-32/expl_2.jpg",
+      "small": "units/_shared/WS-32/expl_2_small.jpg"
+    }
+  ],
+  "hasSolved": false,
+  "questions": [
+    "一1",
+    "一2",
+    "一3",
+    "一4",
+    "一5",
+    "一6",
+    "一7",
+    "一8",
+    "一9",
+    "一10",
+    "二①",
+    "二②",
+    "二③",
+    "二④",
+    "二⑤",
+    "三①",
+    "三②",
+    "三③",
+    "三④",
+    "三⑤",
+    "三⑥",
+    "三⑦",
+    "四①",
+    "四②",
+    "四③",
+    "四④",
+    "四⑤",
+    "四⑥",
+    "四⑦",
+    "五①",
+    "五②",
+    "五③",
+    "五④",
+    "六1",
+    "六2",
+    "六3",
+    "六4",
+    "六5",
+    "六6",
+    "六7",
+    "六8",
+    "六9",
+    "六10"
+  ],
+  "questionGroups": [
+    {
+      "head": "一",
+      "labels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ]
+    },
+    {
+      "head": "二",
+      "labels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤"
+      ]
+    },
+    {
+      "head": "三",
+      "labels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦"
+      ]
+    },
+    {
+      "head": "四",
+      "labels": [
+        "①",
+        "②",
+        "③",
+        "④",
+        "⑤",
+        "⑥",
+        "⑦"
+      ]
+    },
+    {
+      "head": "五",
+      "labels": [
+        "①",
+        "②",
+        "③",
+        "④"
+      ]
+    },
+    {
+      "head": "六",
+      "labels": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+      ]
+    }
+  ],
+  "imageBase": "https://komaguchi-wq.github.io/kokugo-weekly-sapix-images-03/"
+}
